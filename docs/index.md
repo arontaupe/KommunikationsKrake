@@ -30,5 +30,12 @@ Du kannst ihn schon Fragen, wer er ist.
    --df-messenger-font-color: white;
    --df-messenger-send-icon: #878fac;
    --df-messenger-user-message: #479b3d;
+
+   margin: 0;
+   padding: 0;
+   position: fixed;
+   right: 0;
+   transform: translateX(50%) translateY(50%);
+   bottom: -90px;
   }
 </style>
