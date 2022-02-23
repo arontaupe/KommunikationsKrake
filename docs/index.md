@@ -13,14 +13,12 @@ Du kannst ihn schon Fragen, wer er ist.
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-
 <df-messenger
   intent="WELCOME"
   chat-title="KommunikationsKrake"
   agent-id="e6ebff16-8d8b-458d-9d1b-e7e12350b061"
   language-code="de"
-  wait-open=FALSE>
-</df-messenger>
+></df-messenger>
 
 <style>
   df-messenger {
