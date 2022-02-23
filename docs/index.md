@@ -11,10 +11,11 @@ Du kannst ihn schon Fragen, wer er ist.
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
   intent="WELCOME"
-  chat-title="KomKra"
+  chat-title="KommunikationsKrake"
   agent-id="fd541e13-0c7e-47dc-af6a-8c98c865399c"
   language-code="de"
-  wait-open=TRUE
+  chat-icon=<i class="fa-brands fa-octopus deploy"></i>
+  wait-open=FALSE
 ></df-messenger>
 
 <style>
