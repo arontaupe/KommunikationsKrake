@@ -1,2 +1,2 @@
-# komkra
-prototype for Sommerblut
+# Kommunikationskrake
+Inklusiver Chatbot, zukünftiges Maskottchen.
