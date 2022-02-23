@@ -10,15 +10,18 @@ Er hat leider noch kein Gesicht.
 
 Du kannst ihn schon Fragen, wer er ist.
 
+
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
+  chat-icon="https:&#x2F;&#x2F;www.sommerblut.de&#x2F;wp-content&#x2F;uploads&#x2F;SB-Logo-weiss-tranzp-rgb-ohne-multip.png"
   intent="WELCOME"
-  chat-title="KommunikationsKrake"
-  agent-id="e6ebff16-8d8b-458d-9d1b-e7e12350b061"
+  chat-title="KommKrake"
+  agent-id="335d74f7-2449-431d-924a-db70d79d4f88"
   language-code="de"
 ></df-messenger>
+
 
 <style>
   df-messenger {
