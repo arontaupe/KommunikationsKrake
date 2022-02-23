@@ -1,5 +1,11 @@
 ## Kommunikationskrake Prototyp
 
+Achtung, Baustelle!
+Hier entsteht ein inklusiver Chatbot.
+Er kann mit dir reden.
+Er hat leider noch kein Gesicht.
+Du kannst ihn schon Fragen, wer er ist.
+
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
