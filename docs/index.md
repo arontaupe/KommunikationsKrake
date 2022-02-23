@@ -18,7 +18,7 @@ Du kannst ihn schon Fragen, wer er ist.
   chat-title="KommunikationsKrake"
   agent-id="e6ebff16-8d8b-458d-9d1b-e7e12350b061"
   language-code="de"
-  chat-icon=<i class="fa-brands fa-octopus deploy"></i>
+
   wait-open=FALSE
 ></df-messenger>
 
