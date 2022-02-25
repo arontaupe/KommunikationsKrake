@@ -1,4 +1,8 @@
-## Kommunikationskrake Prototyp
+---
+title: Kommunikationskrake
+layout: default
+---
+## Ein Prototyp
 
 Achtung, Baustelle!
 
@@ -17,7 +21,7 @@ Du kannst ihn schon Fragen, wer er ist.
 <df-messenger
   chat-icon="https:&#x2F;&#x2F;www.sommerblut.de&#x2F;wp-content&#x2F;uploads&#x2F;SB-Logo-weiss-tranzp-rgb-ohne-multip.png"
   intent="WELCOME"
-  chat-title="KommKrake"
+  chat-title="KommunikationsKrake"
   agent-id="335d74f7-2449-431d-924a-db70d79d4f88"
   language-code="de"
 ></df-messenger>
