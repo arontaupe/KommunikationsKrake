@@ -17,11 +17,21 @@ Du kannst ihn schon Fragen, wer er ist.
 
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
+<style>
+  df-messenger {
+   --df-messenger-bot-message: blue;
+   --df-messenger-button-titlebar-color: pink;
+   --df-messenger-chat-background-color: #fafafa;
+   --df-messenger-font-color: white;
+   --df-messenger-send-icon: pink;
+   --df-messenger-user-message: orange;
+  }
+</style>
 
 <iframe
     allow="microphone;"
-    width="350"
-    height="430"
+    width="500"
+    height="700"
     src="https://console.dialogflow.com/api-client/demo/embedded/335d74f7-2449-431d-924a-db70d79d4f88">
 </iframe>
 
@@ -34,15 +44,3 @@ Du kannst ihn schon Fragen, wer er ist.
   language-code="de"
   allow="microphone;"
 ></df-messenger>
-
-
-<style>
-  df-messenger {
-   --df-messenger-bot-message: #878fac;
-   --df-messenger-button-titlebar-color: #df9b56;
-   --df-messenger-chat-background-color: #fafafa;
-   --df-messenger-font-color: white;
-   --df-messenger-send-icon: #878fac;
-   --df-messenger-user-message: #479b3d;
-  }
-</style>
