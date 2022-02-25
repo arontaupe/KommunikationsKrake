@@ -1,6 +1,7 @@
 ---
 title: Kommunikationskrake
 layout: default
+author: "Aron Petau"
 ---
 ## Ein Prototyp
 
