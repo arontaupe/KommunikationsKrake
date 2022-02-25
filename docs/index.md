@@ -32,6 +32,7 @@ Du kannst ihn schon Fragen, wer er ist.
   chat-title="KommunikationsKrake"
   agent-id="335d74f7-2449-431d-924a-db70d79d4f88"
   language-code="de"
+  allow="microphone;"
 ></df-messenger>
 
 
