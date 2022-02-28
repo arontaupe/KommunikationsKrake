@@ -24,7 +24,7 @@ Du kannst ihn schon Fragen, wer er ist.
 <style>
 
 .container {
-  background-image: url("img.png");
+  background-image: url("https://datenbank.sommerblut.de/media/images/normal/0e8a31d19e9a9d0a93156d958cea14e6fa26f6a7d737b9ce1ff18c528278da0d.jpg");
   background-repeat: no-repeat;
   min-height: 940px;
   height: 100%;
@@ -46,7 +46,7 @@ Du kannst ihn schon Fragen, wer er ist.
 <df-messenger
   chat-icon="https:&#x2F;&#x2F;www.sommerblut.de&#x2F;wp-content&#x2F;uploads&#x2F;SB-Logo-weiss-tranzp-rgb-ohne-multip.png"
   intent="WELCOME"
-  chat-title="KommunikationsKrake"
+  chat-title="Kommunikations Krake"
   agent-id="335d74f7-2449-431d-924a-db70d79d4f88"
   language-code="de"
   allow="microphone;"
