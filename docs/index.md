@@ -18,23 +18,29 @@ Du kannst ihn schon Fragen, wer er ist.
 {% include youtube.html id='iv4Sa2ZjjgM' %}
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
+
+<div class="container">
+
 <style>
+
+.container {
+  background-image: url("img.png");
+  background-repeat: no-repeat;
+  min-height: 940px;
+  height: 100%;
+  margin: 10px 30px;
+}
+
   df-messenger {
-   --df-messenger-bot-message: blue;
-   --df-messenger-button-titlebar-color: pink;
+   --df-messenger-bot-message: #e20079;
+   --df-messenger-button-titlebar-color: #e20079;
    --df-messenger-chat-background-color: #fafafa;
    --df-messenger-font-color: white;
-   --df-messenger-send-icon: pink;
+   --df-messenger-send-icon: #e20079;
    --df-messenger-user-message: orange;
+   --df-messenger-chip-border-color:#0041C2;
   }
 </style>
-
-<iframe
-    allow="microphone;"
-    width="500"
-    height="700"
-    src="https://console.dialogflow.com/api-client/demo/embedded/335d74f7-2449-431d-924a-db70d79d4f88">
-</iframe>
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
@@ -45,3 +51,12 @@ Du kannst ihn schon Fragen, wer er ist.
   language-code="de"
   allow="microphone;"
 ></df-messenger>
+
+</div>
+
+<iframe
+    allow="microphone;"
+    width="500"
+    height="700"
+    src="https://console.dialogflow.com/api-client/demo/embedded/335d74f7-2449-431d-924a-db70d79d4f88">
+</iframe>
