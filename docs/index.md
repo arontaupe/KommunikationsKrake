@@ -17,12 +17,10 @@ Du kannst ihn schon Fragen, wer er ist.
 
 {% include youtube.html id='iv4Sa2ZjjgM' %}
 
+![image tooltip here](/assets/avatar.jpg)
+
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
-<figure>
-  <img src="/assets/avatar.jpg" alt="this is the avatar for the bot">
-  <figcaption>This is a figure caption.</figcaption>
-</figure>
 
 <style>
   df-messenger {
