@@ -49,7 +49,9 @@ Du kannst ihn schon Fragen, wer er ist.
     integrationID: "82fabbed-91f0-4b4b-a004-0e6e179efa29", // The ID of this integration.
     region: "eu-de", // The region your integration is hosted in.
     serviceInstanceID: "fcba3cc5-fcae-480b-a10b-49fb3646e064", // The ID of your service instance.
-    onLoad: function(instance) { instance.render(); }
+    onLoad: function(instance) { instance.render(); },
+    carbonTheme: "white",
+    enableFocusTrap: true
   };
   setTimeout(function(){
     const t=document.createElement('script');
