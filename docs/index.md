@@ -19,6 +19,11 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
+<figure>
+  <img src="/assets/avatar.jpg" alt="this is the avatar for the bot">
+  <figcaption>This is a figure caption.</figcaption>
+</figure>
+
 <style>
   df-messenger {
    --df-messenger-bot-message: #e20079;
@@ -47,9 +52,3 @@ Du kannst ihn schon Fragen, wer er ist.
     height="700"
     src="https://console.dialogflow.com/api-client/demo/embedded/335d74f7-2449-431d-924a-db70d79d4f88">
 </iframe>
-
-
-<figure>
-  <img src="/assets/avatar.jpg" alt="this is the avatar for the bot">
-  <figcaption>This is a figure caption.</figcaption>
-</figure>
