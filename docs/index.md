@@ -19,10 +19,7 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
-<div class="container">
-
 <style>
-
   df-messenger {
    --df-messenger-bot-message: #e20079;
    --df-messenger-button-titlebar-color: #e20079;
@@ -43,8 +40,6 @@ Du kannst ihn schon Fragen, wer er ist.
   language-code="de"
   allow="microphone;"
 ></df-messenger>
-
-</div>
 
 <iframe
     allow="microphone;"
