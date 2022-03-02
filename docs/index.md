@@ -44,6 +44,20 @@ Du kannst ihn schon Fragen, wer er ist.
   allow="microphone;"
 ></df-messenger>
 
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "82fabbed-91f0-4b4b-a004-0e6e179efa29", // The ID of this integration.
+    region: "eu-de", // The region your integration is hosted in.
+    serviceInstanceID: "fcba3cc5-fcae-480b-a10b-49fb3646e064", // The ID of your service instance.
+    onLoad: function(instance) { instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+
 <iframe
     allow="microphone;"
     width="500"
