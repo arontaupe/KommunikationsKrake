@@ -23,14 +23,6 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <style>
 
-.container {
-  background-image: url("https://datenbank.sommerblut.de/media/images/normal/0e8a31d19e9a9d0a93156d958cea14e6fa26f6a7d737b9ce1ff18c528278da0d.jpg");
-  background-repeat: no-repeat;
-  min-height: 940px;
-  height: 100%;
-  margin: 10px 30px;
-}
-
   df-messenger {
    --df-messenger-bot-message: #e20079;
    --df-messenger-button-titlebar-color: #e20079;
@@ -60,3 +52,9 @@ Du kannst ihn schon Fragen, wer er ist.
     height="700"
     src="https://console.dialogflow.com/api-client/demo/embedded/335d74f7-2449-431d-924a-db70d79d4f88">
 </iframe>
+
+
+<figure>
+  <img src="/assets/avatar.jpg" alt="this is the avatar for the bot">
+  <figcaption>This is a figure caption.</figcaption>
+</figure>
