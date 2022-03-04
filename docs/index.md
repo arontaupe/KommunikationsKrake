@@ -110,6 +110,8 @@ Du kannst ihn schon Fragen, wer er ist.
 
     // Config option to hide the default launcher.
     showLauncher: false,
+    // Make the window open by default.
+    openChatByDefault: true,
 
     onLoad: function(instance) {
           // Select the button element from the page.
