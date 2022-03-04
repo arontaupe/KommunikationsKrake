@@ -15,9 +15,6 @@ Er hat leider noch kein Gesicht.
 
 Du kannst ihn schon Fragen, wer er ist.
 
-{% include youtube.html id='iv4Sa2ZjjgM' %}
-
-![image tooltip here](/assets/avatar.jpg)
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
@@ -176,3 +173,6 @@ Du kannst ihn schon Fragen, wer er ist.
     document.head.appendChild(t);
   });
 </script>
+
+
+![image tooltip here](/assets/avatar.jpg)
