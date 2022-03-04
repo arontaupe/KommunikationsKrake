@@ -110,6 +110,7 @@ Du kannst ihn schon Fragen, wer er ist.
     showLauncher: false,
     // Make the window open by default.
     openChatByDefault: true,
+    hideCloseButton: true,
 
     onLoad: function(instance) {
           // Select the button element from the page.
