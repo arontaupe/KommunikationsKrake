@@ -16,30 +16,6 @@ Er hat leider noch kein Gesicht.
 Du kannst ihn schon Fragen, wer er ist.
 
 
-<meta name="viewport" content="width-device-width, initial-scale=1">
-
-<style>
-  df-messenger {
-   --df-messenger-bot-message: #e20079;
-   --df-messenger-button-titlebar-color: #e20079;
-   --df-messenger-chat-background-color: #fafafa;
-   --df-messenger-font-color: white;
-   --df-messenger-send-icon: #e20079;
-   --df-messenger-user-message: orange;
-   --df-messenger-chip-border-color:#0041C2;
-  }
-</style>
-
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger
-  chat-icon="https:&#x2F;&#x2F;www.sommerblut.de&#x2F;wp-content&#x2F;uploads&#x2F;SB-Logo-weiss-tranzp-rgb-ohne-multip.png"
-  intent="WELCOME"
-  chat-title="Kommunikations Krake"
-  agent-id="335d74f7-2449-431d-924a-db70d79d4f88"
-  language-code="de"
-  allow="microphone;"
-></df-messenger>
-
 <style>
     @keyframes slideInRight {
       from {
@@ -106,8 +82,8 @@ Du kannst ihn schon Fragen, wer er ist.
     // Config option to hide the default launcher.
     showLauncher: false,
     // Make the window open by default.
-    openChatByDefault: true,
-    hideCloseButton: true,
+    //openChatByDefault: true,
+    //hideCloseButton: true,
 
     onLoad: function(instance) {
           // Select the button element from the page.
@@ -139,40 +115,6 @@ Du kannst ihn schon Fragen, wer er ist.
 </script>
 
 
-<style>
-  .chatElement {
-    height: 600px;
-    width: 100%;
-  }
-</style>
-
-<div class="chatElement"></div>
-<script>
-  const element = document.querySelector('.chatElement');
-  window.watsonAssistantChatOptions = {
-    integrationID: "82fabbed-91f0-4b4b-a004-0e6e179efa29", // The ID of this integration.
-    region: "eu-de", // The region your integration is hosted in.
-    serviceInstanceID: "fcba3cc5-fcae-480b-a10b-49fb3646e064", // The ID of your service instance.
-
-    // Provide the custom element.
-    element: element,
-    // Hide the close button since we want it always open.
-    hideCloseButton: true,
-    // Hide the default launcher.
-    showLauncher: false,
-    // Make the window open by default.
-    openChatByDefault: true,
-
-    onLoad: function(instance) {
-      instance.render();
-    }
-};
-  setTimeout(function(){
-    const t=document.createElement('script');
-    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
-    document.head.appendChild(t);
-  });
-</script>
 
 
 ![image tooltip here](/assets/avatar.jpg)
