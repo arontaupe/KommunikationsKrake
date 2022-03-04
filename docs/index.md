@@ -21,7 +21,6 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
-
 <style>
   df-messenger {
    --df-messenger-bot-message: #e20079;
@@ -43,8 +42,6 @@ Du kannst ihn schon Fragen, wer er ist.
   language-code="de"
   allow="microphone;"
 ></df-messenger>
-
-
 
 <style>
     @keyframes slideInRight {
@@ -99,10 +96,11 @@ Du kannst ihn schon Fragen, wer er ist.
     }
   </style>
 
-<!-- We want to hide this element initially, because web chat isn't ready yet. -->
-<button type="button" class="chatLauncher" style="display:none;">
-    <strong>Hallo du!</strong> Hier kannst du mit dem Kommunikationskraken reden.
-</button>
+  <button type="button" class="chatLauncher" style="display:none;">
+    <div>
+      <strong>Hallo du!</strong> Hier kannst du mit dem Kommunikationskraken reden.
+    </div>
+  </button>
 
 <script>
   window.watsonAssistantChatOptions = {
