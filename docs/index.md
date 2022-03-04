@@ -62,8 +62,8 @@ Du kannst ihn schon Fragen, wer er ist.
       animation-duration: 0.5s;
       transition-duration: 0.5s;
       position: fixed;
-      bottom: 32px;
-      right: 32px;
+      bottom: 128px;
+      right: 128px;
       z-index: 9999;
       border: 4px solid #075cc2;
       padding: 1em;
@@ -101,9 +101,7 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <!-- We want to hide this element initially, because web chat isn't ready yet. -->
 <button type="button" class="chatLauncher" style="display:none;">
-  <div>
-    <strong>Have questions?</strong> Talk with Karen our Virtual Assistant.
-  </div>
+    <strong>Hallo du!</strong> Hier kannst du mit dem Kommunikationskraken reden.
 </button>
 
 <script>
