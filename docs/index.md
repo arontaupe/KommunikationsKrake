@@ -97,9 +97,7 @@ Du kannst ihn schon Fragen, wer er ist.
   </style>
 
   <button type="button" class="chatLauncher" style="display:none;">
-    <div>
       <strong>Hallo du!</strong> Hier kannst du mit dem Kommunikationskraken reden.
-    </div>
   </button>
 
 <script>
