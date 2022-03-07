@@ -79,8 +79,12 @@ Du kannst ihn schon Fragen, wer er ist.
     region: "eu-de", // The region your integration is hosted in.
     serviceInstanceID: "fcba3cc5-fcae-480b-a10b-49fb3646e064", // The ID of your service instance.
 
+    // Config option to change Carbon themes.
+    carbonTheme: 'g90',
+
     // Config option to hide the default launcher.
     showLauncher: false,
+
     // Make the window open by default.
     //openChatByDefault: true,
     //hideCloseButton: true,
