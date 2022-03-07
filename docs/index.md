@@ -43,7 +43,7 @@ Du kannst ihn schon Fragen, wer er ist.
       background-color: #ffffff;
       color: #454545;
       font-family: sans-serif;
-      font-size: 1rem;
+      font-size: 2rem;
       cursor: pointer;
       text-align: left;
       -webkit-appearance: none;
