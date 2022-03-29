@@ -19,14 +19,7 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
-<style>
-  .chatElement {
-    height: 600px;
-    width: 100%;
-  }
-</style>
 
-<div class="chatElement"></div>
 <script>
   const element = document.querySelector('.chatElement');
   window.watsonAssistantChatOptions = {
@@ -53,3 +46,5 @@ Du kannst ihn schon Fragen, wer er ist.
     document.head.appendChild(t);
   });
 </script>
+
+
