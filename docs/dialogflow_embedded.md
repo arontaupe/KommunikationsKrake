@@ -33,6 +33,9 @@ Du kannst ihn schon Fragen, wer er ist.
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
+  height: 300px;
+  max-height: 90%;
+  min-height: 30%;
   chat-icon="https:&#x2F;&#x2F;www.sommerblut.de&#x2F;wp-content&#x2F;uploads&#x2F;SB-Logo-weiss-tranzp-rgb-ohne-multip.png"
   intent="WELCOME"
   chat-title="Kommunikations Krake"
