@@ -36,7 +36,14 @@ Du kannst ihn schon Fragen, wer er ist.
      var kommunicateSettings = {
       "appId": "1de87dab8813831be2ca348c605d99920",  
       "automaticChatOpenOnNavigation": true,
-      "popupWidget": true
+      "popupWidget": true,
+
+      "emojilibrary": true,
+      "openConversationOnNewMessage": true,
+      "voiceInput": true,
+      "voiceName":"Google Deutsch", 
+      "voiceRate":1,
+      "voiceOutput": true
       /*
       "onInit": function (){
         // paste your code here
