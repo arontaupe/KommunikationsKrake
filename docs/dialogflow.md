@@ -32,11 +32,11 @@ Du kannst ihn schon Fragen, wer er ist.
 </style>
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
 <df-messenger
   chat-icon="https:&#x2F;&#x2F;www.sommerblut.de&#x2F;wp-content&#x2F;uploads&#x2F;SB-Logo-weiss-tranzp-rgb-ohne-multip.png"
   intent="WELCOME"
-  chat-title="Kommunikations Krake"
+  chat-title="KommKrake"
   agent-id="335d74f7-2449-431d-924a-db70d79d4f88"
   language-code="de"
-  allow="microphone;"
 ></df-messenger>
