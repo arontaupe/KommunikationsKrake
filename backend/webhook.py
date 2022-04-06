@@ -1,68 +1,22 @@
-import sys
 print("botserver started")
 
 # import flask dependencies
-from flask import Flask, request, make_response, jsonify
-from copy import deepcopy
-from sample_jsons import SAMPLE_PAYLOAD_JSON, SAMPLE_RESPONSE_JSON, SAMPLE_IMAGE_JSON, SAMPLE_LIST_JSON, \
-    SAMPLE_LISTITEM_JSON_SHORT
-import json
+from flask import Flask, request, make_response, jsonify # makes the thing ngrokable
+import json # make me interact with json
 
-# import dependencies for database request
-import requests
-from requests.auth import HTTPBasicAuth   # die datenbank läuft über basic auth
+# import the response functionality
+from response_func import standard_response, image_response
 
-# die logindaten für die sommerblut datenbank. besser base64 encoden?
-DB_USER = 'api_ticketing'
-DB_PASS = '[T!ck28O1api'
-BASEURL = 'https://datenbank.sommerblut.de'
+# import the database functions
+from sb_db_request import test_sb_db, get_events_w_access
 
-def test_sb_db():
-    url = BASEURL + "/api/accessibilities.json"
-    response = requests.get(url, auth = HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Request: ' + str(response.url))
-    print('Status Code: ' + str(response.status_code))
-    print('Headers')
-    print(response.headers)
-    print(response.json())
-    return response
+# console should say 200 and the chatbot should send a message
+test_sb_db()
 
-def get_events_w_access(accessibility):
-    query = '?accessible=['+ str(accessibility) + ']'
-    suburl = "/api/events.json"
-    url = BASEURL + suburl + query
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Request: ' + str(response.url))
-    print('Status Code: ' + str(response.status_code))
-    print(response.json()['items']['title'])
-    #print(response.headers)
-    #print(response.json())
-    #print(response.text)
-    #r_dict = response.json()
-    #print(r_dict['title'])
-    #print(json.dumps(response.text, indent=4))
-    #return response
+# TODO should get a list of all events with a determined accessibility id (0-9)
 get_events_w_access(1)
 
-def standard_response(text, suggestions=None):
-    resp = deepcopy(SAMPLE_RESPONSE_JSON)
-    resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = text
-    if suggestions:
-        resp['payload']['google']['richResponse']['suggestions'] = [{'title': i} for i in suggestions]
-    return resp
 
-def image_response(imgpath, textresponse='Here is your image', title='', accessibilitytext='', suggestions=None):
-    resp = SAMPLE_IMAGE_JSON
-    resp['payload']['google']['richResponse']['items'][1]['basicCard']['image']['url'] = imgpath
-    if textresponse:
-        resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = textresponse
-    if title:
-        resp['payload']['google']['richResponse']['items'][1]['basicCard']['title'] = title
-    if accessibilitytext:
-        resp['payload']['google']['richResponse']['items'][1]['basicCard']['accessibilityText'] = accessibilitytext
-    if suggestions:
-        resp['payload']['google']['richResponse']['suggestions'] = [{'title': i} for i in suggestions]
-    return resp
 
 # initialize the flask app
 app = Flask(__name__)
@@ -80,6 +34,7 @@ def hello():
         Hello World!<br /><br />
         <a href="/">Back to index</a>
     """
+
 
 BEDARF = [0,0,0,0,0,0,0,0,0]
 
