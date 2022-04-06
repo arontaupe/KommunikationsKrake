@@ -1,5 +1,4 @@
 import sys
-
 print("botserver started")
 
 # import flask dependencies
@@ -8,6 +7,42 @@ from copy import deepcopy
 from sample_jsons import SAMPLE_PAYLOAD_JSON, SAMPLE_RESPONSE_JSON, SAMPLE_IMAGE_JSON, SAMPLE_LIST_JSON, \
     SAMPLE_LISTITEM_JSON_SHORT
 import json
+
+# import dependencies for database request
+import requests
+from requests.auth import HTTPBasicAuth   # die datenbank läuft über basic auth
+
+# die logindaten für die sommerblut datenbank. besser base64 encoden?
+DB_USER = 'api_ticketing'
+DB_PASS = '[T!ck28O1api'
+BASEURL = 'https://datenbank.sommerblut.de'
+
+def test_sb_db():
+    url = BASEURL + "/api/accessibilities.json"
+    response = requests.get(url, auth = HTTPBasicAuth(DB_USER, DB_PASS))
+    print('Request: ' + str(response.url))
+    print('Status Code: ' + str(response.status_code))
+    print('Headers')
+    print(response.headers)
+    print(response.json())
+    return response
+
+def get_events_w_access(accessibility):
+    query = '?accessible=['+ str(accessibility) + ']'
+    suburl = "/api/events.json"
+    url = BASEURL + suburl + query
+    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
+    print('Request: ' + str(response.url))
+    print('Status Code: ' + str(response.status_code))
+    print(response.json()['items']['title'])
+    #print(response.headers)
+    #print(response.json())
+    #print(response.text)
+    #r_dict = response.json()
+    #print(r_dict['title'])
+    #print(json.dumps(response.text, indent=4))
+    #return response
+get_events_w_access(1)
 
 def standard_response(text, suggestions=None):
     resp = deepcopy(SAMPLE_RESPONSE_JSON)
