@@ -16,11 +16,8 @@ test_sb_db()
 # TODO should get a list of all events with a determined accessibility id (0-9)
 get_events_w_access(1)
 
-
-
 # initialize the flask app
 app = Flask(__name__)
-
 
 # default route 
 @app.route('/')
@@ -36,7 +33,7 @@ def hello():
     """
 
 
-BEDARF = [0,0,0,0,0,0,0,0,0]
+BEDARF = [0,0,0,0,0,0]
 
 # this is the main intent switch function. All intents that use the backend must be routed here.
 def handle_intent(intent_name, req_json):
@@ -47,40 +44,32 @@ def handle_intent(intent_name, req_json):
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
 
-    if intent_name == 'fulfillment.test':
+    if intent_name == 'test.fulfillment':
         return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'};
     elif intent_name == 'bedarf.select - collect':
         bedarf = parameters.get('bedarf')
         if bedarf:
-            if bedarf == 'kein':
+            if bedarf == 'kein Bedarf':
                 BEDARF[0] = 1
             elif bedarf == 'leichte Sprache':
                 BEDARF[1] = 1
-            elif bedarf == 'blind':
+            elif bedarf == 'Höreinschränkung':
                 BEDARF[2] = 1
-            elif bedarf == 'gehörlos':
+            elif bedarf == 'Mobilitätseinschränkung':
                 BEDARF[3] = 1
-            elif bedarf == 'eingeschränkte Mobilität':
+            elif bedarf == 'Visuelle Einschränkung':
                 BEDARF[4] = 1
-            elif bedarf == 'Rollstuhl':
+            elif bedarf == 'begrenzte Reize':
                 BEDARF[5] = 1
-            elif bedarf == 'Untertitel':
-                BEDARF[6] = 1
-            elif bedarf == 'Sehschwäche':
-                BEDARF[7] = 1
-            elif bedarf == 'Hörschwäche':
-                BEDARF[8] = 1
         return standard_response('Webhook : Okay, ich habe deinen Bedarf ' + bedarf +
                                    ' abgespeichert.'' Willst du weitere Bedarfe angeben?'
                 '(Was der Webhook weiss: ' + str(BEDARF),
                                  suggestions= ["Ja", "Nein", "Menü"])
 
-
-
-
-
-
-
+    elif intent_name == 'teach.fingeralhabet':
+        fa_letter = parameters.get('fa_letter')
+        if fa_letter:
+            return image_response('/sources/fa/' + fa_letter + '.png')
 
 
 # function for responses
@@ -116,7 +105,7 @@ def update():
 def webhook():
     # return response
     return handle_intent()
-    return make_response(jsonify(results()))
+    #return make_response(jsonify(results()))
 
 
 # run the app 

@@ -2,6 +2,10 @@
 import requests
 from requests.auth import HTTPBasicAuth   # die datenbank läuft über basic auth
 import json # make me interact with json
+
+# import the response functionality
+from response_func import standard_response, image_response
+
 # die logindaten für die sommerblut datenbank. besser base64 encoden? unsafe. TODO
 DB_USER = 'api_ticketing'
 DB_PASS = '[T!ck28O1api'
@@ -27,7 +31,7 @@ def get_events_w_access(accessibility):
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
     print('Request: ' + str(response.url))
     print('Status Code: ' + str(response.status_code))
-    print(response.json()['items']['title'])
+    #print(response.json()['items']['title'])
     #print(response.headers)
     #print(response.json())
     #print(response.text)
