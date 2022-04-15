@@ -3,7 +3,7 @@ from flask import Flask, request  # makes the thing ngrokable
 import json  # make me interact with json
 
 # import the response functionality
-from response_func import standard_response, image_response, img_resp, chip_response
+from response_func import image_response, chip_response, text_response
 
 # import the database functions
 from sb_db_request import test_sb_db, get_events_w_access
@@ -45,7 +45,9 @@ def handle_intent(intent_name, req_json):
 
     if intent_name == 'test.fulfillment':
         #return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
-        return chip_response(chips = ['Der','Webhook','funktioniert'])
+        #return chip_response(chips = ['Der','Webhook','funktioniert'])
+        return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
+        #return text_response('Hallo')
 
     elif intent_name == 'bedarf.select - collect':
         bedarf = parameters.get('bedarf')
@@ -68,13 +70,13 @@ def handle_intent(intent_name, req_json):
                                  chips=["Ja", "Nein", "Menü"])
 
     elif intent_name == 'teach.fingeralhabet':
-        fa_letter = parameters.get('fa_letter')
+        fa_letter = parameters.get('FA-Zeichen')
         if fa_letter:
             folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
-            return image_response(folder + fa_letter + '.png?raw=true')
+            return image_response(url = str(folder) + str(fa_letter) + '.png?raw=true', chips = ['Noch ein Buchstabe','Menü'])
 
     elif intent_name == 'test.webhook.image':
-        return img_resp()
+        return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
 
 # function for responses
@@ -98,12 +100,10 @@ def update():
         print("====================================== REQUEST.DATA ======================================")
         # print(request.data)
         response = handle_intent(answer['queryResult']['intent']['displayName'], answer)
-        # post_command('http://'+remote_addr, requestHeaders, response)
+
         if response:
             print("responding: ", response)
         return response
-        # handle_update(answer)
-        # return "" #"" = 200 responsee
     else:
         return "Incorrect request format (/)"
 

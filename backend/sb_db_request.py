@@ -4,7 +4,7 @@ from requests.auth import HTTPBasicAuth   # die datenbank läuft über basic aut
 import json # make me interact with json
 
 # import the response functionality
-from response_func import standard_response, image_response
+from response_func import chip_response, image_response
 import db_auth
 
 BASEURL = 'https://datenbank.sommerblut.de'
@@ -19,7 +19,7 @@ def test_sb_db():
     #print('Headers')
     #print(response.headers)
     #print(response.json())
-    return standard_response('the Webhook is online', ['Menü','Exit'])
+    return chip_response('Status der Datenbank: ' + str(response.status_code), ['Menü','Exit'])
 
 
 def get_events_w_access(accessibility):

@@ -42,140 +42,75 @@ SAMPLE_PAYLOAD_JSON = {
     }
 }
 
-SAMPLE_RESPONSE_JSON = {
-    "payload": {
-        "google": {
-            "expectUserResponse": True,
-            "richResponse": {
-                "items": [
-                    {
-                        "simpleResponse": {
-                            "textToSpeech": "Ok, here is a meditation for you."
-                        }
-                    }
-                ],
-                "suggestions": []
-            }
-        }
-    }
+SAMPLE_TEXT_JSON = {
+    "fulfillmentText": "Suggestion Chips",
 }
 SAMPLE_CHIP_JSON = {
-    "fulfillmentText": "Beispiele für Suggestion Chips",
+    "fulfillmentText": "Suggestion Chips",
     "fulfillmentMessages": [
-      {
-        "payload": {
-        "richContent": [
-            [
-              {
-                "options": [
-                  {
-                    "text": "Chip1"
-                  },
-                   {
-                    "text": "Chip2"
-                  }
-                ],
-                "type": "chips"
-              }
-            ]
-        ]
-        }
-
-      }
-    ]
-}
-
-SAMPLE_IMAGE_JSON2 = {
-    "payload": {
-        "PLATFORM_UNSPECIFIED": {
-            "expectUserResponse": True,
-            "richResponse": {
-                "items": [
-                    {
-                        "simpleResponse": {
-                            "textToSpeech": "Here's your emotional history"
-                        }
-                    },
-                    {
-                        "basicCard": {
-                            "title": "Your emotional history with me",
-                            "image": {
-                                "url": "https://raw.githubusercontent.com/arontaupe/KommunikationsKrake/main/backend/sources/fa/a.png",
-                                "accessibilityText": "<bargraph with your emotional history>"
-                            },
-                            "imageDisplayOptions": "DEFAULT"
-                        }
-                    }
+        {
+            "text": {
+                "text": [
+                    ""
                 ]
             }
+        },
+        {
+            "payload": {
+                "richContent": [
+                    [
+                        {
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ],
+                            "type": "chips"
+                        }
+                    ]
+                ]
+            }
+
         }
-    }
+    ]
 }
 
 SAMPLE_IMAGE_JSON = {
-"payload": {
-  "richContent": [
-    [
-      {
-        "rawUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/DGS.svg",
-        "accessibilityText": "DGS",
-        "type": "image"
-      }
-    ]
-  ]
-}
-}
-
-
-
-SAMPLE_LIST_JSON = {
-  "payload": {
-    "google": {
-      "expectUserResponse": True,
-      "systemIntent": {
-        "intent": "actions.intent.OPTION",
-        "data": {
-          "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
-          "listSelect": {
-            "title": "Common Questions",
-            "items": []
-          }
-        }
-      },
-      "richResponse": {
-        "items": [
-          {
-            "simpleResponse": {
-              "textToSpeech": "This is a list example."
+    "fulfillmentText": "Image",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
             }
-          }
-        ]
-      }
-    }
-  }
+        },
+        {
+            "payload": {
+                "richContent": [
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/DGS.svg",
+                            "accessibilityText": "accessibilityText"
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": "",
+                        },
+                        {
+                            "type": "chips",
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                },
+                            ]
+                        }
+                    ]
+                ]
+
+            }
+        }
+    ]
 }
-
-SAMPLE_LISTITEM_JSON =  {
-    "optionInfo": {
-      "key": "SELECTION_KEY_ONE",
-      "synonyms": [
-        "synonym 1",
-        "synonym 2",
-        "synonym 3"
-      ]
-    },
-    "description": "This is a description of a list item.",
-    "image": {
-      "url": "https://storage.googleapis.com/actionsresources/logo_assistant_2x_64dp.png",
-      "accessibilityText": "Image alternate text"
-    },
-    "title": "Title of First List Item"
-  }
-
-SAMPLE_LISTITEM_JSON_SHORT =  {
-    "optionInfo": {
-      "key": "SELECTION_KEY_ONE",
-      "synonyms": []
-    },
-    "title": "Title of First List Item"
-  }
