@@ -1,11 +1,9 @@
-print("botserver started")
-
 # import flask dependencies
-from flask import Flask, request, make_response, jsonify # makes the thing ngrokable
-import json # make me interact with json
+from flask import Flask, request  # makes the thing ngrokable
+import json  # make me interact with json
 
 # import the response functionality
-from response_func import standard_response, image_response, img_resp
+from response_func import standard_response, image_response, img_resp, chip_response
 
 # import the database functions
 from sb_db_request import test_sb_db, get_events_w_access
@@ -17,20 +15,24 @@ from dialogflow_fulfillment import WebhookClient
 test_sb_db()
 
 # TODO should get a list of all events with a determined accessibility id (0-9)
-#get_events_w_access(1)
+get_events_w_access(1)
 
 # initialize the flask app
 app = Flask(__name__)
 
+
 def handler(agent: WebhookClient) -> None:
     """Handle the webhook request."""
+
 
 # default route 
 @app.route('/')
 def index():
     return 'Hello World! This is the running Webhook for Sommerblut.'
 
-BEDARF = [0,0,0,0,0,0]
+
+BEDARF = [0, 0, 0, 0, 0, 0]
+
 
 # this is the main intent switch function. All intents that use the backend must be routed here.
 def handle_intent(intent_name, req_json):
@@ -42,7 +44,8 @@ def handle_intent(intent_name, req_json):
     parameters = req.get('queryResult').get('parameters')
 
     if intent_name == 'test.fulfillment':
-        return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'};
+        #return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
+        return chip_response(chips = ['Der','Webhook','funktioniert'])
 
     elif intent_name == 'bedarf.select - collect':
         bedarf = parameters.get('bedarf')
@@ -59,10 +62,10 @@ def handle_intent(intent_name, req_json):
                 BEDARF[4] = 1
             elif bedarf == 'begrenzte Reize':
                 BEDARF[5] = 1
-        return standard_response('Webhook : Okay, ich habe deinen Bedarf ' + bedarf +
-                                   ' abgespeichert.'' Willst du weitere Bedarfe angeben?'
-                '(Was der Webhook weiss: ' + str(BEDARF),
-                                 suggestions= ["Ja", "Nein", "Menü"])
+        return chip_response(text = 'Webhook : Okay, ich habe deinen Bedarf ' + bedarf +
+                                 ' abgespeichert.'' Willst du weitere Bedarfe angeben?'
+                                 '(Was der Webhook weiss: ' + str(BEDARF),
+                                 chips=["Ja", "Nein", "Menü"])
 
     elif intent_name == 'teach.fingeralhabet':
         fa_letter = parameters.get('fa_letter')
@@ -85,31 +88,28 @@ def results():
     # return a fulfillment response
     return {'fulfillmentText': 'This is a response from the webhook.'}
 
+
+# create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def update():
     if request.method == 'POST':
-        update = request.data.decode("utf8")
-        update = json.loads(update)
+        answer = request.data.decode("utf8")
+        answer = json.loads(answer)
         print("====================================== REQUEST.DATA ======================================")
-        #print(request.data)
-        response = handle_intent(update['queryResult']['intent']['displayName'], update)
+        # print(request.data)
+        response = handle_intent(answer['queryResult']['intent']['displayName'], answer)
         # post_command('http://'+remote_addr, requestHeaders, response)
         if response:
             print("responding: ", response)
         return response
-        # handle_update(update)
-        return "" #"" = 200 responsee
+        # handle_update(answer)
+        # return "" #"" = 200 responsee
     else:
         return "Incorrect request format (/)"
-
-# create a route for webhook 
-@app.route('/webhook', methods=['GET', 'POST'])
-def webhook():
-    # return response
-    return handle_intent()
-    #return make_response(jsonify(results()))
 
 
 # run the app 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)
+
+print("botserver started")

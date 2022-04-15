@@ -59,6 +59,31 @@ SAMPLE_RESPONSE_JSON = {
         }
     }
 }
+SAMPLE_CHIP_JSON = {
+    "fulfillmentText": "Beispiele für Suggestion Chips",
+    "fulfillmentMessages": [
+      {
+        "payload": {
+        "richContent": [
+            [
+              {
+                "options": [
+                  {
+                    "text": "Chip1"
+                  },
+                   {
+                    "text": "Chip2"
+                  }
+                ],
+                "type": "chips"
+              }
+            ]
+        ]
+        }
+
+      }
+    ]
+}
 
 SAMPLE_IMAGE_JSON2 = {
     "payload": {
