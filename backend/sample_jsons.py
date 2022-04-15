@@ -60,33 +60,47 @@ SAMPLE_RESPONSE_JSON = {
     }
 }
 
+SAMPLE_IMAGE_JSON2 = {
+    "payload": {
+        "PLATFORM_UNSPECIFIED": {
+            "expectUserResponse": True,
+            "richResponse": {
+                "items": [
+                    {
+                        "simpleResponse": {
+                            "textToSpeech": "Here's your emotional history"
+                        }
+                    },
+                    {
+                        "basicCard": {
+                            "title": "Your emotional history with me",
+                            "image": {
+                                "url": "https://raw.githubusercontent.com/arontaupe/KommunikationsKrake/main/backend/sources/fa/a.png",
+                                "accessibilityText": "<bargraph with your emotional history>"
+                            },
+                            "imageDisplayOptions": "DEFAULT"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
 
 SAMPLE_IMAGE_JSON = {
-  "payload": {
-    "google": {
-      "expectUserResponse": True,
-      "richResponse": {
-        "items": [
-          {
-            "simpleResponse": {
-              "textToSpeech": "Here's your emotional history"
-            }
-          },
-          {
-            "basicCard": {
-              "title": "Your emotional history with me",
-              "image": {
-                "url": "IMAGE_URL",
-                "accessibilityText": "<bargraph with your emotional history>"
-              },
-              "imageDisplayOptions": "DEFAULT"
-            }
-          }
-        ]
+"payload": {
+  "richContent": [
+    [
+      {
+        "rawUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/DGS.svg",
+        "accessibilityText": "DGS",
+        "type": "image"
       }
-    }
-  }
+    ]
+  ]
 }
+}
+
 
 
 SAMPLE_LIST_JSON = {

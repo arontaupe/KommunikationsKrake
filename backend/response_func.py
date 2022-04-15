@@ -14,14 +14,18 @@ def standard_response(text, suggestions=None):
 
 # sends a single image, along with optional text, a title, alt text and some chips
 def image_response(imgpath, textresponse='Here is your image', title='', accessibilitytext='', suggestions=None):
-    resp = SAMPLE_IMAGE_JSON
-    resp['payload']['google']['richResponse']['items'][1]['basicCard']['image']['url'] = imgpath
+    resp = deepcopy(SAMPLE_IMAGE_JSON)
+    resp['richContent']['PLATFORM_UNSPECIFIED']['richResponse']['items'][1]['basicCard']['image']['url'] = imgpath
     if textresponse:
-        resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = textresponse
+        resp['payload']['PLATFORM_UNSPECIFIED']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = textresponse
     if title:
-        resp['payload']['google']['richResponse']['items'][1]['basicCard']['title'] = title
+        resp['payload']['PLATFORM_UNSPECIFIED']['richResponse']['items'][1]['basicCard']['title'] = title
     if accessibilitytext:
-        resp['payload']['google']['richResponse']['items'][1]['basicCard']['accessibilityText'] = accessibilitytext
+        resp['payload']['PLATFORM_UNSPECIFIED']['richResponse']['items'][1]['basicCard']['accessibilityText'] = accessibilitytext
     if suggestions:
         resp['payload']['google']['richResponse']['suggestions'] = [{'title': i} for i in suggestions]
+    return resp
+
+def img_resp():
+    resp = deepcopy(SAMPLE_IMAGE_JSON)
     return resp

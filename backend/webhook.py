@@ -5,33 +5,30 @@ from flask import Flask, request, make_response, jsonify # makes the thing ngrok
 import json # make me interact with json
 
 # import the response functionality
-from response_func import standard_response, image_response
+from response_func import standard_response, image_response, img_resp
 
 # import the database functions
 from sb_db_request import test_sb_db, get_events_w_access
+
+# import library to send rich responses from webhook
+from dialogflow_fulfillment import WebhookClient
 
 # console should say 200 and the chatbot should send a message
 test_sb_db()
 
 # TODO should get a list of all events with a determined accessibility id (0-9)
-get_events_w_access(1)
+#get_events_w_access(1)
 
 # initialize the flask app
 app = Flask(__name__)
+
+def handler(agent: WebhookClient) -> None:
+    """Handle the webhook request."""
 
 # default route 
 @app.route('/')
 def index():
     return 'Hello World! This is the running Webhook for Sommerblut.'
-
-
-@app.route("/helloworld")
-def hello():
-    return """
-        Hello World!<br /><br />
-        <a href="/">Back to index</a>
-    """
-
 
 BEDARF = [0,0,0,0,0,0]
 
@@ -46,6 +43,7 @@ def handle_intent(intent_name, req_json):
 
     if intent_name == 'test.fulfillment':
         return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'};
+
     elif intent_name == 'bedarf.select - collect':
         bedarf = parameters.get('bedarf')
         if bedarf:
@@ -69,7 +67,11 @@ def handle_intent(intent_name, req_json):
     elif intent_name == 'teach.fingeralhabet':
         fa_letter = parameters.get('fa_letter')
         if fa_letter:
-            return image_response('/sources/fa/' + fa_letter + '.png')
+            folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
+            return image_response(folder + fa_letter + '.png?raw=true')
+
+    elif intent_name == 'test.webhook.image':
+        return img_resp()
 
 
 # function for responses
