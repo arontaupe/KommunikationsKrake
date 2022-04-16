@@ -6,7 +6,7 @@ import json  # make me interact with json
 from response_func import image_response, chip_response, text_response
 
 # import the database functions
-from sb_db_request import test_sb_db, get_events_w_access
+from sb_db_request import test_sb_db, get_event_names_w_access
 
 # import library to send rich responses from webhook
 from dialogflow_fulfillment import WebhookClient
@@ -14,34 +14,37 @@ from dialogflow_fulfillment import WebhookClient
 # console should say 200 and the chatbot should send a message
 test_sb_db()
 
-# TODO should get a list of all events with a determined accessibility id (0-9)
-get_events_w_access(1)
-
 # initialize the flask app
 app = Flask(__name__)
 
 
-def handler(agent: WebhookClient) -> None:
-    """Handle the webhook request."""
-
-
-# default route 
 @app.route('/')
 def index():
+    """
+  default route, has text so I can see when the app is running
+    :return: Hello World
+    """
     return 'Hello World! This is the running Webhook for Sommerblut.'
 
 
 BEDARF = [0, 0, 0, 0, 0, 0]
 
 
-# this is the main intent switch function. All intents that use the backend must be routed here.
-def handle_intent(intent_name, req_json):
+def handle_intent(intent_name, agent: WebhookClient, req_json) -> None:
+    """
+    Handle the webhook request.
+this is the main intent switch function. All intents that use the backend must be routed here.
+    :param intent_name:
+    :param req_json: the raw format from DF
+    :return: None
+    """
     # build a request object
     req = request.get_json(force=True)
     # fetch action from json
     action = req.get('queryResult').get('action')
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
+    session_name = req.get('sessionInfo').get('session')
 
     if intent_name == 'test.fulfillment':
         #return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
@@ -49,7 +52,7 @@ def handle_intent(intent_name, req_json):
         return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
         #return text_response('Hallo')
 
-    elif intent_name == 'bedarf.select - collect':
+    elif intent_name == 'accessibility.select - collect':
         bedarf = parameters.get('bedarf')
         if bedarf:
             if bedarf == 'kein Bedarf':
@@ -79,21 +82,13 @@ def handle_intent(intent_name, req_json):
         return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
 
-# function for responses
-def results():
-    # build a request object
-    req = request.get_json(force=True)
-
-    # fetch action from json
-    action = req.get('queryResult').get('action')
-
-    # return a fulfillment response
-    return {'fulfillmentText': 'This is a response from the webhook.'}
-
-
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def update():
+    """
+Main listener to DF, will call handle_intent upon being activated
+    :return: the response to DF
+    """
     if request.method == 'POST':
         answer = request.data.decode("utf8")
         answer = json.loads(answer)

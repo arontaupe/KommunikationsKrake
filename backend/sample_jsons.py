@@ -1,49 +1,7 @@
-SAMPLE_PAYLOAD_JSON = {
-    "payload": {
-        "google": {
-            "expectUserResponse": True,
-            "richResponse": {
-                "items": [
-                    {
-                        "simpleResponse": {
-                            "textToSpeech": "Wonderful, let's embark on a phantastic journey exploring the mind. Make sure you are comfortable and off we go!"
-                        }
-                    },
-                    {
-                        "mediaResponse": {
-                            "mediaType": "AUDIO",
-                            "mediaObjects": [
-                                {
-                                    "name": "3 Minute Meditation",
-                                    "contentUrl": "http://www.freemindfulness.org/FreeMindfulness3MinuteBreathing.mp3",
-                                    "description": "3 Minute Meditation",
-                                    "largeImage": {
-                                        "url": "https://storage.googleapis.com/automotive-media/album_art.jpg",
-                                        "accessibilityText": "Album cover of an ocean view"
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "suggestions": [
-                    {
-                        "title": "Record final Sentiment"
-                    },
-                    {
-                        "title": "Menu"
-                    },
-                    {
-                        "title": "Exit"
-                    },
-                ]
-            }
-        }
-    }
-}
+# here are the prototypes of the response json files. I can then modify them on the fly to include my answers
 
 SAMPLE_TEXT_JSON = {
-    "fulfillmentText": "Suggestion Chips",
+    "fulfillmentText": "Suggestion Chips"
 }
 SAMPLE_CHIP_JSON = {
     "fulfillmentText": "Suggestion Chips",
@@ -70,7 +28,6 @@ SAMPLE_CHIP_JSON = {
                     ]
                 ]
             }
-
         }
     ]
 }
@@ -109,7 +66,6 @@ SAMPLE_IMAGE_JSON = {
                         }
                     ]
                 ]
-
             }
         }
     ]
