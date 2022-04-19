@@ -3,6 +3,18 @@
 SAMPLE_TEXT_JSON = {
     "fulfillmentText": "Suggestion Chips"
 }
+
+SAMPLE_CONTEXT_JSON = {
+"fulfillmentText": "Setting Context",
+  "outputContexts": [
+    {
+        "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+      "lifespanCount": 5,
+      "parameters": {}
+    }
+  ]
+}
+
 SAMPLE_CHIP_JSON = {
     "fulfillmentText": "Suggestion Chips",
     "fulfillmentMessages": [

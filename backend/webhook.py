@@ -3,7 +3,7 @@ from flask import Flask, request  # makes the thing ngrokable
 import json  # make me interact with json
 
 # import the response functionality
-from response_func import image_response, chip_response, text_response
+from response_func import image_response, chip_response, text_response ,context_response
 
 # import the database functions
 from sb_db_request import test_sb_db, get_event_names_w_access
@@ -27,10 +27,10 @@ def index():
     return 'Hello World! This is the running Webhook for Sommerblut.'
 
 
-BEDARF = [0, 0, 0, 0, 0, 0]
 
 
-def handle_intent(intent_name, agent: WebhookClient, req_json) -> None:
+
+def handle_intent(intent_name, req_json):
     """
     Handle the webhook request.
 this is the main intent switch function. All intents that use the backend must be routed here.
@@ -44,29 +44,37 @@ this is the main intent switch function. All intents that use the backend must b
     action = req.get('queryResult').get('action')
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
-    session_name = req.get('sessionInfo').get('session')
+    #session_name = req.get('sessionInfo').get('session')
 
     if intent_name == 'test.fulfillment':
         #return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
         #return chip_response(chips = ['Der','Webhook','funktioniert'])
-        return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
+        #return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
         #return text_response('Hallo')
+        return context_response(session_id='abc',context='mycontext',variable_name = 'variable1', variable= 'value1')
 
     elif intent_name == 'accessibility.select - collect':
         bedarf = parameters.get('bedarf')
+        prev_selection_bedarf = parameters.get('prev_selection_bedarf')
+        new_bedarf = [0, 0, 0, 0, 0, 0]
+        if prev_selection_bedarf:
+            new_bedarf = prev_selection_bedarf.split(",")
+            print('Stored on DF: ' + new_bedarf)
         if bedarf:
             if bedarf == 'kein Bedarf':
-                BEDARF[0] = 1
+                new_bedarf[0] = 1
             elif bedarf == 'leichte Sprache':
-                BEDARF[1] = 1
+                new_bedarf[1] = 1
             elif bedarf == 'Höreinschränkung':
-                BEDARF[2] = 1
+                new_bedarf[2] = 1
             elif bedarf == 'Mobilitätseinschränkung':
-                BEDARF[3] = 1
+                new_bedarf[3] = 1
             elif bedarf == 'Visuelle Einschränkung':
-                BEDARF[4] = 1
+                new_bedarf[4] = 1
             elif bedarf == 'begrenzte Reize':
-                BEDARF[5] = 1
+                new_bedarf[5] = 1
+
+        return context_response(session_id='fixedID', context= 'save_bedarf', variable_name= 'prev_selection_bedarf', variable=str(new_bedarf))
         return chip_response(text = 'Webhook : Okay, ich habe deinen Bedarf ' + bedarf +
                                  ' abgespeichert.'' Willst du weitere Bedarfe angeben?'
                                  '(Was der Webhook weiss: ' + str(BEDARF),
@@ -90,11 +98,11 @@ Main listener to DF, will call handle_intent upon being activated
     :return: the response to DF
     """
     if request.method == 'POST':
-        answer = request.data.decode("utf8")
-        answer = json.loads(answer)
+        update = request.data.decode("utf8")
+        update = json.loads(update)
         print("====================================== REQUEST.DATA ======================================")
         # print(request.data)
-        response = handle_intent(answer['queryResult']['intent']['displayName'], answer)
+        response = handle_intent(update['queryResult']['intent']['displayName'], update)
 
         if response:
             print("responding: ", response)
