@@ -9,7 +9,42 @@ SAMPLE_CONTEXT_JSON = {
   "outputContexts": [
     {
         "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
-      "lifespanCount": 5,
+      "lifespanCount": 50,
+      "parameters": {}
+    }
+  ]
+}
+SAMPLE_CHIP_W_CONTEXT_JSON = {
+    "fulfillmentText": "Suggestion Chips",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "richContent": [
+                    [
+                        {
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ],
+                            "type": "chips"
+                        }
+                    ]
+                ]
+            }
+        }
+    ],
+  "outputContexts": [
+    {
+    "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+      "lifespanCount": 50,
       "parameters": {}
     }
   ]
