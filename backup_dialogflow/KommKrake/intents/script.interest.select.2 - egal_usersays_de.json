@@ -1,0 +1,21 @@
+[
+  {
+    "id": "268a80d7-c9b5-48d6-bc6e-595d912166d9",
+    "data": [
+      {
+        "text": "Ist mir ",
+        "userDefined": false
+      },
+      {
+        "text": "Egal",
+        "meta": "@interest_2",
+        "alias": "interest_2",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

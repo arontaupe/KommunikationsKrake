@@ -1,0 +1,35 @@
+{
+  "id": "0a4bb4fc-38e7-448e-a757-b74a4147eea3",
+  "name": "test.audio",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "\u003cspeak\u003eWillkommen, hier kannst du mich hören. \u003caudio src\u003d\"https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg\"\u003e\u003c/audio\u003eWie kann ich dir helfen?\u003c/speak\u003e"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

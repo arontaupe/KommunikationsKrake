@@ -1,0 +1,41 @@
+[
+  {
+    "id": "57578938-3611-4137-acc7-a89519c67cda",
+    "data": [
+      {
+        "text": "kannst du mir was zum klicken schicken",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7d1f3dd1-0f59-4969-971c-5f909411ae8a",
+    "data": [
+      {
+        "text": "knopf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e1a4d799-d0b1-4dfb-a51e-da5656fcff9d",
+    "data": [
+      {
+        "text": "button",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "50e8df3c-2cec-4dbb-8db8-91d99847c04d",
+    "data": [
+      {
+        "text": "kannst du mir ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": false
+      },
+      {
+        "text": " link schicken",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5fe59276-2f27-422f-a7bb-f21cc355d849",
+    "data": [
+      {
+        "text": "kannst du chips ",
+        "userDefined": false
+      },
+      {
+        "text": "versenden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b93e37f1-b624-4718-b075-5551a4e3cfe0",
+    "data": [
+      {
+        "text": "sende ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": false
+      },
+      {
+        "text": " link",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6028b057-28fb-4ffc-a91c-a96a962b01b4",
+    "data": [
+      {
+        "text": "chip",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

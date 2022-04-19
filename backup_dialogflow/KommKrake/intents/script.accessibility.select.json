@@ -1,0 +1,135 @@
+{
+  "id": "0d820190-4c99-42d5-949c-33236575f06f",
+  "name": "script.accessibility.select",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "bedarfselect-followup",
+          "lifespan": 2
+        },
+        {
+          "name": "scriptaccessibilityselect-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "title": "",
+          "textToSpeech": "",
+          "suggestions": [
+            {
+              "title": "Ja"
+            },
+            {
+              "title": "Nein"
+            }
+          ],
+          "lang": "de",
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Viele Veranstaltungen sind barrierefrei Zugänglich. Wenn du magst, kannst du nun einen Bedarf wählen. Dann zeige ich dir nur Veranstaltungen an, bei denen dieser Bedarf erfüllt wird."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "chips",
+                  "options": [
+                    {
+                      "link": "",
+                      "text": "Keinen Bedarf angeben",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "link": "",
+                      "text": "Zugänglich in einfacher Sprache",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "link": "",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "text": "Zugänglich mit Seheinschränkung"
+                    },
+                    {
+                      "link": "",
+                      "text": "Zugänglich mit Höreinschränkungen",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "text": "Zugänglich mit Mobilitätseinschränkungen",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "link": ""
+                    },
+                    {
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "text": "Zugänglich ohne intensive sensorische Reizungen",
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "google": true
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

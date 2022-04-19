@@ -1,0 +1,36 @@
+[
+  {
+    "id": "b5501212-d399-4039-96ba-fe240181ff76",
+    "data": [
+      {
+        "text": "was heisst chatbot",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b2a1f487-3d52-42bf-b996-1bda0b88cea6",
+    "data": [
+      {
+        "text": "was ist ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "userDefined": false
+      },
+      {
+        "text": " chatbot",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "id": "c89acb0f-d2fe-4903-aca4-2e4511b65169",
+  "name": "script.bot_theme_input",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Hier wird ein Video gezeigt: \"Barrierefreiheit im dig. Raum\" TODO"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "chips",
+                  "options": [
+                    {
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "text": "Mehr über Sommerblut erfahren",
+                      "link": ""
+                    },
+                    {
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "text": "Ich habe eine Frage",
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

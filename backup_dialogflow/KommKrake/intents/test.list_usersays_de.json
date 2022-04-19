@@ -1,0 +1,70 @@
+[
+  {
+    "id": "69bcdbe4-2bc1-4de3-9556-59b315496961",
+    "data": [
+      {
+        "text": "list",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dfba59da-e012-4b1c-b465-7354dcd540a2",
+    "data": [
+      {
+        "text": "liste",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "67fc393f-8fba-4871-b86d-b77b1ae8364b",
+    "data": [
+      {
+        "text": "kannst du listen ",
+        "userDefined": false
+      },
+      {
+        "text": "versenden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "66880930-9be3-4523-887e-bcc51208eb78",
+    "data": [
+      {
+        "text": "schick",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " liste",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

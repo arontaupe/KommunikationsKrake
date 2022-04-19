@@ -1,0 +1,41 @@
+[
+  {
+    "id": "183dc586-9ce9-4396-ab39-a5796d526a82",
+    "data": [
+      {
+        "text": "kannst du reden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2733284e-a91f-4935-aad8-8c5a3ca798af",
+    "data": [
+      {
+        "text": "sag was",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "45380642-0cec-46b5-b105-116a0ab795bf",
+    "data": [
+      {
+        "text": "sprich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "id": "abac6fac-bc31-4e4d-9e59-c9fcb50fb448",
+  "name": "faq.sommerblut",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Okay, was willst du über das Sommerblut wissen?"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "options": [
+                    {
+                      "text": "Festivalschwerpunkt 2022",
+                      "link": "",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "text": "Womit beschäftigt sich das Sommerblut?",
+                      "link": ""
+                    },
+                    {
+                      "link": "",
+                      "text": "Frage zur Barrierefreiheit",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "text": "Wer steckt hinter dem Sommerblut?",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "link": ""
+                    }
+                  ],
+                  "type": "chips"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

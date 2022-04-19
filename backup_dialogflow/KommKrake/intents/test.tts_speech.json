@@ -1,0 +1,36 @@
+{
+  "id": "208c4332-4280-4b55-b741-bd0f4ed89472",
+  "name": "test.tts_speech",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Ich kann gerade noch nicht sprechen. Ich strenge mich an und lerne das.",
+            "Nein, leider nicht. Ich lerne gerade. Kannst du mir was beibringen?"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

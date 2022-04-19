@@ -1,0 +1,33 @@
+{
+  "id": "5b56613a-a2de-4269-9ddf-6bb2deeb7740",
+  "name": "script.interest.select.1",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [
+        {
+          "name": "scriptinterest1-followup",
+          "lifespan": 2
+        },
+        {
+          "name": "scriptinterestselect1-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

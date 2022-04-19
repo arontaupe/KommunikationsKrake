@@ -1,0 +1,54 @@
+[
+  {
+    "id": "0d72b8dd-3b49-4814-983f-cb4d1c7c0584",
+    "data": [
+      {
+        "text": "wie ist dein name",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "094337b3-8fa5-47ed-88d8-bffa1e2f1032",
+    "data": [
+      {
+        "text": "was bist du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9f93d45e-760b-41e9-971f-31198407f650",
+    "data": [
+      {
+        "text": "wer bist du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1148fbfb-ed33-4928-9c7f-0810a21141a9",
+    "data": [
+      {
+        "text": "wie heisst du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

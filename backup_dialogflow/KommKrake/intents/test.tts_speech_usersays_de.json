@@ -1,0 +1,41 @@
+[
+  {
+    "id": "5d8cbed3-5592-4e29-ad0e-d41a9953c8d3",
+    "data": [
+      {
+        "text": "kannst du sprechen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7f1eec46-fc92-4484-9819-8167749b5467",
+    "data": [
+      {
+        "text": "sprich mit mir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7debe965-34d4-4bd5-a1df-22e35614ef89",
+    "data": [
+      {
+        "text": "sag mir was",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

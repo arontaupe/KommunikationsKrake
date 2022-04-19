@@ -1,0 +1,59 @@
+{
+  "id": "95d20a11-f127-463a-9d8d-ec82348eb509",
+  "name": "test.accordion",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Beispiel Accordion"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "image": {
+                    "src": {
+                      "rawUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Emblem-section.svg/1920px-Emblem-section.svg.png"
+                    }
+                  },
+                  "subtitle": "vom Sommerblut Festival",
+                  "type": "accordion",
+                  "text": "Zur Verwirklichung unserer Grundsätze streben wir ausdrücklich die Zusammenarbeit von Menschen mit Behinderung, sozial benachteiligten Menschen sowie Laien und professionellen Künstler:innen an. Der Verein möchte damit behinderten und sozial benachteiligten Menschen eine Plattform auf einem hohen professionellen Niveau eröffnen und darüber hinaus ein künstlerisches Schaffen ermöglichen, das seinen Wert und seinen Reiz gerade aus dem jeweiligen Handicap der Einzelnen bezieht. Dafür fördert der Sommerblut Kulturfestival e.V. Eigenproduktionen in den Bereichen Theater, Musik und Tanz, welche die kulturellen Veränderungen im Spannungsfeld der unterschiedlichen gesellschaftlichen Pole und Strukturen thematisieren.",
+                  "title": "Die Grundsätze "
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

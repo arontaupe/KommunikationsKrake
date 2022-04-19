@@ -1,0 +1,84 @@
+{
+  "id": "8b498cef-16f1-4de1-aa8e-4c3291c4af85",
+  "name": "test.choice",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "164fc84a-ffa7-43aa-9ce5-9159e7a03d9f",
+          "name": "location",
+          "required": false,
+          "dataType": "@sys.location",
+          "value": "$location",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Hier ein paar Beispielknöpfe"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "messages": [
+              {
+                "quick_replies": [
+                  {
+                    "block_names": [
+                      "Chatfuel Block Name - Case Sensitive"
+                    ],
+                    "title": "Quick Reply Button Name"
+                  },
+                  {
+                    "title": "Quick Reply Button Name",
+                    "block_names": [
+                      "Chatfuel Block Name - Case Sensitive"
+                    ]
+                  },
+                  {
+                    "title": "Quick Reply Button Name",
+                    "block_names": [
+                      "Chatfuel Block Name - Case Sensitive"
+                    ]
+                  }
+                ],
+                "text": "Insert Random Text Here"
+              }
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

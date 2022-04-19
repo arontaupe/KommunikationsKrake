@@ -1,0 +1,130 @@
+[
+  {
+    "id": "3f85988d-4260-4a86-bb2d-85265a849298",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " Veranstaltungsberatung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fc97a7c7-eb49-42f2-b9fa-05781f3ab96f",
+    "data": [
+      {
+        "text": "Veranstaltungsberatung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "47227c9f-e57d-46e3-a004-8c1420e2c222",
+    "data": [
+      {
+        "text": "Zugänglichkeit auswählen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b2b56e82-3597-4668-a43b-73f84525b853",
+    "data": [
+      {
+        "text": "Nein: Veranstaltungsvorschläge",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e7542347-c6dc-4e63-86d0-9631f748ffa3",
+    "data": [
+      {
+        "text": "Weiter: Bedarfsfilter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9fb2d9bd-f35e-4cbd-96b1-1306e7992594",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": ", dass mein Bedarf berücksichtigt wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c6ee44e9-4970-4b99-a258-93dda8f0a8f1",
+    "data": [
+      {
+        "text": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "02897bbc-ab15-43e7-b2d1-0fcbec9a3cd7",
+    "data": [
+      {
+        "text": "bedarf selektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

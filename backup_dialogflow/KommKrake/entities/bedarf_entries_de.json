@@ -1,0 +1,83 @@
+[
+  {
+    "value": "kein Bedarf",
+    "synonyms": [
+      "Kein spezieller",
+      "Ohne",
+      "kein",
+      "Keinen Bedarf angeben"
+    ]
+  },
+  {
+    "value": "leichte Sprache",
+    "synonyms": [
+      "einfacher Sprache",
+      "Einfacher Sprache",
+      "Einfache Sprache",
+      "kurze Sätze",
+      "Zugänglich in einfacher Sprache"
+    ]
+  },
+  {
+    "value": "Höreinschränkung",
+    "synonyms": [
+      "Höreinschränkungen",
+      "taub",
+      "kann nichts hören",
+      "DGS Unterstützung",
+      "deutsche Gebärdensprache",
+      "DGS Dolmetscher",
+      "Zugänglich mit Höreinschränkungen",
+      "Übertitel",
+      "Untertitel",
+      "Text mitlesen",
+      "Hörgeschädigt",
+      "Gebärdensprachdolmetscher",
+      "DGS"
+    ]
+  },
+  {
+    "value": "Mobilitätseinschränkung",
+    "synonyms": [
+      "Mobilitätseinschränkungen",
+      "kann schlecht laufen",
+      "Aufzug",
+      "ebenerdig",
+      "wenig Stufen",
+      "wenig laufen",
+      "kurze Wege",
+      "eingeschränkte Mobilität",
+      "nicht laufen",
+      "nicht gehen",
+      "Rollstuhl",
+      "Ich sitze im Rollstuhl"
+    ]
+  },
+  {
+    "value": "Visuelle Einschränkung",
+    "synonyms": [
+      "Sehschwäche",
+      "Brille",
+      "kurzsichtig",
+      "schlecht sehen",
+      "Zugänglich mit Seheinschränkung",
+      "blind",
+      "nichts sehen",
+      "keine Sicht",
+      "Ich muss alles fühlen",
+      "Seheinschränkung"
+    ]
+  },
+  {
+    "value": "begrenzte Reize",
+    "synonyms": [
+      "Zugänglich ohne intensive sensorische Reizungen",
+      "stroboskop",
+      "lichteffekte",
+      "laut",
+      "störgeräusche",
+      "viele Menschen",
+      "Reizeinschränkung"
+    ]
+  }
+]

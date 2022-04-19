@@ -1,0 +1,59 @@
+{
+  "id": "2893aa99-380e-46de-b2bb-b06cc1bcdcc9",
+  "name": "test.info",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Beispiel für eine Info"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "title": "Auch interessant:",
+                  "image": {
+                    "src": {
+                      "rawUrl": "https://www.sommerblut.de/wp-content/uploads/_sb_cd/SB-Button-tranzp-rgb-ohneuntertitel_weiss.png"
+                    }
+                  },
+                  "actionLink": "https://www.sommerblut.de/unterstuetzung/#sb-anchor-spenden",
+                  "subtitle": "Du Kannst Uns Geld Spenden",
+                  "type": "info"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "3265f9db-c93c-4baa-a74e-4e6c6550afb8",
+  "name": "bedarf",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": true
+}

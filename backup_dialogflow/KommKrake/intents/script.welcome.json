@@ -1,0 +1,119 @@
+{
+  "id": "2abc4010-e6b7-41c3-884c-c66eb6a2ad5e",
+  "name": "script.welcome",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "input.welcome",
+      "affectedContexts": [
+        {
+          "name": "scriptwelcome-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Hallo! Mein Name ist Ällei!",
+            "Guten Tag! Mein Name ist Ällei!",
+            "Ich grüße dich! Mein Name ist Ällei!",
+            "Willkommen! Mein Name ist Ällei!"
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Es freut mich, dass du hier bist.",
+            "Schön dich zu sehen.",
+            "Schön, dass du hier bist."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Ich kann dir helfen, Informationen über das Sommerblut Festival zu finden. Bist du das erste mal hier? Dann schau dir gern das Einführungs-Video an."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "type": "chips",
+                  "options": [
+                    {
+                      "text": "Einführungsvideo",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "link": ""
+                    },
+                    {
+                      "text": "Kenne ich schon: Hauptmenü",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "link": ""
+                    },
+                    {
+                      "text": "Ich habe eine Frage",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      },
+                      "link": ""
+                    }
+                  ]
+                }
+              ]
+            ],
+            "dgs_videos": [
+              "https://www.youtube.com/watch?v\u003dlyW1kKlPanE",
+              "https://www.youtube.com/watch?v\u003ddCxgF5ISJGg",
+              "https://www.youtube.com/watch?v\u003de5eblW5mRsU"
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [
+    {
+      "name": "WELCOME"
+    }
+  ],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

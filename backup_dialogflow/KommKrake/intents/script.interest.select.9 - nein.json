@@ -1,0 +1,51 @@
+{
+  "id": "a8d5565d-edd7-46f7-aa41-cd341e39d3d7",
+  "parentId": "e006c433-e13a-4c40-8cb3-c99e7530b4b3",
+  "rootParentId": "e006c433-e13a-4c40-8cb3-c99e7530b4b3",
+  "name": "script.interest.select.9 - nein",
+  "auto": true,
+  "contexts": [
+    "scriptinterestselect9-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "scriptinterestselect9.scriptinterestselect9-no",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "238cb03e-1c3a-4cf3-a32e-f3f875bdd157",
+          "name": "interest_9",
+          "required": false,
+          "dataType": "@interest_9",
+          "value": "$interest_9",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

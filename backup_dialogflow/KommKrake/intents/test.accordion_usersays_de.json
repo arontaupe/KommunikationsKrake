@@ -1,0 +1,66 @@
+[
+  {
+    "id": "6e01f9ee-3854-41c9-9d6f-7868e8d68212",
+    "data": [
+      {
+        "text": "ausklappbeschreibung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2c347d96-744c-4b4f-bc40-e8cdb952dd18",
+    "data": [
+      {
+        "text": "klappkarte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b59550ab-a1b1-4803-b0f1-71165578f8da",
+    "data": [
+      {
+        "text": "schick",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " klappliste",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c72f2235-4a92-4190-bd7f-4d9f515911fa",
+    "data": [
+      {
+        "text": "accordion",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

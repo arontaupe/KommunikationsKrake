@@ -1,0 +1,80 @@
+{
+  "id": "c653e04f-e838-48af-aaa7-4e3eebdd790c",
+  "name": "script.main_menu",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Okay, worauf hast du jetzt Lust?\n1. Ich erzähle mir noch mehr zum Thema digitale Barrierefreiheit.\n2. Ich erzähle dir mehr über das Sommerblut Festival 2022\n3. Ich berate dich, welche Veranstaltung dir gefallen könnte.\n4. Du erzählst mir, wie dir das Festival oder eine Veranstaltung gefällt."
+          ],
+          "condition": ""
+        },
+        {
+          "type": "4",
+          "title": "",
+          "payload": {
+            "richContent": [
+              [
+                {
+                  "options": [
+                    {
+                      "link": "",
+                      "text": "Mehr über Ällei erfahren",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "link": "",
+                      "text": "Mehr über Sommerblut erfahren",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    },
+                    {
+                      "text": "Veranstaltungsberatung",
+                      "link": "",
+                      "image": {
+                        "src": {
+                          "rawUrl": ""
+                        }
+                      }
+                    }
+                  ],
+                  "type": "chips"
+                }
+              ]
+            ]
+          },
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

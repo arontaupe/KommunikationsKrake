@@ -1,0 +1,25 @@
+[
+  {
+    "value": "Ja",
+    "synonyms": [
+      "Ja",
+      "ich will",
+      "ja, ich möchte",
+      "na klar",
+      "sofort",
+      "auf jeden"
+    ]
+  },
+  {
+    "value": "Nein",
+    "synonyms": [
+      "Nein",
+      "lieber nicht",
+      "auf gar keinen",
+      "nicht",
+      "nee",
+      "ne",
+      "nope"
+    ]
+  }
+]

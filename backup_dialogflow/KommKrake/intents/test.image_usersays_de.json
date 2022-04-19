@@ -1,0 +1,83 @@
+[
+  {
+    "id": "72cfde7e-60b2-4091-89b1-696e321bc423",
+    "data": [
+      {
+        "text": "kannst du bilder ",
+        "userDefined": false
+      },
+      {
+        "text": "versenden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dd667d8f-bf52-4ffd-9397-e1b365d80df6",
+    "data": [
+      {
+        "text": "schick",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "userDefined": false
+      },
+      {
+        "text": " bild",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "36df0a7f-cbd9-4c0f-93e8-8c59ecba8445",
+    "data": [
+      {
+        "text": "image",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "405deb22-78a3-4b08-b4de-bdb1071fe9d8",
+    "data": [
+      {
+        "text": "gebärde",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b404d869-82be-4a67-aea0-f2d6b0634a0a",
+    "data": [
+      {
+        "text": "bild",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

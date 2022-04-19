@@ -1,0 +1,53 @@
+[
+  {
+    "id": "cda76f63-2d73-4242-9483-cbe658ef0b08",
+    "data": [
+      {
+        "text": "kannst du musik senden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ef1740ae-6b04-4f84-b4db-8046faf109bb",
+    "data": [
+      {
+        "text": "schick",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " sprachnachricht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ed8a6a70-c6bf-4e15-9cc8-ffc929887ec3",
+    "data": [
+      {
+        "text": "audio",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]
