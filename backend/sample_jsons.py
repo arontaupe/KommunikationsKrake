@@ -8,7 +8,7 @@ SAMPLE_CONTEXT_JSON = {
 "fulfillmentText": "Setting Context",
   "outputContexts": [
     {
-        "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+    "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
       "lifespanCount": 50,
       "parameters": {}
     }

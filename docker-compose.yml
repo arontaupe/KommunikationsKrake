@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  allei:
+    build: ./
+    image: arontaupe/allei
+    restart: unless-stopped
+
+    ports:
+      - "5001:5000"
+
+    environment:
+      - DB_USER=api_ticketing
+      - DB_PASS=[T!ck28O1api
+      - BASEURL=https://datenbank.sommerblut.de
