@@ -5,14 +5,14 @@ SAMPLE_TEXT_JSON = {
 }
 
 SAMPLE_CONTEXT_JSON = {
-"fulfillmentText": "Setting Context",
-  "outputContexts": [
-    {
-    "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
-      "lifespanCount": 50,
-      "parameters": {}
-    }
-  ]
+    "fulfillmentText": "Setting Context",
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        }
+    ]
 }
 SAMPLE_CHIP_W_CONTEXT_JSON = {
     "fulfillmentText": "Suggestion Chips",
@@ -41,13 +41,13 @@ SAMPLE_CHIP_W_CONTEXT_JSON = {
             }
         }
     ],
-  "outputContexts": [
-    {
-    "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
-      "lifespanCount": 50,
-      "parameters": {}
-    }
-  ]
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        }
+    ]
 }
 
 SAMPLE_CHIP_JSON = {
@@ -101,7 +101,7 @@ SAMPLE_IMAGE_JSON = {
                         {
                             "type": "info",
                             "title": "",
-                            "subtitle": "",
+                            "subtitle": ""
                         },
                         {
                             "type": "chips",
@@ -109,6 +109,344 @@ SAMPLE_IMAGE_JSON = {
                                 {
                                     "text": "Chip1"
                                 },
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    ]
+}
+
+SAMPLE_EVENT_JSON_3 = {
+    "fulfillmentText": "Event",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "richContent": [
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "Tickets kaufen",
+                            "link": "https://sommerblut.de"
+                        }
+                    ],
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "",
+                            "link": ""
+                        }
+                    ],
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "",
+                            "link": ""
+                        }
+                    ],
+                    [
+                        {
+                            "type": "chips",
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    ]
+}
+SAMPLE_EVENT_JSON_2 = {
+    "fulfillmentText": "Event",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "richContent": [
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "Tickets kaufen",
+                            "link": "https://sommerblut.de"
+                        }
+                    ],
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "",
+                            "link": ""
+                        }
+                    ],
+                    [
+                        {
+                            "type": "chips",
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    ]
+}
+
+SAMPLE_EVENT_JSON_1 = {
+    "fulfillmentText": "Event",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "richContent": [
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "Tickets kaufen",
+                            "link": "https://sommerblut.de"
+                        }
+                    ],
+                    [
+                        {
+                            "type": "chips",
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
                             ]
                         }
                     ]

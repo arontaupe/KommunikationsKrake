@@ -5,9 +5,9 @@ from flask import Flask, request  # makes the thing ngrokable
 
 # import code generated from openapi
 # import the response functionality
-from response_func import image_response, chip_response, chip_w_context_response
+from response_func import image_response, chip_response, chip_w_context_response, event_response
 # import the database functions
-from sb_db_request import test_sb_db, get_accessibility_ids, get_event_names_w_access
+from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list
 
 # import library to send rich responses from webhook
 
@@ -27,21 +27,31 @@ def index():
     return 'Hello World! This is the running Webhook for Sommerblut.'
 
 
-def retrieve_bedarf():
-    # build a request object
-    req = request.get_json(force=True)
-    output_contexts = req.get('queryResult').get('outputContexts')
-    num_contexts = len(output_contexts)
+def retrieve_bedarf(output_contexts=None):
+    print('retrieving Bedarf')
+    accessibilities = []
+    if output_contexts:
+        num_contexts = len(output_contexts)
+        for i in range(num_contexts):
+            if 'final_accessibility' in output_contexts[i]['name']:
+                accessibilities = output_contexts[i]['parameters']['final_accessibility']
+                print('Accessibilities fetched: ' + str(accessibilities))
 
-    for i in range(num_contexts):
-        accessibilities = None
-        if 'final_accessibility' in output_contexts[i]['name']:
-            accessibilities = output_contexts[i]['parameters']['final_accessibility']
-            print('Accessibilities: ' + accessibilities)
     return accessibilities
 
 
-retrieve_bedarf()
+def retrieve_found_events(output_contexts=None):
+    print('retrieving found events')
+    num_events = events = None
+    if output_contexts:
+        num_contexts = len(output_contexts)
+        for i in range(num_contexts):
+            if 'events_found' in output_contexts[i]['name']:
+                events = output_contexts[i]['parameters']['events_found']
+                event_count = len(events)
+                print('Event Count: ' + str(event_count))
+                print('Events fetched: ' + str(events))
+    return num_events, events
 
 
 def retrieve_interests():
@@ -110,14 +120,11 @@ this is the main intent switch function. All intents that use the backend must b
         for i in range(num_contexts):
             if 'save_bedarf' in output_contexts[i]['name']:
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-                print(prev_selection_bedarf)
-
-        # print('Old Bedarf: ' + str(prev_selection_bedarf))
 
         new_bedarf = [0, 0, 0, 0, 0, 0]
         if prev_selection_bedarf:
-            new_bedarf = prev_selection_bedarf.split(",")
-            # print('Stored on DF: ' + str(new_bedarf))
+            new_bedarf = prev_selection_bedarf
+            print('Stored on DF: ' + str(new_bedarf))
         if bedarf:
             if bedarf == 'kein Bedarf':
                 new_bedarf[0] = 1
@@ -131,11 +138,11 @@ this is the main intent switch function. All intents that use the backend must b
                 new_bedarf[4] = 1
             elif bedarf == 'begrenzte Reize':
                 new_bedarf[5] = 1
-
+        print('Now Modified Bedarf: ' + str(new_bedarf))
         return chip_w_context_response(session_id='fixedID',
                                        context='save_bedarf',
                                        variable_name='prev_selection_bedarf',
-                                       variable=str(new_bedarf),
+                                       variable=new_bedarf,
                                        text='Webhook : Okay, ich habe deinen Bedarf ' + bedarf +
                                             ' abgespeichert.'' Willst du weitere Bedarfe angeben?',
                                        chips=["Ja", "Nein, weiter: Interessenselektor", "Menü"])
@@ -146,6 +153,7 @@ this is the main intent switch function. All intents that use the backend must b
         for i in range(num_contexts):
             if 'save_bedarf' in output_contexts[i]['name']:
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
+                print('Saving final Accessibility: ' + str(prev_selection_bedarf))
                 # print(prev_selection_bedarf)
         return chip_w_context_response(text='Ich finde menschliche Körper interessant.',
                                        chips=["Ja", "Nein", "Ist mir egal"],
@@ -299,41 +307,57 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
-        bedarf = retrieve_bedarf()
+        bedarf = retrieve_bedarf(output_contexts)
+        if bedarf:
+            print('Fetched Bedarf: ' + str(bedarf))
         # interests = retrieve_interests()
         accessibilities = get_accessibility_ids()
         codes = []
         if bedarf:
-            if bedarf == [1, 0, 0, 0, 0, 0] or bedarf == [0, 0, 0, 0, 0, 0]:
+            if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
                 codes = None
+                print('No special accessibility need detected ')
             else:
                 # if bedarf[0] == 1: # kein Bedarf
                 #    events = get_event_names_w_access()
-                if bedarf[1] == 1:  # leichte Sprache
+                if bedarf[1] == 1.0:  # leichte Sprache
                     codes.append(accessibilities['Leichte Sprache'])
-                if bedarf[2] == 1:  # Höreinschränkung
+                if bedarf[2] == 1.0:  # Höreinschränkung
                     codes.append(accessibilities['Induktive Höranlage'])
                     codes.append(accessibilities['Audiodeskription'])
                     codes.append(accessibilities['Deutsche Gebärdensprache'])
-                if bedarf[3] == 1:  # Mobilitätseinschränkung
+                if bedarf[3] == 1.0:  # Mobilitätseinschränkung
                     codes.append(accessibilities['Rollstuhl'])
                     codes.append(accessibilities['Gehbehinderung'])
-                if bedarf[4] == 1:  # Visuelle Einschränkung
+                if bedarf[4] == 1.0:  # Visuelle Einschränkung
                     codes.append(accessibilities['Touch-Tour'])
                     codes.append(accessibilities['Übertitel/Untertitel'])
-                # if bedarf[5] == 1:  # begrenzte Reize
+                # if bedarf[5] == 1.0:  # begrenzte Reize
                 # codes.append(accessibilities['Leichte Sprache'])
-            print(codes)
-            event_count, events = get_event_names_w_access(codes)
-            print(event_count)
+            # print('Asking for Accessibilities: ' + str(codes))
+            event_count, events = get_full_event_list(codes)
+            # print(event_count)
 
-        return chip_w_context_response(text='Ich habe ' + event_count + ' Veranstaltungen gefunden',
+        return chip_w_context_response(text='Ich habe ' + str(event_count) + ' Veranstaltungen gefunden',
                                        chips=["Zeig mir die Veranstaltungen"],
                                        session_id='fixedID',
                                        context='events_found',
                                        variable_name='events_found',
                                        variable=events
                                        )
+    elif intent_name == 'script.event.menu':
+        event_count, events = retrieve_found_events(output_contexts)
+        if events:
+            # print('Got Events')
+            # print(events)
+            event_count = len(events)
+            # print(event_count)
+            if event_count:
+                return event_response(display_num=3, event_count=event_count, events=events,
+                                      chips=['Zeig mir die nächsten Events', 'Zeig mir die Veranstaltungen']
+                                      )
+        else:
+            return chip_response(chips=['Zeig mir die nächsten Events', 'Zeig mir die Veranstaltungen'])
 
 
 # create a route for webhook
@@ -361,6 +385,6 @@ Main listener to DF, will call handle_intent upon being activated
 
 # run the app 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=True)
 
 print("botserver started")
