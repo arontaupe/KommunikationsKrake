@@ -66,7 +66,16 @@ def image_response(url, text=None, title='', subtitle='', chips=None):
     return resp
 
 
-def event_response(display_num, event_count, events, display_index=None, chips=None, text=None):
+def event_response(session_id,
+                   context,
+                   display_num,
+                   event_count,
+                   events,
+                   display_index,
+                   chips=None,
+                   text=None,
+                   variable_name=None,
+                   variable=None):
     if display_num == 3:
         resp = deepcopy(SAMPLE_EVENT_JSON_3)
     elif display_num == 2:
@@ -92,7 +101,6 @@ def event_response(display_num, event_count, events, display_index=None, chips=N
             if events.get(str(e))['event_images']:
                 resp['fulfillmentMessages'][1]['payload']['richContent'][i][0]['rawUrl'] = events.get(str(e))[
                     'event_images']
-
             description = ''
             if events.get(str(e))['duration']:
                 description = description + 'Spieldauer: ' + str(events.get(str(e))['duration']) + ' Minuten' + '\n'
@@ -106,7 +114,7 @@ def event_response(display_num, event_count, events, display_index=None, chips=N
             if events.get(str(e))['info_text']:
                 description = description + str(events.get(str(e))['info_text'])
             if events.get(str(e))['accessibility']:
-                resp['fulfillmentMessages'][1]['payload']['richContent'][e][3]['title'] = 'Barrierefreiheit'
+                resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['title'] = 'Barrierefreiheit'
                 accessibility = ''
                 for j in range(len(events.get(str(e))['accessibility'])):
                     accessibility = accessibility + str(events.get(str(e))['accessibility'][j]['name']) + '\r\n'
@@ -125,5 +133,10 @@ def event_response(display_num, event_count, events, display_index=None, chips=N
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'][display_num][0]['options'] = [{'text': i} for i in
                                                                                                chips]
+    if session_id:
+        resp['outputContexts'][0]['name'] = 'projects/kommkrake-pcsi/locations/global/agent/sessions/' + str(
+            session_id) + '/contexts/' + str(context)
+        if variable_name:
+            resp['outputContexts'][0]['parameters'][variable_name] = variable
     # else return ful
     return resp

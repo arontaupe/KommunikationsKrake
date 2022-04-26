@@ -1,11 +1,12 @@
 # import flask dependencies
 import json  # make me interact with json
+from pprint import pprint
 
 from flask import Flask, request  # makes the thing ngrokable
 
 # import code generated from openapi
 # import the response functionality
-from response_func import image_response, chip_response, chip_w_context_response, event_response
+from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list
 
@@ -30,6 +31,7 @@ def index():
 def retrieve_bedarf(output_contexts=None):
     print('retrieving Bedarf')
     accessibilities = []
+
     if output_contexts:
         num_contexts = len(output_contexts)
         for i in range(num_contexts):
@@ -42,16 +44,44 @@ def retrieve_bedarf(output_contexts=None):
 
 def retrieve_found_events(output_contexts=None):
     print('retrieving found events')
-    num_events = events = None
+    event_count = events = None
     if output_contexts:
         num_contexts = len(output_contexts)
+        print('Number of contexts: ' + str(num_contexts))
         for i in range(num_contexts):
             if 'events_found' in output_contexts[i]['name']:
                 events = output_contexts[i]['parameters']['events_found']
                 event_count = len(events)
-                print('Event Count: ' + str(event_count))
-                print('Events fetched: ' + str(events))
-    return num_events, events
+                # print('Event Count from events found: ' + str(event_count))
+                # print('Events fetched: ' + str(events))
+    return event_count, events
+
+
+def retrieve_event_display_count(output_contexts=None):
+    print('retrieving event_display_count')
+    event_display_count = 0
+    if output_contexts:
+        num_contexts = len(output_contexts)
+        print('Number of contexts: ' + str(num_contexts))
+        # print('got output context')
+        # print(output_contexts)
+        for i in range(num_contexts):
+            pprint(output_contexts[i]['name'])
+
+            if 'event_display_count' in output_contexts[i]['name']:
+                # print('recognized context')
+                print(output_contexts[i]['parameters'])
+                event_display_count = output_contexts[i]['parameters']['event_display_count']
+                print('found prior display count')
+                print(type(event_display_count))
+                return event_display_count
+            else:
+                print('reached inner else')
+                return 0
+
+    else:
+        print('reached outer else')
+        return 0
 
 
 def retrieve_interests():
@@ -95,7 +125,7 @@ this is the main intent switch function. All intents that use the backend must b
     # build a request object
     req = request.get_json(force=True)
     # fetch action from json
-    action = req.get('queryResult').get('action')
+    # action = req.get('queryResult').get('action')
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
     # print('Parameters: ' + str(parameters))
@@ -143,7 +173,7 @@ this is the main intent switch function. All intents that use the backend must b
                                        context='save_bedarf',
                                        variable_name='prev_selection_bedarf',
                                        variable=new_bedarf,
-                                       text='Webhook : Okay, ich habe deinen Bedarf ' + bedarf +
+                                       text='Okay, ich habe deinen Bedarf ' + bedarf +
                                             ' abgespeichert.'' Willst du weitere Bedarfe angeben?',
                                        chips=["Ja", "Nein, weiter: Interessenselektor", "Menü"])
 
@@ -155,12 +185,16 @@ this is the main intent switch function. All intents that use the backend must b
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
                 print('Saving final Accessibility: ' + str(prev_selection_bedarf))
                 # print(prev_selection_bedarf)
-        return chip_w_context_response(text='Ich finde menschliche Körper interessant.',
-                                       chips=["Ja", "Nein", "Ist mir egal"],
-                                       session_id='fixedID',
-                                       context='final_accessibility',
-                                       variable_name='final_accessibility',
-                                       variable=prev_selection_bedarf)
+        return chip_w_context_response(
+            text='Hier kannst du nun 9 Aussagen bewerten und ich suche dir danach eine passende Veranstaltung heraus. \n'
+                 'Du kannst sie immer mit Ja, Nein, oder Ist mir Egal bewerten. \n'
+                 'Erste Frage: \n'
+                 'Ich finde menschliche Körper interessant.',
+            chips=["Ja", "Nein", "Ist mir egal"],
+            session_id='fixedID',
+            context='final_accessibility',
+            variable_name='final_accessibility',
+            variable=prev_selection_bedarf)
 
     elif intent_name == 'script.interest.select.1 - egal' or \
             intent_name == 'script.interest.select.1 - ja' or \
@@ -337,27 +371,67 @@ this is the main intent switch function. All intents that use the backend must b
             # print('Asking for Accessibilities: ' + str(codes))
             event_count, events = get_full_event_list(codes)
             # print(event_count)
+        if events and event_count:
+            return chip_w_context_response(text='Ich habe ' + str(event_count) + ' Veranstaltungen gefunden',
+                                           chips=["Zeig mir die Veranstaltungen"],
+                                           session_id='fixedID',
+                                           context='events_found',
+                                           variable_name='events_found',
+                                           variable=events
+                                           )
+        else:
+            return text_response(text='Ich habe keine Events gefunden')
 
-        return chip_w_context_response(text='Ich habe ' + str(event_count) + ' Veranstaltungen gefunden',
-                                       chips=["Zeig mir die Veranstaltungen"],
-                                       session_id='fixedID',
-                                       context='events_found',
-                                       variable_name='events_found',
-                                       variable=events
-                                       )
     elif intent_name == 'script.event.menu':
         event_count, events = retrieve_found_events(output_contexts)
-        if events:
-            # print('Got Events')
-            # print(events)
-            event_count = len(events)
-            # print(event_count)
-            if event_count:
-                return event_response(display_num=3, event_count=event_count, events=events,
-                                      chips=['Zeig mir die nächsten Events', 'Zeig mir die Veranstaltungen']
-                                      )
-        else:
-            return chip_response(chips=['Zeig mir die nächsten Events', 'Zeig mir die Veranstaltungen'])
+        event_display_count = retrieve_event_display_count(output_contexts)
+        print(event_count, event_display_count)
+        if event_display_count <= event_count - 3:
+            # print('in correct if')
+            display_num = 3
+        elif event_display_count <= event_count - 2:
+            display_num = 2
+        elif event_display_count <= event_count - 1:
+            display_num = 1
+        elif event_display_count >= event_count:
+            event_display_count = 0
+            return chip_w_context_response(session_id='fixedID',
+                                           context='event_display_count',
+                                           variable_name='event_display_count',
+                                           variable=event_display_count,
+                                           text='Ich habe dir nun alle ausgewählten Events gezeigt. '
+                                                'Was möchtest du nun tun?',
+                                           chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
+
+        new_event_display_count = event_display_count + display_num
+        print('Old and new event display counts: ' + str(event_display_count), str(new_event_display_count))
+        if display_num == 3:
+            chips = ['Zeig mir die nächsten Events', 'Mehr zu Veranstaltung 1', 'Mehr zu Veranstaltung 2',
+                     'Mehr zu Veranstaltung 3']
+        elif display_num == 2:
+            chips = ['Zeig mir die nächsten Events', 'Mehr zu Veranstaltung 1', 'Mehr zu Veranstaltung 2']
+        elif display_num == 1:
+            chips = ['Zeig mir die nächsten Events', 'Mehr zu Veranstaltung 1']
+        return event_response(
+            text='Ich empfehle dir folgende Veranstaltungen. Wähle eine aus und ich erzähle dir mehr.',
+            session_id='fixedID',
+            context='event_display_count',
+            variable_name='event_display_count',
+            variable=new_event_display_count,
+            display_num=display_num,
+            display_index=event_display_count,
+            event_count=event_count,
+            events=events,
+            chips=chips
+        )
+        # else:
+        #   return text_response(text='Ich habe leider keine Events gespeichert')
+    elif intent_name == 'script.event.details':
+        detail_event = parameters.get('detail_event')
+        event_display_count = retrieve_event_display_count(output_contexts)
+        return text_response('du hast event ' + str(detail_event) + ' ausgewählt für mehr Infos '
+                                                                    'und der eventindex ist '
+                             + str(event_display_count))
 
 
 # create a route for webhook
@@ -371,12 +445,12 @@ Main listener to DF, will call handle_intent upon being activated
         update = request.data.decode("utf8")
         update = json.loads(update)
         print("====================================== REQUEST.DATA ======================================")
-        # print(update)
+        # pprint(update)
         response = handle_intent(update['queryResult']['intent']['displayName'], update)
 
         if response:
             print("====================================== RESPONSE.DATA ======================================")
-            print(response)
+            # pprint(response)
 
         return response
     else:

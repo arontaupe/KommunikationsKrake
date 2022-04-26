@@ -270,6 +270,13 @@ SAMPLE_EVENT_JSON_3 = {
                 ]
             }
         }
+    ],
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        }
     ]
 }
 SAMPLE_EVENT_JSON_2 = {
@@ -382,6 +389,13 @@ SAMPLE_EVENT_JSON_2 = {
                 ]
             }
         }
+    ],
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        }
     ]
 }
 
@@ -452,6 +466,13 @@ SAMPLE_EVENT_JSON_1 = {
                     ]
                 ]
             }
+        }
+    ],
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
         }
     ]
 }
