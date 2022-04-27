@@ -10,7 +10,7 @@ requirements:
 ```sh
 docker
 docker-compose
-ngrok
+ngrok # nur für lokales hosting
 ```
 
 die restlichen requirements befinden sich im requirements.txt und werden automatisch installiert
@@ -18,9 +18,11 @@ die restlichen requirements befinden sich im requirements.txt und werden automat
 Um den code im image zu aktualisieren benutze ich:
 
 ```shell
-cd Kommunikationskrake
+cd allei_backend_production
+docker-compose build
+docker push arontaupe/allei
+docker-compose up
 ```
-
 In /backend wird der Server entwickelt, er ist in python geschrieben, wird mittels flask und ngrok gehostet
 
 Alle Materialien zur Sommerblut Datenbank API finden sich in /database
