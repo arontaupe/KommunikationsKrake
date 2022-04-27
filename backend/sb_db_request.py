@@ -154,7 +154,7 @@ def get_full_event_list(accessibility=None):
             # get all events
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
-                                                    entries=30)
+                                                    entries=15)
             # pprint(api_response)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -162,7 +162,7 @@ def get_full_event_list(accessibility=None):
         try:
             # get all events
             api_response = event_api.get_all_events(accept_language=accept_language,
-                                                    entries=30)
+                                                    entries=15)
             # pprint(api_response)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)

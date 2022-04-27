@@ -1,3 +1,7 @@
 backend/db_auth.py
 
 !/docker-compose.yml
+/DB_PASS.txt
+/DB_USER.txt
+DB_PASS.txt
+DB_USER.txt

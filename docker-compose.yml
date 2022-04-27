@@ -1,15 +1,25 @@
 version: '3.7'
 
+secrets:
+  DB_USER:
+    file: ./DB_USER.txt
+  DB_PASS:
+    file: ./DB_PASS.txt
+
 services:
   allei:
     build: ./
     image: arontaupe/allei
     restart: unless-stopped
 
-    ports:
-      - "5003:5000"
+    secrets:
+      - DB_USER
+      - DB_PASS
 
     environment:
-      - DB_USER=api_ticketing
-      - DB_PASS=[T!ck28O1api
+      - DB_USER=/run/secrets/DB_USER
+      - DB_PASS=/run/secrets/DB_PASS
       - BASEURL=https://datenbank.sommerblut.de
+
+    ports:
+      - "5003:5000"
