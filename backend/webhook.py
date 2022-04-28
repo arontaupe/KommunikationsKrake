@@ -367,14 +367,14 @@ this is the main intent switch function. All intents that use the backend must b
         else:
             event_index = next_event_index - 1
 
-        event_id = events[event_index]['id']
+        event_id = events[str(event_index)]['id']
 
         return chip_w_context_response(session_id='fixedID',
-                                       text='Was möchtest du mehr wissen über die Veranstaltung?'
-                                            '1. Ist die Veranstaltung barrierefrei?'
-                                            '2. Worum geht es genau in der Veranstaltung'
-                                            '3. Wie handhabt ihr Corona?'
-                                            '4. Wo und Wann findet sie statt?',
+                                       text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                            '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                            '2. Worum geht es genau in der Veranstaltung\r\n'
+                                            '3. Wie handhabt ihr Corona?\r\n'
+                                            '4. Wo und Wann findet sie statt?\r\n',
                                        chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen', 'Datum und Ort',
                                               'Zurück: Veranstaltungsübersicht'],
                                        variable_name='event_id',

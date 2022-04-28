@@ -464,7 +464,8 @@ SAMPLE_EVENT_JSON_1 = {
                             ]
                         }
                     ]
-                ]
+                ],
+                "event": {}
             }
         }
     ],

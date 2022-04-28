@@ -89,12 +89,16 @@ def event_response(session_id,
         i = 0
         e = display_index
 
+        # send out entire event to be visible in frontend
+        resp['fulfillmentMessages'][1]['payload']['event'] = events.get(str(e))
+
+        # fill my card
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['title'] = events.get(str(e))['title']
         subline = ''
         if events.get(str(e))['subtitle']:
-            subline = subline + events.get(str(e))['subtitle']
+            subline = subline + events.get(str(e))['subtitle'] + '\r\n'
         if events.get(str(e))['next_date']:
-            subline = subline + ' Nächstes Datum: ' + events.get(str(e))['next_date']
+            subline = subline + ' Nächstes Datum: ' + events.get(str(e))['next_date'] + '\r\n'
         if subline:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['subtitle'] = subline
         if events.get(str(e))['event_images']:
@@ -102,14 +106,14 @@ def event_response(session_id,
                 'event_images']
         description = ''
         if events.get(str(e))['duration']:
-            description = description + 'Spieldauer: ' + str(events.get(str(e))['duration']) + ' Minuten' + '\n'
+            description = description + 'Spieldauer: ' + str(events.get(str(e))['duration']) + ' Minuten' + '\r\n'
         if events.get(str(e))['location']:
-            description = description + 'Spielort: ' + str(events.get(str(e))['location']) + '\n'
+            description = description + 'Spielort: ' + str(events.get(str(e))['location']) + '\r\n'
         if events.get(str(e))['artist_name']:
-            description = description + 'Künstler: ' + str(events.get(str(e))['artist_name']) + '\n'
+            description = description + 'Künstler: ' + str(events.get(str(e))['artist_name']) + '\r\n'
         if events.get(str(e))['max_capacity']:
             description = description + 'Maximale Platzanzahl: ' + str(
-                events.get(str(e))['max_capacity']) + '\n'
+                events.get(str(e))['max_capacity']) + '\r\n'
         if events.get(str(e))['info_text']:
             description = description + str(events.get(str(e))['info_text'])
         if events.get(str(e))['accessibility']:
@@ -120,11 +124,11 @@ def event_response(session_id,
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['text'] = accessibility
         if description:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['text'] = description
-        sale_msg = 'Tickets hier kaufen'
+        sale_msg = 'Tickets hier kaufen' + '\r\n'
         if events.get(str(e))['price_vvk']:
-            sale_msg = sale_msg + 'Preis: ' + str(events.get(str(e))['price_vvk']) + 'Euro \n'
+            sale_msg = sale_msg + 'Preis: ' + str(events.get(str(e))['price_vvk']) + 'Euro ' + '\r\n'
 
-        resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg
+        resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))[
             'ticket_link']
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['title'] = 'Kurzbeschreibung'
@@ -137,5 +141,5 @@ def event_response(session_id,
             session_id) + '/contexts/' + str(context)
         if variable_name:
             resp['outputContexts'][0]['parameters'][variable_name] = variable
-    # else return ful
+
     return resp
