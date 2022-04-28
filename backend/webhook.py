@@ -1,17 +1,20 @@
 # import flask dependencies
 import json  # make me interact with json
+# use pretty printing for json responses
 from pprint import pprint
 
+# server functionality
 from flask import Flask, request  # makes the thing ngrokable
 
 pprint('keep pprint')
-
 # import code generated from openapi
 # import the response functionality
-from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response
+from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
+    context_response, button_response, event_schedule_response
+# import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id
 # import the database functions
-from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list
+from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule
 
 # import library to send rich responses from webhook
 
@@ -39,6 +42,7 @@ this is the main intent switch function. All intents that use the backend must b
     :param req_json: the raw format from DF
     :return: None
     """
+    print('Intent with backend Enabled recognized')
     # build a request object
     req = request.get_json(force=True)
     # fetch action from json
@@ -49,16 +53,20 @@ this is the main intent switch function. All intents that use the backend must b
     output_contexts = req.get('queryResult').get('outputContexts')
     # print('Contexts: ' + str(output_contexts))
     num_contexts = len(output_contexts)
-    # print(num_contexts)
-
-    # session_name = req.get('sessionInfo').get('session')
+    # pprint(req)
+    session_id = req.get('session')
+    session_id_array = session_id.split("/")
+    # pprint(session_id_array)
+    session_id = session_id_array[len(session_id_array) - 1]
+    # print(session_id)
 
     if intent_name == 'test.fulfillment':
         # return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
-        return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
+        # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
         # return text_response('Hallo')
-        # return context_response(session_id='abc',context='mycontext',variable_name = 'variable1', variable= 'value1')
+        return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
+                                variable='value1')
 
     elif intent_name == 'accessibility.select - collect':
         bedarf = parameters.get('bedarf')
@@ -86,7 +94,7 @@ this is the main intent switch function. All intents that use the backend must b
             elif bedarf == 'begrenzte Reize':
                 new_bedarf[5] = 1
         print('Now Modified Bedarf: ' + str(new_bedarf))
-        return chip_w_context_response(session_id='fixedID',
+        return chip_w_context_response(session_id=session_id,
                                        context='save_bedarf',
                                        variable_name='prev_selection_bedarf',
                                        variable=new_bedarf,
@@ -108,7 +116,7 @@ this is the main intent switch function. All intents that use the backend must b
                  'Erste Frage: \n'
                  'Ich finde menschliche Körper interessant.',
             chips=["Ja", "Nein", "Ist mir egal"],
-            session_id='fixedID',
+            session_id=session_id,
             context='final_accessibility',
             variable_name='final_accessibility',
             variable=prev_selection_bedarf)
@@ -119,7 +127,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_1 = parameters.get('interest_1')
         return chip_w_context_response(text='Soso, ' + interest_1 + ' also.',
                                        chips=["Weiter: Frage 2", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_1',
                                        variable_name='interest_1',
                                        variable=interest_1)
@@ -134,7 +142,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_2 = parameters.get('interest_2')
         return chip_w_context_response(text=interest_2 + ', interessant.',
                                        chips=["Weiter: Frage 3", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_2',
                                        variable_name='interest_2',
                                        variable=interest_2)
@@ -149,7 +157,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_3 = parameters.get('interest_3')
         return chip_w_context_response(text='Rituale eher so: ' + interest_3,
                                        chips=["Weiter: Frage 4", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_3',
                                        variable_name='interest_3',
                                        variable=interest_3)
@@ -164,7 +172,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_4 = parameters.get('interest_4')
         return chip_w_context_response(text=interest_4 + '? Poesie steckt überall.',
                                        chips=["Weiter: Frage 5", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_4',
                                        variable_name='interest_4',
                                        variable=interest_4)
@@ -179,11 +187,10 @@ this is the main intent switch function. All intents that use the backend must b
         interest_5 = parameters.get('interest_5')
         return chip_w_context_response(text=interest_5 + ', also ich finde Aktuelles wichtig',
                                        chips=["Weiter: Frage 6", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_5',
                                        variable_name='interest_5',
                                        variable=interest_5)
-
 
     elif intent_name == 'script.interest.select.6':
         # here we are asking for interest_6
@@ -195,7 +202,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_6 = parameters.get('interest_6')
         return chip_w_context_response(text=interest_6 + ', Ich merke, dass das wichtig ist.',
                                        chips=["Weiter: Frage 7", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_6',
                                        variable_name='interest_6',
                                        variable=interest_6)
@@ -210,7 +217,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_7 = parameters.get('interest_7')
         return chip_w_context_response(text='Dass du ' + interest_7 + ' klickst, sag ich deiner Mutter!',
                                        chips=["Weiter: Frage 8", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_7',
                                        variable_name='interest_7',
                                        variable=interest_7)
@@ -225,7 +232,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_8 = parameters.get('interest_8')
         return chip_w_context_response(text='Ich habe mir gemerkt, dass du ' + interest_8 + ' geantwortet hast.',
                                        chips=["Weiter: Frage 9", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_8',
                                        variable_name='interest_8',
                                        variable=interest_8)
@@ -240,7 +247,7 @@ this is the main intent switch function. All intents that use the backend must b
         interest_9 = parameters.get('interest_9')
         return chip_w_context_response(text=None,
                                        chips=["Weiter: Zeitselektor", "Menü"],
-                                       session_id='fixedID',
+                                       session_id=session_id,
                                        context='interest_9',
                                        variable_name='interest_9',
                                        variable=interest_9)
@@ -299,16 +306,16 @@ this is the main intent switch function. All intents that use the backend must b
                 chips = ["Zeig mir die Veranstaltungen"]
             return chip_w_context_response(text=text,
                                            chips=chips,
-                                           session_id='fixedID',
+                                           session_id=session_id,
                                            context='events_found',
                                            variable_name='events_found',
-                                           variable=events
+                                           variable=events,
+                                           lifespan=150
                                            )
         else:
             return text_response(text='Ich habe leider keine Events mit deinen Zugänglichkeitsanforderungen gefunden')
 
     elif intent_name == 'script.event.menu':
-
         event_count, events = retrieve_found_events(output_contexts)
         # print(event_count, type(event_count))
         # pprint(events)
@@ -325,7 +332,7 @@ this is the main intent switch function. All intents that use the backend must b
 
         if event_index == event_count:
             next_event_index = 0
-            return chip_w_context_response(session_id='fixedID',
+            return chip_w_context_response(session_id=session_id,
                                            context='event_index',
                                            variable_name='event_index',
                                            variable=next_event_index,
@@ -343,7 +350,7 @@ this is the main intent switch function. All intents that use the backend must b
         return event_response(
             text='Ich empfehle dir die folgende Veranstaltung. '
                  'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',
-            session_id='fixedID',
+            session_id=session_id,
             context='event_index',
             variable_name='event_index',
             variable=next_event_index,
@@ -355,13 +362,12 @@ this is the main intent switch function. All intents that use the backend must b
         )
 
     elif intent_name == 'script.event.details':
-
         event_count, events = retrieve_found_events(output_contexts)
         if events is None or event_count is None:
             print('no events')
             return text_response(text='Ich habe leider keine Events gespeichert')
 
-        event_index = next_event_index = int(retrieve_event_index(output_contexts))
+        next_event_index = int(retrieve_event_index(output_contexts))
         if next_event_index == event_count:
             event_index = event_count - 1
         else:
@@ -369,13 +375,14 @@ this is the main intent switch function. All intents that use the backend must b
 
         event_id = events[str(event_index)]['id']
 
-        return chip_w_context_response(session_id='fixedID',
+        return chip_w_context_response(session_id=session_id,
                                        text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
                                             '1. Ist die Veranstaltung barrierefrei?\r\n'
                                             '2. Worum geht es genau in der Veranstaltung\r\n'
                                             '3. Wie handhabt ihr Corona?\r\n'
                                             '4. Wo und Wann findet sie statt?\r\n',
                                        chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen', 'Datum und Ort',
+                                              'Zeig mir die Veranstaltung auf sommerblut.de',
                                               'Zurück: Veranstaltungsübersicht'],
                                        variable_name='event_id',
                                        variable=event_id,
@@ -390,7 +397,7 @@ this is the main intent switch function. All intents that use the backend must b
         next_event_index = event_index = int(retrieve_event_index(output_contexts))
         display_num = 1
         if event_count == 1:
-            return chip_w_context_response(session_id='fixedID',
+            return chip_w_context_response(session_id=session_id,
                                            context='event_index',
                                            variable_name='event_index',
                                            variable=next_event_index,
@@ -416,7 +423,7 @@ this is the main intent switch function. All intents that use the backend must b
         return event_response(
             text='Ich empfehle dir noch einmal die letzte Veranstaltung. '
                  'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',
-            session_id='fixedID',
+            session_id=session_id,
             context='event_index',
             variable_name='event_index',
             variable=next_event_index,
@@ -426,27 +433,81 @@ this is the main intent switch function. All intents that use the backend must b
             events=events,
             chips=chips
         )
+
+    elif intent_name == 'script.event.details - linkout':
+        event_id = retrieve_event_id(output_contexts)
+        url = 'https://www.sommerblut.de/en/event/' + str(event_id)
+        button_text = 'Link zum Event'
+        return button_response(url=url, button_text=button_text, chips=['Zurück: Veranstaltungsdetails'])
     elif intent_name == 'script.event.details - program':
         event_id = retrieve_event_id(output_contexts)
         return chip_response(
             text='Du hast nach dem Programmtext der Veranstaltung gefragt.  TODO Event ID = ' + str(event_id),
-            chips=['Zurück: Veranstaltungsübersicht', 'Hauptmenü'])
+            chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü'])
 
     elif intent_name == 'script.event.details - corona':
         event_id = retrieve_event_id(output_contexts)
         return chip_response(
             text='Du hast nach dem Coronainfos der Veranstaltung gefragt.  TODO Event ID = ' + str(event_id),
-            chips=['Zurück: Veranstaltungsübersicht', 'Hauptmenü'])
+            chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü'])
+
     elif intent_name == 'script.event.details - accessibility':
         event_id = retrieve_event_id(output_contexts)
         return chip_response(
             text='Du hast nach den Barrierefreiheitsinfos der Veranstaltung gefragt. TODO Event ID = ' + str(event_id),
-            chips=['Zurück: Veranstaltungsübersicht', 'Hauptmenü'])
+            chips=['Zurück: Veranstaltungsübersicht', 'Hauptmenü',
+                   'Kontaktmöglichkeit für Zugänglichkeitsunterstützung'])
+
     elif intent_name == 'script.event.details - schedule':
         event_id = retrieve_event_id(output_contexts)
+        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        pprint(events)
+        if event_id and events:
+            for e in range(event_count):
+                print(events.get(e))
+                if events[e].get('id') == event_id:
+                    duration = int(events[e].get('duration'))
+                    title = events[e].get('title')
+                    location = events[e].get('location')
+                    price = int(events[e].get('price'))
+
+                    return chip_response(
+                        text=f'{title} dauert {duration}. Es findet statt an {location}. Er Kostet {price}. (Event_ID: {event_id}',
+                        chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü',
+                               'Liste der Spielzeiten anzeigen'])
+        else:
+            return chip_response(
+                text='Irgendwie habe ich wohl die Veranstaltungsnummer vergessen, versuch es doch noch einmal.',
+                chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü'])
+
+    elif intent_name == 'script.event.details.showSchedule':
+        event_id = int(retrieve_event_id(output_contexts))
+        play_count, plays = get_event_schedule(event_id)
+
+        return event_schedule_response(play_count,
+                                       plays,
+                                       text='Hier soll die Spielzeitenliste angezeigt werden. TODO',
+                                       chips=['Tickets online kaufen', 'Alternative Wege Tickets zu kaufen',
+                                              'Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails',
+                                              'Hauptmenü']
+                                       )
+
+    elif intent_name == 'faq.contact.accessibility':
+        return chip_response(text='Franziska hilft dir gerne bei Fragen rund um die Zugänglichkeit '
+                                  'von Veranstaltungen weiter. '
+                                  'Du kannst sie so erreichen: franziska.lammers@sommerblut.de '
+                                  'oder per Telefon: 0221 – 29 49 91 34',
+                             chips=[])
+
+    elif intent_name == 'faq.tickets.sale_location':
         return chip_response(
-            text='Du hast nach den Spielzeiten der Veranstaltung gefragt. TODO Event ID = ' + str(event_id),
-            chips=['Zurück: Veranstaltungsübersicht', 'Hauptmenü'])
+            text='An folgenden Orten können Tickets gekauft werden, außerdem auch via Telefon unter: TODO',
+            chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
+
+    elif intent_name == 'script.tickets.sale':
+        return chip_response(
+            text='Hier soll ein Link erscheinen für den Ticketshop. TODO',
+            chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
 
 
 # create a route for webhook

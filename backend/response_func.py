@@ -7,7 +7,12 @@ from sample_jsons import SAMPLE_IMAGE_JSON, \
     SAMPLE_TEXT_JSON, \
     SAMPLE_CONTEXT_JSON, \
     SAMPLE_CHIP_W_CONTEXT_JSON, \
-    SAMPLE_EVENT_JSON_1  # load in the prototype jsons
+    SAMPLE_EVENT_JSON_1, \
+    SAMPLE_BUTTON_JSON, \
+    SAMPLE_EVENT_SCHEDULE_JSON
+
+
+# load in the prototype jsons
 
 
 # sends a text response, takes an optional array of suggestion chips
@@ -27,17 +32,19 @@ def text_response(text=None):
     return resp
 
 
-def context_response(session_id, context, variable_name=None, variable=None):
+def context_response(session_id, context, lifespan=50, variable_name=None, variable=None):
     resp = deepcopy(SAMPLE_CONTEXT_JSON)
     if session_id:
         resp['outputContexts'][0]['name'] = 'projects/kommkrake-pcsi/locations/global/agent/sessions/' + str(
             session_id) + '/contexts/' + str(context)
         if variable_name:
             resp['outputContexts'][0]['parameters'][variable_name] = variable
+        if lifespan:
+            resp['outputContexts'][0]['lifespanCount'] = lifespan
     return resp
 
 
-def chip_w_context_response(session_id, context, text=None, chips=None, variable_name=None, variable=None):
+def chip_w_context_response(session_id, context, lifespan=50, text=None, chips=None, variable_name=None, variable=None):
     resp = deepcopy(SAMPLE_CHIP_W_CONTEXT_JSON)
     if text:
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
@@ -48,6 +55,8 @@ def chip_w_context_response(session_id, context, text=None, chips=None, variable
             session_id) + '/contexts/' + str(context)
         if variable_name:
             resp['outputContexts'][0]['parameters'][variable_name] = variable
+        if lifespan:
+            resp['outputContexts'][0]['lifespanCount'] = lifespan
     return resp
 
 
@@ -72,16 +81,11 @@ def event_response(session_id,
                    event_count,
                    events,
                    display_index,
+                   lifespan=50,
                    chips=None,
                    text=None,
                    variable_name=None,
                    variable=None):
-    '''
-    if display_num == 3:
-        resp = deepcopy(SAMPLE_EVENT_JSON_3)
-    elif display_num == 2:
-        resp = deepcopy(SAMPLE_EVENT_JSON_2)
-    '''
     resp = deepcopy(SAMPLE_EVENT_JSON_1)
     if text:
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
@@ -141,5 +145,57 @@ def event_response(session_id,
             session_id) + '/contexts/' + str(context)
         if variable_name:
             resp['outputContexts'][0]['parameters'][variable_name] = variable
+        if lifespan:
+            resp['outputContexts'][0]['lifespanCount'] = lifespan
+    return resp
 
+
+# sends a single Button, along with optional text and some chips
+def button_response(url, button_text, text=None, chips=None):
+    resp = deepcopy(SAMPLE_BUTTON_JSON)
+    resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['link'] = url
+    resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['text'] = button_text
+    if text:
+        resp['fulfillmentMessages'][0]['text']['text'][0] = text
+    if chips:
+        resp['fulfillmentMessages'][1]['payload']['richContent'][0][1]['options'] = [{'text': i} for i in chips]
+    return resp
+
+
+# sends a single Button, along with optional text and some chips
+def event_schedule_response(play_count, plays, text=None, chips=None):
+    resp = deepcopy(SAMPLE_EVENT_SCHEDULE_JSON)
+    if text:
+        resp['fulfillmentMessages'][0]['text']['text'][0] = text
+
+    # send out entire play schedule to be visible in frontend
+    resp['fulfillmentMessages'][1]['payload']['plays'] = plays
+
+    for i in range(play_count):
+        accessible_request = plays[i]['accessible_request']
+        # print(accessible_request)
+        accessible_for = ''
+        for j in range(len(accessible_request)):
+            accessible_for = accessible_for + str(accessible_request[j].get('name')) + '\r\n'
+        # print(accessible_for)
+
+        date = plays[i]['date']
+        end_date = plays[i]['end_date']
+        play_id = plays[i]['id']
+        location = plays[i]['location']
+        opening_time = plays[i]['opening_time']
+        ticket_link = plays[i]['ticket_link']
+        additional_title = plays[i]['additional_title']
+
+        resp['fulfillmentMessages'][1]['payload']['richContent'].append([{
+            "type": "info",
+            "title": date,
+            "subtitle": accessible_for,  # accessible_request,
+            "image": {"src": {"rawUrl": "https://example.com/images/logo.png"}},
+            "actionLink": ticket_link}], )
+
+    if chips:
+        resp['fulfillmentMessages'][1]['payload']['richContent'].append([{"type": "chips",
+                                                                          "options": [{'text': i} for i in chips]
+                                                                          }])
     return resp
