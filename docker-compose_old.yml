@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  allei:
+    build: ./
+    image: arontaupe/allei
+    restart: unless-stopped
+
+    environment:
+      - DB_USER=*******
+      - DB_PASS=********
+      - BASEURL=https://datenbank.sommerblut.de
+
+    ports:
+      - "5003:5000"

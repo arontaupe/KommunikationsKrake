@@ -1,7 +1,12 @@
 # here are the prototypes of the response json files. I can then modify them on the fly to include my answers
 
 SAMPLE_TEXT_JSON = {
-    "fulfillmentText": "Suggestion Chips"
+    "fulfillmentText": "Text",
+    "dgs_videos": {
+        "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+        "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+        "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+    }
 }
 
 SAMPLE_CONTEXT_JSON = {
@@ -26,6 +31,11 @@ SAMPLE_CHIP_W_CONTEXT_JSON = {
         },
         {
             "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
                 "richContent": [
                     [
                         {
@@ -62,6 +72,11 @@ SAMPLE_CHIP_JSON = {
         },
         {
             "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
                 "richContent": [
                     [
                         {
@@ -91,6 +106,11 @@ SAMPLE_IMAGE_JSON = {
         },
         {
             "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
                 "richContent": [
                     [
                         {
@@ -117,288 +137,24 @@ SAMPLE_IMAGE_JSON = {
         }
     ]
 }
-
-SAMPLE_EVENT_JSON_3 = {
-    "fulfillmentText": "Event",
+SAMPLE_EVENT_SCHEDULE_JSON = {
+    "fulfillmentText": "Event Schedule",
     "fulfillmentMessages": [
-        {
-            "text": {
-                "text": [
-                    ""
-                ]
-            }
-        },
+        {"text": {"text": [""]}},
         {
             "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
                 "richContent": [
-                    [
-                        {
-                            "type": "image",
-                            "rawUrl": ""
-                        },
-                        {
-                            "type": "info",
-                            "title": "",
-                            "subtitle": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "button",
-                            "icon": {
-                                "type": "chevron_right",
-                                "color": "#FF9800"
-                            },
-                            "text": "Tickets kaufen",
-                            "link": "https://sommerblut.de"
-                        }
-                    ],
-                    [
-                        {
-                            "type": "image",
-                            "rawUrl": ""
-                        },
-                        {
-                            "type": "info",
-                            "title": "",
-                            "subtitle": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "button",
-                            "icon": {
-                                "type": "chevron_right",
-                                "color": "#FF9800"
-                            },
-                            "text": "",
-                            "link": ""
-                        }
-                    ],
-                    [
-                        {
-                            "type": "image",
-                            "rawUrl": ""
-                        },
-                        {
-                            "type": "info",
-                            "title": "",
-                            "subtitle": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "button",
-                            "icon": {
-                                "type": "chevron_right",
-                                "color": "#FF9800"
-                            },
-                            "text": "",
-                            "link": ""
-                        }
-                    ],
-                    [
-                        {
-                            "type": "chips",
-                            "options": [
-                                {
-                                    "text": "Chip1"
-                                }
-                            ]
-                        }
-                    ]
-                ]
+                ],
+                "plays": {}
             }
-        }
-    ],
-    "outputContexts": [
-        {
-            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
-            "lifespanCount": 50,
-            "parameters": {}
         }
     ]
 }
-SAMPLE_EVENT_JSON_2 = {
-    "fulfillmentText": "Event",
-    "fulfillmentMessages": [
-        {
-            "text": {
-                "text": [
-                    ""
-                ]
-            }
-        },
-        {
-            "payload": {
-                "richContent": [
-                    [
-                        {
-                            "type": "image",
-                            "rawUrl": ""
-                        },
-                        {
-                            "type": "info",
-                            "title": "",
-                            "subtitle": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "button",
-                            "icon": {
-                                "type": "chevron_right",
-                                "color": "#FF9800"
-                            },
-                            "text": "Tickets kaufen",
-                            "link": "https://sommerblut.de"
-                        }
-                    ],
-                    [
-                        {
-                            "type": "image",
-                            "rawUrl": ""
-                        },
-                        {
-                            "type": "info",
-                            "title": "",
-                            "subtitle": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "accordion",
-                            "title": "",
-                            "subtitle": "",
-                            "image": {
-                                "src": {
-                                    "rawUrl": ""
-                                }
-                            },
-                            "text": ""
-                        },
-                        {
-                            "type": "button",
-                            "icon": {
-                                "type": "chevron_right",
-                                "color": "#FF9800"
-                            },
-                            "text": "",
-                            "link": ""
-                        }
-                    ],
-                    [
-                        {
-                            "type": "chips",
-                            "options": [
-                                {
-                                    "text": "Chip1"
-                                }
-                            ]
-                        }
-                    ]
-                ]
-            }
-        }
-    ],
-    "outputContexts": [
-        {
-            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
-            "lifespanCount": 50,
-            "parameters": {}
-        }
-    ]
-}
-
 SAMPLE_EVENT_JSON_1 = {
     "fulfillmentText": "Event",
     "fulfillmentMessages": [
@@ -411,6 +167,11 @@ SAMPLE_EVENT_JSON_1 = {
         },
         {
             "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
                 "richContent": [
                     [
                         {
@@ -464,7 +225,8 @@ SAMPLE_EVENT_JSON_1 = {
                             ]
                         }
                     ]
-                ]
+                ],
+                "event": {}
             }
         }
     ],
@@ -473,6 +235,54 @@ SAMPLE_EVENT_JSON_1 = {
             "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
             "lifespanCount": 50,
             "parameters": {}
+        }
+    ]
+}
+
+SAMPLE_BUTTON_JSON = {
+    "fulfillmentText": "Suggestion Chips",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
+                "richContent": [
+                    [
+                        {
+                            "type": "button",
+                            "icon": {
+                                "type": "chevron_right",
+                                "color": "#FF9800"
+                            },
+                            "text": "Button text",
+                            "link": "https://example.com",
+                            "event": {
+                                "name": "",
+                                "languageCode": "",
+                                "parameters": {}
+                            }
+                        },
+                        {
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ],
+                            "type": "chips"
+                        }
+                    ]
+                ]
+            }
         }
     ]
 }
