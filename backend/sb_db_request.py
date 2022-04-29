@@ -69,6 +69,17 @@ def get_accessibility_ids():
     return accessibilities
 
 
+def get_events_by_name(event_title):
+    try:
+        # get all accessibilities
+        api_response = event_api.get_events_by_name(accept_language=accept_language, )
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
+    # TODO
+    return api_response
+
+
 def get_event_names_w_access(accessibility=None):
     """
     gets an accesibility code and returns all event names fulfilling the accessibility in an array.

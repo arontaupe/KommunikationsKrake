@@ -1,9 +1,0 @@
-{
-  "id": "cc9029bf-838e-4513-b2b8-6ba0abc9aa7b",
-  "name": "event_faq",
-  "isOverridable": true,
-  "isEnum": false,
-  "isRegexp": false,
-  "automatedExpansion": false,
-  "allowFuzzyExtraction": false
-}

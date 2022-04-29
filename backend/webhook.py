@@ -2,12 +2,10 @@
 import json  # make me interact with json
 # use pretty printing for json responses
 from pprint import pprint
-
+pprint('keep pprint')
 # server functionality
 from flask import Flask, request  # makes the thing ngrokable
 
-pprint('keep pprint')
-# import code generated from openapi
 # import the response functionality
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
     context_response, button_response, event_schedule_response
@@ -16,9 +14,10 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_e
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule
 
-# import library to send rich responses from webhook
+# import all background intent_logic functionality
+from intent_logic import collect_accessibility_needs
 
-# console should say 200 and the chatbot should send a message
+# console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
 
 # initialize the flask app
@@ -31,7 +30,8 @@ def index():
   default route, has text, so I can see when the app is running
     :return: Hello World
     """
-    return 'Hello World! This is the running Webhook for Sommerblut.'
+    return 'Hello World! This is the running Webhook for Sommerblut. ' \
+           'For the API please append /webhook to the current url'
 
 
 def handle_intent(intent_name, req_json):
@@ -42,65 +42,35 @@ this is the main intent switch function. All intents that use the backend must b
     :param req_json: the raw format from DF
     :return: None
     """
-    print('Intent with backend Enabled recognized')
+    print('Intent with backend_logic recognized')
     # build a request object
     req = request.get_json(force=True)
     # fetch action from json
     # action = req.get('queryResult').get('action')
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
-    # print('Parameters: ' + str(parameters))
     output_contexts = req.get('queryResult').get('outputContexts')
-    # print('Contexts: ' + str(output_contexts))
     num_contexts = len(output_contexts)
-    # pprint(req)
     session_id = req.get('session')
+    # this is the session id given by dialogflow, it can be overridden to start a new session.
+    # Then all data and variables will be lost.
     session_id_array = session_id.split("/")
-    # pprint(session_id_array)
     session_id = session_id_array[len(session_id_array) - 1]
-    # print(session_id)
 
     if intent_name == 'test.fulfillment':
+        # several options for feature testing
+
         # return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
-        # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
+        return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
         # return text_response('Hallo')
-        return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
-                                variable='value1')
+        # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
+        #                        variable='value1')
+        # return image_response(
+        #    url='https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
     elif intent_name == 'accessibility.select - collect':
-        bedarf = parameters.get('bedarf')
-
-        prev_selection_bedarf = None
-        for i in range(num_contexts):
-            if 'save_bedarf' in output_contexts[i]['name']:
-                prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-
-        new_bedarf = [0, 0, 0, 0, 0, 0]
-        if prev_selection_bedarf:
-            new_bedarf = prev_selection_bedarf
-            print('Stored on DF: ' + str(new_bedarf))
-        if bedarf:
-            if bedarf == 'kein Bedarf':
-                new_bedarf[0] = 1
-            elif bedarf == 'leichte Sprache':
-                new_bedarf[1] = 1
-            elif bedarf == 'Höreinschränkung':
-                new_bedarf[2] = 1
-            elif bedarf == 'Mobilitätseinschränkung':
-                new_bedarf[3] = 1
-            elif bedarf == 'Visuelle Einschränkung':
-                new_bedarf[4] = 1
-            elif bedarf == 'begrenzte Reize':
-                new_bedarf[5] = 1
-        print('Now Modified Bedarf: ' + str(new_bedarf))
-        return chip_w_context_response(session_id=session_id,
-                                       context='save_bedarf',
-                                       variable_name='prev_selection_bedarf',
-                                       variable=new_bedarf,
-                                       text='Okay, ich habe deinen Bedarf ' + bedarf +
-                                            ' abgespeichert.'' Willst du weitere Bedarfe angeben?',
-                                       chips=["Ja", "Nein, weiter: Interessenselektor", "Menü"])
+        return collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id)
 
     elif intent_name == 'script.interest.select.1':
         # here we are done with collecting the accessibility and have to store it for further use
@@ -258,10 +228,6 @@ this is the main intent switch function. All intents that use the backend must b
             folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
             return image_response(url=str(folder) + str(fa_letter) + '.png?raw=true',
                                   chips=['Noch ein Buchstabe', 'Menü'])
-
-    elif intent_name == 'test.webhook.image':
-        return image_response(
-            url='https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
