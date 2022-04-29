@@ -465,11 +465,11 @@ this is the main intent switch function. All intents that use the backend must b
         if event_id and events:
             for e in range(event_count):
                 print(events.get(e))
-                if events[e].get('id') == event_id:
-                    duration = int(events[e].get('duration'))
-                    title = events[e].get('title')
-                    location = events[e].get('location')
-                    price = int(events[e].get('price'))
+                if events[str(e)].get('id') == event_id:
+                    duration = int(events[str(e)].get('duration'))
+                    title = events[str(e)].get('title')
+                    location = events[str(e)].get('location')
+                    price = int(events[str(e)].get('price_vvk'))
 
                     return chip_response(
                         text=f'{title} dauert {duration}. Es findet statt an {location}. Er Kostet {price}. (Event_ID: {event_id}',
@@ -486,7 +486,7 @@ this is the main intent switch function. All intents that use the backend must b
 
         return event_schedule_response(play_count,
                                        plays,
-                                       text='Hier soll die Spielzeitenliste angezeigt werden. TODO',
+                                       text='Hier Soll der EventTitel Angezeigt werden. TODO',
                                        chips=['Tickets online kaufen', 'Alternative Wege Tickets zu kaufen',
                                               'Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails',
                                               'Hauptmenü']

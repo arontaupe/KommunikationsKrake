@@ -140,8 +140,7 @@ SAMPLE_IMAGE_JSON = {
 SAMPLE_EVENT_SCHEDULE_JSON = {
     "fulfillmentText": "Event Schedule",
     "fulfillmentMessages": [
-        {"text": {"text": [""]}
-         },
+        {"text": {"text": [""]}},
         {
             "payload": {
                 "dgs_videos": {
@@ -150,20 +149,6 @@ SAMPLE_EVENT_SCHEDULE_JSON = {
                     "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
                 },
                 "richContent": [
-                    [
-                        {
-                            "type": "info",
-                            "title": "Info item title",
-                            "subtitle": "Info item subtitle",
-                            "image": {
-                                "src": {
-                                    "rawUrl": "https://example.com/images/logo.png"
-                                }
-                            },
-                            "actionLink": "https://example.com"
-                        }
-                    ],
-                    [{"type": "chips", "options": [{"text": "Chip1"}]}]
                 ],
                 "plays": {}
             }
