@@ -20,20 +20,11 @@ configuration.password = DB_PASS = os.environ.get('DB_PASS')
 BASEURL = os.environ.get('BASEURL')
 
 # create an instance of the API class
-# accessibilities_api = sb_db.AccessibilitiesApi(sb_db.ApiClient(configuration))
-
+accessibilities_api = sb_db.AccessibilitiesApi(sb_db.ApiClient(configuration))
 event_api = sb_db.EventsApi(sb_db.ApiClient(configuration))
 running_events_api = sb_db.RunningEventsApi(sb_db.ApiClient(configuration))
 
 accept_language = 'de'  # str | request specific language (optional)
-'''
-try:
-    # get all accessibilities
-    api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
-'''
 
 
 # makes sure the webhook is online and working
@@ -56,28 +47,51 @@ def get_accessibility_ids():
     """
     :return: all accessibility classes and their ID as a dict
     """
-    url = BASEURL + "/api/accessibilities.json"
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    # print('Request: ' + str(response.url))
-    # print('Status Code: ' + str(response.status_code))  # response 200 := success. all 400eds:= really bad
+    try:
+        # get all accessibilities
+        api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
+        # pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
+
     accessibilities = {}
-    resp = response.json()
-    num_categories = len(resp)
+    # TODO clean up here, give back the original dict
+    num_categories = len(api_response)
     for i in range(num_categories):
-        accessibilities[resp[i]['name']] = resp[i]['id']
-    # print(accessibilities)
+        accessibilities[api_response[i]['name']] = api_response[i]['id']
+    print(accessibilities)
     return accessibilities
 
 
-def get_events_by_name(event_title):
+def get_accessibility_ids_clean():
+    """
+    :return: all accessibility classes and their ID as a dict
+    """
     try:
         # get all accessibilities
-        api_response = event_api.get_events_by_name(accept_language=accept_language, )
+        api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
+        # pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
+
+    return api_response
+
+
+def get_events_by_name(event_name):
+    """
+seems to be broken on database side. would be cool if it worked tho
+    :param event_name:
+    :return:
+    """
+    try:
+        # get a specific event by name
+        api_response = event_api.get_events_by_name(accept_language=accept_language, event_name=event_name)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
     # TODO
     return api_response
+
 
 
 def get_event_names_w_access(accessibility=None):
@@ -86,6 +100,7 @@ def get_event_names_w_access(accessibility=None):
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
+
     query = '?entries=30'
     if accessibility:
         query = query + '?accessible=' + str(accessibility)
@@ -106,56 +121,6 @@ def get_event_names_w_access(accessibility=None):
     print(events)
     return event_count, events
 
-
-def get_full_event_list_old(accessibility=None):
-    """
-    should get the full info to display on the cards later
-    :param accessibility: numeric id 0-9
-    :return: json with list of all events fulfilling the accessibility
-    """
-    query = '?entries=30'
-    if accessibility:
-        query = query + '?accessible=' + str(accessibility)
-    suburl = "/api/events.json"
-    url = BASEURL + suburl + query
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-
-    print('Query: ' + str(url))
-    print('Response from: ' + str(response.url))
-    print('Status Code: ' + str(response.status_code))
-    resp = response.json()
-    event_count = resp['count']
-    print('Number of Events Found: ' + str(event_count))
-    # print(resp)
-    events = {}
-
-    for i in range(event_count):
-        events[i] = {}
-        events[i]['id'] = resp['items'][i]['id']
-        events[i]['title'] = resp['items'][i]['title']
-        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
-        events[i]['duration'] = resp['items'][i]['duration_minutes']
-        events[i]['location'] = resp['items'][i]['location']['name']
-        events[i]['artist_name'] = resp['items'][i]['artist_name']
-        events[i]['info_text'] = resp['items'][i]['info_text']
-        events[i]['subtitle'] = resp['items'][i]['subtitle']
-        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
-        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
-        events[i]['price_ak'] = resp['items'][i]['price_ak']
-        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
-        # somehow the DB response is broken here, therefore some steps to fix that.
-        image_json = resp['items'][i]['event_images']
-        # print(image_json)
-        parsed = json.loads(image_json)
-        image = parsed['mainimage']['name']
-        events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
-        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
-
-    # print(events)
-
-    return event_count, events
-
-
 def get_full_event_list(accessibility=None):
     """
     should get the full info to display on the cards later
@@ -167,7 +132,7 @@ def get_full_event_list(accessibility=None):
             # get all events
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
-                                                    entries=15)
+                                                    entries=30)
             # pprint(api_response)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -175,7 +140,7 @@ def get_full_event_list(accessibility=None):
         try:
             # get all events
             api_response = event_api.get_all_events(accept_language=accept_language,
-                                                    entries=15)
+                                                    entries=30)
             # pprint(api_response)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -183,9 +148,8 @@ def get_full_event_list(accessibility=None):
     resp = api_response
     event_count = resp['count']
     print('Number of Events Found: ' + str(event_count))
-    # print(resp)
+    print(resp)
     events = {}
-
     for i in range(event_count):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
@@ -200,15 +164,15 @@ def get_full_event_list(accessibility=None):
         events[i]['price_vvk'] = resp['items'][i]['price_vvk']
         events[i]['price_ak'] = resp['items'][i]['price_ak']
         events[i]['max_capacity'] = resp['items'][i]['max_capacity']
+        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
+        events[i]['category'] = resp['items'][i]['category']
         # somehow the DB response is broken here, therefore some steps to fix that.
         image_json = resp['items'][i]['event_images']
         parsed = json.loads(image_json)
         image = parsed['mainimage']['name']
         events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
-
     return event_count, events
-
 
 def get_event_schedule(event_id):
     """

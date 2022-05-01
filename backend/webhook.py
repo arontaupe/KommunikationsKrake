@@ -5,7 +5,6 @@ from pprint import pprint
 pprint('keep pprint')
 # server functionality
 from flask import Flask, request  # makes the thing ngrokable
-
 # import the response functionality
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
     context_response, button_response, event_schedule_response
@@ -108,7 +107,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.2 - egal' or intent_name == 'script.interest.select.2 - ja' or intent_name == 'script.interest.select.2 - nein':
+    elif intent_name == 'script.interest.select.2 - egal' or \
+            intent_name == 'script.interest.select.2 - ja' or \
+            intent_name == 'script.interest.select.2 - nein':
         interest_2 = parameters.get('interest_2')
         return chip_w_context_response(text=interest_2 + ', interessant.',
                                        chips=["Weiter: Frage 3", "Menü"],
@@ -123,7 +124,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.3 - egal' or intent_name == 'script.interest.select.3 - ja' or intent_name == 'script.interest.select.3 - nein':
+    elif intent_name == 'script.interest.select.3 - egal' or \
+            intent_name == 'script.interest.select.3 - ja' or \
+            intent_name == 'script.interest.select.3 - nein':
         interest_3 = parameters.get('interest_3')
         return chip_w_context_response(text='Rituale eher so: ' + interest_3,
                                        chips=["Weiter: Frage 4", "Menü"],
@@ -138,7 +141,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.4 - egal' or intent_name == 'script.interest.select.4 - ja' or intent_name == 'script.interest.select.4 - nein':
+    elif intent_name == 'script.interest.select.4 - egal' or \
+            intent_name == 'script.interest.select.4 - ja' or \
+            intent_name == 'script.interest.select.4 - nein':
         interest_4 = parameters.get('interest_4')
         return chip_w_context_response(text=interest_4 + '? Poesie steckt überall.',
                                        chips=["Weiter: Frage 5", "Menü"],
@@ -153,7 +158,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.5 - egal' or intent_name == 'script.interest.select.5 - ja' or intent_name == 'script.interest.select.5 - nein':
+    elif intent_name == 'script.interest.select.5 - egal' or \
+            intent_name == 'script.interest.select.5 - ja' or \
+            intent_name == 'script.interest.select.5 - nein':
         interest_5 = parameters.get('interest_5')
         return chip_w_context_response(text=interest_5 + ', also ich finde Aktuelles wichtig',
                                        chips=["Weiter: Frage 6", "Menü"],
@@ -168,7 +175,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.6 - egal' or intent_name == 'script.interest.select.6 - ja' or intent_name == 'script.interest.select.6 - nein':
+    elif intent_name == 'script.interest.select.6 - egal' or \
+            intent_name == 'script.interest.select.6 - ja' or \
+            intent_name == 'script.interest.select.6 - nein':
         interest_6 = parameters.get('interest_6')
         return chip_w_context_response(text=interest_6 + ', Ich merke, dass das wichtig ist.',
                                        chips=["Weiter: Frage 7", "Menü"],
@@ -183,7 +192,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.7 - egal' or intent_name == 'script.interest.select.7 - ja' or intent_name == 'script.interest.select.7 - nein':
+    elif intent_name == 'script.interest.select.7 - egal' or \
+            intent_name == 'script.interest.select.7 - ja' or \
+            intent_name == 'script.interest.select.7 - nein':
         interest_7 = parameters.get('interest_7')
         return chip_w_context_response(text='Dass du ' + interest_7 + ' klickst, sag ich deiner Mutter!',
                                        chips=["Weiter: Frage 8", "Menü"],
@@ -198,7 +209,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.8 - egal' or intent_name == 'script.interest.select.8 - ja' or intent_name == 'script.interest.select.8 - nein':
+    elif intent_name == 'script.interest.select.8 - egal' or \
+            intent_name == 'script.interest.select.8 - ja' or \
+            intent_name == 'script.interest.select.8 - nein':
         interest_8 = parameters.get('interest_8')
         return chip_w_context_response(text='Ich habe mir gemerkt, dass du ' + interest_8 + ' geantwortet hast.',
                                        chips=["Weiter: Frage 9", "Menü"],
@@ -213,7 +226,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.9 - egal' or intent_name == 'script.interest.select.9 - ja' or intent_name == 'script.interest.select.9 - nein':
+    elif intent_name == 'script.interest.select.9 - egal' or \
+            intent_name == 'script.interest.select.9 - ja' or \
+            intent_name == 'script.interest.select.9 - nein':
         interest_9 = parameters.get('interest_9')
         return chip_w_context_response(text=None,
                                        chips=["Weiter: Zeitselektor", "Menü"],
@@ -223,22 +238,25 @@ this is the main intent switch function. All intents that use the backend must b
                                        variable=interest_9)
 
     elif intent_name == 'teach.fingeralhabet':
-        fa_letter = parameters.get('FA-Zeichen')
-        if fa_letter:
+        try:
+            fa_letter = parameters.get('FA-Zeichen')
             folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
             return image_response(url=str(folder) + str(fa_letter) + '.png?raw=true',
                                   chips=['Noch ein Buchstabe', 'Menü'])
+        except Exception as e:
+            print("Exception when trying to access fa_letter: %s\n" % e)
+            return text_response('Mir sind leider die Bilder ausgegangen.')
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
-        if bedarf:
-            print('Fetched Bedarf: ' + str(bedarf))
+
         # interests = retrieve_interests()
         accessibilities = get_accessibility_ids()
         codes = []
         if bedarf:
-            if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
+            if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
+                    bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
                 codes = None
                 print('No special accessibility need detected ')
             else:
@@ -258,9 +276,7 @@ this is the main intent switch function. All intents that use the backend must b
                     codes.append(accessibilities['Übertitel/Untertitel'])
                 # if bedarf[5] == 1.0:  # begrenzte Reize
                 # codes.append(accessibilities['Leichte Sprache'])
-            # print('Asking for Accessibilities: ' + str(codes))
             event_count, events = get_full_event_list(codes)
-            # print(event_count)
         if events and event_count:
             text = ''
             if event_count > 5:
