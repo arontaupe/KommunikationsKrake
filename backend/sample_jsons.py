@@ -137,6 +137,25 @@ SAMPLE_IMAGE_JSON = {
         }
     ]
 }
+
+SAMPLE_EVENT_DETAILS_JSON = {
+    "fulfillmentText": "Event Schedule",
+    "fulfillmentMessages": [
+        {"text": {"text": [""]}},
+        {
+            "payload": {
+                "dgs_videos": {
+                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
+                },
+                "richContent": [
+                ],
+                "event_details": {}
+            }
+        }
+    ]
+}
 SAMPLE_EVENT_SCHEDULE_JSON = {
     "fulfillmentText": "Event Schedule",
     "fulfillmentMessages": [

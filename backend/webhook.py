@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 
 # import the response functionality
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
-    context_response, button_response, event_schedule_response
+    context_response, button_response, event_schedule_response, event_detail_response
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id
 # import the database functions
@@ -340,10 +340,8 @@ this is the main intent switch function. All intents that use the backend must b
         except Exception as e:
             print("Exception when trying to access num_event_filter: %s\n" % e)
             return chip_response(
-                text='Ich habe leider nicht verstanden, wie viele Veranstaltungen ich dir anzeigen soll.',
-                chips=['Nur die nächsten 3 Veranstaltungen anzeigen', "Zeig mir alle Veranstaltungen"])
-
-
+                text='Ich habe leider nicht verstanden, wie viele Tage ich dir anzeigen soll.',
+                chips=["Zeig mir alle Veranstaltungen"])
 
     elif intent_name == 'script.event.menu':
         return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
@@ -455,14 +453,20 @@ this is the main intent switch function. All intents that use the backend must b
                     title = events[str(e)].get('title')
                     location = events[str(e)].get('location')
                     price = int(events[str(e)].get('price_vvk'))
-
-                    return chip_response(
-                        text=f'{title} dauert {duration} Minuten. \r\n '
-                             f'Es findet statt an diesm Ort: {location}. \r\n'
-                             f'Er kostet {price} Euro. \r\n'
-                             f'(Event_ID: {event_id})',
-                        chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü',
-                               'Liste der Spielzeiten anzeigen'])
+                    image = events[str(e)].get('event_images')
+                    print(image)
+                    return event_detail_response(duration=duration,
+                                                 title=title,
+                                                 location=location,
+                                                 price=price,
+                                                 image=image,
+                                                 text=f'{title} dauert {duration} Minuten. \r\n '
+                                                      f'Es findet statt an diesm Ort: {location}. \r\n'
+                                                      f'Er kostet {price} Euro. \r\n'
+                                                      f'(Event_ID: {event_id})',
+                                                 chips=['Zurück: Veranstaltungsübersicht',
+                                                        'Zurück: Veranstaltungsdetails', 'Hauptmenü',
+                                                        'Liste der Spielzeiten anzeigen'])
         else:
             return chip_response(
                 text='Irgendwie habe ich wohl die Veranstaltungsnummer vergessen, versuch es doch noch einmal.',
