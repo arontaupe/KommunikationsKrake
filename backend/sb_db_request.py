@@ -4,6 +4,7 @@ import json
 import os
 from pprint import pprint
 
+from datetime import datetime
 import requests
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
 
@@ -37,9 +38,7 @@ def test_sb_db():
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
     # print('Request: ' + str(response.url))
     print('Status Code: ' + str(response.status_code))  # response 200 := success. all 400eds:= really bad
-    # print('Headers')
-    # print(response.headers)
-    # print(response.json())
+
     return chip_response('Status der Datenbank: ' + str(response.status_code), ['Menü', 'Exit'])
 
 
@@ -50,7 +49,6 @@ def get_accessibility_ids():
     try:
         # get all accessibilities
         api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
-        # pprint(api_response)
     except ApiException as e:
         print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
 
@@ -59,7 +57,7 @@ def get_accessibility_ids():
     num_categories = len(api_response)
     for i in range(num_categories):
         accessibilities[api_response[i]['name']] = api_response[i]['id']
-    print(accessibilities)
+    # print(accessibilities)
     return accessibilities
 
 
@@ -70,7 +68,6 @@ def get_accessibility_ids_clean():
     try:
         # get all accessibilities
         api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
-        # pprint(api_response)
     except ApiException as e:
         print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
 
@@ -103,14 +100,13 @@ def get_event_names_w_access(accessibility=None):
 
     query = '?entries=30'
     if accessibility:
-        query = query + '?accessible=' + str(accessibility)
+        query = query + '&accessible=' + str(accessibility)
     suburl = "/api/events.json"
     url = BASEURL + suburl + query
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
     print('Query: ' + str(url))
     print('Response from: ' + str(response.url))
     print('Status Code: ' + str(response.status_code))
-    # print(response.json())
     resp = response.json()
     event_count = resp['count']
     print('Number of Events Found: ' + str(event_count))
@@ -118,8 +114,8 @@ def get_event_names_w_access(accessibility=None):
 
     for i in range(event_count):
         events[resp['items'][i]['title']] = resp['items'][i]['id']
-    print(events)
     return event_count, events
+
 
 def get_full_event_list(accessibility=None):
     """
@@ -133,7 +129,6 @@ def get_full_event_list(accessibility=None):
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
                                                     entries=30)
-            # pprint(api_response)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
@@ -141,14 +136,12 @@ def get_full_event_list(accessibility=None):
             # get all events
             api_response = event_api.get_all_events(accept_language=accept_language,
                                                     entries=30)
-            # pprint(api_response)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
     resp = api_response
     event_count = resp['count']
-    print('Number of Events Found: ' + str(event_count))
-    print(resp)
+
     events = {}
     for i in range(event_count):
         events[i] = {}
@@ -173,6 +166,165 @@ def get_full_event_list(accessibility=None):
         events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
     return event_count, events
+
+
+def get_partial_event_list(num_events=int, accessibility=None):
+    """
+    should get the full info to display on the cards later, but for a set amount of events
+    :param accessibility: numeric id 0-9
+    :return: json with list of all events fulfilling the accessibility
+    """
+    if accessibility:
+        try:
+            # get all events
+            resp = event_api.get_all_events(accessible=[accessibility],
+                                            accept_language=accept_language,
+                                            entries=num_events)
+        except ApiException as e:
+            print("Exception when calling EventsApi->get all events: %s\n" % e)
+    else:
+        try:
+            # get all events
+            resp = event_api.get_all_events(accept_language=accept_language,
+                                            entries=num_events)
+
+        except ApiException as e:
+            print("Exception when calling EventsApi->get all events: %s\n" % e)
+    event_count = 0
+    if num_events <= resp['count']:
+        event_count = num_events
+    else:
+        event_count = resp['count']
+
+    events = {}
+    for i in range(event_count):
+        events[i] = {}
+        events[i]['id'] = resp['items'][i]['id']
+        events[i]['title'] = resp['items'][i]['title']
+        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        events[i]['duration'] = resp['items'][i]['duration_minutes']
+        events[i]['location'] = resp['items'][i]['location']['name']
+        events[i]['artist_name'] = resp['items'][i]['artist_name']
+        events[i]['info_text'] = resp['items'][i]['info_text']
+        events[i]['subtitle'] = resp['items'][i]['subtitle']
+        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
+        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
+        events[i]['price_ak'] = resp['items'][i]['price_ak']
+        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
+        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
+        events[i]['category'] = resp['items'][i]['category']
+        # somehow the DB response is broken here, therefore some steps to fix that.
+        image_json = resp['items'][i]['event_images']
+        parsed = json.loads(image_json)
+        image = parsed['mainimage']['name']
+        events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
+        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
+    return event_count, events
+
+
+def get_upcoming_event_list(accessibility=None):
+    """
+    get all upcoming events with accessibility
+    :param accessibility: numeric id 0-9
+    :return: json with list of all events fulfilling the accessibility
+    """
+    if accessibility:
+        try:
+            # get all events
+            api_response = event_api.get_all_events(accessible=[accessibility],
+                                                    accept_language=accept_language,
+                                                    entries=30,
+                                                    time=['upcoming'])
+        except ApiException as e:
+            print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)
+    else:
+        try:
+            # get all events
+            api_response = event_api.get_all_events(accept_language=accept_language,
+                                                    entries=30,
+                                                    time=['upcoming'])
+        except ApiException as e:
+            print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)
+
+    resp = api_response
+    event_count = resp['count']
+
+    events = {}
+    for i in range(event_count):
+        events[i] = {}
+        events[i]['id'] = resp['items'][i]['id']
+        events[i]['title'] = resp['items'][i]['title']
+        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        events[i]['duration'] = resp['items'][i]['duration_minutes']
+        events[i]['location'] = resp['items'][i]['location']['name']
+        events[i]['artist_name'] = resp['items'][i]['artist_name']
+        events[i]['info_text'] = resp['items'][i]['info_text']
+        events[i]['subtitle'] = resp['items'][i]['subtitle']
+        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
+        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
+        events[i]['price_ak'] = resp['items'][i]['price_ak']
+        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
+        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
+        events[i]['category'] = resp['items'][i]['category']
+        # somehow the DB response is broken here, therefore some steps to fix that.
+        image_json = resp['items'][i]['event_images']
+        parsed = json.loads(image_json)
+        image = parsed['mainimage']['name']
+        events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
+        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
+    return event_count, events
+
+
+def get_timeframe_event_list(to_date,
+                             from_date=datetime.now(),
+                             accessibility=None):
+    """
+    get all events within a specified timeframe with accessibility
+    :param accessibility: numeric id 0-9
+    :return: json with list of all events fulfilling the accessibility
+    """
+    try:
+        # get all events
+        query = '?entries=30&toDate=[\"' + str(to_date) + '\"]'
+        if accessibility:
+            query = query + '&accessible=' + str(accessibility)
+
+        suburl = '/api/events.json'
+        url = BASEURL + suburl + query
+        print('Request to:' + url)
+        response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
+        print('Status Code: ' + str(response.status_code))
+        print('Response from: ' + str(response.url))
+        resp = response.json()
+    except ApiException as e:
+        print("Exception when calling EventsApi->get all timeframe events: %s\n" % e)
+
+    event_count = resp['count']
+    events = {}
+    for i in range(event_count):
+        events[i] = {}
+        events[i]['id'] = resp['items'][i]['id']
+        events[i]['title'] = resp['items'][i]['title']
+        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        events[i]['duration'] = resp['items'][i]['duration_minutes']
+        events[i]['location'] = resp['items'][i]['location']['name']
+        events[i]['artist_name'] = resp['items'][i]['artist_name']
+        events[i]['info_text'] = resp['items'][i]['info_text']
+        events[i]['subtitle'] = resp['items'][i]['subtitle']
+        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
+        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
+        events[i]['price_ak'] = resp['items'][i]['price_ak']
+        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
+        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
+        events[i]['category'] = resp['items'][i]['category']
+        # somehow the DB response is broken here, therefore some steps to fix that.
+        image_json = resp['items'][i]['event_images']
+        parsed = json.loads(image_json)
+        image = parsed['mainimage']['name']
+        events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
+        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
+    return event_count, events
+
 
 def get_event_schedule(event_id):
     """
@@ -225,3 +377,53 @@ gets an event and all attached info by supplying the numeric id
     duration = response.json()['duration_minutes']
     print('Title: ' + title)
     return response, title, subtitle, duration
+
+
+def get_event_title(id):
+    """
+gets an event title by supplying the numeric id
+    :param id: event id, int
+    :return: the event and important variables
+    """
+    suburl = '/api/events/' + str(id) + '.json'
+    url = BASEURL + suburl
+    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
+    print('Status Code: ' + str(response.status_code))
+    print('Response from: ' + str(response.url))
+    resp = response.json()
+    title = resp['title']
+    return title
+
+
+def get_event_accessibility_info(id):
+    """
+gets the events accessibility text by supplying the numeric id
+    :param id: event id, int
+    :return: the event and important variables
+    """
+    suburl = '/api/events/' + str(id) + '.json'
+    url = BASEURL + suburl
+    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
+    print('Status Code: ' + str(response.status_code))
+    print('Response from: ' + str(response.url))
+    resp = response.json()
+    accessibility = resp['title']
+    # TODO
+    return accessibility
+
+
+def get_event_corona_info(id):
+    """
+gets the events corona info by supplying the numeric id
+    :param id: event id, int
+    :return: the event and important variables
+    """
+    suburl = '/api/events/' + str(id) + '.json'
+    url = BASEURL + suburl
+    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
+    print('Status Code: ' + str(response.status_code))
+    print('Response from: ' + str(response.url))
+    resp = response.json()
+    corona_info = resp['title']
+    # TODO
+    return corona_info

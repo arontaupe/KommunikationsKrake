@@ -2,19 +2,25 @@
 import json  # make me interact with json
 # use pretty printing for json responses
 from pprint import pprint
+
 pprint('keep pprint')
 # server functionality
 from flask import Flask, request  # makes the thing ngrokable
+# Import datetime class from datetime module
+
+from datetime import datetime, timedelta
+
 # import the response functionality
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
     context_response, button_response, event_schedule_response
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id
 # import the database functions
-from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule
+from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
+    get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list
 
 # import all background intent_logic functionality
-from intent_logic import collect_accessibility_needs
+from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db
 
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
@@ -46,6 +52,7 @@ this is the main intent switch function. All intents that use the backend must b
     req = request.get_json(force=True)
     # fetch action from json
     # action = req.get('queryResult').get('action')
+
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
     output_contexts = req.get('queryResult').get('outputContexts')
@@ -58,9 +65,9 @@ this is the main intent switch function. All intents that use the backend must b
 
     if intent_name == 'test.fulfillment':
         # several options for feature testing
-
-        # return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
-        return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
+        now = datetime.now()
+        return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
+        # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
         # return text_response('Hallo')
         # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
@@ -77,12 +84,11 @@ this is the main intent switch function. All intents that use the backend must b
         for i in range(num_contexts):
             if 'save_bedarf' in output_contexts[i]['name']:
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-                print('Saving final Accessibility: ' + str(prev_selection_bedarf))
-                # print(prev_selection_bedarf)
+                # print('Saving final Accessibility: ' + str(prev_selection_bedarf))
         return chip_w_context_response(
-            text='Hier kannst du nun 9 Aussagen bewerten und ich suche dir danach eine passende Veranstaltung heraus. \n'
-                 'Du kannst sie immer mit Ja, Nein, oder Ist mir Egal bewerten. \n'
-                 'Erste Frage: \n'
+            text='Hier kannst du nun 9 Aussagen bewerten und ich suche dir danach eine passende Veranstaltung heraus. \r\n'
+                 'Du kannst sie immer mit Ja, Nein, oder Ist mir Egal bewerten. \r\n'
+                 'Erste Frage: \r\n'
                  'Ich finde menschliche Körper interessant.',
             chips=["Ja", "Nein", "Ist mir egal"],
             session_id=session_id,
@@ -250,41 +256,18 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
-
         # interests = retrieve_interests()
-        accessibilities = get_accessibility_ids()
-        codes = []
-        if bedarf:
-            if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
-                    bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
-                codes = None
-                print('No special accessibility need detected ')
-            else:
-                # if bedarf[0] == 1: # kein Bedarf
-                #    events = get_event_names_w_access()
-                if bedarf[1] == 1.0:  # leichte Sprache
-                    codes.append(accessibilities['Leichte Sprache'])
-                if bedarf[2] == 1.0:  # Höreinschränkung
-                    codes.append(accessibilities['Induktive Höranlage'])
-                    codes.append(accessibilities['Audiodeskription'])
-                    codes.append(accessibilities['Deutsche Gebärdensprache'])
-                if bedarf[3] == 1.0:  # Mobilitätseinschränkung
-                    codes.append(accessibilities['Rollstuhl'])
-                    codes.append(accessibilities['Gehbehinderung'])
-                if bedarf[4] == 1.0:  # Visuelle Einschränkung
-                    codes.append(accessibilities['Touch-Tour'])
-                    codes.append(accessibilities['Übertitel/Untertitel'])
-                # if bedarf[5] == 1.0:  # begrenzte Reize
-                # codes.append(accessibilities['Leichte Sprache'])
-            event_count, events = get_full_event_list(codes)
+        codes = map_bedarf_for_db(bedarf=bedarf)
+        event_count, events = get_full_event_list(codes)
         if events and event_count:
             text = ''
             if event_count > 5:
                 text = 'Ich habe mehr als 5 (' + str(
                     event_count) + ') Veranstaltungen gefunden, möchtest du nach Veranstaltungsdatum filtern?'
-                chips = ["Zeig mir die Veranstaltungen", 'Nach Datum filtern']
+                chips = ["Nein: alle Empfehlungen anzeigen", 'Ja: Zeitraum auswählen']
             else:
-                text = 'Ich habe ' + str(event_count) + ' Veranstaltungen gefunden.'
+                text = 'Okay, hier kommt mein heißer Tipp für dich! \r\n' \
+                       'Ich kann dir mehr zu einer Veranstaltung erzählen oder eine andere Veranstaltung vorschlagen'
                 chips = ["Zeig mir die Veranstaltungen"]
             return chip_w_context_response(text=text,
                                            chips=chips,
@@ -295,53 +278,75 @@ this is the main intent switch function. All intents that use the backend must b
                                            lifespan=150
                                            )
         else:
-            return text_response(text='Ich habe leider keine Events mit deinen Zugänglichkeitsanforderungen gefunden')
+            return chip_response(text='Ich habe leider keine Events mit deinen Zugänglichkeitsanforderungen gefunden',
+                                 chips=['Weiter zum Veranstaltungstipp'])
+
+    elif intent_name == 'script.time.filter':
+        return chip_response(text='Das wird spannend! Ich kann dir nun: '
+                                  'alle Veranstaltungen, die noch bevorstehen oder '
+                                  'Veranstaltungen in den nächsten 5 Tagen suchen',
+                             chips=['Nur zukünftige Veranstaltungen', 'Veranstaltungen in den nächsten 5 Tagen'])
+
+    elif intent_name == 'script.time.filter.future':
+        try:
+            # here we are making the database call and see whether we need to filter further
+            bedarf = retrieve_bedarf(output_contexts)
+            # interests = retrieve_interests()
+            codes = map_bedarf_for_db(bedarf=bedarf)
+            event_count, events = get_upcoming_event_list(accessibility=codes)
+
+            text = f'Okay, hier kommt mein heißer Tipp an noch stattfindenden Veranstaltungen für dich! ' \
+                   f'Ich kann dir mehr zu einer Veranstaltung erzählen oder eine andere Veranstaltung vorschlagen'
+            chips = ["Zeig mir die Veranstaltungen"]
+            return chip_w_context_response(text=text,
+                                           chips=chips,
+                                           session_id=session_id,
+                                           context='events_found',
+                                           variable_name='events_found',
+                                           variable=events,
+                                           lifespan=150
+                                           )
+        except Exception as e:
+            print("Exception when trying to access upcoming events: %s\n" % e)
+            return chip_response(
+                text='Ich habe leider einen Fehler in meinen Berechnungen gemacht, kannst du das nochmal sagen?',
+                chips=['Zeig mir alle zukünftigen Veranstaltungen', "Zeig mir alle Veranstaltungen"])
+
+
+
+    elif intent_name == 'script.time.filter.nextdays':
+        try:
+            num_next_days_filter = int(parameters.get('num_next_days_filter'))
+
+            # here we are making the database call and see whether we need to filter further
+            bedarf = retrieve_bedarf(output_contexts)
+            # interests = retrieve_interests()
+            codes = map_bedarf_for_db(bedarf=bedarf)
+
+            event_count, events = get_timeframe_event_list(
+                to_date=datetime.now() + timedelta(days=num_next_days_filter),
+                accessibility=codes)
+
+            text = f'Okay, hier sind die Veranstaltungen in den nächsten {num_next_days_filter} Tagen für dich'
+            chips = ["Zeig mir die Veranstaltungen"]
+            return chip_w_context_response(text=text,
+                                           chips=chips,
+                                           session_id=session_id,
+                                           context='events_found',
+                                           variable_name='events_found',
+                                           variable=events,
+                                           lifespan=150
+                                           )
+        except Exception as e:
+            print("Exception when trying to access num_event_filter: %s\n" % e)
+            return chip_response(
+                text='Ich habe leider nicht verstanden, wie viele Veranstaltungen ich dir anzeigen soll.',
+                chips=['Nur die nächsten 3 Veranstaltungen anzeigen', "Zeig mir alle Veranstaltungen"])
+
+
 
     elif intent_name == 'script.event.menu':
-        event_count, events = retrieve_found_events(output_contexts)
-        # print(event_count, type(event_count))
-        # pprint(events)
-        if events is None:
-            print('no events')
-            return text_response(text='Ich habe leider keine Events gespeichert')
-
-        event_index = int(retrieve_event_index(output_contexts))
-        print(event_index, type(event_index))
-
-        display_num = 1
-        next_event_index = event_index
-        print(event_index, next_event_index, event_count)
-
-        if event_index == event_count:
-            next_event_index = 0
-            return chip_w_context_response(session_id=session_id,
-                                           context='event_index',
-                                           variable_name='event_index',
-                                           variable=next_event_index,
-                                           text='Ich habe dir nun alle ausgewählten Events gezeigt. '
-                                                'Was möchtest du nun tun?',
-                                           chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
-
-        next_event_index = event_index + 1
-        print(event_index, next_event_index, event_count)
-        if event_index == 0:
-            chips = ['Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
-        else:
-            chips = ['Zeig mir das letzte Event', 'Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
-
-        return event_response(
-            text='Ich empfehle dir die folgende Veranstaltung. '
-                 'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',
-            session_id=session_id,
-            context='event_index',
-            variable_name='event_index',
-            variable=next_event_index,
-            display_num=display_num,
-            display_index=event_index,
-            event_count=event_count,
-            events=events,
-            chips=chips
-        )
+        return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
 
     elif intent_name == 'script.event.details':
         event_count, events = retrieve_found_events(output_contexts)
@@ -386,7 +391,6 @@ this is the main intent switch function. All intents that use the backend must b
                                            text='Ich habe dir nun alle ausgewählten Events gezeigt. '
                                                 'Was möchtest du nun tun?',
                                            chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
-        print(event_index, next_event_index, event_count)
         if event_index == 0:
             event_index = event_count - 2
             next_event_index = event_index + 1
@@ -421,6 +425,7 @@ this is the main intent switch function. All intents that use the backend must b
         url = 'https://www.sommerblut.de/en/event/' + str(event_id)
         button_text = 'Link zum Event'
         return button_response(url=url, button_text=button_text, chips=['Zurück: Veranstaltungsdetails'])
+
     elif intent_name == 'script.event.details - program':
         event_id = retrieve_event_id(output_contexts)
         return chip_response(
@@ -443,10 +448,8 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.details - schedule':
         event_id = retrieve_event_id(output_contexts)
         event_count, events = retrieve_found_events(output_contexts=output_contexts)
-        pprint(events)
         if event_id and events:
             for e in range(event_count):
-                print(events.get(e))
                 if events[str(e)].get('id') == event_id:
                     duration = int(events[str(e)].get('duration'))
                     title = events[str(e)].get('title')
@@ -454,7 +457,10 @@ this is the main intent switch function. All intents that use the backend must b
                     price = int(events[str(e)].get('price_vvk'))
 
                     return chip_response(
-                        text=f'{title} dauert {duration}. Es findet statt an {location}. Er Kostet {price}. (Event_ID: {event_id}',
+                        text=f'{title} dauert {duration} Minuten. \r\n '
+                             f'Es findet statt an diesm Ort: {location}. \r\n'
+                             f'Er kostet {price} Euro. \r\n'
+                             f'(Event_ID: {event_id})',
                         chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü',
                                'Liste der Spielzeiten anzeigen'])
         else:
@@ -465,10 +471,12 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.details.showSchedule':
         event_id = int(retrieve_event_id(output_contexts))
         play_count, plays = get_event_schedule(event_id)
+        event_title = get_event_title(event_id)
 
         return event_schedule_response(play_count,
                                        plays,
-                                       text='Hier Soll der EventTitel Angezeigt werden. TODO',
+                                       text=f'Titel der Veranstaltung: {event_title} \r\n'
+                                            f'Veranstaltungs ID: {event_id}',
                                        chips=['Tickets online kaufen', 'Alternative Wege Tickets zu kaufen',
                                               'Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails',
                                               'Hauptmenü']
