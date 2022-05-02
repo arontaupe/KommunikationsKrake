@@ -3,6 +3,7 @@
 /DB_USER.txt
 DB_PASS.txt
 DB_USER.txt
+/backend/mail_creds.json
 
 .DS_Store
 /database/
@@ -161,3 +162,4 @@ cython_debug/
 .idea/
 docker-compose.yml
 /docker-compose.yml
+backend/mail_creds.json
