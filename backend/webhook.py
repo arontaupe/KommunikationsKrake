@@ -2,6 +2,7 @@
 import json  # make me interact with json
 # use pretty printing for json responses
 from pprint import pprint
+import random
 
 pprint('keep pprint')
 # server functionality
@@ -17,7 +18,7 @@ from response_func import image_response, chip_response, chip_w_context_response
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
-    get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list
+    get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
 
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db
@@ -253,7 +254,13 @@ this is the main intent switch function. All intents that use the backend must b
             print("Exception when trying to access fa_letter: %s\n" % e)
             return text_response('Mir sind leider die Bilder ausgegangen.')
 
+    elif intent_name == 'faq.sommerblut.team':
+        return button_response(url='https://www.sommerblut.de/ls/ueber-uns/profil-team',
+                               button_text='Das Team vom Sommerblut',
+                               text=' Das Sommerblut hat ein ganz tolles Team. Du kannst sie hier finden',
+                               chips=['Ich habe eine andere Frage', 'Zurück: Hauptmenü'])
     elif intent_name == 'script.time.select':
+
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
         # interests = retrieve_interests()
@@ -347,31 +354,70 @@ this is the main intent switch function. All intents that use the backend must b
         return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
 
     elif intent_name == 'script.event.details':
-        event_count, events = retrieve_found_events(output_contexts)
-        if events is None or event_count is None:
-            print('no events')
-            return text_response(text='Ich habe leider keine Events gespeichert')
+        try:
+            event_id = retrieve_event_id(output_contexts=output_contexts)
+            event_count, events = retrieve_found_events(output_contexts)
+            if event_id != 0 and events is not None:
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Veranstaltungsübersicht'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
+            elif event_id != 0 and events is None:
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Ich habe eine Frage'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
 
-        next_event_index = int(retrieve_event_index(output_contexts))
-        if next_event_index == event_count:
-            event_index = event_count - 1
-        else:
-            event_index = next_event_index - 1
+            elif events is not None:
+                next_event_index = int(retrieve_event_index(output_contexts))
+                if next_event_index == event_count:
+                    event_index = event_count - 1
+                else:
+                    event_index = next_event_index - 1
 
-        event_id = events[str(event_index)]['id']
+                event_id = events[str(event_index)]['id']
+                print('entering last elif')
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Veranstaltungsübersicht'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
+            else:
+                print('entering  else')
+                return chip_response(
+                    text='Ich habe leider keine Events gespeichert. Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
+                    chips=['Zugänglichkeit auswählen', 'Interessen angeben'])
 
-        return chip_w_context_response(session_id=session_id,
-                                       text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-                                            '1. Ist die Veranstaltung barrierefrei?\r\n'
-                                            '2. Worum geht es genau in der Veranstaltung\r\n'
-                                            '3. Wie handhabt ihr Corona?\r\n'
-                                            '4. Wo und Wann findet sie statt?\r\n',
-                                       chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen', 'Datum und Ort',
-                                              'Zeig mir die Veranstaltung auf sommerblut.de',
-                                              'Zurück: Veranstaltungsübersicht'],
-                                       variable_name='event_id',
-                                       variable=event_id,
-                                       context='event_id')
+        except Exception as e:
+            print("Exception when trying to access event details and event_id: %s\n" % e)
+
+
 
     elif intent_name == 'script.event.menu.previous':
         event_count, events = retrieve_found_events(output_contexts)
@@ -491,17 +537,65 @@ this is the main intent switch function. All intents that use the backend must b
                                   'von Veranstaltungen weiter. '
                                   'Du kannst sie so erreichen: franziska.lammers@sommerblut.de '
                                   'oder per Telefon: 0221 – 29 49 91 34',
-                             chips=[])
+                             chips=['Zurück: Veranstaltungsdetails'])
+
+    elif intent_name == 'faq.event':
+
+        try:
+            event_title = parameters.get('event_title')
+            titles, ids = get_all_titles_ids()
+            if len(event_title) != 0:
+                idx = titles.index(event_title)
+                event_id = ids[idx]
+
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Ich habe eine Frage'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
+            else:
+
+                chips = random.sample(titles, 3)
+                return chip_response(text='Du kannst den Namen der Veranstaltung in das Textfeld unten eingeben. '
+                                          'Oder eine von unten wählen:',
+                                     chips=chips)
+
+        except Exception as e:
+            print("Exception when trying to identify the event asked about-> faq.event: %s\n" % e)
 
     elif intent_name == 'faq.tickets.sale_location':
         return chip_response(
-            text='An folgenden Orten können Tickets gekauft werden, außerdem auch via Telefon unter: TODO',
+            text='An folgenden Orten können Tickets gekauft werden:\r\n'
+                 'Theater·kasse am Neumarkt\r\n'
+                 'Die Theater·kasse ist auf der Zwischen·ebene der U-Bahn-Station Neumarkt.\r\n '
+                 'Die genaue Adresse ist:\r\n'
+                 'Neumarkt, U-Bahn-Passage\r\n'
+                 'Laden 12\r\n'
+                 '50667 Köln, \r\n',
             chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
 
+    elif intent_name == 'faq.tickets.sale_phone':
+        return button_response(url='tel:+4922142076000',
+                               button_text='Direkt anrufen',
+                               text='Du kannst die Tickets auch am Telefon bestellen.\r\n'
+                                    'Unter der Telefonnummer 0221 42 07 6000.\r\n'
+                                    'Aber Achtung:\r\n'
+                                    'Am Telefon kann man die Tickets mit Kreditkarte bezahlen.\r\n',
+                               chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
+
     elif intent_name == 'script.tickets.sale':
-        return chip_response(
-            text='Hier soll ein Link erscheinen für den Ticketshop. TODO',
-            chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
+        return button_response(url='https://t.rausgegangen.de/tickets/shop/sommerblut-2022',
+                               button_text='Rausgegangen Ticketshop',
+                               text='Hier geht es zum Ticketshop von Sommerblut.',
+                               chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
 
 
 # create a route for webhook

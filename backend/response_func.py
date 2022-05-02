@@ -1,7 +1,7 @@
 # responsible for defining what kind of responses can get sent by the backend
 
 from copy import deepcopy  # needed for the copying of the sample jsons
-
+# load in the prototype jsons
 from sample_jsons import SAMPLE_IMAGE_JSON, \
     SAMPLE_CHIP_JSON, \
     SAMPLE_TEXT_JSON, \
@@ -160,6 +160,34 @@ def button_response(url, button_text, text=None, chips=None):
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'][0][1]['options'] = [{'text': i} for i in chips]
+    return resp
+
+
+# sends a single Button, along with optional text and some chips
+def event_detail_response(title, duration, location, price, image, text=None, chips=None):
+    event_details = {}
+    event_details['title'] = title
+    event_details['duration'] = duration
+    event_details['location'] = location
+    event_details['price'] = price
+    event_details['image'] = image
+
+    resp = deepcopy(SAMPLE_EVENT_DETAILS_JSON)
+
+    resp['fulfillmentMessages'][1]['payload']['event_details'] = event_details
+    resp['fulfillmentMessages'][1]['payload']['richContent'].append([{
+        "type": "info",
+        "title": title,
+        "subtitle": location + '\r\n € ' + str(price),  # accessible_request,
+        "image": {"src": {"rawUrl": image}},
+        "actionLink": ""}], )
+
+    if text:
+        resp['fulfillmentMessages'][0]['text']['text'][0] = text
+    if chips:
+        resp['fulfillmentMessages'][1]['payload']['richContent'].append([{"type": "chips",
+                                                                          "options": [{'text': i} for i in chips]
+                                                                          }])
     return resp
 
 

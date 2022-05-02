@@ -36,7 +36,6 @@ def test_sb_db():
     """
     url = BASEURL + "/api/accessibilities.json"
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    # print('Request: ' + str(response.url))
     print('Status Code: ' + str(response.status_code))  # response 200 := success. all 400eds:= really bad
 
     return chip_response('Status der Datenbank: ' + str(response.status_code), ['Menü', 'Exit'])
@@ -82,7 +81,7 @@ seems to be broken on database side. would be cool if it worked tho
     """
     try:
         # get a specific event by name
-        api_response = event_api.get_events_by_name(accept_language=accept_language, event_name=event_name)
+        api_response = event_api.get_events_by_name(event_name, accept_language=accept_language)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
@@ -377,6 +376,22 @@ gets an event and all attached info by supplying the numeric id
     duration = response.json()['duration_minutes']
     print('Title: ' + title)
     return response, title, subtitle, duration
+
+
+def get_all_titles_ids():
+    try:
+        # get all events
+        resp = event_api.get_all_events(accept_language=accept_language,
+                                        entries=30)
+        titles = []
+        ids = []
+        for i in resp.get('items'):
+            titles.append(i.get('title'))
+            ids.append(i.get('id'))
+
+        return titles, ids
+    except ApiException as e:
+        print("Exception when calling EventsApi->get all titles: %s\n" % e)
 
 
 def get_event_title(id):

@@ -32,6 +32,12 @@ def collect_accessibility_needs(parameters, num_contexts, output_contexts, sessi
     if bedarf:
         if bedarf == 'kein Bedarf':
             new_bedarf[0] = 1
+            return chip_w_context_response(session_id=session_id,
+                                           context='save_bedarf',
+                                           variable_name='prev_selection_bedarf',
+                                           variable=new_bedarf,
+                                           text=f'Okay, ich habe {bedarf} abgespeichert.',
+                                           chips=["Weiter: Interessenselektor", "Menü"])
         elif bedarf == 'leichte Sprache':
             new_bedarf[1] = 1
         elif bedarf == 'Höreinschränkung':
@@ -42,13 +48,12 @@ def collect_accessibility_needs(parameters, num_contexts, output_contexts, sessi
             new_bedarf[4] = 1
         elif bedarf == 'begrenzte Reize':
             new_bedarf[5] = 1
-    print('Now Modified Bedarf: ' + str(new_bedarf))
     return chip_w_context_response(session_id=session_id,
                                    context='save_bedarf',
                                    variable_name='prev_selection_bedarf',
                                    variable=new_bedarf,
-                                   text='Okay, ich habe deinen Bedarf ' + bedarf +
-                                        ' abgespeichert.'' Willst du weitere Bedarfe angeben?',
+                                   text=f'Okay, ich habe deinen Bedarf {bedarf} abgespeichert.'
+                                        f'Willst du weitere Bedarfe angeben?',
                                    chips=["Ja", "Nein, weiter: Interessenselektor", "Menü"])
 
 
