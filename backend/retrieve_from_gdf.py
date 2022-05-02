@@ -22,8 +22,6 @@ def retrieve_found_events(output_contexts=None):
             if 'events_found' in output_contexts[i]['name']:
                 events = output_contexts[i]['parameters']['events_found']
                 event_count = len(events)
-                # print('Event Count from events found: ' + str(event_count))
-                # print('Events fetched: ' + str(events))
     return event_count, events
 
 
@@ -51,7 +49,6 @@ def retrieve_event_id(output_contexts=None):
         for i in range(num_contexts):
             if 'event_id' in output_contexts[i]['name']:
                 event_id = output_contexts[i]['parameters']['event_id']
-                # pprint('found event_display_count')
     if event_id is None:
         event_id = 0
     return int(event_id)

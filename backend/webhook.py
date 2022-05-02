@@ -2,23 +2,28 @@
 import json  # make me interact with json
 # use pretty printing for json responses
 from pprint import pprint
-
-# server functionality
-from flask import Flask, request  # makes the thing ngrokable
+import random
 
 pprint('keep pprint')
-# import code generated from openapi
+# server functionality
+from flask import Flask, request  # makes the thing ngrokable
+# Import datetime class from datetime module
+
+from datetime import datetime, timedelta
+
 # import the response functionality
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
-    context_response, button_response, event_schedule_response
+    context_response, button_response, event_schedule_response, event_detail_response
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id
 # import the database functions
-from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule
+from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
+    get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
 
-# import library to send rich responses from webhook
+# import all background intent_logic functionality
+from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db
 
-# console should say 200 and the chatbot should send a message
+# console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
 
 # initialize the flask app
@@ -31,7 +36,8 @@ def index():
   default route, has text, so I can see when the app is running
     :return: Hello World
     """
-    return 'Hello World! This is the running Webhook for Sommerblut.'
+    return 'Hello World! This is the running Webhook for Sommerblut. ' \
+           'For the API please append /webhook to the current url'
 
 
 def handle_intent(intent_name, req_json):
@@ -42,65 +48,36 @@ this is the main intent switch function. All intents that use the backend must b
     :param req_json: the raw format from DF
     :return: None
     """
-    print('Intent with backend Enabled recognized')
+    print('Intent with backend_logic recognized')
     # build a request object
     req = request.get_json(force=True)
     # fetch action from json
     # action = req.get('queryResult').get('action')
+
     # fetch param from json
     parameters = req.get('queryResult').get('parameters')
-    # print('Parameters: ' + str(parameters))
     output_contexts = req.get('queryResult').get('outputContexts')
-    # print('Contexts: ' + str(output_contexts))
     num_contexts = len(output_contexts)
-    # pprint(req)
     session_id = req.get('session')
+    # this is the session id given by dialogflow, it can be overridden to start a new session.
+    # Then all data and variables will be lost.
     session_id_array = session_id.split("/")
-    # pprint(session_id_array)
     session_id = session_id_array[len(session_id_array) - 1]
-    # print(session_id)
 
     if intent_name == 'test.fulfillment':
-        # return {'fulfillmentText': 'Webhook : Der Webhook funktioniert.'}
+        # several options for feature testing
+        now = datetime.now()
+        return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
         # return text_response('Hallo')
-        return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
-                                variable='value1')
+        # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
+        #                        variable='value1')
+        # return image_response(
+        #    url='https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
     elif intent_name == 'accessibility.select - collect':
-        bedarf = parameters.get('bedarf')
-
-        prev_selection_bedarf = None
-        for i in range(num_contexts):
-            if 'save_bedarf' in output_contexts[i]['name']:
-                prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-
-        new_bedarf = [0, 0, 0, 0, 0, 0]
-        if prev_selection_bedarf:
-            new_bedarf = prev_selection_bedarf
-            print('Stored on DF: ' + str(new_bedarf))
-        if bedarf:
-            if bedarf == 'kein Bedarf':
-                new_bedarf[0] = 1
-            elif bedarf == 'leichte Sprache':
-                new_bedarf[1] = 1
-            elif bedarf == 'Höreinschränkung':
-                new_bedarf[2] = 1
-            elif bedarf == 'Mobilitätseinschränkung':
-                new_bedarf[3] = 1
-            elif bedarf == 'Visuelle Einschränkung':
-                new_bedarf[4] = 1
-            elif bedarf == 'begrenzte Reize':
-                new_bedarf[5] = 1
-        print('Now Modified Bedarf: ' + str(new_bedarf))
-        return chip_w_context_response(session_id=session_id,
-                                       context='save_bedarf',
-                                       variable_name='prev_selection_bedarf',
-                                       variable=new_bedarf,
-                                       text='Okay, ich habe deinen Bedarf ' + bedarf +
-                                            ' abgespeichert.'' Willst du weitere Bedarfe angeben?',
-                                       chips=["Ja", "Nein, weiter: Interessenselektor", "Menü"])
+        return collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id)
 
     elif intent_name == 'script.interest.select.1':
         # here we are done with collecting the accessibility and have to store it for further use
@@ -108,12 +85,11 @@ this is the main intent switch function. All intents that use the backend must b
         for i in range(num_contexts):
             if 'save_bedarf' in output_contexts[i]['name']:
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-                print('Saving final Accessibility: ' + str(prev_selection_bedarf))
-                # print(prev_selection_bedarf)
+                # print('Saving final Accessibility: ' + str(prev_selection_bedarf))
         return chip_w_context_response(
-            text='Hier kannst du nun 9 Aussagen bewerten und ich suche dir danach eine passende Veranstaltung heraus. \n'
-                 'Du kannst sie immer mit Ja, Nein, oder Ist mir Egal bewerten. \n'
-                 'Erste Frage: \n'
+            text='Hier kannst du nun 9 Aussagen bewerten und ich suche dir danach eine passende Veranstaltung heraus. \r\n'
+                 'Du kannst sie immer mit Ja, Nein, oder Ist mir Egal bewerten. \r\n'
+                 'Erste Frage: \r\n'
                  'Ich finde menschliche Körper interessant.',
             chips=["Ja", "Nein", "Ist mir egal"],
             session_id=session_id,
@@ -138,7 +114,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.2 - egal' or intent_name == 'script.interest.select.2 - ja' or intent_name == 'script.interest.select.2 - nein':
+    elif intent_name == 'script.interest.select.2 - egal' or \
+            intent_name == 'script.interest.select.2 - ja' or \
+            intent_name == 'script.interest.select.2 - nein':
         interest_2 = parameters.get('interest_2')
         return chip_w_context_response(text=interest_2 + ', interessant.',
                                        chips=["Weiter: Frage 3", "Menü"],
@@ -153,7 +131,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.3 - egal' or intent_name == 'script.interest.select.3 - ja' or intent_name == 'script.interest.select.3 - nein':
+    elif intent_name == 'script.interest.select.3 - egal' or \
+            intent_name == 'script.interest.select.3 - ja' or \
+            intent_name == 'script.interest.select.3 - nein':
         interest_3 = parameters.get('interest_3')
         return chip_w_context_response(text='Rituale eher so: ' + interest_3,
                                        chips=["Weiter: Frage 4", "Menü"],
@@ -168,7 +148,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.4 - egal' or intent_name == 'script.interest.select.4 - ja' or intent_name == 'script.interest.select.4 - nein':
+    elif intent_name == 'script.interest.select.4 - egal' or \
+            intent_name == 'script.interest.select.4 - ja' or \
+            intent_name == 'script.interest.select.4 - nein':
         interest_4 = parameters.get('interest_4')
         return chip_w_context_response(text=interest_4 + '? Poesie steckt überall.',
                                        chips=["Weiter: Frage 5", "Menü"],
@@ -183,7 +165,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.5 - egal' or intent_name == 'script.interest.select.5 - ja' or intent_name == 'script.interest.select.5 - nein':
+    elif intent_name == 'script.interest.select.5 - egal' or \
+            intent_name == 'script.interest.select.5 - ja' or \
+            intent_name == 'script.interest.select.5 - nein':
         interest_5 = parameters.get('interest_5')
         return chip_w_context_response(text=interest_5 + ', also ich finde Aktuelles wichtig',
                                        chips=["Weiter: Frage 6", "Menü"],
@@ -198,7 +182,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.6 - egal' or intent_name == 'script.interest.select.6 - ja' or intent_name == 'script.interest.select.6 - nein':
+    elif intent_name == 'script.interest.select.6 - egal' or \
+            intent_name == 'script.interest.select.6 - ja' or \
+            intent_name == 'script.interest.select.6 - nein':
         interest_6 = parameters.get('interest_6')
         return chip_w_context_response(text=interest_6 + ', Ich merke, dass das wichtig ist.',
                                        chips=["Weiter: Frage 7", "Menü"],
@@ -213,7 +199,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.7 - egal' or intent_name == 'script.interest.select.7 - ja' or intent_name == 'script.interest.select.7 - nein':
+    elif intent_name == 'script.interest.select.7 - egal' or \
+            intent_name == 'script.interest.select.7 - ja' or \
+            intent_name == 'script.interest.select.7 - nein':
         interest_7 = parameters.get('interest_7')
         return chip_w_context_response(text='Dass du ' + interest_7 + ' klickst, sag ich deiner Mutter!',
                                        chips=["Weiter: Frage 8", "Menü"],
@@ -228,7 +216,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.8 - egal' or intent_name == 'script.interest.select.8 - ja' or intent_name == 'script.interest.select.8 - nein':
+    elif intent_name == 'script.interest.select.8 - egal' or \
+            intent_name == 'script.interest.select.8 - ja' or \
+            intent_name == 'script.interest.select.8 - nein':
         interest_8 = parameters.get('interest_8')
         return chip_w_context_response(text='Ich habe mir gemerkt, dass du ' + interest_8 + ' geantwortet hast.',
                                        chips=["Weiter: Frage 9", "Menü"],
@@ -243,7 +233,9 @@ this is the main intent switch function. All intents that use the backend must b
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 
-    elif intent_name == 'script.interest.select.9 - egal' or intent_name == 'script.interest.select.9 - ja' or intent_name == 'script.interest.select.9 - nein':
+    elif intent_name == 'script.interest.select.9 - egal' or \
+            intent_name == 'script.interest.select.9 - ja' or \
+            intent_name == 'script.interest.select.9 - nein':
         interest_9 = parameters.get('interest_9')
         return chip_w_context_response(text=None,
                                        chips=["Weiter: Zeitselektor", "Menü"],
@@ -253,56 +245,36 @@ this is the main intent switch function. All intents that use the backend must b
                                        variable=interest_9)
 
     elif intent_name == 'teach.fingeralhabet':
-        fa_letter = parameters.get('FA-Zeichen')
-        if fa_letter:
+        try:
+            fa_letter = parameters.get('FA-Zeichen')
             folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
             return image_response(url=str(folder) + str(fa_letter) + '.png?raw=true',
                                   chips=['Noch ein Buchstabe', 'Menü'])
+        except Exception as e:
+            print("Exception when trying to access fa_letter: %s\n" % e)
+            return text_response('Mir sind leider die Bilder ausgegangen.')
 
-    elif intent_name == 'test.webhook.image':
-        return image_response(
-            url='https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
-
+    elif intent_name == 'faq.sommerblut.team':
+        return button_response(url='https://www.sommerblut.de/ls/ueber-uns/profil-team',
+                               button_text='Das Team vom Sommerblut',
+                               text=' Das Sommerblut hat ein ganz tolles Team. Du kannst sie hier finden',
+                               chips=['Ich habe eine andere Frage', 'Zurück: Hauptmenü'])
     elif intent_name == 'script.time.select':
+
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
-        if bedarf:
-            print('Fetched Bedarf: ' + str(bedarf))
         # interests = retrieve_interests()
-        accessibilities = get_accessibility_ids()
-        codes = []
-        if bedarf:
-            if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
-                codes = None
-                print('No special accessibility need detected ')
-            else:
-                # if bedarf[0] == 1: # kein Bedarf
-                #    events = get_event_names_w_access()
-                if bedarf[1] == 1.0:  # leichte Sprache
-                    codes.append(accessibilities['Leichte Sprache'])
-                if bedarf[2] == 1.0:  # Höreinschränkung
-                    codes.append(accessibilities['Induktive Höranlage'])
-                    codes.append(accessibilities['Audiodeskription'])
-                    codes.append(accessibilities['Deutsche Gebärdensprache'])
-                if bedarf[3] == 1.0:  # Mobilitätseinschränkung
-                    codes.append(accessibilities['Rollstuhl'])
-                    codes.append(accessibilities['Gehbehinderung'])
-                if bedarf[4] == 1.0:  # Visuelle Einschränkung
-                    codes.append(accessibilities['Touch-Tour'])
-                    codes.append(accessibilities['Übertitel/Untertitel'])
-                # if bedarf[5] == 1.0:  # begrenzte Reize
-                # codes.append(accessibilities['Leichte Sprache'])
-            # print('Asking for Accessibilities: ' + str(codes))
-            event_count, events = get_full_event_list(codes)
-            # print(event_count)
+        codes = map_bedarf_for_db(bedarf=bedarf)
+        event_count, events = get_full_event_list(codes)
         if events and event_count:
             text = ''
             if event_count > 5:
                 text = 'Ich habe mehr als 5 (' + str(
                     event_count) + ') Veranstaltungen gefunden, möchtest du nach Veranstaltungsdatum filtern?'
-                chips = ["Zeig mir die Veranstaltungen", 'Nach Datum filtern']
+                chips = ["Nein: alle Empfehlungen anzeigen", 'Ja: Zeitraum auswählen']
             else:
-                text = 'Ich habe ' + str(event_count) + ' Veranstaltungen gefunden.'
+                text = 'Okay, hier kommt mein heißer Tipp für dich! \r\n' \
+                       'Ich kann dir mehr zu einer Veranstaltung erzählen oder eine andere Veranstaltung vorschlagen'
                 chips = ["Zeig mir die Veranstaltungen"]
             return chip_w_context_response(text=text,
                                            chips=chips,
@@ -313,80 +285,139 @@ this is the main intent switch function. All intents that use the backend must b
                                            lifespan=150
                                            )
         else:
-            return text_response(text='Ich habe leider keine Events mit deinen Zugänglichkeitsanforderungen gefunden')
+            return chip_response(text='Ich habe leider keine Events mit deinen Zugänglichkeitsanforderungen gefunden',
+                                 chips=['Weiter zum Veranstaltungstipp'])
+
+    elif intent_name == 'script.time.filter':
+        return chip_response(text='Das wird spannend! Ich kann dir nun: '
+                                  'alle Veranstaltungen, die noch bevorstehen oder '
+                                  'Veranstaltungen in den nächsten 5 Tagen suchen',
+                             chips=['Nur zukünftige Veranstaltungen', 'Veranstaltungen in den nächsten 5 Tagen'])
+
+    elif intent_name == 'script.time.filter.future':
+        try:
+            # here we are making the database call and see whether we need to filter further
+            bedarf = retrieve_bedarf(output_contexts)
+            # interests = retrieve_interests()
+            codes = map_bedarf_for_db(bedarf=bedarf)
+            event_count, events = get_upcoming_event_list(accessibility=codes)
+
+            text = f'Okay, hier kommt mein heißer Tipp an noch stattfindenden Veranstaltungen für dich! ' \
+                   f'Ich kann dir mehr zu einer Veranstaltung erzählen oder eine andere Veranstaltung vorschlagen'
+            chips = ["Zeig mir die Veranstaltungen"]
+            return chip_w_context_response(text=text,
+                                           chips=chips,
+                                           session_id=session_id,
+                                           context='events_found',
+                                           variable_name='events_found',
+                                           variable=events,
+                                           lifespan=150
+                                           )
+        except Exception as e:
+            print("Exception when trying to access upcoming events: %s\n" % e)
+            return chip_response(
+                text='Ich habe leider einen Fehler in meinen Berechnungen gemacht, kannst du das nochmal sagen?',
+                chips=['Zeig mir alle zukünftigen Veranstaltungen', "Zeig mir alle Veranstaltungen"])
+
+
+
+    elif intent_name == 'script.time.filter.nextdays':
+        try:
+            num_next_days_filter = int(parameters.get('num_next_days_filter'))
+
+            # here we are making the database call and see whether we need to filter further
+            bedarf = retrieve_bedarf(output_contexts)
+            # interests = retrieve_interests()
+            codes = map_bedarf_for_db(bedarf=bedarf)
+
+            event_count, events = get_timeframe_event_list(
+                to_date=datetime.now() + timedelta(days=num_next_days_filter),
+                accessibility=codes)
+
+            text = f'Okay, hier sind die Veranstaltungen in den nächsten {num_next_days_filter} Tagen für dich'
+            chips = ["Zeig mir die Veranstaltungen"]
+            return chip_w_context_response(text=text,
+                                           chips=chips,
+                                           session_id=session_id,
+                                           context='events_found',
+                                           variable_name='events_found',
+                                           variable=events,
+                                           lifespan=150
+                                           )
+        except Exception as e:
+            print("Exception when trying to access num_event_filter: %s\n" % e)
+            return chip_response(
+                text='Ich habe leider nicht verstanden, wie viele Tage ich dir anzeigen soll.',
+                chips=["Zeig mir alle Veranstaltungen"])
 
     elif intent_name == 'script.event.menu':
-        event_count, events = retrieve_found_events(output_contexts)
-        # print(event_count, type(event_count))
-        # pprint(events)
-        if events is None:
-            print('no events')
-            return text_response(text='Ich habe leider keine Events gespeichert')
-
-        event_index = int(retrieve_event_index(output_contexts))
-        print(event_index, type(event_index))
-
-        display_num = 1
-        next_event_index = event_index
-        print(event_index, next_event_index, event_count)
-
-        if event_index == event_count:
-            next_event_index = 0
-            return chip_w_context_response(session_id=session_id,
-                                           context='event_index',
-                                           variable_name='event_index',
-                                           variable=next_event_index,
-                                           text='Ich habe dir nun alle ausgewählten Events gezeigt. '
-                                                'Was möchtest du nun tun?',
-                                           chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
-
-        next_event_index = event_index + 1
-        print(event_index, next_event_index, event_count)
-        if event_index == 0:
-            chips = ['Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
-        else:
-            chips = ['Zeig mir das letzte Event', 'Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
-
-        return event_response(
-            text='Ich empfehle dir die folgende Veranstaltung. '
-                 'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',
-            session_id=session_id,
-            context='event_index',
-            variable_name='event_index',
-            variable=next_event_index,
-            display_num=display_num,
-            display_index=event_index,
-            event_count=event_count,
-            events=events,
-            chips=chips
-        )
+        return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
 
     elif intent_name == 'script.event.details':
-        event_count, events = retrieve_found_events(output_contexts)
-        if events is None or event_count is None:
-            print('no events')
-            return text_response(text='Ich habe leider keine Events gespeichert')
+        try:
+            event_id = retrieve_event_id(output_contexts=output_contexts)
+            event_count, events = retrieve_found_events(output_contexts)
+            if event_id != 0 and events is not None:
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Veranstaltungsübersicht'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
+            elif event_id != 0 and events is None:
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Ich habe eine Frage'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
 
-        next_event_index = int(retrieve_event_index(output_contexts))
-        if next_event_index == event_count:
-            event_index = event_count - 1
-        else:
-            event_index = next_event_index - 1
+            elif events is not None:
+                next_event_index = int(retrieve_event_index(output_contexts))
+                if next_event_index == event_count:
+                    event_index = event_count - 1
+                else:
+                    event_index = next_event_index - 1
 
-        event_id = events[str(event_index)]['id']
+                event_id = events[str(event_index)]['id']
+                print('entering last elif')
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Veranstaltungsübersicht'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
+            else:
+                print('entering  else')
+                return chip_response(
+                    text='Ich habe leider keine Events gespeichert. Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
+                    chips=['Zugänglichkeit auswählen', 'Interessen angeben'])
 
-        return chip_w_context_response(session_id=session_id,
-                                       text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-                                            '1. Ist die Veranstaltung barrierefrei?\r\n'
-                                            '2. Worum geht es genau in der Veranstaltung\r\n'
-                                            '3. Wie handhabt ihr Corona?\r\n'
-                                            '4. Wo und Wann findet sie statt?\r\n',
-                                       chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen', 'Datum und Ort',
-                                              'Zeig mir die Veranstaltung auf sommerblut.de',
-                                              'Zurück: Veranstaltungsübersicht'],
-                                       variable_name='event_id',
-                                       variable=event_id,
-                                       context='event_id')
+        except Exception as e:
+            print("Exception when trying to access event details and event_id: %s\n" % e)
+
+
 
     elif intent_name == 'script.event.menu.previous':
         event_count, events = retrieve_found_events(output_contexts)
@@ -404,7 +435,6 @@ this is the main intent switch function. All intents that use the backend must b
                                            text='Ich habe dir nun alle ausgewählten Events gezeigt. '
                                                 'Was möchtest du nun tun?',
                                            chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
-        print(event_index, next_event_index, event_count)
         if event_index == 0:
             event_index = event_count - 2
             next_event_index = event_index + 1
@@ -439,6 +469,7 @@ this is the main intent switch function. All intents that use the backend must b
         url = 'https://www.sommerblut.de/en/event/' + str(event_id)
         button_text = 'Link zum Event'
         return button_response(url=url, button_text=button_text, chips=['Zurück: Veranstaltungsdetails'])
+
     elif intent_name == 'script.event.details - program':
         event_id = retrieve_event_id(output_contexts)
         return chip_response(
@@ -461,20 +492,27 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.details - schedule':
         event_id = retrieve_event_id(output_contexts)
         event_count, events = retrieve_found_events(output_contexts=output_contexts)
-        pprint(events)
         if event_id and events:
             for e in range(event_count):
-                print(events.get(e))
                 if events[str(e)].get('id') == event_id:
                     duration = int(events[str(e)].get('duration'))
                     title = events[str(e)].get('title')
                     location = events[str(e)].get('location')
                     price = int(events[str(e)].get('price_vvk'))
-
-                    return chip_response(
-                        text=f'{title} dauert {duration}. Es findet statt an {location}. Er Kostet {price}. (Event_ID: {event_id}',
-                        chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü',
-                               'Liste der Spielzeiten anzeigen'])
+                    image = events[str(e)].get('event_images')
+                    print(image)
+                    return event_detail_response(duration=duration,
+                                                 title=title,
+                                                 location=location,
+                                                 price=price,
+                                                 image=image,
+                                                 text=f'{title} dauert {duration} Minuten. \r\n '
+                                                      f'Es findet statt an diesm Ort: {location}. \r\n'
+                                                      f'Er kostet {price} Euro. \r\n'
+                                                      f'(Event_ID: {event_id})',
+                                                 chips=['Zurück: Veranstaltungsübersicht',
+                                                        'Zurück: Veranstaltungsdetails', 'Hauptmenü',
+                                                        'Liste der Spielzeiten anzeigen'])
         else:
             return chip_response(
                 text='Irgendwie habe ich wohl die Veranstaltungsnummer vergessen, versuch es doch noch einmal.',
@@ -483,10 +521,12 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.details.showSchedule':
         event_id = int(retrieve_event_id(output_contexts))
         play_count, plays = get_event_schedule(event_id)
+        event_title = get_event_title(event_id)
 
         return event_schedule_response(play_count,
                                        plays,
-                                       text='Hier Soll der EventTitel Angezeigt werden. TODO',
+                                       text=f'Titel der Veranstaltung: {event_title} \r\n'
+                                            f'Veranstaltungs ID: {event_id}',
                                        chips=['Tickets online kaufen', 'Alternative Wege Tickets zu kaufen',
                                               'Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails',
                                               'Hauptmenü']
@@ -497,17 +537,65 @@ this is the main intent switch function. All intents that use the backend must b
                                   'von Veranstaltungen weiter. '
                                   'Du kannst sie so erreichen: franziska.lammers@sommerblut.de '
                                   'oder per Telefon: 0221 – 29 49 91 34',
-                             chips=[])
+                             chips=['Zurück: Veranstaltungsdetails'])
+
+    elif intent_name == 'faq.event':
+
+        try:
+            event_title = parameters.get('event_title')
+            titles, ids = get_all_titles_ids()
+            if len(event_title) != 0:
+                idx = titles.index(event_title)
+                event_id = ids[idx]
+
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zurück: Ich habe eine Frage'],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id')
+            else:
+
+                chips = random.sample(titles, 3)
+                return chip_response(text='Du kannst den Namen der Veranstaltung in das Textfeld unten eingeben. '
+                                          'Oder eine von unten wählen:',
+                                     chips=chips)
+
+        except Exception as e:
+            print("Exception when trying to identify the event asked about-> faq.event: %s\n" % e)
 
     elif intent_name == 'faq.tickets.sale_location':
         return chip_response(
-            text='An folgenden Orten können Tickets gekauft werden, außerdem auch via Telefon unter: TODO',
+            text='An folgenden Orten können Tickets gekauft werden:\r\n'
+                 'Theater·kasse am Neumarkt\r\n'
+                 'Die Theater·kasse ist auf der Zwischen·ebene der U-Bahn-Station Neumarkt.\r\n '
+                 'Die genaue Adresse ist:\r\n'
+                 'Neumarkt, U-Bahn-Passage\r\n'
+                 'Laden 12\r\n'
+                 '50667 Köln, \r\n',
             chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
 
+    elif intent_name == 'faq.tickets.sale_phone':
+        return button_response(url='tel:+4922142076000',
+                               button_text='Direkt anrufen',
+                               text='Du kannst die Tickets auch am Telefon bestellen.\r\n'
+                                    'Unter der Telefonnummer 0221 42 07 6000.\r\n'
+                                    'Aber Achtung:\r\n'
+                                    'Am Telefon kann man die Tickets mit Kreditkarte bezahlen.\r\n',
+                               chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
+
     elif intent_name == 'script.tickets.sale':
-        return chip_response(
-            text='Hier soll ein Link erscheinen für den Ticketshop. TODO',
-            chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
+        return button_response(url='https://t.rausgegangen.de/tickets/shop/sommerblut-2022',
+                               button_text='Rausgegangen Ticketshop',
+                               text='Hier geht es zum Ticketshop von Sommerblut.',
+                               chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
 
 
 # create a route for webhook
