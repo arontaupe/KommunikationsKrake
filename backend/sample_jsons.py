@@ -139,7 +139,7 @@ SAMPLE_IMAGE_JSON = {
 }
 
 SAMPLE_EVENT_DETAILS_JSON = {
-    "fulfillmentText": "Event Schedule",
+    "fulfillmentText": "Event Details",
     "fulfillmentMessages": [
         {"text": {"text": [""]}},
         {
