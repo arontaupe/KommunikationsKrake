@@ -163,3 +163,5 @@ cython_debug/
 docker-compose.yml
 /docker-compose.yml
 backend/mail_creds.json
+/backend/openAPI_datenbank_sommerblut.json
+/backend/openAPI_datenbank_sommerblut.yaml
