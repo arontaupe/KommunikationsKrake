@@ -67,10 +67,13 @@ this is the main intent switch function. All intents that use the backend must b
     if intent_name == 'test.fulfillment':
         # several options for feature testing
         now = datetime.now()
-        return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
+        # return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
-        # return text_response('Hallo')
+        dgs_videos = {"0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
+                      "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
+                      "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"}
+        return text_response(text='Hallo', dgs_videos_bot=dgs_videos)
         # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
         #                        variable='value1')
         # return image_response(
