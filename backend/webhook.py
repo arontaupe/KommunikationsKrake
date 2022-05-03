@@ -642,11 +642,9 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.main_menu':
         return chip_response(
             text='Okay, worauf hast du jetzt Lust?'
-                 'Ich kann dir noch mehr zum Thema digitale Barrierefreiheit erzählen.'
-                 'Oder Ich erzähle dir mehr über das Sommerblut Festival 2022.'
-                 'Veranstaltungsberatung: Ich berate dich, welche Veranstaltung dir gefallen könnte.'
-                 'Feedback: Du erzählst mir, wie dir das Festival oder eine Veranstaltung gefällt.',
-            chips=['Mehr über Ällei erfahren', ' Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
+                 'Ich kann dir zum Beispiel noch mehr über mich und über künstliche Intelligenz erzählen.'
+                 'Oder ich berate dich, welche Veranstaltung dir gefallen wird.',
+            chips=['Video: Ällei und KI', 'Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
                    'Mehr über Sommerblut erfahren'],
             dgs_videos_bot=make_video_array(['A2']),
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
