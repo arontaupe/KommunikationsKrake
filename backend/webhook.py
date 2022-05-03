@@ -599,6 +599,58 @@ this is the main intent switch function. All intents that use the backend must b
                                text='Hier geht es zum Ticketshop von Sommerblut.',
                                chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
 
+    elif intent_name == 'fallback.default':
+        return chip_response(text='Ich bin nicht so sicher, ob ich dich richtig verstanden habe. '
+                                  'Kannst du das noch einmal anders formulieren?',
+                             chips=['Hauptmenü', 'Ich habe eine Frage'])
+
+    elif intent_name == 'faq.bot.cando':
+        return chip_response(
+            text='Ich bin noch am lernen. Ich kann dir Veranstaltungen empfehlen und Fragen beantworten. '
+                 'Hoffentlich kann ich bald auch so gut digital surfen wie du.',
+            chips=['Hauptmenü', 'Ich habe eine Frage'])
+
+    elif intent_name == 'faq.knowledge.chatbot':
+        return chip_response(
+            text='Ein Chatbot Ist eine Maschine, die sich mit dir unterhalten kann wie ein Mensch.',
+            chips=['Zurück: Hauptmenü', 'Ich habe eine andere Frage'])
+
+    elif intent_name == 'faq.knowledge.whoami':
+        return chip_response(
+            text='Ich bin Ällei, ein Chatbot. '
+                 'Ich lebe auf der Website des Sommerblut Festivals. '
+                 'Komm mich gern besuchen!',
+            chips=['Zurück: Hauptmenü', 'Ich habe eine andere Frage'])
+
+    elif intent_name == 'script.welcome':
+        return chip_response(
+            text='Hi! Mein Name ist Ällei !'
+                 'Schön, dass du hier bist. '
+                 'Ich kann dir helfen, Informationen über das Sommerblut Festival zu finden. '
+                 'Bist du das erste mal hier? Dann schau dir gern das Einführungs-Video an.',
+            chips=['Einführungsvideo', 'Kenne ich schon: Hauptmenü', 'Ich habe eine Frage'],
+            dgs_videos_bot=make_video_array(['A1']),
+            dgs_videos_chips=make_video_array(['RC1a', 'RC1b', 'RC2', 'RC3']))
+
+    elif intent_name == 'script.bot.introvideo':
+        return chip_response(
+            text='Video: Wie funktioniert der bot und was kann er alles:',
+            chips=['Weiter: Hauptmenü'],
+            dgs_videos_bot=None,
+            dgs_videos_chips=make_video_array(['RC4']))
+
+    elif intent_name == 'script.main_menu':
+        return chip_response(
+            text='Okay, worauf hast du jetzt Lust?'
+                 'Ich kann dir noch mehr zum Thema digitale Barrierefreiheit erzählen.'
+                 'Oder Ich erzähle dir mehr über das Sommerblut Festival 2022.'
+                 'Veranstaltungsberatung: Ich berate dich, welche Veranstaltung dir gefallen könnte.'
+                 'Feedback: Du erzählst mir, wie dir das Festival oder eine Veranstaltung gefällt.',
+            chips=['Mehr über Ällei erfahren', ' Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
+                   'Mehr über Sommerblut erfahren'],
+            dgs_videos_bot=make_video_array(['A2']),
+            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
+
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
