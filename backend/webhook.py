@@ -649,6 +649,13 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_bot=make_video_array(['A2']),
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
 
+    elif intent_name == 'script.bot_theme_input':
+        return chip_response(
+            text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"',
+            chips=['Mehr über Sommerblut erfahren', 'Ich habe eine Frage', 'Veranstaltungsberatung'],
+            dgs_videos_bot=make_video_array(['A2']),
+            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
+
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
