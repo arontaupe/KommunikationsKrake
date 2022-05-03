@@ -19,6 +19,7 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_e
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
     get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
+from video_builder import make_video_array
 
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db
@@ -70,10 +71,8 @@ this is the main intent switch function. All intents that use the backend must b
         # return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
-        dgs_videos = {"0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                      "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                      "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"}
-        return text_response(text='Hallo', dgs_videos_bot=dgs_videos)
+
+        return text_response(text='Hallo', dgs_videos_bot=make_video_array(titles=['3', '2', '1']))
         # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
         #                        variable='value1')
         # return image_response(

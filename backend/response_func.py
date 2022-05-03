@@ -381,12 +381,9 @@ sends out a card for each scheduled play the currently selected event has
 
     for i in range(play_count):
         accessible_request = plays[i]['accessible_request']
-        # print(accessible_request)
         accessible_for = ''
         for j in range(len(accessible_request)):
             accessible_for = accessible_for + str(accessible_request[j].get('name')) + '\r\n'
-        # print(accessible_for)
-
         date = plays[i]['date']
         end_date = plays[i]['end_date']
         play_id = plays[i]['id']
