@@ -1,12 +1,21 @@
 # here are the prototypes of the response json files. I can then modify them on the fly to include my answers
 
 SAMPLE_TEXT_JSON = {
-    "fulfillmentText": "Text",
-    "dgs_videos": {
-        "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-        "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-        "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-    }
+    "fulfillmentText": "Text Message",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "dgs_videos_bot": {}
+            }
+        }
+    ]
 }
 
 SAMPLE_CONTEXT_JSON = {
@@ -31,11 +40,8 @@ SAMPLE_CHIP_W_CONTEXT_JSON = {
         },
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                     [
                         {
@@ -72,11 +78,8 @@ SAMPLE_CHIP_JSON = {
         },
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                     [
                         {
@@ -106,11 +109,8 @@ SAMPLE_IMAGE_JSON = {
         },
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                     [
                         {
@@ -144,11 +144,8 @@ SAMPLE_EVENT_DETAILS_JSON = {
         {"text": {"text": [""]}},
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                 ],
                 "event_details": {}
@@ -162,11 +159,8 @@ SAMPLE_EVENT_SCHEDULE_JSON = {
         {"text": {"text": [""]}},
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                 ],
                 "plays": {}
@@ -186,11 +180,8 @@ SAMPLE_EVENT_JSON_1 = {
         },
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                     [
                         {
@@ -270,11 +261,8 @@ SAMPLE_BUTTON_JSON = {
         },
         {
             "payload": {
-                "dgs_videos": {
-                    "0": "https://www.youtube.com/watch?v=lyW1kKlPanE",
-                    "1": "https://www.youtube.com/watch?v=dCxgF5ISJGg",
-                    "2": "https://www.youtube.com/watch?v=e5eblW5mRsU"
-                },
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
                 "richContent": [
                     [
                         {

@@ -19,6 +19,7 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_e
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
     get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
+from video_builder import make_video_array
 
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db
@@ -67,10 +68,11 @@ this is the main intent switch function. All intents that use the backend must b
     if intent_name == 'test.fulfillment':
         # several options for feature testing
         now = datetime.now()
-        return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
+        # return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
-        # return text_response('Hallo')
+
+        return text_response(text='Hallo', dgs_videos_bot=make_video_array(titles=['3', '2', '1']))
         # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
         #                        variable='value1')
         # return image_response(
@@ -596,6 +598,63 @@ this is the main intent switch function. All intents that use the backend must b
                                button_text='Rausgegangen Ticketshop',
                                text='Hier geht es zum Ticketshop von Sommerblut.',
                                chips=['Zeig mir die Veranstaltung auf Sommerblut.de', 'Zurück: Veranstaltungsdetails'])
+
+    elif intent_name == 'fallback.default':
+        return chip_response(text='Ich bin nicht so sicher, ob ich dich richtig verstanden habe. '
+                                  'Kannst du das noch einmal anders formulieren?',
+                             chips=['Hauptmenü', 'Ich habe eine Frage'])
+
+    elif intent_name == 'faq.bot.cando':
+        return chip_response(
+            text='Ich bin noch am lernen. Ich kann dir Veranstaltungen empfehlen und Fragen beantworten. '
+                 'Hoffentlich kann ich bald auch so gut digital surfen wie du.',
+            chips=['Hauptmenü', 'Ich habe eine Frage'])
+
+    elif intent_name == 'faq.knowledge.chatbot':
+        return chip_response(
+            text='Ein Chatbot Ist eine Maschine, die sich mit dir unterhalten kann wie ein Mensch.',
+            chips=['Zurück: Hauptmenü', 'Ich habe eine andere Frage'])
+
+    elif intent_name == 'faq.knowledge.whoami':
+        return chip_response(
+            text='Ich bin Ällei, ein Chatbot. '
+                 'Ich lebe auf der Website des Sommerblut Festivals. '
+                 'Komm mich gern besuchen!',
+            chips=['Zurück: Hauptmenü', 'Ich habe eine andere Frage'])
+
+    elif intent_name == 'script.welcome':
+        return chip_response(
+            text='Hi! Mein Name ist Ällei !'
+                 'Schön, dass du hier bist. '
+                 'Ich kann dir helfen, Informationen über das Sommerblut Festival zu finden. '
+                 'Bist du das erste mal hier? Dann schau dir gern das Einführungs-Video an.',
+            chips=['Einführungsvideo', 'Kenne ich schon: Hauptmenü', 'Ich habe eine Frage'],
+            dgs_videos_bot=make_video_array(['A1']),
+            dgs_videos_chips=make_video_array(['RC1a', 'RC1b', 'RC2', 'RC3']))
+
+    elif intent_name == 'script.bot.introvideo':
+        return chip_response(
+            text='Video: Wie funktioniert der bot und was kann er alles:',
+            chips=['Weiter: Hauptmenü'],
+            dgs_videos_bot=None,
+            dgs_videos_chips=make_video_array(['RC4']))
+
+    elif intent_name == 'script.main_menu':
+        return chip_response(
+            text='Okay, worauf hast du jetzt Lust?'
+                 'Ich kann dir zum Beispiel noch mehr über mich und über künstliche Intelligenz erzählen.'
+                 'Oder ich berate dich, welche Veranstaltung dir gefallen wird.',
+            chips=['Video: Ällei und KI', 'Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
+                   'Mehr über Sommerblut erfahren'],
+            dgs_videos_bot=make_video_array(['A2']),
+            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
+
+    elif intent_name == 'script.bot_theme_input':
+        return chip_response(
+            text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"',
+            chips=['Mehr über Sommerblut erfahren', 'Ich habe eine Frage', 'Veranstaltungsberatung'],
+            dgs_videos_bot=make_video_array(['A2']),
+            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
 
 
 # create a route for webhook

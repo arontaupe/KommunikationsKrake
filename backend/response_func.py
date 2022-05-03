@@ -16,24 +16,61 @@ from sample_jsons import SAMPLE_IMAGE_JSON, \
 # load in the prototype jsons
 
 
-# sends a text response, takes an optional array of suggestion chips
-def chip_response(text=None, chips=None):
+def chip_response(text=None,
+                  chips=None,
+                  dgs_videos_bot=None,
+                  dgs_videos_chips=None):
+    """
+sends a text response, takes an optional array of suggestion chips
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    """
     resp = deepcopy(SAMPLE_CHIP_JSON)
     if text:
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['options'] = [{'text': i} for i in chips]
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
 
 
-def text_response(text=None):
+def text_response(text=None, dgs_videos_bot=None):
+    """
+this method sends a standard text response to the bot and can transport a dict of dgs_videos
+    :param text: the text that will be sent as message
+    :param dgs_videos_bot:  dict: for each text, there should be a youtube url with a title and equivalent content
+has to be in format{str(title):str(url)}
+    :return:  json response object
+    """
     resp = deepcopy(SAMPLE_TEXT_JSON)
     if text:
-        resp['fulfillmentText'] = text
+        resp['fulfillmentMessages'][0]['text']['text'][0] = text
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos'] = [{title: url} for title, url in
+                                                                   dgs_videos_bot.items()]
     return resp
 
 
 def context_response(session_id, context, lifespan=50, variable_name=None, variable=None):
+    """
+sends no visible message, just saves variables in GDF, mostly used for testing
+    :param session_id:
+    :param context:
+    :param lifespan:
+    :param variable_name:
+    :param variable:
+    :return: json response object
+    """
     resp = deepcopy(SAMPLE_CONTEXT_JSON)
     if session_id:
         resp['outputContexts'][0]['name'] = 'projects/kommkrake-pcsi/locations/global/agent/sessions/' + str(
@@ -45,7 +82,31 @@ def context_response(session_id, context, lifespan=50, variable_name=None, varia
     return resp
 
 
-def chip_w_context_response(session_id, context, lifespan=50, text=None, chips=None, variable_name=None, variable=None):
+def chip_w_context_response(session_id,
+                            context,
+                            lifespan=50,
+                            text=None,
+                            chips=None,
+                            variable_name=None,
+                            variable=None,
+                            dgs_videos_bot=None,
+                            dgs_videos_chips=None):
+    """
+can send optional text, some chips and save a context variable
+    :param session_id:
+    :param context:
+    :param lifespan:
+    :param variable_name:
+    :param variable:
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    :return:
+    """
     resp = deepcopy(SAMPLE_CHIP_W_CONTEXT_JSON)
     if text:
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
@@ -58,11 +119,36 @@ def chip_w_context_response(session_id, context, lifespan=50, text=None, chips=N
             resp['outputContexts'][0]['parameters'][variable_name] = variable
         if lifespan:
             resp['outputContexts'][0]['lifespanCount'] = lifespan
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
 
 
 # sends a single image, along with optional text, a title, alt text and some chips
-def image_response(url, text=None, title='', subtitle='', chips=None):
+def image_response(url,
+                   text=None,
+                   title='',
+                   subtitle='',
+                   chips=None,
+                   dgs_videos_bot=None,
+                   dgs_videos_chips=None):
+    """
+sends an image along with text and chips to the user
+    :param url: string, is hopefully a valid image url
+    :param title: displayed as title in response, string
+    :param subtitle: displayed as subtitle in response, string
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    """
     resp = deepcopy(SAMPLE_IMAGE_JSON)
     resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['rawUrl'] = url
     if text:
@@ -73,6 +159,12 @@ def image_response(url, text=None, title='', subtitle='', chips=None):
         resp['fulfillmentMessages'][1]['payload']['richContent'][0][1]['subtitle'] = subtitle
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'][0][2]['options'] = [{'text': i} for i in chips]
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
 
 
@@ -86,14 +178,34 @@ def event_response(session_id,
                    chips=None,
                    text=None,
                    variable_name=None,
-                   variable=None):
+                   variable=None,
+                   dgs_videos_bot=None,
+                   dgs_videos_chips=None):
+    """
+sends a response card displaying one event from the array of events according to the display index param
+    :param session_id:
+    :param context:
+    :param display_num:
+    :param event_count:
+    :param events:
+    :param display_index:
+    :param lifespan:
+    :param variable_name:
+    :param variable:
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    """
     resp = deepcopy(SAMPLE_EVENT_JSON_1)
     if text:
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
     if events:
         i = 0
         e = display_index
-
         # send out entire event to be visible in frontend
         resp['fulfillmentMessages'][1]['payload']['event'] = events.get(str(e))
 
@@ -148,11 +260,33 @@ def event_response(session_id,
             resp['outputContexts'][0]['parameters'][variable_name] = variable
         if lifespan:
             resp['outputContexts'][0]['lifespanCount'] = lifespan
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
 
 
-# sends a single Button, along with optional text and some chips
-def button_response(url, button_text, text=None, chips=None):
+def button_response(url,
+                    button_text,
+                    text=None,
+                    chips=None,
+                    dgs_videos_bot=None,
+                    dgs_videos_chips=None):
+    """
+sends a clickable button that can link out
+    :param url:
+    :param button_text:
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    """
     resp = deepcopy(SAMPLE_BUTTON_JSON)
     resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['link'] = url
     resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['text'] = button_text
@@ -160,17 +294,40 @@ def button_response(url, button_text, text=None, chips=None):
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'][0][1]['options'] = [{'text': i} for i in chips]
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
 
 
-# sends a single Button, along with optional text and some chips
-def event_detail_response(title, duration, location, price, image, text=None, chips=None):
-    event_details = {}
-    event_details['title'] = title
-    event_details['duration'] = duration
-    event_details['location'] = location
-    event_details['price'] = price
-    event_details['image'] = image
+def event_detail_response(title,
+                          duration,
+                          location,
+                          price,
+                          image,
+                          text=None,
+                          chips=None,
+                          dgs_videos_bot=None,
+                          dgs_videos_chips=None):
+    """
+sends out a card with more info on a specific event
+    :param title:
+    :param duration:
+    :param location:
+    :param price:
+    :param image:
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    """
+    event_details = {'title': title, 'duration': duration, 'location': location, 'price': price, 'image': image}
 
     resp = deepcopy(SAMPLE_EVENT_DETAILS_JSON)
 
@@ -188,39 +345,33 @@ def event_detail_response(title, duration, location, price, image, text=None, ch
         resp['fulfillmentMessages'][1]['payload']['richContent'].append([{"type": "chips",
                                                                           "options": [{'text': i} for i in chips]
                                                                           }])
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
 
 
-# sends a single Button, along with optional text and some chips
-def event_detail_response(title, duration, location, price, image, text=None, chips=None):
-    event_details = {}
-    event_details['title'] = title
-    event_details['duration'] = duration
-    event_details['location'] = location
-    event_details['price'] = price
-    event_details['image'] = image
-
-    resp = deepcopy(SAMPLE_EVENT_DETAILS_JSON)
-
-    resp['fulfillmentMessages'][1]['payload']['event_details'] = event_details
-    resp['fulfillmentMessages'][1]['payload']['richContent'].append([{
-        "type": "info",
-        "title": title,
-        "subtitle": location + '\r\n € ' + str(price),  # accessible_request,
-        "image": {"src": {"rawUrl": image}},
-        "actionLink": ""}], )
-
-    if text:
-        resp['fulfillmentMessages'][0]['text']['text'][0] = text
-    if chips:
-        resp['fulfillmentMessages'][1]['payload']['richContent'].append([{"type": "chips",
-                                                                          "options": [{'text': i} for i in chips]
-                                                                          }])
-    return resp
-
-
-# sends a single Button, along with optional text and some chips
-def event_schedule_response(play_count, plays, text=None, chips=None):
+def event_schedule_response(play_count,
+                            plays,
+                            text=None,
+                            chips=None,
+                            dgs_videos_bot=None,
+                            dgs_videos_chips=None):
+    """
+sends out a card for each scheduled play the currently selected event has
+    :param play_count:
+    :param plays:
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    """
     resp = deepcopy(SAMPLE_EVENT_SCHEDULE_JSON)
     if text:
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
@@ -230,12 +381,9 @@ def event_schedule_response(play_count, plays, text=None, chips=None):
 
     for i in range(play_count):
         accessible_request = plays[i]['accessible_request']
-        # print(accessible_request)
         accessible_for = ''
         for j in range(len(accessible_request)):
             accessible_for = accessible_for + str(accessible_request[j].get('name')) + '\r\n'
-        # print(accessible_for)
-
         date = plays[i]['date']
         end_date = plays[i]['end_date']
         play_id = plays[i]['id']
@@ -250,9 +398,14 @@ def event_schedule_response(play_count, plays, text=None, chips=None):
             "subtitle": accessible_for,  # accessible_request,
             "image": {"src": {"rawUrl": "https://example.com/images/logo.png"}},
             "actionLink": ticket_link}], )
-
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'].append([{"type": "chips",
                                                                           "options": [{'text': i} for i in chips]
                                                                           }])
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
     return resp
