@@ -72,14 +72,29 @@ this is the main intent switch function. All intents that use the backend must b
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
-        return text_response(text='Hallo', dgs_videos_bot=make_video_array(titles=['3', '2', '1']))
+        return text_response(text='Das Backend ist ansprechbar',
+                             dgs_videos_bot=make_video_array(titles=['3', '2', '1']))
         # return context_response(session_id=session_id, context='mycontext', variable_name='variable1',
         #                        variable='value1')
         # return image_response(
         #    url='https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
+    elif intent_name == 'script.accessibility.select':
+        return chip_response(text='Viele Veranstaltungen sind barrierefrei Zugänglich. '
+                                  'Wenn du magst, kannst du nun einen Bedarf wählen. '
+                                  'Dann zeige ich dir nur Veranstaltungen an, bei denen dieser Bedarf erfüllt wird.',
+                             chips=['Keinen Bedarf angeben',
+                                    'Zugänglich in einfacher Sprache',
+                                    'Zugänglich mit Seheinschränkung',
+                                    'Zugänglich mit Höreinschränkungen',
+                                    'Zugänglich mit Mobilitätseinschränkungen',
+                                    'Zugänglich ohne intensive sensorische Reizungen'])
+
     elif intent_name == 'accessibility.select - collect':
-        return collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id)
+        return collect_accessibility_needs(parameters=parameters,
+                                           num_contexts=num_contexts,
+                                           output_contexts=output_contexts,
+                                           session_id=session_id)
 
     elif intent_name == 'script.interest.select.1':
         # here we are done with collecting the accessibility and have to store it for further use
@@ -262,12 +277,12 @@ this is the main intent switch function. All intents that use the backend must b
                                text=' Das Sommerblut hat ein ganz tolles Team. Du kannst sie hier finden',
                                chips=['Ich habe eine andere Frage', 'Zurück: Hauptmenü'])
     elif intent_name == 'script.time.select':
-
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
         # interests = retrieve_interests()
         codes = map_bedarf_for_db(bedarf=bedarf)
-        event_count, events = get_full_event_list(codes)
+        print(codes)
+        event_count, events = get_full_event_list(accessibility=codes)
         if events and event_count:
             text = ''
             if event_count > 5:
@@ -461,7 +476,6 @@ this is the main intent switch function. All intents that use the backend must b
             variable=next_event_index,
             display_num=display_num,
             display_index=event_index,
-            event_count=event_count,
             events=events,
             chips=chips
         )
@@ -624,10 +638,10 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.welcome':
         return chip_response(
-            text='Hi! Mein Name ist Ällei !'
-                 'Schön, dass du hier bist. '
-                 'Ich kann dir helfen, Informationen über das Sommerblut Festival zu finden. '
-                 'Bist du das erste mal hier? Dann schau dir gern das Einführungs-Video an.',
+            text='Hi! Mein Name ist Ällei! \r\n'
+                 'Schön, dass du hier bist. \r\n'
+                 'Ich kann dir helfen, Informationen über das Sommerblut Festival zu finden. \r\n'
+                 'Bist du das erste mal hier? Dann schau dir gern das Einführungs-Video an. \r\n',
             chips=['Einführungsvideo', 'Kenne ich schon: Hauptmenü', 'Ich habe eine Frage'],
             dgs_videos_bot=make_video_array(['A1']),
             dgs_videos_chips=make_video_array(['RC1a', 'RC1b', 'RC2', 'RC3']))
@@ -653,8 +667,31 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"',
             chips=['Mehr über Sommerblut erfahren', 'Ich habe eine Frage', 'Veranstaltungsberatung'],
-            dgs_videos_bot=make_video_array(['A2']),
-            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'faq.sommerblut':
+        return chip_response(
+            text='Okay, was willst du über das Sommerblut wissen?',
+            chips=['Festivalschwerpunkt 2022',
+                   'Womit beschäftigt sich das Sommerblut?',
+                   'Frage zur Barrierefreiheit',
+                   'Wer steckt hinter dem Sommerblut?'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'faq.start':
+        return chip_response(
+            text='Alles klar. Du kannst die Frage unten in das Textfeld schreiben. '
+                 'Oder du kannst aus einem Bereich auswählen:',
+            chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
+                   'Frage zur Barrierefreiheit'
+                   'Frage zu Ällei, dem Chatbot'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
 
 
 # create a route for webhook
