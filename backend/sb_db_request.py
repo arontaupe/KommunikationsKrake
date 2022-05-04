@@ -60,6 +60,7 @@ def get_accessibility_ids():
     return accessibilities
 
 
+
 def get_accessibility_ids_clean():
     """
     :return: all accessibility classes and their ID as a dict
@@ -69,7 +70,7 @@ def get_accessibility_ids_clean():
         api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
     except ApiException as e:
         print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
-
+    print(api_response)
     return api_response
 
 

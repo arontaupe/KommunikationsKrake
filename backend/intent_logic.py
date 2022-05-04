@@ -12,7 +12,7 @@ from sb_db_request import get_accessibility_ids
 
 def collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id):
     """
-
+gets the accessibility info stored in GDF and performs a database request with the accessibility codes
     :param parameters:
     :param num_contexts:
     :param output_contexts:
@@ -20,6 +20,16 @@ def collect_accessibility_needs(parameters, num_contexts, output_contexts, sessi
     :return:
     """
     bedarf = parameters.get('bedarf')
+    if len(bedarf) == 0:
+        return chip_response(
+            text='Du kannst jetzt eine Zugänglichkeit eingeben, die bei meinen Empfehlungen beachtet werden soll.',
+            chips=['Keinen Bedarf angeben',
+                   'Zugänglich in einfacher Sprache',
+                   'Zugänglich mit Seheinschränkung',
+                   'Zugänglich mit Höreinschränkungen',
+                   'Zugänglich mit Mobilitätseinschränkungen',
+                   'Zugänglich ohne intensive sensorische Reizungen'])
+
     prev_selection_bedarf = None
     for i in range(num_contexts):
         if 'save_bedarf' in output_contexts[i]['name']:
@@ -96,7 +106,6 @@ def show_full_event_list(output_contexts, session_id):
         variable=next_event_index,
         display_num=display_num,
         display_index=event_index,
-        event_count=event_count,
         events=events,
         chips=chips
     )

@@ -11,10 +11,7 @@ from sample_jsons import SAMPLE_IMAGE_JSON, \
     SAMPLE_BUTTON_JSON, \
     SAMPLE_EVENT_SCHEDULE_JSON, \
     SAMPLE_EVENT_DETAILS_JSON
-
-
-# load in the prototype jsons
-
+import datetime
 
 def chip_response(text=None,
                   chips=None,
@@ -64,11 +61,11 @@ has to be in format{str(title):str(url)}
 def context_response(session_id, context, lifespan=50, variable_name=None, variable=None):
     """
 sends no visible message, just saves variables in GDF, mostly used for testing
-    :param session_id:
-    :param context:
-    :param lifespan:
-    :param variable_name:
-    :param variable:
+    :param session_id: the unique identifier for the agent. str
+    :param context: name of the context where the variable is saved in GDF. str
+    :param lifespan: int, the amount of interactions that a context variable will be preserved. defaults to 50
+    :param variable_name: the key of the variable to be saved
+    :param variable: the value of the variable to be saved
     :return: json response object
     """
     resp = deepcopy(SAMPLE_CONTEXT_JSON)
@@ -93,11 +90,11 @@ def chip_w_context_response(session_id,
                             dgs_videos_chips=None):
     """
 can send optional text, some chips and save a context variable
-    :param session_id:
-    :param context:
-    :param lifespan:
-    :param variable_name:
-    :param variable:
+    :param session_id: the unique identifier for the agent. str
+    :param context: name of the context where the variable is saved in GDF. str
+    :param lifespan: int, the amount of interactions that a context variable will be preserved. defaults to 50
+    :param variable_name: the key of the variable to be saved
+    :param variable: the value of the variable to be saved
     :param text: the text that will be sent as message
     :param chips: the suggestion buttons: array of strings
     :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
@@ -171,7 +168,6 @@ sends an image along with text and chips to the user
 def event_response(session_id,
                    context,
                    display_num,
-                   event_count,
                    events,
                    display_index,
                    lifespan=50,
@@ -183,15 +179,14 @@ def event_response(session_id,
                    dgs_videos_chips=None):
     """
 sends a response card displaying one event from the array of events according to the display index param
-    :param session_id:
-    :param context:
-    :param display_num:
-    :param event_count:
-    :param events:
+    :param session_id: the unique identifier for the agent. str
+    :param display_num: Number of events to show. currently modified to only support one event
+    :param events: array of found_events
     :param display_index:
-    :param lifespan:
-    :param variable_name:
-    :param variable:
+    :param context: name of the context where the variable is saved in GDF. str
+    :param lifespan: int, the amount of interactions that a context variable will be preserved. defaults to 50
+    :param variable_name: the key of the variable to be saved
+    :param variable: the value of the variable to be saved
     :param text: the text that will be sent as message
     :param chips: the suggestion buttons: array of strings
     :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
@@ -215,9 +210,12 @@ sends a response card displaying one event from the array of events according to
         if events.get(str(e))['subtitle']:
             subline = subline + events.get(str(e))['subtitle'] + '\r\n'
         if events.get(str(e))['next_date']:
-            subline = subline + ' Nächstes Datum: ' + events.get(str(e))['next_date'] + '\r\n'
-        if subline:
-            resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['subtitle'] = subline
+            next_date = events.get(str(e))['next_date']
+            subline = subline + f' Nächstes Datum: {next_date}\r\n'
+            # print(next_date)
+            # date = datetime.datetime.strptime(next_date, '%Y-%m-%dT%X')
+            # print(date)
+        resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['subtitle'] = subline
         if events.get(str(e))['event_images']:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][0]['rawUrl'] = events.get(str(e))[
                 'event_images']
@@ -394,8 +392,8 @@ sends out a card for each scheduled play the currently selected event has
 
         resp['fulfillmentMessages'][1]['payload']['richContent'].append([{
             "type": "info",
-            "title": date,
-            "subtitle": accessible_for,  # accessible_request,
+            "title": f'Datum: {date}, \r\n Uhrzeit: {opening_time}',
+            "subtitle": f'Barrierefreiheitsinfo: {accessible_for}',  # accessible_request,
             "image": {"src": {"rawUrl": "https://example.com/images/logo.png"}},
             "actionLink": ticket_link}], )
     if chips:
