@@ -20,7 +20,7 @@ event_api = sb_db.EventsApi(sb_db.ApiClient(configuration))
 accept_language = 'ls'  # str | request specific language (optional)
 
 # events = event_api.get_all_events(accessible=[[5, 6]])
-
+'''
 try:
     # get all events
     api_response = events = event_api.get_all_events(accept_language=accept_language)
@@ -34,7 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
-'''
+
 '''
 try:
     # get event by id

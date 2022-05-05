@@ -139,9 +139,44 @@ def map_bedarf_for_db(bedarf=None):
     return codes
 
 
+def map_db_access_to_bedarf(event, codes=None):
+    try:
+        accessibilities = event['accessible_request_sommerblut']
+    except Exception as e:
+        print("Exception when trying to get accessibility->map_db_access_to_bedarf: %s\n" % e)
+
+    if accessibilities:
+        for access in accessibilities:
+            print(access)
+    bedarf = []
+    if codes:
+        if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
+                bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
+            codes = None
+            print('No special accessibility need detected ')
+        else:
+            # if bedarf[0] == 1: # kein Bedarf
+            #    events = get_event_names_w_access()
+            if bedarf[1] == 1.0:  # leichte Sprache
+                codes.append(accessibilities['Leichte Sprache'])
+            if bedarf[2] == 1.0:  # Höreinschränkung
+                codes.append(accessibilities['Induktive Höranlage'])
+                codes.append(accessibilities['Audiodeskription'])
+                codes.append(accessibilities['Deutsche Gebärdensprache'])
+            if bedarf[3] == 1.0:  # Mobilitätseinschränkung
+                codes.append(accessibilities['Rollstuhl'])
+                codes.append(accessibilities['Gehbehinderung'])
+            if bedarf[4] == 1.0:  # Visuelle Einschränkung
+                codes.append(accessibilities['Touch-Tour'])
+                codes.append(accessibilities['Übertitel/Untertitel'])
+
+    return
+
+
 def order_events_by_interest(interests, events, event_count):
     # TODO: bekommt einen interessenarray, muss similarity score errechnen mit  events[i]['interests'] und dann liste sortieren nach highest score
     ordered_events = []
+
     for event in events:
         # if event['interests'] ==
         print(event)

@@ -85,7 +85,7 @@ seems to be broken on database side. would be cool if it worked tho
     try:
         # get a specific event by name
         api_response = event_api.get_events_by_name(event_name, accept_language=accept_language)
-        pprint(api_response)
+        # pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
     # TODO
@@ -172,10 +172,9 @@ def get_full_event_list(accessibility=None):
         events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
         events[i]['interest'] = None  # resp['items'][i]['interest']
         events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['interest_ranking'] = None
     return event_count, events
 
-
-print(get_full_event_list())
 
 
 def get_full_event_list_filtered(accessibility=None):
@@ -228,6 +227,7 @@ def get_full_event_list_filtered(accessibility=None):
         events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['interests'] = None
+        events[i]['interest_ranking'] = None
     return event_count, events
 
 
@@ -287,6 +287,7 @@ def get_partial_event_list(num_events=int, accessibility=None):
         events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
         events[i]['interest'] = None  # resp['items'][i]['interest']
         events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['interest_ranking'] = None
     return event_count, events
 
 
@@ -345,6 +346,7 @@ def get_upcoming_event_list(accessibility=None):
         events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
         events[i]['interest'] = None  # resp['items'][i]['interest']
         events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['interest_ranking'] = None
     return event_count, events
 
 
@@ -401,6 +403,7 @@ def get_timeframe_event_list(to_date,
         events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
         events[i]['interest'] = None  # resp['items'][i]['interest']
         events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['interest_ranking'] = None
     return event_count, events
 
 

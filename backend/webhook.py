@@ -695,7 +695,9 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.bot_theme_input':
         return chip_response(
             text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"',
-            chips=['Mehr über Sommerblut erfahren', 'Ich habe eine Frage', 'Veranstaltungsberatung'],
+            chips=['Mehr über Sommerblut erfahren',
+                   'Ich habe eine Frage',
+                   'Veranstaltungsberatung'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
         )
@@ -715,8 +717,19 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Alles klar. Du kannst die Frage unten in das Textfeld schreiben. '
                  'Oder du kannst aus einem Bereich auswählen:',
+            chips=['Frage zu einer konkreten Veranstaltung',
+                   'Frage zum Sommerblut allgemein',
+                   'Frage zur Barrierefreiheit',
+                   'Frage zu Ällei, dem Chatbot'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'access.help':
+        return chip_response(
+            text='Hier kommt eine Hilfestellung zur Benutzung von Ällei, dem Chatbot.',
             chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
-                   'Frage zur Barrierefreiheit'
+                   'Frage zur Barrierefreiheit',
                    'Frage zu Ällei, dem Chatbot'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
