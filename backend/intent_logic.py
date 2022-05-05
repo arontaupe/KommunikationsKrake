@@ -110,7 +110,6 @@ def show_full_event_list(output_contexts, session_id):
         chips=chips
     )
 
-
 def map_bedarf_for_db(bedarf=None):
     accessibilities = get_accessibility_ids()
     codes = []
@@ -125,72 +124,40 @@ def map_bedarf_for_db(bedarf=None):
             if bedarf[1] == 1.0:  # leichte Sprache
                 codes.append(accessibilities['Leichte Sprache'])
             if bedarf[2] == 1.0:  # Höreinschränkung
-                codes.append(accessibilities['Induktive Höranlage'])
+                codes.append(accessibilities[
+                                 'Induktions·schleife [Eine Induktions·schleife ist für schwerhörige Menschen. '
+                                 'Sie können den Ton der Veranstaltung dann direkt in ihrem Hör·gerät hören.]'])
                 codes.append(accessibilities['Audiodeskription'])
-                codes.append(accessibilities['Deutsche Gebärdensprache'])
+                codes.append(accessibilities['Übersetzung in Gebärden·sprache'])
             if bedarf[3] == 1.0:  # Mobilitätseinschränkung
                 codes.append(accessibilities['Rollstuhl'])
-                codes.append(accessibilities['Gehbehinderung'])
+                codes.append(accessibilities['Geh·behinderung/ Aufzüge'])
             if bedarf[4] == 1.0:  # Visuelle Einschränkung
-                codes.append(accessibilities['Touch-Tour'])
-                codes.append(accessibilities['Übertitel/Untertitel'])
+                codes.append(accessibilities['Fühl-Tour'])
+                codes.append(accessibilities['Unter·titel/ Ober·titel'])
+                codes.append(accessibilities['Seh·behinderung/ Seh·schwäche'])
             # if bedarf[5] == 1.0:  # begrenzte Reize
             # codes.append(accessibilities['Leichte Sprache'])
     return codes
 
 
-def map_db_access_to_bedarf(event, codes=None):
-    try:
-        accessibilities = event['accessible_request_sommerblut']
-    except Exception as e:
-        print("Exception when trying to get accessibility->map_db_access_to_bedarf: %s\n" % e)
+def order_events_by_interest(interests, events=None, event_count=None):
+    """
+    bekommt einen interessenarray mit ints: [0,1,1,1,0,0,1,0,0]
+    muss similarity score errechnen mit events[i]['interests'] und dann liste sortieren nach highest score
 
-    if accessibilities:
-        for access in accessibilities:
-            print(access)
-    bedarf = []
-    if codes:
-        if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
-                bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
-            codes = None
-            print('No special accessibility need detected ')
-        else:
-            # if bedarf[0] == 1: # kein Bedarf
-            #    events = get_event_names_w_access()
-            if bedarf[1] == 1.0:  # leichte Sprache
-                codes.append(accessibilities['Leichte Sprache'])
-            if bedarf[2] == 1.0:  # Höreinschränkung
-                codes.append(accessibilities['Induktive Höranlage'])
-                codes.append(accessibilities['Audiodeskription'])
-                codes.append(accessibilities['Deutsche Gebärdensprache'])
-            if bedarf[3] == 1.0:  # Mobilitätseinschränkung
-                codes.append(accessibilities['Rollstuhl'])
-                codes.append(accessibilities['Gehbehinderung'])
-            if bedarf[4] == 1.0:  # Visuelle Einschränkung
-                codes.append(accessibilities['Touch-Tour'])
-                codes.append(accessibilities['Übertitel/Untertitel'])
+    Names of the entities from DB: BODIES, LIFE, RITUALS, POETRY, UTOPIA, SOCIETY, NATURE, NONACTIVE, FUNNY
+    :param interests: array with 9 ints
+    :param events: list of events
+    :param event_count: number of elements in events
+    :return: events list, but sorted according to interest
+    """
+    # TODO:
 
-    return
-
-
-def order_events_by_interest(interests, events, event_count):
-    # TODO: bekommt einen interessenarray, muss similarity score errechnen mit  events[i]['interests'] und dann liste sortieren nach highest score
     ordered_events = []
 
     for event in events:
         # if event['interests'] ==
         print(event)
 
-    return ordered_events
-
-
-def filter_events_by_access(events, bedarf):
-    # TODO: bekommt event liste und wenn mehrere bedarfe gefragt sind, event liste filtern nach events, wo alle bedarfe gegeben sind
-    bedarf_count = 0
-    for elem in bedarf:
-        if elem != 0:
-            bedarf_count += 1
-    if bedarf_count > 1:
-        # now i know that there is more than one bedarf
-        return  # TODO
-    return
+    return event_count, ordered_events

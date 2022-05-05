@@ -280,6 +280,14 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
+        print(bedarf)
+
+        bedarf_count = 0
+        for elem in bedarf:
+            if elem != 0:
+                bedarf_count += 1
+        if bedarf_count > 1:
+            print('multiple accessibilities detected')
         # interests = retrieve_interests()
         codes = map_bedarf_for_db(bedarf=bedarf)
         print(codes)
@@ -731,6 +739,35 @@ this is the main intent switch function. All intents that use the backend must b
             chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
                    'Frage zur Barrierefreiheit',
                    'Frage zu Ällei, dem Chatbot'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'script.play_sb_video':
+        return chip_response(
+            text='Video: Was ist Sommerblut? TODO',
+            chips=['weiter: Themenvorstellung'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'script.sb_theme.play_video':
+        return chip_response(
+            text='Das Sommerblut gibt es nun schon seit mehr als 20 Jahren. Hier ist ein Video. '
+                 'Es erzählt dir mehr über das Festival. TODO',
+            chips=['Video anschauen', 'Frage zum Sommerblut allgemein',
+                   'Frage zur Barrierefreiheit',
+                   'Frage zu Ällei, dem Chatbot'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+
+    elif intent_name == 'script.sb_intro':
+        return chip_response(
+            text='Das Sommerblut gibt es nun schon seit mehr als 20 Jahren. Hier ist ein Video. '
+                 'Es erzählt dir mehr über das Festival. TODO',
+            chips=['Video anschauen', 'Vorstellung überspringen'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
         )

@@ -16,11 +16,15 @@ import sb_db  # sommerblut datenbank openapi
 from response_func import chip_response
 from sb_db.rest import ApiException
 
+BASEURL = os.environ.get('BASEURL')
+BASEURL_DEV = os.environ.get('BASEURL_DEV')
+
 # Configure HTTP basic authorization: basicAuth
 configuration = sb_db.Configuration()
 configuration.username = DB_USER = os.environ.get('DB_USER')
 configuration.password = DB_PASS = os.environ.get('DB_PASS')
-BASEURL = os.environ.get('BASEURL')
+# here it can be switched between production Database and development database
+configuration.host = BASEURL  # = BASEURL_DEV
 
 # create an instance of the API class
 accessibilities_api = sb_db.AccessibilitiesApi(sb_db.ApiClient(configuration))
@@ -92,31 +96,21 @@ seems to be broken on database side. would be cool if it worked tho
     return api_response
 
 
-
-def get_event_names_w_access(accessibility=None):
+def get_event_by_id(event_id):
     """
-    gets an accesibility code and returns all event names fulfilling the accessibility in an array.
-    :param accessibility: numeric id 0-9
-    :return: json with list of all events fulfilling the accessibility
+ only works for old events somehow
+    :param event_id: int
+    :return: json response
     """
+    try:
+        # get a specific event by name
+        api_response = event_api.get_event_by_id(event_id, accept_language=accept_language)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
+    # TODO
+    return api_response
 
-    query = '?entries=30'
-    if accessibility:
-        query = query + '&accessible=' + str(accessibility)
-    suburl = "/api/events.json"
-    url = BASEURL + suburl + query
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Query: ' + str(url))
-    print('Response from: ' + str(response.url))
-    print('Status Code: ' + str(response.status_code))
-    resp = response.json()
-    event_count = resp['count']
-    print('Number of Events Found: ' + str(event_count))
-    events = {}
-
-    for i in range(event_count):
-        events[resp['items'][i]['title']] = resp['items'][i]['id']
-    return event_count, events
 
 
 def get_full_event_list(accessibility=None):
@@ -130,7 +124,8 @@ def get_full_event_list(accessibility=None):
             # get all events
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
-                                                    entries=30)
+                                                    entries=30,
+                                                    conjunction_accessible='and')
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
@@ -142,6 +137,7 @@ def get_full_event_list(accessibility=None):
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
     resp = api_response
+    # pprint(resp['items'][0])
     event_count = resp['count']
 
     events = {}
@@ -169,66 +165,12 @@ def get_full_event_list(accessibility=None):
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['program_content'] = resp['items'][i]['program_content']
         events[i]['short_description'] = resp['items'][i]['short_description']
-        events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
-        events[i]['interest'] = None  # resp['items'][i]['interest']
-        events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['health_infection_notice'] = resp['items'][i]['health_infection_notice']
+        events[i]['interest'] = resp['items'][i]['interest']
+        events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
     return event_count, events
 
-
-
-def get_full_event_list_filtered(accessibility=None):
-    """
-    should get the full info to display on the cards later
-    :param accessibility: numeric id 0-9
-    :return: json with list of all events fulfilling the accessibility
-    """
-
-    if accessibility:
-        try:
-            # get all events
-            api_response = event_api.get_all_events(accessible=[accessibility],
-                                                    accept_language=accept_language,
-                                                    entries=30)
-        except ApiException as e:
-            print("Exception when calling EventsApi->get all events: %s\n" % e)
-    else:
-        try:
-            # get all events
-            api_response = event_api.get_all_events(accept_language=accept_language,
-                                                    entries=30)
-        except ApiException as e:
-            print("Exception when calling EventsApi->get all events: %s\n" % e)
-
-    resp = api_response
-    event_count = resp['count']
-
-    events = {}
-    for i in range(event_count):
-        events[i] = {}
-        events[i]['id'] = resp['items'][i]['id']
-        events[i]['title'] = resp['items'][i]['title']
-        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
-        events[i]['duration'] = resp['items'][i]['duration_minutes']
-        events[i]['location'] = resp['items'][i]['location']['name']
-        events[i]['artist_name'] = resp['items'][i]['artist_name']
-        events[i]['info_text'] = resp['items'][i]['info_text']
-        events[i]['subtitle'] = resp['items'][i]['subtitle']
-        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
-        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
-        events[i]['price_ak'] = resp['items'][i]['price_ak']
-        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
-        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
-        events[i]['category'] = resp['items'][i]['category']
-        # somehow the DB response is broken here, therefore some steps to fix that.
-        image_json = resp['items'][i]['event_images']
-        parsed = json.loads(image_json)
-        image = parsed['mainimage']['name']
-        events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
-        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
-        events[i]['interests'] = None
-        events[i]['interest_ranking'] = None
-    return event_count, events
 
 
 def get_partial_event_list(num_events=int, accessibility=None):
@@ -242,7 +184,9 @@ def get_partial_event_list(num_events=int, accessibility=None):
             # get all events
             resp = event_api.get_all_events(accessible=[accessibility],
                                             accept_language=accept_language,
-                                            entries=num_events)
+                                            entries=num_events,
+                                            conjunction_accessible='and'
+                                            )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
@@ -284,9 +228,9 @@ def get_partial_event_list(num_events=int, accessibility=None):
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['program_content'] = resp['items'][i]['program_content']
         events[i]['short_description'] = resp['items'][i]['short_description']
-        events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
-        events[i]['interest'] = None  # resp['items'][i]['interest']
-        events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['health_infection_notice'] = resp['items'][i]['health_infection_notice']
+        events[i]['interest'] = resp['items'][i]['interest']
+        events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
     return event_count, events
 
@@ -303,7 +247,9 @@ def get_upcoming_event_list(accessibility=None):
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
                                                     entries=30,
-                                                    time=['upcoming'])
+                                                    time=['upcoming'],
+                                                    conjunction_accessible='and'
+                                                    )
         except ApiException as e:
             print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)
     else:
@@ -343,9 +289,9 @@ def get_upcoming_event_list(accessibility=None):
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['program_content'] = resp['items'][i]['program_content']
         events[i]['short_description'] = resp['items'][i]['short_description']
-        events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
-        events[i]['interest'] = None  # resp['items'][i]['interest']
-        events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['health_infection_notice'] = resp['items'][i]['health_infection_notice']
+        events[i]['interest'] = resp['items'][i]['interest']
+        events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
     return event_count, events
 
@@ -400,9 +346,9 @@ def get_timeframe_event_list(to_date,
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['program_content'] = resp['items'][i]['program_content']
         events[i]['short_description'] = resp['items'][i]['short_description']
-        events[i]['health_infection_notice'] = None  # resp['items'][i]['health_infection_notice']
-        events[i]['interest'] = None  # resp['items'][i]['interest']
-        events[i]['accessible_other'] = None  # resp['items'][i]['accessible_other']
+        events[i]['health_infection_notice'] = resp['items'][i]['health_infection_notice']
+        events[i]['interest'] = resp['items'][i]['interest']
+        events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
     return event_count, events
 
@@ -442,23 +388,6 @@ def get_event_schedule(event_id):
     return play_count, plays
 
 
-def get_event_w_id(id):
-    """
-gets an event and all attached info by supplying the numeric id
-    :param id: event id, int
-    :return: the event and important variables
-    """
-    suburl = '/api/events/' + str(id) + '.json'
-    url = BASEURL + suburl
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Status Code: ' + str(response.status_code))
-    print('Response from: ' + str(response.url))
-    title = response.json()['title']
-    subtitle = response.json()['subtitle']
-    duration = response.json()['duration_minutes']
-    print('Title: ' + title)
-    return response, title, subtitle, duration
-
 
 def get_all_titles_ids():
     try:
@@ -490,37 +419,3 @@ gets an event title by supplying the numeric id
     resp = response.json()
     title = resp['title']
     return title
-
-
-def get_event_accessibility_info(id):
-    """
-gets the events accessibility text by supplying the numeric id
-    :param id: event id, int
-    :return: the event and important variables
-    """
-    suburl = '/api/events/' + str(id) + '.json'
-    url = BASEURL + suburl
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Status Code: ' + str(response.status_code))
-    print('Response from: ' + str(response.url))
-    resp = response.json()
-    accessibility = resp['title']
-    # TODO
-    return accessibility
-
-
-def get_event_corona_info(id):
-    """
-gets the events corona info by supplying the numeric id
-    :param id: event id, int
-    :return: the event and important variables
-    """
-    suburl = '/api/events/' + str(id) + '.json'
-    url = BASEURL + suburl
-    response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Status Code: ' + str(response.status_code))
-    print('Response from: ' + str(response.url))
-    resp = response.json()
-    corona_info = resp['title']
-    # TODO
-    return corona_info

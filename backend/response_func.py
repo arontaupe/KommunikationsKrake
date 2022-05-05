@@ -236,7 +236,8 @@ sends a response card displaying one event from the array of events according to
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['title'] = 'Barrierefreiheit'
             accessibility = ''
             for j in range(len(events.get(str(e))['accessibility'])):
-                accessibility = accessibility + str(events.get(str(e))['accessibility'][j]['name']) + '\r\n'
+                access_name = events.get(str(e))['accessibility'][j]['name']
+                accessibility += f'{access_name} \r\n '
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['text'] = accessibility
 
         if description:
