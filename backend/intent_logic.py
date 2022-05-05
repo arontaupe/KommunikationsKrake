@@ -137,3 +137,25 @@ def map_bedarf_for_db(bedarf=None):
             # if bedarf[5] == 1.0:  # begrenzte Reize
             # codes.append(accessibilities['Leichte Sprache'])
     return codes
+
+
+def order_events_by_interest(interests, events, event_count):
+    # TODO: bekommt einen interessenarray, muss similarity score errechnen mit  events[i]['interests'] und dann liste sortieren nach highest score
+    ordered_events = []
+    for event in events:
+        # if event['interests'] ==
+        print(event)
+
+    return ordered_events
+
+
+def filter_events_by_access(events, bedarf):
+    # TODO: bekommt event liste und wenn mehrere bedarfe gefragt sind, event liste filtern nach events, wo alle bedarfe gegeben sind
+    bedarf_count = 0
+    for elem in bedarf:
+        if elem != 0:
+            bedarf_count += 1
+    if bedarf_count > 1:
+        # now i know that there is more than one bedarf
+        return  # TODO
+    return

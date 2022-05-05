@@ -276,6 +276,7 @@ this is the main intent switch function. All intents that use the backend must b
                                button_text='Das Team vom Sommerblut',
                                text=' Das Sommerblut hat ein ganz tolles Team. Du kannst sie hier finden',
                                chips=['Ich habe eine andere Frage', 'Zurück: Hauptmenü'])
+
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts)
@@ -488,20 +489,48 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.event.details - program':
         event_id = retrieve_event_id(output_contexts)
+        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        program_content = 'Ich habe leider keine Programmbeschreibung gefunden'
+        title = 'der Veranstaltung'
+        if event_id and events:
+            for e in range(event_count):
+                if events[str(e)].get('id') == event_id:
+                    program_content = events[str(e)].get('program_content')
+                    title = events[str(e)].get('title')
         return chip_response(
-            text='Du hast nach dem Programmtext der Veranstaltung gefragt.  TODO Event ID = ' + str(event_id),
+            text=f'Hier ist der Programmtext von {title}: \r\n'
+                 f'{program_content}',
             chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü'])
 
     elif intent_name == 'script.event.details - corona':
         event_id = retrieve_event_id(output_contexts)
+        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        health_infection_notice = 'Ich konnte leider keine Infos zum Coronaschutz finden'
+        title = 'der Veranstaltung'
+        if event_id and events:
+            for e in range(event_count):
+                if events[str(e)].get('id') == event_id:
+                    health_infection_notice = events[str(e)].get('health_infection_notice')
+                    title = events[str(e)].get('title')
         return chip_response(
-            text='Du hast nach dem Coronainfos der Veranstaltung gefragt.  TODO Event ID = ' + str(event_id),
+            text=f'So klappt der Coronaschutz bei {title}: \r\n'
+                 f'{health_infection_notice}',
             chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü'])
 
     elif intent_name == 'script.event.details - accessibility':
         event_id = retrieve_event_id(output_contexts)
+        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        accessible_other = 'Ich konnte leider keine Infos zur Barrierefreiheit finden'
+        title = 'der Veranstaltung'
+        if event_id and events:
+            for e in range(event_count):
+                if events[str(e)].get('id') == event_id:
+                    accessible_other = events[str(e)].get('accessible_other')
+                    title = events[str(e)].get('title')
         return chip_response(
-            text='Du hast nach den Barrierefreiheitsinfos der Veranstaltung gefragt. TODO Event ID = ' + str(event_id),
+            text=f'So klappt der Coronaschutz bei {title}: \r\n'
+                 f'{accessible_other}'
+                 f'Möchtest du weitere Informationen zur Veranstaltung?',
             chips=['Zurück: Veranstaltungsübersicht', 'Hauptmenü',
                    'Kontaktmöglichkeit für Zugänglichkeitsunterstützung'])
 
@@ -516,7 +545,7 @@ this is the main intent switch function. All intents that use the backend must b
                     location = events[str(e)].get('location')
                     price = int(events[str(e)].get('price_vvk'))
                     image = events[str(e)].get('event_images')
-                    print(image)
+                    # print(image)
                     return event_detail_response(duration=duration,
                                                  title=title,
                                                  location=location,

@@ -215,33 +215,35 @@ sends a response card displaying one event from the array of events according to
             # print(next_date)
             # date = datetime.datetime.strptime(next_date, '%Y-%m-%dT%X')
             # print(date)
+        if events.get(str(e))['duration']:
+            subline = subline + 'Spieldauer: ' + str(events.get(str(e))['duration']) + ' Minuten' + '\r\n'
+        if events.get(str(e))['location']:
+            subline = subline + 'Spielort: ' + str(events.get(str(e))['location']) + '\r\n'
+        if events.get(str(e))['artist_name']:
+            subline = subline + 'Künstler: ' + str(events.get(str(e))['artist_name']) + '\r\n'
+        if events.get(str(e))['max_capacity']:
+            subline = subline + 'Maximale Platzanzahl: ' + str(
+                events.get(str(e))['max_capacity']) + '\r\n'
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['subtitle'] = subline
         if events.get(str(e))['event_images']:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][0]['rawUrl'] = events.get(str(e))[
                 'event_images']
+
         description = ''
-        if events.get(str(e))['duration']:
-            description = description + 'Spieldauer: ' + str(events.get(str(e))['duration']) + ' Minuten' + '\r\n'
-        if events.get(str(e))['location']:
-            description = description + 'Spielort: ' + str(events.get(str(e))['location']) + '\r\n'
-        if events.get(str(e))['artist_name']:
-            description = description + 'Künstler: ' + str(events.get(str(e))['artist_name']) + '\r\n'
-        if events.get(str(e))['max_capacity']:
-            description = description + 'Maximale Platzanzahl: ' + str(
-                events.get(str(e))['max_capacity']) + '\r\n'
-        if events.get(str(e))['info_text']:
-            description = description + str(events.get(str(e))['info_text'])
+        if events.get(str(e))['short_description']:
+            description = description + str(events.get(str(e))['short_description'])
         if events.get(str(e))['accessibility']:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['title'] = 'Barrierefreiheit'
             accessibility = ''
             for j in range(len(events.get(str(e))['accessibility'])):
                 accessibility = accessibility + str(events.get(str(e))['accessibility'][j]['name']) + '\r\n'
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['text'] = accessibility
+
         if description:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['text'] = description
-        sale_msg = 'Tickets hier kaufen' + '\r\n'
+        sale_msg = 'Tickets hier kaufen \r\n'
         if events.get(str(e))['price_vvk']:
-            sale_msg = sale_msg + 'Preis: ' + str(events.get(str(e))['price_vvk']) + 'Euro ' + '\r\n'
+            sale_msg = sale_msg + 'Preis: ' + str(int(events.get(str(e))['price_vvk'])) + ' Euro ' + '\r\n'
 
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))[
