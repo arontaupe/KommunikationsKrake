@@ -125,7 +125,8 @@ def get_full_event_list(accessibility=None):
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
                                                     entries=30,
-                                                    conjunction_accessible='and')
+                                                    # conjunction_accessible='and'
+                                                    )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
@@ -185,7 +186,7 @@ def get_partial_event_list(num_events=int, accessibility=None):
             resp = event_api.get_all_events(accessible=[accessibility],
                                             accept_language=accept_language,
                                             entries=num_events,
-                                            conjunction_accessible='and'
+                                            #conjunction_accessible='and'
                                             )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -248,7 +249,7 @@ def get_upcoming_event_list(accessibility=None):
                                                     accept_language=accept_language,
                                                     entries=30,
                                                     time=['upcoming'],
-                                                    conjunction_accessible='and'
+                                                    #conjunction_accessible='and'
                                                     )
         except ApiException as e:
             print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)
@@ -386,7 +387,6 @@ def get_event_schedule(event_id):
     # print(play_count)
     # pprint(plays)
     return play_count, plays
-
 
 
 def get_all_titles_ids():

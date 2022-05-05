@@ -154,10 +154,37 @@ def order_events_by_interest(interests, events=None, event_count=None):
     """
     # TODO:
 
-    ordered_events = []
+    ordered_events = events
+    user_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    for event in events:
-        # if event['interests'] ==
-        print(event)
+    for i in events:
+        score = 0
+        event_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        if events[i]['interest'] is not None:
+            for interest in events[i]['interest']:
+                if interest == 'BODIES':
+                    event_interests[0] = 1
+                elif interest == 'LIFE':
+                    event_interests[1] = 1
+                elif interest == 'RITUALS':
+                    event_interests[2] = 1
+                elif interest == 'POETRY':
+                    event_interests[3] = 1
+                elif interest == 'UTOPIA':
+                    event_interests[4] = 1
+                elif interest == 'SOCIETY':
+                    event_interests[5] = 1
+                elif interest == 'NATURE':
+                    event_interests[6] = 1
+                elif interest == 'NONACTIVE':
+                    event_interests[7] = 1
+                elif interest == 'FUNNY':
+                    event_interests[8] = 1
+        print(event_interests)
+    for interest in interests:
+        if interest == 'Ja':
+            user_interests[interest] = 1
+    print(interests)
+    print(user_interests)
 
     return event_count, ordered_events

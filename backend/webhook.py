@@ -15,14 +15,15 @@ from datetime import datetime, timedelta
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
     context_response, button_response, event_schedule_response, event_detail_response
 # import functionality to read out variables from gdf
-from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id
+from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id, \
+    retrieve_interests
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
     get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
 from video_builder import make_video_array
 
 # import all background intent_logic functionality
-from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db
+from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db, order_events_by_interest
 
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
@@ -279,19 +280,13 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
-        bedarf = retrieve_bedarf(output_contexts)
-        print(bedarf)
+        bedarf = retrieve_bedarf(output_contexts=output_contexts)
 
-        bedarf_count = 0
-        for elem in bedarf:
-            if elem != 0:
-                bedarf_count += 1
-        if bedarf_count > 1:
-            print('multiple accessibilities detected')
-        # interests = retrieve_interests()
+        interests = retrieve_interests(output_contexts=output_contexts)
         codes = map_bedarf_for_db(bedarf=bedarf)
         print(codes)
         event_count, events = get_full_event_list(accessibility=codes)
+        event_count, events = order_events_by_interest(interests=interests, event_count=event_count, events=events)
         if events and event_count:
             text = ''
             if event_count > 5:
