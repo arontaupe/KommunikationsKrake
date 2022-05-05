@@ -81,15 +81,20 @@ this is the main intent switch function. All intents that use the backend must b
         #    url='https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
     elif intent_name == 'script.accessibility.select':
-        return chip_response(text='Viele Veranstaltungen sind barrierefrei Zugänglich. '
-                                  'Wenn du magst, kannst du nun einen Bedarf wählen. '
-                                  'Dann zeige ich dir nur Veranstaltungen an, bei denen dieser Bedarf erfüllt wird.',
-                             chips=['Keinen Bedarf angeben',
-                                    'Zugänglich in einfacher Sprache',
-                                    'Zugänglich mit Seheinschränkung',
-                                    'Zugänglich mit Höreinschränkungen',
-                                    'Zugänglich mit Mobilitätseinschränkungen',
-                                    'Zugänglich ohne intensive sensorische Reizungen'])
+        return chip_response(text='Viele Veranstaltungen sind barrierefrei.\r\n'
+                                  'Du kannst auswählen:\r\n'
+                                  'Welche Form von Barrierefreiheit brauchst Du?\r\n'
+                                  'Dann zeige ich dir nur Veranstaltungen an.\r\n'
+                                  'Diese Veranstaltungen sind barrierefrei für Dich.\r\n'
+                                  'Welche Form von Barrierefreiheit brauchst Du?\r\n',
+                             chips=['Ich brauche keine Barrierefreiheit',
+                                    'Ich suche Veranstaltungen in einfacher Sprache',
+                                    'Ich habe eine Sehbehinderung',
+                                    'Ich habe eine Hörbehinderung',
+                                    'Ich habe eine Gehbehinderung',
+                                    # 'Ich suche eine Veranstaltung ohne schnelle, blinkende Lichter.
+                                    # Und ohne laute, plötzliche Geräusche.'
+                                    ])
 
     elif intent_name == 'accessibility.select - collect':
         return collect_accessibility_needs(parameters=parameters,
@@ -105,9 +110,12 @@ this is the main intent switch function. All intents that use the backend must b
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
                 # print('Saving final Accessibility: ' + str(prev_selection_bedarf))
         return chip_w_context_response(
-            text='Hier kannst du nun 9 Aussagen bewerten und ich suche dir danach eine passende Veranstaltung heraus. \r\n'
-                 'Du kannst sie immer mit Ja, Nein, oder Ist mir Egal bewerten. \r\n'
-                 'Erste Frage: \r\n'
+            text='Ich möchte dir Veranstaltungen empfehlen.\r\n'
+                 'Veranstaltungen, die gut zu dir passen.\r\n'
+                 'Dazu muss ich dich erstmal kennenlernen.\r\n'
+                 'Ich befrage dich zu Deinen Interessen.\r\n'
+                 'Du kannst immer mit Ja, mit Nein, oder mit Egal antworten. \r\n\r\n'
+                 'Erste Aussage: \r\n\r\n'
                  'Ich finde menschliche Körper interessant.',
             chips=["Ja", "Nein", "Ist mir egal"],
             session_id=session_id,
@@ -256,7 +264,7 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.9 - nein':
         interest_9 = parameters.get('interest_9')
         return chip_w_context_response(text=None,
-                                       chips=["Weiter: Zeitselektor", "Menü"],
+                                       chips=["Weiter zu den Veranstaltungstipps", "Menü"],
                                        session_id=session_id,
                                        context='interest_9',
                                        variable_name='interest_9',
@@ -290,13 +298,15 @@ this is the main intent switch function. All intents that use the backend must b
         if events and event_count:
             text = ''
             if event_count > 5:
-                text = 'Ich habe mehr als 5 (' + str(
-                    event_count) + ') Veranstaltungen gefunden, möchtest du nach Veranstaltungsdatum filtern?'
-                chips = ["Nein: alle Empfehlungen anzeigen", 'Ja: Zeitraum auswählen']
+                text = 'Ich habe sehr viele Veranstaltungen für dich gefunden. ' \
+                       'Möchtest du ein bestimmtes Datum auswählen?',
+                chips = ["Nein: alle Empfehlungen anzeigen",
+                         'Ja: Zeitraum auswählen']
             else:
-                text = 'Okay, hier kommt mein heißer Tipp für dich! \r\n' \
+                text = 'Okay, hier kommt mein Tipp für dich! \r\n' \
                        'Ich kann dir mehr zu einer Veranstaltung erzählen oder eine andere Veranstaltung vorschlagen'
-                chips = ["Zeig mir die Veranstaltungen"]
+                chips = ["Zeig mir die Veranstaltungen",
+                         'Zeig mir endlich die Veranstaltungen!']
             return chip_w_context_response(text=text,
                                            chips=chips,
                                            session_id=session_id,
@@ -654,7 +664,7 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Ich bin noch am lernen. Ich kann dir Veranstaltungen empfehlen und Fragen beantworten. '
                  'Hoffentlich kann ich bald auch so gut digital surfen wie du.',
-            chips=['Hauptmenü', 'Ich habe eine Frage'])
+            chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'])
 
     elif intent_name == 'faq.knowledge.chatbot':
         return chip_response(
@@ -670,34 +680,38 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.welcome':
         return chip_response(
-            text='Hi! Mein Name ist Ällei! \r\n'
+            text='Hi! \r\nMein Name ist Ällei! \r\n'
                  'Schön, dass du hier bist. \r\n'
-                 'Ich kann dir helfen, Informationen über das Sommerblut Festival zu finden. \r\n'
-                 'Bist du das erste mal hier? Dann schau dir gern das Einführungs-Video an. \r\n',
-            chips=['Einführungsvideo', 'Kenne ich schon: Hauptmenü', 'Ich habe eine Frage'],
+                 'Suchst Du nach Informationen über das Sommerblut Festival? \r\n'
+                 'Ich kann Dir helfen. Bist du das erste mal hier? \r\n'
+                 'Dann schau dir gern das Einführungs-Video an.\r\n',
+            chips=['Einführungsvideo', 'Einführungsvideo in leichter Sprache', 'Kenne ich schon: Hauptmenü',
+                   'Ich habe eine Frage'],
             dgs_videos_bot=make_video_array(['A1']),
             dgs_videos_chips=make_video_array(['RC1a', 'RC1b', 'RC2', 'RC3']))
 
     elif intent_name == 'script.bot.introvideo':
         return chip_response(
-            text='Video: Wie funktioniert der bot und was kann er alles:',
-            chips=['Weiter: Hauptmenü'],
+            text='Video: Wie funktioniert der Chatbot und was kann er alles:',
+            chips=['Weiter zum Hauptmenü'],
             dgs_videos_bot=None,
             dgs_videos_chips=make_video_array(['RC4']))
 
     elif intent_name == 'script.main_menu':
         return chip_response(
-            text='Okay, worauf hast du jetzt Lust?'
-                 'Ich kann dir zum Beispiel noch mehr über mich und über künstliche Intelligenz erzählen.'
-                 'Oder ich berate dich, welche Veranstaltung dir gefallen wird.',
+            text='Okay, worauf hast du jetzt Lust?\r\n'
+                 'Ich kann dir zum Beispiel noch mehr über mich erzählen.\r\n'
+                 'Und über künstliche Intelligenz.\r\n'
+                 'Oder ich berate dich, welche Veranstaltung dir gefallen wird.\r\n',
             chips=['Video: Ällei und KI', 'Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
-                   'Mehr über Sommerblut erfahren'],
+                   'Mehr über Sommerblut erfahren', 'Team von Ällei kontaktieren'],
             dgs_videos_bot=make_video_array(['A2']),
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
 
     elif intent_name == 'script.bot_theme_input':
         return chip_response(
-            text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"',
+            text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"\r\n'
+                 'Dieses Video ist leider noch nicht verfügbar.',
             chips=['Mehr über Sommerblut erfahren',
                    'Ich habe eine Frage',
                    'Veranstaltungsberatung'],
@@ -748,11 +762,8 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.sb_theme.play_video':
         return chip_response(
-            text='Das Sommerblut gibt es nun schon seit mehr als 20 Jahren. Hier ist ein Video. '
-                 'Es erzählt dir mehr über das Festival. TODO',
-            chips=['Video anschauen', 'Frage zum Sommerblut allgemein',
-                   'Frage zur Barrierefreiheit',
-                   'Frage zu Ällei, dem Chatbot'],
+            text='Hier ist ein Video zum Thema "Mach mal neu". Das Video gibt es noch nicht. ',
+            chips=['Weiter: Bedarfsfilter'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
         )
@@ -761,8 +772,29 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.sb_intro':
         return chip_response(
             text='Das Sommerblut gibt es nun schon seit mehr als 20 Jahren. Hier ist ein Video. '
-                 'Es erzählt dir mehr über das Festival. TODO',
-            chips=['Video anschauen', 'Vorstellung überspringen'],
+                 'Es erzählt dir mehr über das Festival.',
+            chips=['Video anschauen: Was ist Sommerblut', 'Vorstellung überspringen'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'script.sb_theme_intro':
+        return chip_response(
+            text='Alles klar.\r\n '
+                 'Beim Sommerblut gibt es ganz unterschiedliche Veranstaltungen.\r\n'
+                 'Dieses Jahr ist unser Motto "Mach mal neu".\r\n'
+                 'Soll ich dir dazu mehr erzählen?',
+            chips=['Video: Mehr zum Thema "Mach mal Neu"', 'Nein, weiter zur Veranstaltungsberatung'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+
+    elif intent_name == 'mail.feedback':
+        return button_response(
+            text='Du kannst uns eine Email schreiben: ',
+            button_text='Email an Ällei',
+            url='mailto:chatbot@sommerblut.de',
+            chips=['Tschüss', 'Hauptmenü'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
         )

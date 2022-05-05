@@ -22,13 +22,15 @@ gets the accessibility info stored in GDF and performs a database request with t
     bedarf = parameters.get('bedarf')
     if len(bedarf) == 0:
         return chip_response(
-            text='Du kannst jetzt eine Zugänglichkeit eingeben, die bei meinen Empfehlungen beachtet werden soll.',
-            chips=['Keinen Bedarf angeben',
-                   'Zugänglich in einfacher Sprache',
-                   'Zugänglich mit Seheinschränkung',
-                   'Zugänglich mit Höreinschränkungen',
-                   'Zugänglich mit Mobilitätseinschränkungen',
-                   'Zugänglich ohne intensive sensorische Reizungen'])
+            text='Brauchst Du etwas Bestimmtes? Was soll ich bei der Auswahl bedenken?',
+            chips=['Ich brauche keine Barrierefreiheit',
+                   'Ich suche Veranstaltungen in einfacher Sprache',
+                   'Ich habe eine Sehbehinderung',
+                   'Ich habe eine Hörbehinderung',
+                   'Ich habe eine Gehbehinderung',
+                   # 'Ich suche eine Veranstaltung ohne schnelle, blinkende Lichter.
+                   # Und ohne laute, plötzliche Geräusche.'
+                   ])
 
     prev_selection_bedarf = None
     for i in range(num_contexts):
@@ -62,9 +64,8 @@ gets the accessibility info stored in GDF and performs a database request with t
                                    context='save_bedarf',
                                    variable_name='prev_selection_bedarf',
                                    variable=new_bedarf,
-                                   text=f'Okay, ich habe deinen Bedarf {bedarf} abgespeichert.'
-                                        f'Willst du weitere Bedarfe angeben?',
-                                   chips=["Ja", "Nein, weiter: Interessenselektor", "Menü"])
+                                   text=f'Brauchst Du noch eine andere Form von Barrierefreiheit?',
+                                   chips=["Ja", "Nein, weiter zum Interessenselektor", "Menü"])
 
 
 def show_full_event_list(output_contexts, session_id):
