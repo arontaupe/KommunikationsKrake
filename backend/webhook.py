@@ -196,7 +196,7 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.interest.select.6':
         # here we are asking for interest_6
-        return chip_response(text='Ich bin gerne Draußen unterwegs und mag Pflanzen.',
+        return chip_response(text='Ich bin gerne Draußen unterwegs und mag Natur.',
                              chips=["Ja", "Nein", "Ist mir egal"],
                              )
 

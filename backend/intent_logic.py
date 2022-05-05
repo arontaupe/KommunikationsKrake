@@ -144,47 +144,58 @@ def map_bedarf_for_db(bedarf=None):
 def order_events_by_interest(interests, events=None, event_count=None):
     """
     bekommt einen interessenarray mit ints: [0,1,1,1,0,0,1,0,0]
-    muss similarity score errechnen mit events[i]['interests'] und dann liste sortieren nach highest score
+    muss similarity score errechnen mit events[i]['interests'] und dann liste sortieren nach the highest score
 
     Names of the entities from DB: BODIES, LIFE, RITUALS, POETRY, UTOPIA, SOCIETY, NATURE, NONACTIVE, FUNNY
     :param interests: array with 9 ints
     :param events: list of events
     :param event_count: number of elements in events
-    :return: events list, but sorted according to interest
+    :return: events list, but sorted according to interest score
     """
-    # TODO:
+    if event_count is not None:
+        user_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    ordered_events = events
-    user_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        for i in range(len(interests)):
+            if interests[i] == 'Ja':
+                user_interests[i] = 1
+            if interests[i] == 'Ist mir egal':
+                user_interests[i] = 2
+        print(f'Interests: {interests}')
+        print(f'User Interests: {user_interests}')
 
-    for i in events:
-        score = 0
-        event_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        if events[i]['interest'] is not None:
-            for interest in events[i]['interest']:
-                if interest == 'BODIES':
-                    event_interests[0] = 1
-                elif interest == 'LIFE':
-                    event_interests[1] = 1
-                elif interest == 'RITUALS':
-                    event_interests[2] = 1
-                elif interest == 'POETRY':
-                    event_interests[3] = 1
-                elif interest == 'UTOPIA':
-                    event_interests[4] = 1
-                elif interest == 'SOCIETY':
-                    event_interests[5] = 1
-                elif interest == 'NATURE':
-                    event_interests[6] = 1
-                elif interest == 'NONACTIVE':
-                    event_interests[7] = 1
-                elif interest == 'FUNNY':
-                    event_interests[8] = 1
-        print(event_interests)
-    for interest in interests:
-        if interest == 'Ja':
-            user_interests[interest] = 1
-    print(interests)
-    print(user_interests)
+        for i in events:
+            score = 0
+            event_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+            if events[i]['interest'] is not None:
+                for interest in events[i]['interest']:
+                    if interest == 'BODIES':
+                        event_interests[0] = 1
+                    elif interest == 'LIFE':
+                        event_interests[1] = 1
+                    elif interest == 'RITUALS':
+                        event_interests[2] = 1
+                    elif interest == 'POETRY':
+                        event_interests[3] = 1
+                    elif interest == 'UTOPIA':
+                        event_interests[4] = 1
+                    elif interest == 'SOCIETY':
+                        event_interests[5] = 1
+                    elif interest == 'NATURE':
+                        event_interests[6] = 1
+                    elif interest == 'NONACTIVE':
+                        event_interests[7] = 1
+                    elif interest == 'FUNNY':
+                        event_interests[8] = 1
+                # print(f'Event Interests: {event_interests}')
 
-    return event_count, ordered_events
+            for j in user_interests:
+                if user_interests[j] == event_interests[j]:
+                    score += 1
+            # store each interest ranking score in the list, for future reference
+            events[i]['interest_ranking'] = score
+            # print(events[i]['interest_ranking'])
+        # print(events.keys())
+        # the actual sorting, highest ranking first
+        events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
+        # print(events.keys())
+    return event_count, events
