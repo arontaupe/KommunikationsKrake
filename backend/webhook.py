@@ -647,7 +647,7 @@ this is the main intent switch function. All intents that use the backend must b
                                                       f'Er kostet {price} Euro. \r\n'
                                                       f'(Event_ID: {event_id})',
                                                  chips=['Zurück zu den Einzelheiten zur Veranstaltung',
-                                                        'Zurück: Veranstaltungsdetails', 'Hauptmenü',
+                                                        'Hauptmenü',
                                                         'Zu welchen Zeiten kann ich die Veranstaltung besuchen?'],
                                                  # dgs_videos_bot=make_video_array(),
                                                  dgs_videos_chips=make_video_array(['RC34c', 'RC36'])
@@ -655,7 +655,8 @@ this is the main intent switch function. All intents that use the backend must b
         else:
             return chip_response(
                 text='Irgendwie habe ich wohl die Veranstaltungsnummer vergessen, versuch es doch noch einmal.',
-                chips=['Zurück: Veranstaltungsübersicht', 'Zurück: Veranstaltungsdetails', 'Hauptmenü'])
+                chips=['Zurück zur Übersicht der Veranstaltungen',
+                       'Zurück zu den Einzelheiten zur Veranstaltung', 'Hauptmenü'])
 
     elif intent_name == 'script.event.details.showSchedule':
         event_id = int(retrieve_event_id(output_contexts))
@@ -702,7 +703,7 @@ this is the main intent switch function. All intents that use the backend must b
                                                     '4. Wo und Wann findet sie statt?\r\n',
                                                chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
                                                       'Datum und Ort',
-                                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+                                                      'Zeig mir die Veranstaltung auf Sommerblut.de',
                                                       'Zurück: Ich habe eine Frage'],
                                                variable_name='event_id',
                                                variable=event_id,
