@@ -827,7 +827,7 @@ this is the main intent switch function. All intents that use the backend must b
             text='Okay, was willst du über das Sommerblut wissen?',
             chips=['Festivalschwerpunkt 2022',
                    'Womit beschäftigt sich das Sommerblut?',
-                   'Frage zur Barrierefreiheit',
+                   # 'Frage zur Barrierefreiheit',
                    'Wer steckt hinter dem Sommerblut?'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
@@ -839,7 +839,7 @@ this is the main intent switch function. All intents that use the backend must b
                  'Oder du kannst aus einem Bereich auswählen:',
             chips=['Frage zu einer konkreten Veranstaltung',
                    'Frage zum Sommerblut allgemein',
-                   'Frage zur Barrierefreiheit',
+                   #'Frage zur Barrierefreiheit',
                    'Frage zu Ällei, dem Chatbot'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
@@ -849,10 +849,20 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Hier kommt eine Hilfestellung zur Benutzung von Ällei, dem Chatbot.',
             chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
-                   'Frage zur Barrierefreiheit',
+                   # 'Frage zur Barrierefreiheit',
                    'Frage zu Ällei, dem Chatbot'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+        )
+    elif intent_name == 'access.options':
+        return chip_response(
+            text='Heiraten, Häusle bauen, und dann sterben, höchstwahrscheinlich',
+            chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
+                   # 'Frage zur Barrierefreiheit',
+                   'Frage zu Ällei, dem Chatbot'],
+            # TODO
+            dgs_videos_bot=make_video_array(['Intro_Video_LS']),
+            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
         )
 
     elif intent_name == 'script.play_sb_video':
