@@ -50,14 +50,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_tag_by_id**
 > Tag get_tag_by_id(tag_id, accept_language=accept_language)
@@ -104,11 +104,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

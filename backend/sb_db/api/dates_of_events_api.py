@@ -47,9 +47,12 @@ class DatesOfEventsApi(object):
         :param int page: Number of page<br>Example: /api/events.json?page=2
         :param int year: returns event dates of events of the given year<br>Example: /api/events.json?year=2020
         :param int archive: returns event dates of events of archived or not archived festivals<br>Example: /api/events.json?archive=1
-        :param list[int] category: returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]
-        :param list[int] tag: returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
-        :param list[int] accessible: returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]
+        :param int reduced_date_list: returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1
+        :param list[int] category: returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]
+        :param str conjunction_category: returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
+        :param list[int] tag: returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
+        :param list[int] accessible: returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]
+        :param str conjunction_accessible: returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
         :param list[int] location: returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100]
         :param list[str] time: returns events with event dates in the given timeframe<br>Example: /api/events.json?time=[\"today\"]<br>Possible Values:<br> - today<br> - upcoming<br> - past
         :param list[str] from_date: returns events with event dates from the given date<br>Example: /api/events.json?fromDate=[\"2022-02-14 00:00:00\"]
@@ -81,9 +84,12 @@ class DatesOfEventsApi(object):
         :param int page: Number of page<br>Example: /api/events.json?page=2
         :param int year: returns event dates of events of the given year<br>Example: /api/events.json?year=2020
         :param int archive: returns event dates of events of archived or not archived festivals<br>Example: /api/events.json?archive=1
-        :param list[int] category: returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]
-        :param list[int] tag: returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
-        :param list[int] accessible: returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]
+        :param int reduced_date_list: returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1
+        :param list[int] category: returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]
+        :param str conjunction_category: returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
+        :param list[int] tag: returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
+        :param list[int] accessible: returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]
+        :param str conjunction_accessible: returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
         :param list[int] location: returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100]
         :param list[str] time: returns events with event dates in the given timeframe<br>Example: /api/events.json?time=[\"today\"]<br>Possible Values:<br> - today<br> - upcoming<br> - past
         :param list[str] from_date: returns events with event dates from the given date<br>Example: /api/events.json?fromDate=[\"2022-02-14 00:00:00\"]
@@ -94,7 +100,7 @@ class DatesOfEventsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['order', 'entries', 'page', 'year', 'archive', 'category', 'tag', 'accessible', 'location', 'time', 'from_date', 'to_date', 'accept_language']  # noqa: E501
+        all_params = ['order', 'entries', 'page', 'year', 'archive', 'reduced_date_list', 'category', 'conjunction_category', 'tag', 'accessible', 'conjunction_accessible', 'location', 'time', 'from_date', 'to_date', 'accept_language']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -126,15 +132,21 @@ class DatesOfEventsApi(object):
             query_params.append(('year', params['year']))  # noqa: E501
         if 'archive' in params:
             query_params.append(('archive', params['archive']))  # noqa: E501
+        if 'reduced_date_list' in params:
+            query_params.append(('reducedDateList', params['reduced_date_list']))  # noqa: E501
         if 'category' in params:
             query_params.append(('category', params['category']))  # noqa: E501
             collection_formats['category'] = 'multi'  # noqa: E501
+        if 'conjunction_category' in params:
+            query_params.append(('conjunction[category]', params['conjunction_category']))  # noqa: E501
         if 'tag' in params:
             query_params.append(('tag', params['tag']))  # noqa: E501
             collection_formats['tag'] = 'multi'  # noqa: E501
         if 'accessible' in params:
             query_params.append(('accessible', params['accessible']))  # noqa: E501
             collection_formats['accessible'] = 'multi'  # noqa: E501
+        if 'conjunction_accessible' in params:
+            query_params.append(('conjunction[accessible]', params['conjunction_accessible']))  # noqa: E501
         if 'location' in params:
             query_params.append(('location', params['location']))  # noqa: E501
             collection_formats['location'] = 'multi'  # noqa: E501
@@ -194,9 +206,12 @@ class DatesOfEventsApi(object):
         :param int entries: Number of entries per page to return (standard = 10)<br>Example: /api/events.json?entries=5
         :param int page: Number of page<br>Example: /api/events.json?page=2
         :param int archive: returns event dates of events of archived or not archived festivals<br>Example: /api/events.json?archive=1
-        :param list[int] category: returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]
-        :param list[int] tag: returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
-        :param list[int] accessible: returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]
+        :param int reduced_date_list: returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1
+        :param list[int] category: returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]
+        :param str conjunction_category: returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
+        :param list[int] tag: returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
+        :param list[int] accessible: returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]
+        :param str conjunction_accessible: returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
         :param list[int] location: returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100]
         :param list[str] time: returns events with event dates in the given timeframe<br>Example: /api/events.json?time=[\"today\"]<br>Possible Values:<br> - today<br> - upcoming<br> - past
         :param list[str] from_date: returns events with event dates from the given date<br>Example: /api/events.json?fromDate=[\"2022-02-14 00:00:00\"]
@@ -228,9 +243,12 @@ class DatesOfEventsApi(object):
         :param int entries: Number of entries per page to return (standard = 10)<br>Example: /api/events.json?entries=5
         :param int page: Number of page<br>Example: /api/events.json?page=2
         :param int archive: returns event dates of events of archived or not archived festivals<br>Example: /api/events.json?archive=1
-        :param list[int] category: returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]
-        :param list[int] tag: returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
-        :param list[int] accessible: returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]
+        :param int reduced_date_list: returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1
+        :param list[int] category: returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]
+        :param str conjunction_category: returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
+        :param list[int] tag: returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]
+        :param list[int] accessible: returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]
+        :param str conjunction_accessible: returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and
         :param list[int] location: returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100]
         :param list[str] time: returns events with event dates in the given timeframe<br>Example: /api/events.json?time=[\"today\"]<br>Possible Values:<br> - today<br> - upcoming<br> - past
         :param list[str] from_date: returns events with event dates from the given date<br>Example: /api/events.json?fromDate=[\"2022-02-14 00:00:00\"]
@@ -241,7 +259,7 @@ class DatesOfEventsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['year', 'order', 'entries', 'page', 'archive', 'category', 'tag', 'accessible', 'location', 'time', 'from_date', 'to_date', 'accept_language']  # noqa: E501
+        all_params = ['year', 'order', 'entries', 'page', 'archive', 'reduced_date_list', 'category', 'conjunction_category', 'tag', 'accessible', 'conjunction_accessible', 'location', 'time', 'from_date', 'to_date', 'accept_language']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -277,15 +295,21 @@ class DatesOfEventsApi(object):
             query_params.append(('page', params['page']))  # noqa: E501
         if 'archive' in params:
             query_params.append(('archive', params['archive']))  # noqa: E501
+        if 'reduced_date_list' in params:
+            query_params.append(('reducedDateList', params['reduced_date_list']))  # noqa: E501
         if 'category' in params:
             query_params.append(('category', params['category']))  # noqa: E501
             collection_formats['category'] = 'multi'  # noqa: E501
+        if 'conjunction_category' in params:
+            query_params.append(('conjunction[category]', params['conjunction_category']))  # noqa: E501
         if 'tag' in params:
             query_params.append(('tag', params['tag']))  # noqa: E501
             collection_formats['tag'] = 'multi'  # noqa: E501
         if 'accessible' in params:
             query_params.append(('accessible', params['accessible']))  # noqa: E501
             collection_formats['accessible'] = 'multi'  # noqa: E501
+        if 'conjunction_accessible' in params:
+            query_params.append(('conjunction[accessible]', params['conjunction_accessible']))  # noqa: E501
         if 'location' in params:
             query_params.append(('location', params['location']))  # noqa: E501
             collection_formats['location'] = 'multi'  # noqa: E501

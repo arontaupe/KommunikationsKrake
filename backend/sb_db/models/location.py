@@ -38,7 +38,9 @@ class Location(object):
         'hints': 'str',
         'name': 'str',
         'accessible_request': 'str',
-        'location_group': 'LocationGroup'
+        'accessible_request_object': 'list[Accessibility]',
+        'location_group': 'LocationGroup',
+        'direction_description': 'str'
     }
 
     attribute_map = {
@@ -52,10 +54,12 @@ class Location(object):
         'hints': 'hints',
         'name': 'name',
         'accessible_request': 'accessible_request',
-        'location_group': 'location_group'
+        'accessible_request_object': 'accessible_request_object',
+        'location_group': 'location_group',
+        'direction_description': 'direction_description'
     }
 
-    def __init__(self, id=None, street=None, number=None, postal=None, city=None, country=None, contracts=None, hints=None, name=None, accessible_request=None, location_group=None):  # noqa: E501
+    def __init__(self, id=None, street=None, number=None, postal=None, city=None, country=None, contracts=None, hints=None, name=None, accessible_request=None, accessible_request_object=None, location_group=None, direction_description=None):  # noqa: E501
         """Location - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._street = None
@@ -67,7 +71,9 @@ class Location(object):
         self._hints = None
         self._name = None
         self._accessible_request = None
+        self._accessible_request_object = None
         self._location_group = None
+        self._direction_description = None
         self.discriminator = None
         if id is not None:
             self.id = id
@@ -89,8 +95,12 @@ class Location(object):
             self.name = name
         if accessible_request is not None:
             self.accessible_request = accessible_request
+        if accessible_request_object is not None:
+            self.accessible_request_object = accessible_request_object
         if location_group is not None:
             self.location_group = location_group
+        if direction_description is not None:
+            self.direction_description = direction_description
 
     @property
     def id(self):
@@ -307,6 +317,29 @@ class Location(object):
         self._accessible_request = accessible_request
 
     @property
+    def accessible_request_object(self):
+        """Gets the accessible_request_object of this Location.  # noqa: E501
+
+        Accessibilities  # noqa: E501
+
+        :return: The accessible_request_object of this Location.  # noqa: E501
+        :rtype: list[Accessibility]
+        """
+        return self._accessible_request_object
+
+    @accessible_request_object.setter
+    def accessible_request_object(self, accessible_request_object):
+        """Sets the accessible_request_object of this Location.
+
+        Accessibilities  # noqa: E501
+
+        :param accessible_request_object: The accessible_request_object of this Location.  # noqa: E501
+        :type: list[Accessibility]
+        """
+
+        self._accessible_request_object = accessible_request_object
+
+    @property
     def location_group(self):
         """Gets the location_group of this Location.  # noqa: E501
 
@@ -326,6 +359,29 @@ class Location(object):
         """
 
         self._location_group = location_group
+
+    @property
+    def direction_description(self):
+        """Gets the direction_description of this Location.  # noqa: E501
+
+        directions  # noqa: E501
+
+        :return: The direction_description of this Location.  # noqa: E501
+        :rtype: str
+        """
+        return self._direction_description
+
+    @direction_description.setter
+    def direction_description(self, direction_description):
+        """Sets the direction_description of this Location.
+
+        directions  # noqa: E501
+
+        :param direction_description: The direction_description of this Location.  # noqa: E501
+        :type: str
+        """
+
+        self._direction_description = direction_description
 
     def to_dict(self):
         """Returns the model properties as a dict"""

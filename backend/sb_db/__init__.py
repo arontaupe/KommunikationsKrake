@@ -37,9 +37,7 @@ from sb_db.models.dates import Dates
 from sb_db.models.dates_inner import DatesInner
 from sb_db.models.event import Event
 from sb_db.models.event_audience_format import EventAudienceFormat
-from sb_db.models.event_contact_promoter import EventContactPromoter
 from sb_db.models.event_date import EventDate
-from sb_db.models.event_date_contact_promoter import EventDateContactPromoter
 from sb_db.models.event_dates import EventDates
 from sb_db.models.event_ensemble_function import EventEnsembleFunction
 from sb_db.models.event_ensembles import EventEnsembles

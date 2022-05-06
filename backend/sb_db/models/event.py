@@ -31,6 +31,7 @@ class Event(object):
         'remark': 'str',
         'accessible_request_sommerblut': 'list[Accessibility]',
         'divergent_subtitle': 'str',
+        'description_header_image': 'str',
         'photo_delivery_date': 'date',
         'festival': 'Festival',
         'audience_format': 'list[EventAudienceFormat]',
@@ -41,7 +42,6 @@ class Event(object):
         'missing_ensemble_positions': 'str',
         'next_date': 'EventNextDate',
         'min_date': 'EventNextDate',
-        'contact_promoter': 'EventContactPromoter',
         'productions_type': 'int',
         'show_reduced_date_list': 'bool',
         'is_locked': 'bool',
@@ -59,6 +59,7 @@ class Event(object):
         'date_replacement': 'str',
         'event_images': 'str',
         'id': 'int',
+        'health_infection_notice': 'str',
         'title': 'str',
         'substitle': 'str',
         'program_content': 'str',
@@ -77,6 +78,7 @@ class Event(object):
         'max_capacity': 'int',
         'max_tickets_vvk': 'int',
         'info_tickets_vvk': 'str',
+        'accessible_other': 'str',
         'evening_program': 'bool',
         'short_description': 'str',
         'social_media_info': 'str',
@@ -90,6 +92,7 @@ class Event(object):
         'remark': 'remark',
         'accessible_request_sommerblut': 'accessible_request_sommerblut',
         'divergent_subtitle': 'divergent_subtitle',
+        'description_header_image': 'description_header_image',
         'photo_delivery_date': 'photo_delivery_date',
         'festival': 'festival',
         'audience_format': 'audience_format',
@@ -100,7 +103,6 @@ class Event(object):
         'missing_ensemble_positions': 'missing_ensemble_positions',
         'next_date': 'next_date',
         'min_date': 'min_date',
-        'contact_promoter': 'contact_promoter',
         'productions_type': 'productions_type',
         'show_reduced_date_list': 'show_reduced_date_list',
         'is_locked': 'is_locked',
@@ -118,6 +120,7 @@ class Event(object):
         'date_replacement': 'date_replacement',
         'event_images': 'event_images',
         'id': 'id',
+        'health_infection_notice': 'health_infection_notice',
         'title': 'title',
         'substitle': 'substitle',
         'program_content': 'program_content',
@@ -136,6 +139,7 @@ class Event(object):
         'max_capacity': 'max_capacity',
         'max_tickets_vvk': 'max_tickets_vvk',
         'info_tickets_vvk': 'info_tickets_vvk',
+        'accessible_other': 'accessible_other',
         'evening_program': 'evening_program',
         'short_description': 'short_description',
         'social_media_info': 'social_media_info',
@@ -145,11 +149,12 @@ class Event(object):
         'price_handling': 'price_handling'
     }
 
-    def __init__(self, remark=None, accessible_request_sommerblut=None, divergent_subtitle=None, photo_delivery_date=None, festival=None, audience_format=None, category=None, event_dates=None, photo_delivery=None, ensembles=None, missing_ensemble_positions=None, next_date=None, min_date=None, contact_promoter=None, productions_type=None, show_reduced_date_list=None, is_locked=None, is_completely_translated=None, tags=None, streaming_player=None, chat=None, internal_notices=None, logo_group1=None, logo_group2=None, logo_group3=None, logo_group4=None, logo_group5=None, hide_event_dates=None, date_replacement=None, event_images=None, id=None, title=None, substitle=None, program_content=None, info_text=None, duration_minutes=None, audience_format_other=None, video_links=None, fotografer_allowed=None, artist_name=None, location_remark=None, price_vvk=None, price_vvk_reduced=None, price_ak=None, price_ak_reduced=None, ticket_link=None, max_capacity=None, max_tickets_vvk=None, info_tickets_vvk=None, evening_program=None, short_description=None, social_media_info=None, social_media_promoter=None, location=None, ticket_proportions=None, price_handling=None):  # noqa: E501
+    def __init__(self, remark=None, accessible_request_sommerblut=None, divergent_subtitle=None, description_header_image=None, photo_delivery_date=None, festival=None, audience_format=None, category=None, event_dates=None, photo_delivery=None, ensembles=None, missing_ensemble_positions=None, next_date=None, min_date=None, productions_type=None, show_reduced_date_list=None, is_locked=None, is_completely_translated=None, tags=None, streaming_player=None, chat=None, internal_notices=None, logo_group1=None, logo_group2=None, logo_group3=None, logo_group4=None, logo_group5=None, hide_event_dates=None, date_replacement=None, event_images=None, id=None, health_infection_notice=None, title=None, substitle=None, program_content=None, info_text=None, duration_minutes=None, audience_format_other=None, video_links=None, fotografer_allowed=None, artist_name=None, location_remark=None, price_vvk=None, price_vvk_reduced=None, price_ak=None, price_ak_reduced=None, ticket_link=None, max_capacity=None, max_tickets_vvk=None, info_tickets_vvk=None, accessible_other=None, evening_program=None, short_description=None, social_media_info=None, social_media_promoter=None, location=None, ticket_proportions=None, price_handling=None):  # noqa: E501
         """Event - a model defined in Swagger"""  # noqa: E501
         self._remark = None
         self._accessible_request_sommerblut = None
         self._divergent_subtitle = None
+        self._description_header_image = None
         self._photo_delivery_date = None
         self._festival = None
         self._audience_format = None
@@ -160,7 +165,6 @@ class Event(object):
         self._missing_ensemble_positions = None
         self._next_date = None
         self._min_date = None
-        self._contact_promoter = None
         self._productions_type = None
         self._show_reduced_date_list = None
         self._is_locked = None
@@ -178,6 +182,7 @@ class Event(object):
         self._date_replacement = None
         self._event_images = None
         self._id = None
+        self._health_infection_notice = None
         self._title = None
         self._substitle = None
         self._program_content = None
@@ -196,6 +201,7 @@ class Event(object):
         self._max_capacity = None
         self._max_tickets_vvk = None
         self._info_tickets_vvk = None
+        self._accessible_other = None
         self._evening_program = None
         self._short_description = None
         self._social_media_info = None
@@ -210,6 +216,8 @@ class Event(object):
             self.accessible_request_sommerblut = accessible_request_sommerblut
         if divergent_subtitle is not None:
             self.divergent_subtitle = divergent_subtitle
+        if description_header_image is not None:
+            self.description_header_image = description_header_image
         if photo_delivery_date is not None:
             self.photo_delivery_date = photo_delivery_date
         if festival is not None:
@@ -230,8 +238,6 @@ class Event(object):
             self.next_date = next_date
         if min_date is not None:
             self.min_date = min_date
-        if contact_promoter is not None:
-            self.contact_promoter = contact_promoter
         if productions_type is not None:
             self.productions_type = productions_type
         if show_reduced_date_list is not None:
@@ -266,6 +272,8 @@ class Event(object):
             self.event_images = event_images
         if id is not None:
             self.id = id
+        if health_infection_notice is not None:
+            self.health_infection_notice = health_infection_notice
         if title is not None:
             self.title = title
         if substitle is not None:
@@ -302,6 +310,8 @@ class Event(object):
             self.max_tickets_vvk = max_tickets_vvk
         if info_tickets_vvk is not None:
             self.info_tickets_vvk = info_tickets_vvk
+        if accessible_other is not None:
+            self.accessible_other = accessible_other
         if evening_program is not None:
             self.evening_program = evening_program
         if short_description is not None:
@@ -385,6 +395,27 @@ class Event(object):
         """
 
         self._divergent_subtitle = divergent_subtitle
+
+    @property
+    def description_header_image(self):
+        """Gets the description_header_image of this Event.  # noqa: E501
+
+
+        :return: The description_header_image of this Event.  # noqa: E501
+        :rtype: str
+        """
+        return self._description_header_image
+
+    @description_header_image.setter
+    def description_header_image(self, description_header_image):
+        """Sets the description_header_image of this Event.
+
+
+        :param description_header_image: The description_header_image of this Event.  # noqa: E501
+        :type: str
+        """
+
+        self._description_header_image = description_header_image
 
     @property
     def photo_delivery_date(self):
@@ -607,27 +638,6 @@ class Event(object):
         """
 
         self._min_date = min_date
-
-    @property
-    def contact_promoter(self):
-        """Gets the contact_promoter of this Event.  # noqa: E501
-
-
-        :return: The contact_promoter of this Event.  # noqa: E501
-        :rtype: EventContactPromoter
-        """
-        return self._contact_promoter
-
-    @contact_promoter.setter
-    def contact_promoter(self, contact_promoter):
-        """Sets the contact_promoter of this Event.
-
-
-        :param contact_promoter: The contact_promoter of this Event.  # noqa: E501
-        :type: EventContactPromoter
-        """
-
-        self._contact_promoter = contact_promoter
 
     @property
     def productions_type(self):
@@ -1017,6 +1027,29 @@ class Event(object):
         """
 
         self._id = id
+
+    @property
+    def health_infection_notice(self):
+        """Gets the health_infection_notice of this Event.  # noqa: E501
+
+        Covid Info for chatbot  # noqa: E501
+
+        :return: The health_infection_notice of this Event.  # noqa: E501
+        :rtype: str
+        """
+        return self._health_infection_notice
+
+    @health_infection_notice.setter
+    def health_infection_notice(self, health_infection_notice):
+        """Sets the health_infection_notice of this Event.
+
+        Covid Info for chatbot  # noqa: E501
+
+        :param health_infection_notice: The health_infection_notice of this Event.  # noqa: E501
+        :type: str
+        """
+
+        self._health_infection_notice = health_infection_notice
 
     @property
     def title(self):
@@ -1427,6 +1460,29 @@ class Event(object):
         """
 
         self._info_tickets_vvk = info_tickets_vvk
+
+    @property
+    def accessible_other(self):
+        """Gets the accessible_other of this Event.  # noqa: E501
+
+        accessible notice for chatbot in language ls  # noqa: E501
+
+        :return: The accessible_other of this Event.  # noqa: E501
+        :rtype: str
+        """
+        return self._accessible_other
+
+    @accessible_other.setter
+    def accessible_other(self, accessible_other):
+        """Sets the accessible_other of this Event.
+
+        accessible notice for chatbot in language ls  # noqa: E501
+
+        :param accessible_other: The accessible_other of this Event.  # noqa: E501
+        :type: str
+        """
+
+        self._accessible_other = accessible_other
 
     @property
     def evening_program(self):

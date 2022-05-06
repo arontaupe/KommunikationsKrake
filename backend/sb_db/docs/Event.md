@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **remark** | **str** | Additional infos about the event | [optional] 
 **accessible_request_sommerblut** | [**list[Accessibility]**](Accessibility.md) | Accessibility options | [optional] 
 **divergent_subtitle** | **str** | Divergent subtitle | [optional] 
+**description_header_image** | **str** |  | [optional] 
 **photo_delivery_date** | **date** | Date of photo delivery | [optional] 
 **festival** | [**Festival**](Festival.md) |  | [optional] 
 **audience_format** | [**list[EventAudienceFormat]**](EventAudienceFormat.md) | Audience format | [optional] 
@@ -16,7 +17,6 @@ Name | Type | Description | Notes
 **missing_ensemble_positions** | **str** | Field for missing ensemble function | [optional] 
 **next_date** | [**EventNextDate**](EventNextDate.md) |  | [optional] 
 **min_date** | [**EventNextDate**](EventNextDate.md) |  | [optional] 
-**contact_promoter** | [**EventContactPromoter**](EventContactPromoter.md) |  | [optional] 
 **productions_type** | **int** | Production type | [optional] 
 **show_reduced_date_list** | **bool** | Show one event list for all dates | [optional] 
 **is_locked** | **bool** | Locked for edit | [optional] 
@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **date_replacement** | **str** | Text replacement for event date | [optional] 
 **event_images** | **str** | Event images | [optional] 
 **id** | **int** |  | [optional] 
+**health_infection_notice** | **str** | Covid Info for chatbot | [optional] 
 **title** | **str** |  | [optional] 
 **substitle** | **str** |  | [optional] 
 **program_content** | **str** | Program content | [optional] 
@@ -52,6 +53,7 @@ Name | Type | Description | Notes
 **max_capacity** | **int** | Maximum capacity | [optional] 
 **max_tickets_vvk** | **int** | Maximum of pre sale tickets | [optional] 
 **info_tickets_vvk** | **str** | Additional ticketing info | [optional] 
+**accessible_other** | **str** | accessible notice for chatbot in language ls | [optional] 
 **evening_program** | **bool** | Programm sheet | [optional] 
 **short_description** | **str** | Short description | [optional] 
 **social_media_info** | **str** | Social media channels (e.g. YouTube) from artists | [optional] 
@@ -60,4 +62,5 @@ Name | Type | Description | Notes
 **ticket_proportions** | **bool** | Consent to ticket proportions | [optional] 
 **price_handling** | [**EventPriceHandling**](EventPriceHandling.md) |  | [optional] 
 
-[[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+

@@ -7,7 +7,7 @@ info:
     email: support@xtain.net
   version: 1.5.0
 servers:
-  - url: 'https'
+  - url: 'https://datenbank.sommerblut.de'
 tags:
   - name: "festivals"
   - name: "events"
@@ -20,6 +20,10 @@ tags:
   - name: "running events"
   - name: "running streams"
 components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
   schemas:
     events:
       type: array
@@ -40,6 +44,9 @@ components:
         divergent_subtitle:
           type: string
           description: Divergent subtitle
+          maxLength: 255
+        description_header_image:
+          type: string
           maxLength: 255
         photo_delivery_date:
           type: string
@@ -130,32 +137,6 @@ components:
               pattern: "YYYY-MM-DDT00:00:00+00:00"
               minLength: 25
               maxLength: 25
-        contact_promoter:
-          type: object
-          description: Contact for event location
-          properties:
-            id:
-              type: integer
-            firstname:
-              type: string
-              maxLength: 100
-            surname:
-              type: string
-              maxLength: 100
-            email:
-              type: string
-              maxLength: 255
-            phone:
-              type: string
-              maxLength: 50
-            mobile:
-              type: string
-              maxLength: 50
-            web:
-              type: string
-              maxLength: 255
-            location:
-              $ref: '#/components/schemas/location'
         productions_type:
           type: integer
           description: Production type
@@ -209,6 +190,9 @@ components:
           description: Event images
         id:
           type: integer
+        health_infection_notice:
+          type: string
+          description: Covid Info for chatbot
         title:
           type: string
           maxLength: 255
@@ -270,6 +254,10 @@ components:
         info_tickets_vvk:
           type: string
           description: Additional ticketing info
+        accessible_other:
+          type: string
+          description: accessible notice for chatbot in language ls
+          maxLength: 1023
         evening_program:
           type: boolean
           description: Programm sheet
@@ -361,32 +349,6 @@ components:
           type: string
           description: Link to ticket shop
           maxLength: 255
-        contact_promoter:
-          type: object
-          description: Contact person for event date
-          properties:
-            id:
-              type: integer
-            firstname:
-              type: string
-              maxLength: 100
-            surname:
-              type: string
-              maxLength: 100
-            email:
-              type: string
-              maxLength: 255
-            phone:
-              type: string
-              maxLength: 50
-            mobile:
-              type: string
-              maxLength: 50
-            web:
-              type: string
-              maxLength: 255
-            location:
-              $ref: '#/components/schemas/location'
         event:
           $ref: '#/components/schemas/event'
         streaming_player:
@@ -504,8 +466,16 @@ components:
         accessible_request:
           type: string
           description: Accessibility
+        accessible_request_object:
+          type: array
+          description: Accessibilities
+          items:
+            $ref: '#/components/schemas/accessibility'
         location_group:
           $ref: '#/components/schemas/locationGroup'
+        direction_description:
+          type: string
+          description: directions
     locationGroups:
       type: array
       description: locations
@@ -550,6 +520,8 @@ components:
           type: string
           description: Name
           maxLength: 255
+security:
+  - basicAuth: [ ]
 paths:
   /api/festivals.json:
     get:
@@ -571,6 +543,13 @@ paths:
           required: false
           schema:
             type: "boolean"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: successful operation
@@ -578,6 +557,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/festivals'
+            'Language':
+              schema:
+                type: string
         "404":
           description: "Not Found"
         "500":
@@ -596,6 +578,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -614,6 +603,14 @@ paths:
       summary: get all festival years
       description: get all festival years
       operationId: getAllFestivalYears
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: successful operation
@@ -673,14 +670,28 @@ paths:
             type: "integer"
             minimum: 0
             maximum: 1
+        - name: "reducedDateList"
+          in: "query"
+          description: "returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1"
+          required: false
+          schema:
+            type: "integer"
+            minimum: 0
+            maximum: 1
         - name: "category"
           in: "query"
-          description: "returns events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]"
+          description: "returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[category]"
+          in: "query"
+          description: "returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "tag"
           in: "query"
           description: "returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
@@ -691,12 +702,18 @@ paths:
               type: "integer"
         - name: "accessible"
           in: "query"
-          description: "returns events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]"
+          description: "returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[accessible]"
+          in: "query"
+          description: "returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "location"
           in: "query"
           description: "returns events that have a location with the given locationID<br>Example: /api/events.json?location=[100]"
@@ -729,6 +746,13 @@ paths:
             type: "array"
             items:
               type: "string"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -754,6 +778,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -779,6 +810,13 @@ paths:
           required: true
           schema:
             type: "string"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -832,14 +870,28 @@ paths:
             type: "integer"
             minimum: 0
             maximum: 1
+        - name: "reducedDateList"
+          in: "query"
+          description: "returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1"
+          required: false
+          schema:
+            type: "integer"
+            minimum: 0
+            maximum: 1
         - name: "category"
           in: "query"
-          description: "returns events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]"
+          description: "returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[category]"
+          in: "query"
+          description: "returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "tag"
           in: "query"
           description: "returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
@@ -850,12 +902,18 @@ paths:
               type: "integer"
         - name: "accessible"
           in: "query"
-          description: "returns events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]"
+          description: "returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[accessible]"
+          in: "query"
+          description: "returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "location"
           in: "query"
           description: "returns events that have a location with the given locationID<br>Example: /api/events.json?location=[100]"
@@ -888,6 +946,13 @@ paths:
             type: "array"
             items:
               type: "string"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -933,14 +998,28 @@ paths:
           required: false
           schema:
             type: "integer"
+        - name: "reducedDateList"
+          in: "query"
+          description: "returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1"
+          required: false
+          schema:
+            type: "integer"
+            minimum: 0
+            maximum: 1
         - name: "category"
           in: "query"
-          description: "returns events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]"
+          description: "returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[category]"
+          in: "query"
+          description: "returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "tag"
           in: "query"
           description: "returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
@@ -951,12 +1030,18 @@ paths:
               type: "integer"
         - name: "accessible"
           in: "query"
-          description: "returns events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]"
+          description: "returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[accessible]"
+          in: "query"
+          description: "returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "location"
           in: "query"
           description: "returns events that have a location with the given locationID<br>Example: /api/events.json?location=[100]"
@@ -989,6 +1074,13 @@ paths:
             type: "array"
             items:
               type: "string"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1042,17 +1134,31 @@ paths:
             type: "integer"
             minimum: 0
             maximum: 1
+        - name: "reducedDateList"
+          in: "query"
+          description: "returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1"
+          required: false
+          schema:
+            type: "integer"
+            minimum: 0
+            maximum: 1
         - name: "category"
           in: "query"
-          description: "returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]"
+          description: "returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[category]"
+          in: "query"
+          description: "returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "tag"
           in: "query"
-          description: "returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
+          description: "returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
           required: false
           schema:
             type: "array"
@@ -1060,12 +1166,18 @@ paths:
               type: "integer"
         - name: "accessible"
           in: "query"
-          description: "returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]"
+          description: "returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[accessible]"
+          in: "query"
+          description: "returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "location"
           in: "query"
           description: "returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100]"
@@ -1098,6 +1210,13 @@ paths:
             type: "array"
             items:
               type: "string"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1151,17 +1270,31 @@ paths:
             type: "integer"
             minimum: 0
             maximum: 1
+        - name: "reducedDateList"
+          in: "query"
+          description: "returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1"
+          required: false
+          schema:
+            type: "integer"
+            minimum: 0
+            maximum: 1
         - name: "category"
           in: "query"
-          description: "returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100]"
+          description: "returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[category]"
+          in: "query"
+          description: "returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "tag"
           in: "query"
-          description: "returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
+          description: "returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100]"
           required: false
           schema:
             type: "array"
@@ -1169,12 +1302,18 @@ paths:
               type: "integer"
         - name: "accessible"
           in: "query"
-          description: "returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100]"
+          description: "returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100]"
           required: false
           schema:
             type: "array"
             items:
               type: "integer"
+        - name: "conjunction[accessible]"
+          in: "query"
+          description: "returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and"
+          required: false
+          schema:
+            type: "string"
         - name: "location"
           in: "query"
           description: "returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100]"
@@ -1207,6 +1346,13 @@ paths:
             type: "array"
             items:
               type: "string"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1225,6 +1371,14 @@ paths:
       summary: get all categories
       description: get all categories without parameters
       operationId: getAllCategories
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1250,6 +1404,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1268,6 +1429,14 @@ paths:
       summary: get all current categories
       description: get all categories that are selected in current events
       operationId: getAllCurrentCategories
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1286,6 +1455,14 @@ paths:
       summary: get all locationGroups
       description: get all locationGroups with all related locations
       operationId: getAllLocationGroups
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         '200':
           description: "OK"
@@ -1304,6 +1481,14 @@ paths:
       summary: get all locationsGroups from current events
       description: get all locationsGroups from current events with all related locations
       operationId: getAllCurrentLocationGroups
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         '200':
           description: "OK"
@@ -1329,6 +1514,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1340,6 +1532,38 @@ paths:
           description: "Not Found"
         "500":
           description: "Internal Server Error"
+  /api/locationGroups/{locationGroupId}/locations/current.json:
+    get:
+      tags:
+        - "locations"
+      summary: Find current locations for locationGroup by ID
+      description: Returns all related locations to that location group which are used on released festival and events
+      operationId: getAllCurrentLocationsFromLocationGroup
+      parameters:
+        - name: "locationGroupId"
+          in: "path"
+          description: "ID of locationGroup for filtering"
+          required: true
+          schema:
+            type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/locations'
+        "404":
+          description: "Not Found"
+        "500":
+          description: "Internal Server Error"
   /api/locations.json:
     get:
       tags:
@@ -1347,6 +1571,14 @@ paths:
       summary: get all locations
       description: get all locations (stages)
       operationId: getAllLocations
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         '200':
           description: "OK"
@@ -1365,6 +1597,14 @@ paths:
       summary: get all locations from current events
       description: get all locations (stages) from current events
       operationId: getAllCurrentLocations
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         '200':
           description: "OK"
@@ -1390,6 +1630,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1408,6 +1655,14 @@ paths:
       summary: get all accessibilities
       description: get all accessibilities without parameters
       operationId: getAllAccessibilities
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1433,6 +1688,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1451,6 +1713,14 @@ paths:
       summary: get all tags
       description: get all tags without parameters
       operationId: getAllTags
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1476,6 +1746,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1494,6 +1771,14 @@ paths:
       summary: returns all running streams
       description: get all eventDates, that are running and are streamed
       operationId: getAllRunningStreams
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1519,6 +1804,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1537,6 +1829,14 @@ paths:
       summary: returns all upcoming streams
       description: returns all upcoming eventDates, that are streamed
       operationId: getAllNextStreams
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1562,6 +1862,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1580,6 +1887,14 @@ paths:
       summary: returns all running eventsDates
       description: returns all running eventDates
       operationId: getAllRunningEventDates
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1605,6 +1920,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1623,6 +1945,14 @@ paths:
       summary: returns all upcoming events
       description: get all upcoming eventDates
       operationId: getAllNextEventDates
+      parameters:
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"
@@ -1648,6 +1978,13 @@ paths:
           required: true
           schema:
             type: "integer"
+        - name: "Accept-Language"
+          in: "header"
+          description: "request specific language"
+          required: false
+          schema:
+            type: "string"
+          example: "de"
       responses:
         "200":
           description: "OK"

@@ -35,7 +35,6 @@ class EventDate(object):
         'opening_time': 'str',
         'location': 'str',
         'ticket_link': 'str',
-        'contact_promoter': 'EventDateContactPromoter',
         'event': 'Event',
         'streaming_player': 'str',
         'chat': 'str'
@@ -49,13 +48,12 @@ class EventDate(object):
         'opening_time': 'opening_time',
         'location': 'location',
         'ticket_link': 'ticket_link',
-        'contact_promoter': 'contact_promoter',
         'event': 'event',
         'streaming_player': 'streaming_player',
         'chat': 'chat'
     }
 
-    def __init__(self, id=None, additional_title=None, _date=None, end_date=None, opening_time=None, location=None, ticket_link=None, contact_promoter=None, event=None, streaming_player=None, chat=None):  # noqa: E501
+    def __init__(self, id=None, additional_title=None, _date=None, end_date=None, opening_time=None, location=None, ticket_link=None, event=None, streaming_player=None, chat=None):  # noqa: E501
         """EventDate - a model defined in Swagger"""  # noqa: E501
         self._id = None
         self._additional_title = None
@@ -64,7 +62,6 @@ class EventDate(object):
         self._opening_time = None
         self._location = None
         self._ticket_link = None
-        self._contact_promoter = None
         self._event = None
         self._streaming_player = None
         self._chat = None
@@ -83,8 +80,6 @@ class EventDate(object):
             self.location = location
         if ticket_link is not None:
             self.ticket_link = ticket_link
-        if contact_promoter is not None:
-            self.contact_promoter = contact_promoter
         if event is not None:
             self.event = event
         if streaming_player is not None:
@@ -250,27 +245,6 @@ class EventDate(object):
         """
 
         self._ticket_link = ticket_link
-
-    @property
-    def contact_promoter(self):
-        """Gets the contact_promoter of this EventDate.  # noqa: E501
-
-
-        :return: The contact_promoter of this EventDate.  # noqa: E501
-        :rtype: EventDateContactPromoter
-        """
-        return self._contact_promoter
-
-    @contact_promoter.setter
-    def contact_promoter(self, contact_promoter):
-        """Sets the contact_promoter of this EventDate.
-
-
-        :param contact_promoter: The contact_promoter of this EventDate.  # noqa: E501
-        :type: EventDateContactPromoter
-        """
-
-        self._contact_promoter = contact_promoter
 
     @property
     def event(self):

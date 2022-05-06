@@ -125,7 +125,7 @@ def get_full_event_list(accessibility=None):
             api_response = event_api.get_all_events(accessible=[accessibility],
                                                     accept_language=accept_language,
                                                     entries=30,
-                                                    # conjunction_accessible='and'
+                                                    conjunction_accessible='and'
                                                     )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -138,7 +138,7 @@ def get_full_event_list(accessibility=None):
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
     resp = api_response
-    # pprint(resp['items'][0])
+    pprint(resp)
     event_count = resp['count']
 
     events = {}
@@ -173,6 +173,8 @@ def get_full_event_list(accessibility=None):
     return event_count, events
 
 
+# print(get_accessibility_ids_clean())
+
 
 def get_partial_event_list(num_events=int, accessibility=None):
     """
@@ -186,7 +188,7 @@ def get_partial_event_list(num_events=int, accessibility=None):
             resp = event_api.get_all_events(accessible=[accessibility],
                                             accept_language=accept_language,
                                             entries=num_events,
-                                            #conjunction_accessible='and'
+                                            conjunction_accessible='and'
                                             )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -249,7 +251,7 @@ def get_upcoming_event_list(accessibility=None):
                                                     accept_language=accept_language,
                                                     entries=30,
                                                     time=['upcoming'],
-                                                    #conjunction_accessible='and'
+                                                    conjunction_accessible='and'
                                                     )
         except ApiException as e:
             print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)

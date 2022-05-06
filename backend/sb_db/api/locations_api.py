@@ -123,6 +123,105 @@ class LocationsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_all_current_locations_from_location_group(self, location_group_id, **kwargs):  # noqa: E501
+        """Find current locations for locationGroup by ID  # noqa: E501
+
+        Returns all related locations to that location group which are used on released festival and events  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_all_current_locations_from_location_group(location_group_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int location_group_id: ID of locationGroup for filtering (required)
+        :param str accept_language: request specific language
+        :return: Locations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_all_current_locations_from_location_group_with_http_info(location_group_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_all_current_locations_from_location_group_with_http_info(location_group_id, **kwargs)  # noqa: E501
+            return data
+
+    def get_all_current_locations_from_location_group_with_http_info(self, location_group_id, **kwargs):  # noqa: E501
+        """Find current locations for locationGroup by ID  # noqa: E501
+
+        Returns all related locations to that location group which are used on released festival and events  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_all_current_locations_from_location_group_with_http_info(location_group_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int location_group_id: ID of locationGroup for filtering (required)
+        :param str accept_language: request specific language
+        :return: Locations
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['location_group_id', 'accept_language']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_all_current_locations_from_location_group" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'location_group_id' is set
+        if ('location_group_id' not in params or
+                params['location_group_id'] is None):
+            raise ValueError("Missing the required parameter `location_group_id` when calling `get_all_current_locations_from_location_group`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'location_group_id' in params:
+            path_params['locationGroupId'] = params['location_group_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+        if 'accept_language' in params:
+            header_params['Accept-Language'] = params['accept_language']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['basicAuth']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/api/locationGroups/{locationGroupId}/locations/current.json', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Locations',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_all_location_groups(self, **kwargs):  # noqa: E501
         """get all locationGroups  # noqa: E501
 

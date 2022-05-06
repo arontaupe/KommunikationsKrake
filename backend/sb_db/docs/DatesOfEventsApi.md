@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**get_dates_of_events_by_year**](DatesOfEventsApi.md#get_dates_of_events_by_year) | **GET** /api/festivals/{year}/events/dates.json | find dates of events by year
 
 # **get_all_dates_of_events**
-> Dates get_all_dates_of_events(order=order, entries=entries, page=page, year=year, archive=archive, category=category, tag=tag, accessible=accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
+> Dates get_all_dates_of_events(order=order, entries=entries, page=page, year=year, archive=archive, reduced_date_list=reduced_date_list, category=category, conjunction_category=conjunction_category, tag=tag, accessible=accessible, conjunction_accessible=conjunction_accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
 
 get all dates of events
 
@@ -33,9 +33,12 @@ entries = 56 # int | Number of entries per page to return (standard = 10)<br>Exa
 page = 56 # int | Number of page<br>Example: /api/events.json?page=2 (optional)
 year = 56 # int | returns event dates of events of the given year<br>Example: /api/events.json?year=2020 (optional)
 archive = 56 # int | returns event dates of events of archived or not archived festivals<br>Example: /api/events.json?archive=1 (optional)
-category = [56] # list[int] | returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100] (optional)
-tag = [56] # list[int] | returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100] (optional)
-accessible = [56] # list[int] | returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100] (optional)
+reduced_date_list = 56 # int | returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1 (optional)
+category = [56] # list[int] | returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100] (optional)
+conjunction_category = 'conjunction_category_example' # str | returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and (optional)
+tag = [56] # list[int] | returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100] (optional)
+accessible = [56] # list[int] | returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100] (optional)
+conjunction_accessible = 'conjunction_accessible_example' # str | returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and (optional)
 location = [56] # list[int] | returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100] (optional)
 time = ['time_example'] # list[str] | returns events with event dates in the given timeframe<br>Example: /api/events.json?time=[\"today\"]<br>Possible Values:<br> - today<br> - upcoming<br> - past (optional)
 from_date = ['from_date_example'] # list[str] | returns events with event dates from the given date<br>Example: /api/events.json?fromDate=[\"2022-02-14 00:00:00\"] (optional)
@@ -44,7 +47,7 @@ accept_language = 'accept_language_example' # str | request specific language (o
 
 try:
     # get all dates of events
-    api_response = api_instance.get_all_dates_of_events(order=order, entries=entries, page=page, year=year, archive=archive, category=category, tag=tag, accessible=accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
+    api_response = api_instance.get_all_dates_of_events(order=order, entries=entries, page=page, year=year, archive=archive, reduced_date_list=reduced_date_list, category=category, conjunction_category=conjunction_category, tag=tag, accessible=accessible, conjunction_accessible=conjunction_accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DatesOfEventsApi->get_all_dates_of_events: %s\n" % e)
@@ -59,9 +62,12 @@ Name | Type | Description  | Notes
  **page** | **int**| Number of page&lt;br&gt;Example: /api/events.json?page&#x3D;2 | [optional] 
  **year** | **int**| returns event dates of events of the given year&lt;br&gt;Example: /api/events.json?year&#x3D;2020 | [optional] 
  **archive** | **int**| returns event dates of events of archived or not archived festivals&lt;br&gt;Example: /api/events.json?archive&#x3D;1 | [optional] 
- **category** | [**list[int]**](int.md)| returns event dates of events that have a category with the given categoryId&lt;br&gt;Example: /api/events.json?category&#x3D;[100] | [optional] 
- **tag** | [**list[int]**](int.md)| returns event dates of events that have a tag with the given tagId&lt;br&gt;Example: /api/events.json?tag&#x3D;[100] | [optional] 
- **accessible** | [**list[int]**](int.md)| returns event dates of events that have a accessibility with the given accessibilityID&lt;br&gt;Example: /api/events.json?accessible&#x3D;[100] | [optional] 
+ **reduced_date_list** | **int**| returns all events, that span over a timeframe instead of consisting of a list of single event dates&lt;br&gt;Example: /api/events.json?reducedDateList&#x3D;1 | [optional] 
+ **category** | [**list[int]**](int.md)| returns events that have a category with the given categoryId (min. one of array)&lt;br&gt;Example: /api/events.json?category&#x3D;[100] | [optional] 
+ **conjunction_category** | **str**| returns events that have all categories in the array given with the category parameter&lt;br&gt;&#x27;and&#x27; is the only working value see example&lt;br&gt;Example: /api/events.json?conjunction[category]&#x3D;and | [optional] 
+ **tag** | [**list[int]**](int.md)| returns events that have a tag with the given tagId&lt;br&gt;Example: /api/events.json?tag&#x3D;[100] | [optional] 
+ **accessible** | [**list[int]**](int.md)| returns events that have a accessibility with the given accessibilityID (min. one of array&lt;br&gt;Example: /api/events.json?accessible&#x3D;[100] | [optional] 
+ **conjunction_accessible** | **str**| returns events that have all accessibilities in the array given with the accessible parameter&lt;br&gt;&#x27;and&#x27; is the only working value see example&lt;br&gt;Example: /api/events.json?conjunction[category]&#x3D;and | [optional] 
  **location** | [**list[int]**](int.md)| returns event dates of events that have a location with the given locationID&lt;br&gt;Example: /api/events.json?location&#x3D;[100] | [optional] 
  **time** | [**list[str]**](str.md)| returns events with event dates in the given timeframe&lt;br&gt;Example: /api/events.json?time&#x3D;[\&quot;today\&quot;]&lt;br&gt;Possible Values:&lt;br&gt; - today&lt;br&gt; - upcoming&lt;br&gt; - past | [optional] 
  **from_date** | [**list[str]**](str.md)| returns events with event dates from the given date&lt;br&gt;Example: /api/events.json?fromDate&#x3D;[\&quot;2022-02-14 00:00:00\&quot;] | [optional] 
@@ -74,17 +80,17 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_dates_of_events_by_year**
-> Dates get_dates_of_events_by_year(year, order=order, entries=entries, page=page, archive=archive, category=category, tag=tag, accessible=accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
+> Dates get_dates_of_events_by_year(year, order=order, entries=entries, page=page, archive=archive, reduced_date_list=reduced_date_list, category=category, conjunction_category=conjunction_category, tag=tag, accessible=accessible, conjunction_accessible=conjunction_accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
 
 find dates of events by year
 
@@ -109,9 +115,12 @@ order = ['order_example'] # list[str] | Sets the order of returning event dates 
 entries = 56 # int | Number of entries per page to return (standard = 10)<br>Example: /api/events.json?entries=5 (optional)
 page = 56 # int | Number of page<br>Example: /api/events.json?page=2 (optional)
 archive = 56 # int | returns event dates of events of archived or not archived festivals<br>Example: /api/events.json?archive=1 (optional)
-category = [56] # list[int] | returns event dates of events that have a category with the given categoryId<br>Example: /api/events.json?category=[100] (optional)
-tag = [56] # list[int] | returns event dates of events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100] (optional)
-accessible = [56] # list[int] | returns event dates of events that have a accessibility with the given accessibilityID<br>Example: /api/events.json?accessible=[100] (optional)
+reduced_date_list = 56 # int | returns all events, that span over a timeframe instead of consisting of a list of single event dates<br>Example: /api/events.json?reducedDateList=1 (optional)
+category = [56] # list[int] | returns events that have a category with the given categoryId (min. one of array)<br>Example: /api/events.json?category=[100] (optional)
+conjunction_category = 'conjunction_category_example' # str | returns events that have all categories in the array given with the category parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and (optional)
+tag = [56] # list[int] | returns events that have a tag with the given tagId<br>Example: /api/events.json?tag=[100] (optional)
+accessible = [56] # list[int] | returns events that have a accessibility with the given accessibilityID (min. one of array<br>Example: /api/events.json?accessible=[100] (optional)
+conjunction_accessible = 'conjunction_accessible_example' # str | returns events that have all accessibilities in the array given with the accessible parameter<br>'and' is the only working value see example<br>Example: /api/events.json?conjunction[category]=and (optional)
 location = [56] # list[int] | returns event dates of events that have a location with the given locationID<br>Example: /api/events.json?location=[100] (optional)
 time = ['time_example'] # list[str] | returns events with event dates in the given timeframe<br>Example: /api/events.json?time=[\"today\"]<br>Possible Values:<br> - today<br> - upcoming<br> - past (optional)
 from_date = ['from_date_example'] # list[str] | returns events with event dates from the given date<br>Example: /api/events.json?fromDate=[\"2022-02-14 00:00:00\"] (optional)
@@ -120,7 +129,7 @@ accept_language = 'accept_language_example' # str | request specific language (o
 
 try:
     # find dates of events by year
-    api_response = api_instance.get_dates_of_events_by_year(year, order=order, entries=entries, page=page, archive=archive, category=category, tag=tag, accessible=accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
+    api_response = api_instance.get_dates_of_events_by_year(year, order=order, entries=entries, page=page, archive=archive, reduced_date_list=reduced_date_list, category=category, conjunction_category=conjunction_category, tag=tag, accessible=accessible, conjunction_accessible=conjunction_accessible, location=location, time=time, from_date=from_date, to_date=to_date, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DatesOfEventsApi->get_dates_of_events_by_year: %s\n" % e)
@@ -135,9 +144,12 @@ Name | Type | Description  | Notes
  **entries** | **int**| Number of entries per page to return (standard &#x3D; 10)&lt;br&gt;Example: /api/events.json?entries&#x3D;5 | [optional] 
  **page** | **int**| Number of page&lt;br&gt;Example: /api/events.json?page&#x3D;2 | [optional] 
  **archive** | **int**| returns event dates of events of archived or not archived festivals&lt;br&gt;Example: /api/events.json?archive&#x3D;1 | [optional] 
- **category** | [**list[int]**](int.md)| returns event dates of events that have a category with the given categoryId&lt;br&gt;Example: /api/events.json?category&#x3D;[100] | [optional] 
- **tag** | [**list[int]**](int.md)| returns event dates of events that have a tag with the given tagId&lt;br&gt;Example: /api/events.json?tag&#x3D;[100] | [optional] 
- **accessible** | [**list[int]**](int.md)| returns event dates of events that have a accessibility with the given accessibilityID&lt;br&gt;Example: /api/events.json?accessible&#x3D;[100] | [optional] 
+ **reduced_date_list** | **int**| returns all events, that span over a timeframe instead of consisting of a list of single event dates&lt;br&gt;Example: /api/events.json?reducedDateList&#x3D;1 | [optional] 
+ **category** | [**list[int]**](int.md)| returns events that have a category with the given categoryId (min. one of array)&lt;br&gt;Example: /api/events.json?category&#x3D;[100] | [optional] 
+ **conjunction_category** | **str**| returns events that have all categories in the array given with the category parameter&lt;br&gt;&#x27;and&#x27; is the only working value see example&lt;br&gt;Example: /api/events.json?conjunction[category]&#x3D;and | [optional] 
+ **tag** | [**list[int]**](int.md)| returns events that have a tag with the given tagId&lt;br&gt;Example: /api/events.json?tag&#x3D;[100] | [optional] 
+ **accessible** | [**list[int]**](int.md)| returns events that have a accessibility with the given accessibilityID (min. one of array&lt;br&gt;Example: /api/events.json?accessible&#x3D;[100] | [optional] 
+ **conjunction_accessible** | **str**| returns events that have all accessibilities in the array given with the accessible parameter&lt;br&gt;&#x27;and&#x27; is the only working value see example&lt;br&gt;Example: /api/events.json?conjunction[category]&#x3D;and | [optional] 
  **location** | [**list[int]**](int.md)| returns event dates of events that have a location with the given locationID&lt;br&gt;Example: /api/events.json?location&#x3D;[100] | [optional] 
  **time** | [**list[str]**](str.md)| returns events with event dates in the given timeframe&lt;br&gt;Example: /api/events.json?time&#x3D;[\&quot;today\&quot;]&lt;br&gt;Possible Values:&lt;br&gt; - today&lt;br&gt; - upcoming&lt;br&gt; - past | [optional] 
  **from_date** | [**list[str]**](str.md)| returns events with event dates from the given date&lt;br&gt;Example: /api/events.json?fromDate&#x3D;[\&quot;2022-02-14 00:00:00\&quot;] | [optional] 
@@ -150,11 +162,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

@@ -5,6 +5,7 @@ All URIs are relative to *https://datenbank.sommerblut.de*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_all_current_location_groups**](LocationsApi.md#get_all_current_location_groups) | **GET** /api/locationGroups/current.json | get all locationsGroups from current events
+[**get_all_current_locations_from_location_group**](LocationsApi.md#get_all_current_locations_from_location_group) | **GET** /api/locationGroups/{locationGroupId}/locations/current.json | Find current locations for locationGroup by ID
 [**get_all_location_groups**](LocationsApi.md#get_all_location_groups) | **GET** /api/locationGroups.json | get all locationGroups
 [**get_location_group_by_id**](LocationsApi.md#get_location_group_by_id) | **GET** /api/locationGroups/{locationGroupId}.json | Find locationGroup by ID
 
@@ -51,14 +52,68 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_all_current_locations_from_location_group**
+> Locations get_all_current_locations_from_location_group(location_group_id, accept_language=accept_language)
+
+Find current locations for locationGroup by ID
+
+Returns all related locations to that location group which are used on released festival and events
+
+### Example
+```python
+from __future__ import print_function
+import time
+import sb_db
+from sb_db.rest import ApiException
+from pprint import pprint
+# Configure HTTP basic authorization: basicAuth
+configuration = sb_db.Configuration()
+configuration.username = 'YOUR_USERNAME'
+configuration.password = 'YOUR_PASSWORD'
+
+# create an instance of the API class
+api_instance = sb_db.LocationsApi(sb_db.ApiClient(configuration))
+location_group_id = 56 # int | ID of locationGroup for filtering
+accept_language = 'accept_language_example' # str | request specific language (optional)
+
+try:
+    # Find current locations for locationGroup by ID
+    api_response = api_instance.get_all_current_locations_from_location_group(location_group_id, accept_language=accept_language)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LocationsApi->get_all_current_locations_from_location_group: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **location_group_id** | **int**| ID of locationGroup for filtering | 
+ **accept_language** | **str**| request specific language | [optional] 
+
+### Return type
+
+[**Locations**](Locations.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_location_groups**
 > LocationGroups get_all_location_groups(accept_language=accept_language)
@@ -103,14 +158,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_location_group_by_id**
 > LocationGroup get_location_group_by_id(location_group_id, accept_language=accept_language)
@@ -157,11 +212,12 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[basicAuth](../../../../Downloads/sb_db_api/README.md#basicAuth)
+[basicAuth](../README.md#basicAuth)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../../../Downloads/sb_db_api/README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../../Downloads/sb_db_api/README.md#documentation-for-models) [[Back to README]](../../../../Downloads/sb_db_api/README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
