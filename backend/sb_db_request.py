@@ -42,7 +42,7 @@ def test_sb_db():
     """
     url = BASEURL + "/api/accessibilities.json"
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Status Code: ' + str(response.status_code))  # response 200 := success. all 400eds:= really bad
+    print('Database Status Code: ' + str(response.status_code))  # response 200 := success. all 400eds:= really bad
 
     return chip_response('Status der Datenbank: ' + str(response.status_code), ['Menü', 'Exit'])
 
@@ -105,7 +105,7 @@ def get_event_by_id(event_id):
     try:
         # get a specific event by name
         api_response = event_api.get_event_by_id(event_id, accept_language=accept_language)
-        pprint(api_response)
+        # pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
     # TODO
@@ -316,7 +316,7 @@ def get_timeframe_event_list(to_date,
         print('Request to:' + url)
         response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
         print('Status Code: ' + str(response.status_code))
-        print('Response from: ' + str(response.url))
+        #('Response from: ' + str(response.url))
         resp = response.json()
     except ApiException as e:
         print("Exception when calling EventsApi->get all timeframe events: %s\n" % e)
@@ -364,14 +364,14 @@ def get_event_schedule(event_id):
         # returns all upcoming eventDates for the given eventId
         resp = running_events_api.get_all_next_event_dates_by_event_id(event_id,
                                                                        accept_language=accept_language)
-        print('getting event schedule')
+        # print('getting event schedule')
         # pprint(resp)
     except ApiException as e:
         print("Exception when calling RunningEventsApi->get_all_next_event_dates_by_event_id: %s\n" % e)
 
     plays = {}
     play_count = len(resp)
-    print(play_count)
+    #print(play_count)
 
     for i in range(play_count):
         plays[i] = {}
@@ -414,8 +414,7 @@ gets an event title by supplying the numeric id
     suburl = '/api/events/' + str(id) + '.json'
     url = BASEURL + suburl
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    print('Status Code: ' + str(response.status_code))
-    print('Response from: ' + str(response.url))
+    #print('Status Code: ' + str(response.status_code))
     resp = response.json()
     title = resp['title']
     return title

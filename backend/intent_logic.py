@@ -1,13 +1,12 @@
 # use pretty printing for json responses
 from pprint import pprint
-
-pprint('intent_logic')
 # import the response functionality
 from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
     context_response, button_response, event_schedule_response
 
 from retrieve_from_gdf import retrieve_found_events, retrieve_event_index
 from sb_db_request import get_accessibility_ids
+from video_builder import make_video_array
 
 
 def collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id):
@@ -30,7 +29,9 @@ gets the accessibility info stored in GDF and performs a database request with t
                    'Ich habe eine Gehbehinderung',
                    # 'Ich suche eine Veranstaltung ohne schnelle, blinkende Lichter.
                    # Und ohne laute, plötzliche Geräusche.'
-                   ])
+                   ],
+            dgs_videos_chips=make_video_array(['RC14', 'RC15', 'RC16', 'RC17', 'RC18'])
+        )
 
     prev_selection_bedarf = None
     for i in range(num_contexts):
@@ -40,7 +41,7 @@ gets the accessibility info stored in GDF and performs a database request with t
     new_bedarf = [0, 0, 0, 0, 0, 0]
     if prev_selection_bedarf:
         new_bedarf = prev_selection_bedarf
-        print('Stored on DF: ' + str(new_bedarf))
+        # print('Stored on DF: ' + str(new_bedarf))
     if bedarf:
         if bedarf == 'kein Bedarf':
             new_bedarf[0] = 1
@@ -65,21 +66,24 @@ gets the accessibility info stored in GDF and performs a database request with t
                                    variable_name='prev_selection_bedarf',
                                    variable=new_bedarf,
                                    text=f'Brauchst Du noch eine andere Form von Barrierefreiheit?',
-                                   chips=["Ja", "Nein, weiter zum Interessenselektor", "Menü"])
+                                   chips=["Ja", "Nein, weiter zum Interessenselektor", "Menü"],
+                                   dgs_videos_chips=make_video_array(['AC2', 'AC1']),
+                                   dgs_videos_bot=make_video_array(['A6'])
+                                   )
 
 
 def show_full_event_list(output_contexts, session_id):
     event_count, events = retrieve_found_events(output_contexts)
     if events is None:
-        print('no events')
-        return text_response(text='Ich habe leider keine Events gespeichert')
+        return chip_response(text='Ich habe leider keine Events gespeichert',
+                             chips=['Barrierefreiheit angeben'])
 
     event_index = int(retrieve_event_index(output_contexts))
-    print(event_index, type(event_index))
+    #print(event_index, type(event_index))
 
     display_num = 1
     next_event_index = event_index
-    print(event_index, next_event_index, event_count)
+    #print(event_index, next_event_index, event_count)
 
     if event_index == event_count:
         next_event_index = 0
@@ -92,15 +96,18 @@ def show_full_event_list(output_contexts, session_id):
                                        chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
 
     next_event_index = event_index + 1
-    print(event_index, next_event_index, event_count)
+    #print(event_index, next_event_index, event_count)
     if event_index == 0:
-        chips = ['Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
+        chips = ['Gib mir eine weitere Empfehlung',
+                 'Ich möchte mehr zur Veranstaltung wissen'],
+        dgs_videos_chips = make_video_array(['RC28', 'RC29'])
     else:
-        chips = ['Zeig mir das letzte Event', 'Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
+        chips = ['Zeig mir die letzte Empfehlung nochmal',
+                 'Gib mir eine weitere Empfehlung',
+                 'Ich möchte mehr zur Veranstaltung wissen']
+        dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])
 
     return event_response(
-        text='Ich empfehle dir die folgende Veranstaltung. '
-             'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',
         session_id=session_id,
         context='event_index',
         variable_name='event_index',
@@ -108,7 +115,8 @@ def show_full_event_list(output_contexts, session_id):
         display_num=display_num,
         display_index=event_index,
         events=events,
-        chips=chips
+        chips=chips,
+        dgs_videos_chips=dgs_videos_chips,
     )
 
 def map_bedarf_for_db(bedarf=None):
@@ -118,7 +126,6 @@ def map_bedarf_for_db(bedarf=None):
         if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
                 bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
             codes = None
-            print('No special accessibility need detected ')
         else:
             # if bedarf[0] == 1: # kein Bedarf
             #    events = get_event_names_w_access()
@@ -161,8 +168,8 @@ def order_events_by_interest(interests, events=None, event_count=None):
                 user_interests[i] = 1
             if interests[i] == 'Ist mir egal':
                 user_interests[i] = 2
-        print(f'Interests: {interests}')
-        print(f'User Interests: {user_interests}')
+        # print(f'Interests: {interests}')
+        # print(f'User Interests: {user_interests}')
 
         for i in events:
             score = 0

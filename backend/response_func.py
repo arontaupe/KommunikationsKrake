@@ -16,7 +16,8 @@ import datetime
 def chip_response(text=None,
                   chips=None,
                   dgs_videos_bot=None,
-                  dgs_videos_chips=None):
+                  dgs_videos_chips=None,
+                  content_videos=None):
     """
 sends a text response, takes an optional array of suggestion chips
     :param text: the text that will be sent as message
@@ -38,10 +39,14 @@ sends a text response, takes an optional array of suggestion chips
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
+
     return resp
 
 
-def text_response(text=None, dgs_videos_bot=None):
+def text_response(text=None, dgs_videos_bot=None, content_videos=None):
     """
 this method sends a standard text response to the bot and can transport a dict of dgs_videos
     :param text: the text that will be sent as message
@@ -55,6 +60,9 @@ has to be in format{str(title):str(url)}
     if dgs_videos_bot:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos'] = [{title: url} for title, url in
                                                                    dgs_videos_bot.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp
 
 
@@ -87,7 +95,8 @@ def chip_w_context_response(session_id,
                             variable_name=None,
                             variable=None,
                             dgs_videos_bot=None,
-                            dgs_videos_chips=None):
+                            dgs_videos_chips=None,
+                            content_videos=None):
     """
 can send optional text, some chips and save a context variable
     :param session_id: the unique identifier for the agent. str
@@ -122,6 +131,9 @@ can send optional text, some chips and save a context variable
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp
 
 
@@ -132,7 +144,8 @@ def image_response(url,
                    subtitle='',
                    chips=None,
                    dgs_videos_bot=None,
-                   dgs_videos_chips=None):
+                   dgs_videos_chips=None,
+                   content_videos=None):
     """
 sends an image along with text and chips to the user
     :param url: string, is hopefully a valid image url
@@ -162,6 +175,9 @@ sends an image along with text and chips to the user
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp
 
 
@@ -176,7 +192,8 @@ def event_response(session_id,
                    variable_name=None,
                    variable=None,
                    dgs_videos_bot=None,
-                   dgs_videos_chips=None):
+                   dgs_videos_chips=None,
+                   content_videos=None):
     """
 sends a response card displaying one event from the array of events according to the display index param
     :param session_id: the unique identifier for the agent. str
@@ -267,6 +284,9 @@ sends a response card displaying one event from the array of events according to
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp
 
 
@@ -275,7 +295,8 @@ def button_response(url,
                     text=None,
                     chips=None,
                     dgs_videos_bot=None,
-                    dgs_videos_chips=None):
+                    dgs_videos_chips=None,
+                    content_videos=None):
     """
 sends a clickable button that can link out
     :param url:
@@ -295,12 +316,16 @@ sends a clickable button that can link out
         resp['fulfillmentMessages'][0]['text']['text'][0] = text
     if chips:
         resp['fulfillmentMessages'][1]['payload']['richContent'][0][1]['options'] = [{'text': i} for i in chips]
+
     if dgs_videos_bot:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
                                                                        dgs_videos_bot.items()]
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp
 
 
@@ -312,7 +337,8 @@ def event_detail_response(title,
                           text=None,
                           chips=None,
                           dgs_videos_bot=None,
-                          dgs_videos_chips=None):
+                          dgs_videos_chips=None,
+                          content_videos=None):
     """
 sends out a card with more info on a specific event
     :param title:
@@ -352,6 +378,9 @@ sends out a card with more info on a specific event
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp
 
 
@@ -360,7 +389,8 @@ def event_schedule_response(play_count,
                             text=None,
                             chips=None,
                             dgs_videos_bot=None,
-                            dgs_videos_chips=None):
+                            dgs_videos_chips=None,
+                            content_videos=None):
     """
 sends out a card for each scheduled play the currently selected event has
     :param play_count:
@@ -409,4 +439,7 @@ sends out a card for each scheduled play the currently selected event has
     if dgs_videos_chips:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
                                                                          dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
     return resp

@@ -12,7 +12,8 @@ SAMPLE_TEXT_JSON = {
         },
         {
             "payload": {
-                "dgs_videos_bot": {}
+                "dgs_videos_bot": {},
+                "content_videos": {}
             }
         }
     ]
@@ -42,6 +43,7 @@ SAMPLE_CHIP_W_CONTEXT_JSON = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                     [
                         {
@@ -80,6 +82,7 @@ SAMPLE_CHIP_JSON = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                     [
                         {
@@ -111,6 +114,7 @@ SAMPLE_IMAGE_JSON = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                     [
                         {
@@ -146,6 +150,7 @@ SAMPLE_EVENT_DETAILS_JSON = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                 ],
                 "event_details": {}
@@ -161,6 +166,7 @@ SAMPLE_EVENT_SCHEDULE_JSON = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                 ],
                 "plays": {}
@@ -182,6 +188,7 @@ SAMPLE_EVENT_JSON_1 = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                     [
                         {
@@ -263,6 +270,7 @@ SAMPLE_BUTTON_JSON = {
             "payload": {
                 "dgs_videos_bot": {},
                 "dgs_videos_chips": {},
+                "content_videos": {},
                 "richContent": [
                     [
                         {
