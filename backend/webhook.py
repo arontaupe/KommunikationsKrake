@@ -503,7 +503,8 @@ this is the main intent switch function. All intents that use the backend must b
                                            variable=next_event_index,
                                            text='Ich habe dir nun alle ausgewählten Events gezeigt. '
                                                 'Was möchtest du nun tun?',
-                                           chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
+                                           chips=['Zurück: Hauptmenü',
+                                                  'Zeig mir die Veranstaltungen noch einmal'])
         if event_index == 0:
             event_index = event_count - 2
             next_event_index = event_index + 1
@@ -516,9 +517,12 @@ this is the main intent switch function. All intents that use the backend must b
 
         print(event_index, next_event_index, event_count)
         if event_index == 0:
-            chips = ['Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
+            chips = ['Zeig mir das nächste Event',
+                     'Mehr zur Veranstaltung']
         else:
-            chips = ['Zeig mir das letzte Event', 'Zeig mir das nächste Event', 'Mehr zur Veranstaltung']
+            chips = ['Zeig mir das letzte Event',
+                     'Zeig mir das nächste Event',
+                     'Mehr zur Veranstaltung']
         return event_response(
             text='Ich empfehle dir noch einmal die letzte Veranstaltung. '
                  'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',

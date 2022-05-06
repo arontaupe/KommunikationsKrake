@@ -1,5 +1,5 @@
 def retrieve_bedarf(output_contexts=None):
-    print('retrieving Bedarf')
+    # print('retrieving Bedarf')
     accessibilities = []
 
     if output_contexts:
@@ -7,13 +7,12 @@ def retrieve_bedarf(output_contexts=None):
         for i in range(num_contexts):
             if 'final_accessibility' in output_contexts[i]['name']:
                 accessibilities = output_contexts[i]['parameters']['final_accessibility']
-                print('Accessibilities fetched: ' + str(accessibilities))
+                # print('Accessibilities fetched: ' + str(accessibilities))
 
     return accessibilities
 
-
 def retrieve_found_events(output_contexts=None):
-    print('retrieving found events')
+    #print('retrieving found events')
     event_count = events = None
     if output_contexts:
         num_contexts = len(output_contexts)
@@ -26,7 +25,7 @@ def retrieve_found_events(output_contexts=None):
 
 
 def retrieve_event_index(output_contexts=None):
-    print('retrieving event_index')
+    #print('retrieving event_index')
     event_index = None
     if output_contexts:
         num_contexts = len(output_contexts)
@@ -42,7 +41,7 @@ def retrieve_event_index(output_contexts=None):
 
 
 def retrieve_event_id(output_contexts=None):
-    print('retrieving event_id')
+    #print('retrieving event_id')
     event_id = None
     if output_contexts:
         num_contexts = len(output_contexts)

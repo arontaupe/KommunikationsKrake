@@ -91,9 +91,10 @@ def show_full_event_list(output_contexts, session_id):
                                        context='event_index',
                                        variable_name='event_index',
                                        variable=next_event_index,
-                                       text='Ich habe dir nun alle ausgewählten Events gezeigt. '
+                                       text='Ich habe dir nun alle ausgewählten Events gezeigt.\r\n'
                                             'Was möchtest du nun tun?',
-                                       chips=['Zurück: Hauptmenü', 'Zeig mir die Veranstaltungen noch einmal'])
+                                       chips=['Zurück: Hauptmenü',
+                                              'Zeig mir die Veranstaltungen noch einmal'])
 
     next_event_index = event_index + 1
     #print(event_index, next_event_index, event_count)
