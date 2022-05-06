@@ -14,5 +14,6 @@ builds a video dict with titles and urls based on the .csv. preserves the order 
     # Read CSV file into DataFrame df
     df = pd.read_csv('dgs_videos.csv')
     for title in titles:
-        videos[title] = df[df["title"] == title].url.values[0]
+        if title in df["title"]:
+            videos[title] = df[df["title"] == title].url.values[0]
     return videos

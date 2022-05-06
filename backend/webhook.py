@@ -90,12 +90,12 @@ this is the main intent switch function. All intents that use the backend must b
                                     'Ich suche Veranstaltungen in einfacher Sprache',
                                     'Ich habe eine Sehbehinderung',
                                     'Ich habe eine Hörbehinderung',
-                                    'Ich habe eine Gehbehinderung',
+                                    'Ich habe eine Gehbehinderung'
                                     # 'Ich suche eine Veranstaltung ohne schnelle, blinkende Lichter.
                                     # Und ohne laute, plötzliche Geräusche.'
                                     ],
-                             dgs_videos_bot=['A5'],
-                             dgs_videos_chips=['RC14', 'RC15', 'RC16', 'RC17', 'RC18'])
+                             dgs_videos_bot=make_video_array(['A5']),
+                             dgs_videos_chips=make_video_array(['RC14', 'RC15', 'RC16', 'RC17', 'RC18']))
 
     elif intent_name == 'accessibility.select - collect':
         return collect_accessibility_needs(parameters=parameters,
@@ -132,11 +132,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.1 - nein':
         interest_1 = parameters.get('interest_1')
         return chip_w_context_response(text='Soso, ' + interest_1 + ' also.',
-                                       chips=["Weiter: Frage 2", "Menü"],
+                                       chips=["Weiter: Frage 2"],
                                        session_id=session_id,
                                        context='interest_1',
                                        variable_name='interest_1',
-                                       variable=interest_1)
+                                       variable=interest_1,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.2':
         # here we are asking for interest_2
@@ -151,11 +154,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.2 - nein':
         interest_2 = parameters.get('interest_2')
         return chip_w_context_response(text=interest_2 + ', interessant.',
-                                       chips=["Weiter: Frage 3", "Menü"],
+                                       chips=["Weiter: Frage 3"],
                                        session_id=session_id,
                                        context='interest_2',
                                        variable_name='interest_2',
-                                       variable=interest_2)
+                                       variable=interest_2,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.3':
         # here we are asking for interest_3
@@ -170,11 +176,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.3 - nein':
         interest_3 = parameters.get('interest_3')
         return chip_w_context_response(text='Rituale eher so: ' + interest_3,
-                                       chips=["Weiter: Frage 4", "Menü"],
+                                       chips=["Weiter: Frage 4"],
                                        session_id=session_id,
                                        context='interest_3',
                                        variable_name='interest_3',
-                                       variable=interest_3)
+                                       variable=interest_3,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.4':
         # here we are asking for interest_4
@@ -189,11 +198,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.4 - nein':
         interest_4 = parameters.get('interest_4')
         return chip_w_context_response(text=interest_4 + '? Poesie steckt überall.',
-                                       chips=["Weiter: Frage 5", "Menü"],
+                                       chips=["Weiter: Frage 5"],
                                        session_id=session_id,
                                        context='interest_4',
                                        variable_name='interest_4',
-                                       variable=interest_4)
+                                       variable=interest_4,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.5':
         # here we are asking for interest_5
@@ -208,11 +220,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.5 - nein':
         interest_5 = parameters.get('interest_5')
         return chip_w_context_response(text=interest_5 + ', also ich finde UTOPIA gut.',
-                                       chips=["Weiter: Frage 6", "Menü"],
+                                       chips=["Weiter: Frage 6"],
                                        session_id=session_id,
                                        context='interest_5',
                                        variable_name='interest_5',
-                                       variable=interest_5)
+                                       variable=interest_5,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.6':
         # here we are asking for interest_6
@@ -227,11 +242,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.6 - nein':
         interest_6 = parameters.get('interest_6')
         return chip_w_context_response(text=interest_6 + ', Ich merke, dass das wichtig ist.',
-                                       chips=["Weiter: Frage 7", "Menü"],
+                                       chips=["Weiter: Frage 7"],
                                        session_id=session_id,
                                        context='interest_6',
                                        variable_name='interest_6',
-                                       variable=interest_6)
+                                       variable=interest_6,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.7':
         # here we are asking for interest_7
@@ -246,11 +264,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.7 - nein':
         interest_7 = parameters.get('interest_7')
         return chip_w_context_response(text='Dass du ' + interest_7 + ' klickst, sag ich deiner Mutter!',
-                                       chips=["Weiter: Frage 8", "Menü"],
+                                       chips=["Weiter: Frage 8"],
                                        session_id=session_id,
                                        context='interest_7',
                                        variable_name='interest_7',
-                                       variable=interest_7)
+                                       variable=interest_7,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.8':
         # here we are asking for interest_8
@@ -265,11 +286,14 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.8 - nein':
         interest_8 = parameters.get('interest_8')
         return chip_w_context_response(text='Ich habe mir gemerkt, dass du ' + interest_8 + ' geantwortet hast.',
-                                       chips=["Weiter: Frage 9", "Menü"],
+                                       chips=["Weiter: Frage 9"],
                                        session_id=session_id,
                                        context='interest_8',
                                        variable_name='interest_8',
-                                       variable=interest_8)
+                                       variable=interest_8,
+                                       dgs_videos_bot=make_video_array(['RC20']),
+                                       dgs_videos_chips=make_video_array(['RC21'])
+                                       )
 
     elif intent_name == 'script.interest.select.9':
         # here we are asking for interest_9
@@ -351,7 +375,8 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(text='Das wird spannend! Ich kann dir nun: '
                                   'alle Veranstaltungen, die noch bevorstehen oder '
                                   'Veranstaltungen in den nächsten 5 Tagen suchen',
-                             chips=['Nur zukünftige Veranstaltungen', 'Veranstaltungen in den nächsten 5 Tagen'],
+                             chips=['Nur zukünftige Veranstaltungen',
+                                    'Veranstaltungen in den nächsten 5 Tagen'],
                              dgs_videos_bot=make_video_array(['A18']),
                              dgs_videos_chips=make_video_array(['RC25', 'RC26'])
                              )
@@ -492,7 +517,9 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.menu.previous':
         event_count, events = retrieve_found_events(output_contexts)
         if events is None:
-            return text_response(text='Ich habe leider keine Events gespeichert')
+            return chip_response(
+                text='Ich habe leider keine Events gespeichert. Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
+                chips=['Zugänglichkeit auswählen', 'Interessen angeben'])
 
         next_event_index = event_index = int(retrieve_event_index(output_contexts))
         display_num = 1
@@ -556,8 +583,8 @@ this is the main intent switch function. All intents that use the backend must b
             text=f'Hier ist der Programmtext von {title}: \r\n'
                  f'{program_content}',
             chips=['Zurück zu den Einzelheiten zur Veranstaltung'],
-            dgs_videos_chips=make_video_array(['RC34c'])
-        )
+            dgs_videos_chips=make_video_array(['RC34c']),
+            dgs_videos_bot=make_video_array([f'{title}_Lang']))
 
     elif intent_name == 'script.event.details - corona':
         event_id = retrieve_event_id(output_contexts)
@@ -573,7 +600,8 @@ this is the main intent switch function. All intents that use the backend must b
             text=f'Diese Corona-Regeln gelten bei {title}: \r\n'
                  f'{health_infection_notice}',
             chips=['Zurück zu den Einzelheiten zur Veranstaltung'],
-            dgs_videos_chips=make_video_array(['RC34c'])
+            dgs_videos_chips=make_video_array(['RC34c']),
+            dgs_videos_bot=make_video_array([f'{title}_Corona'])
         )
 
     elif intent_name == 'script.event.details - accessibility':
@@ -593,7 +621,7 @@ this is the main intent switch function. All intents that use the backend must b
             chips=['Zurück zu den Einzelheiten zur Veranstaltung',
                    'Ich brauche Unterstützung bei der Veranstaltung. Mit wem kann ich Kontakt aufnehmen?',
                    'Zu welchen Zeiten kann ich die Veranstaltung besuchen?'],
-            # dgs_videos_bot=make_video_array(['']),
+            dgs_videos_bot=make_video_array([f'{title}_Barri']),
             dgs_videos_chips=make_video_array(['RC34c', 'RC34d', 'RC36'])
 
         )
@@ -727,7 +755,7 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'fallback.default':
         return chip_response(text='Ich bin nicht so sicher, ob ich dich richtig verstanden habe. '
                                   'Kannst du das noch einmal anders formulieren?',
-                             chips=['Zurück zumHauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
+                             chips=['Zurück zum Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
                              dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
 
@@ -767,7 +795,7 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Video: Wie funktioniert der Chatbot und was kann er alles:',
             chips=['Weiter zum Hauptmenü'],
-            dgs_videos_bot=None,
+            # dgs_videos_bot=None,
             dgs_videos_chips=make_video_array(['RC4']),
             content_videos=make_video_array(['Intro_Video_LS']))
 
@@ -780,7 +808,7 @@ this is the main intent switch function. All intents that use the backend must b
             chips=['Video: Ällei und KI', 'Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
                    'Mehr über Sommerblut erfahren', 'Team von Ällei kontaktieren'],
             dgs_videos_bot=make_video_array(['A2']),
-            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7']))
+            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7', 'Feedback1']))
 
     elif intent_name == 'script.bot_theme_input':
         return chip_response(
@@ -871,7 +899,7 @@ this is the main intent switch function. All intents that use the backend must b
             url='mailto:chatbot@sommerblut.de',
             chips=['Tschüss', 'Hauptmenü'],
             dgs_videos_bot=make_video_array(['Feedback2']),
-            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
+            dgs_videos_chips=make_video_array(['AC7'])
         )
 
 

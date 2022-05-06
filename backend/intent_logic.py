@@ -5,7 +5,7 @@ from response_func import image_response, chip_response, chip_w_context_response
     context_response, button_response, event_schedule_response
 
 from retrieve_from_gdf import retrieve_found_events, retrieve_event_index
-from sb_db_request import get_accessibility_ids
+from sb_db_request import get_accessibility_ids, get_all_titles_ids
 from video_builder import make_video_array
 
 
@@ -50,7 +50,8 @@ gets the accessibility info stored in GDF and performs a database request with t
                                            variable_name='prev_selection_bedarf',
                                            variable=new_bedarf,
                                            text=f'Okay, ich habe {bedarf} abgespeichert.',
-                                           chips=["Weiter: Interessenselektor", "Menü"])
+                                           chips=["Weiter: Interessenselektor",
+                                                  "Menü"])
         elif bedarf == 'leichte Sprache':
             new_bedarf[1] = 1
         elif bedarf == 'Höreinschränkung':
@@ -66,24 +67,35 @@ gets the accessibility info stored in GDF and performs a database request with t
                                    variable_name='prev_selection_bedarf',
                                    variable=new_bedarf,
                                    text=f'Brauchst Du noch eine andere Form von Barrierefreiheit?',
-                                   chips=["Ja", "Nein, weiter zum Interessenselektor", "Menü"],
+                                   chips=["Ja",
+                                          "Nein, weiter zum Interessenselektor",
+                                          "Menü"],
                                    dgs_videos_chips=make_video_array(['AC2', 'AC1']),
                                    dgs_videos_bot=make_video_array(['A6'])
                                    )
 
 
 def show_full_event_list(output_contexts, session_id):
+    """
+retrieves all stored events from GDF and displays them
+    :param output_contexts:
+    :param session_id:
+    :return:
+    """
     event_count, events = retrieve_found_events(output_contexts)
     if events is None:
         return chip_response(text='Ich habe leider keine Events gespeichert',
                              chips=['Barrierefreiheit angeben'])
 
     event_index = int(retrieve_event_index(output_contexts))
-    #print(event_index, type(event_index))
+
+    print(event_index, type(event_index))
+    # pprint(events)
+    title = events.get(str(list(events)[event_index]))['title']
 
     display_num = 1
     next_event_index = event_index
-    #print(event_index, next_event_index, event_count)
+    # print(event_index, next_event_index, event_count)
 
     if event_index == event_count:
         next_event_index = 0
@@ -93,14 +105,16 @@ def show_full_event_list(output_contexts, session_id):
                                        variable=next_event_index,
                                        text='Ich habe dir nun alle ausgewählten Events gezeigt.\r\n'
                                             'Was möchtest du nun tun?',
-                                       chips=['Zurück: Hauptmenü',
-                                              'Zeig mir die Veranstaltungen noch einmal'])
+                                       chips=['Zeig mir die Veranstaltungen noch einmal',
+                                              'Zurück zum Hauptmenü'],
+                                       dgs_videos_bot=make_video_array(['A19b']),
+                                       dgs_videos_chips=make_video_array(['RC29b', 'AC7']))
 
     next_event_index = event_index + 1
     #print(event_index, next_event_index, event_count)
     if event_index == 0:
         chips = ['Gib mir eine weitere Empfehlung',
-                 'Ich möchte mehr zur Veranstaltung wissen'],
+                 'Ich möchte mehr zur Veranstaltung wissen']
         dgs_videos_chips = make_video_array(['RC28', 'RC29'])
     else:
         chips = ['Zeig mir die letzte Empfehlung nochmal',
@@ -118,6 +132,7 @@ def show_full_event_list(output_contexts, session_id):
         events=events,
         chips=chips,
         dgs_videos_chips=dgs_videos_chips,
+        dgs_videos_bot=make_video_array([f'{title}_Kurzi'])
     )
 
 def map_bedarf_for_db(bedarf=None):

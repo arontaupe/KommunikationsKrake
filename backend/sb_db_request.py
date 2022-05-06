@@ -404,7 +404,6 @@ def get_all_titles_ids():
     except ApiException as e:
         print("Exception when calling EventsApi->get all titles: %s\n" % e)
 
-
 def get_event_title(id):
     """
 gets an event title by supplying the numeric id

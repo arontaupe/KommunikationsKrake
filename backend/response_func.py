@@ -233,14 +233,17 @@ sends a response card displaying one event from the array of events according to
             # date = datetime.datetime.strptime(next_date, '%Y-%m-%dT%X')
             # print(date)
         if events.get(str(e))['duration']:
-            subline = subline + 'Spieldauer: ' + str(events.get(str(e))['duration']) + ' Minuten' + '\r\n'
+            duration = int(events.get(str(e))['duration'])
+            subline = subline + f'Spieldauer: {duration} Minuten \r\n'
         if events.get(str(e))['location']:
-            subline = subline + 'Spielort: ' + str(events.get(str(e))['location']) + '\r\n'
+            location = events.get(str(e))['location']
+            subline += f'Spielort: {location}\r\n'
         if events.get(str(e))['artist_name']:
-            subline = subline + 'Künstler: ' + str(events.get(str(e))['artist_name']) + '\r\n'
+            artist_name = events.get(str(e))['artist_name']
+            subline = subline + f'Künstler: {artist_name}\r\n'
         if events.get(str(e))['max_capacity']:
-            subline = subline + 'Maximale Platzanzahl: ' + str(
-                events.get(str(e))['max_capacity']) + '\r\n'
+            capacity = events.get(str(e))['max_capacity']
+            subline = subline + f'Maximale Platzanzahl: {capacity}\r\n'
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['subtitle'] = subline
         if events.get(str(e))['event_images']:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][0]['rawUrl'] = events.get(str(e))[
@@ -248,7 +251,7 @@ sends a response card displaying one event from the array of events according to
 
         description = ''
         if events.get(str(e))['short_description']:
-            description = description + str(events.get(str(e))['short_description'])
+            description += str(events.get(str(e))['short_description'])
         if events.get(str(e))['accessibility']:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][3]['title'] = 'Barrierefreiheit'
             accessibility = ''
@@ -261,7 +264,8 @@ sends a response card displaying one event from the array of events according to
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['text'] = description
         sale_msg = 'Tickets hier kaufen \r\n'
         if events.get(str(e))['price_vvk']:
-            sale_msg = sale_msg + 'Preis: ' + str(int(events.get(str(e))['price_vvk'])) + ' Euro ' + '\r\n'
+            price = int(events.get(str(e))['price_vvk'])
+            sale_msg += f'Preis: {price}  Euro \r\n'
 
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))[
