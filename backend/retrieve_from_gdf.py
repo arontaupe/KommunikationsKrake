@@ -23,6 +23,14 @@ def retrieve_found_events(output_contexts=None):
                 event_count = len(events)
     return event_count, events
 
+def whether_searched_events(output_contexts=None):
+    if output_contexts:
+        num_contexts = len(output_contexts)
+        for i in range(num_contexts):
+            if 'searched_for_events' in output_contexts[i]['name']:
+                return True
+        return False
+    return False
 
 def retrieve_event_index(output_contexts=None):
     #print('retrieving event_index')
@@ -41,16 +49,16 @@ def retrieve_event_index(output_contexts=None):
 
 
 def retrieve_event_id(output_contexts=None):
-    #print('retrieving event_id')
+    # print('retrieving event_id')
     event_id = None
     if output_contexts:
         num_contexts = len(output_contexts)
         for i in range(num_contexts):
             if 'event_id' in output_contexts[i]['name']:
                 event_id = output_contexts[i]['parameters']['event_id']
-    if event_id is None:
-        event_id = 0
-    return int(event_id)
+    if event_id is not None:
+        return int(event_id)
+    return
 
 
 def retrieve_interests(output_contexts=None):

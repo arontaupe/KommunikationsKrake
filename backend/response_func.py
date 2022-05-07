@@ -7,6 +7,7 @@ from sample_jsons import SAMPLE_IMAGE_JSON, \
     SAMPLE_TEXT_JSON, \
     SAMPLE_CONTEXT_JSON, \
     SAMPLE_CHIP_W_CONTEXT_JSON, \
+    SAMPLE_CHIP_W_TWO_CONTEXT_JSON, \
     SAMPLE_EVENT_JSON_1, \
     SAMPLE_BUTTON_JSON, \
     SAMPLE_EVENT_SCHEDULE_JSON, \
@@ -125,6 +126,67 @@ can send optional text, some chips and save a context variable
             resp['outputContexts'][0]['parameters'][variable_name] = variable
         if lifespan:
             resp['outputContexts'][0]['lifespanCount'] = lifespan
+    if dgs_videos_bot:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
+                                                                       dgs_videos_bot.items()]
+    if dgs_videos_chips:
+        resp['fulfillmentMessages'][1]['payload']['dgs_videos_chips'] = [{title: url} for title, url in
+                                                                         dgs_videos_chips.items()]
+    if content_videos:
+        resp['fulfillmentMessages'][1]['payload']['content_videos'] = [{title: url} for title, url in
+                                                                       content_videos.items()]
+    return resp
+
+
+def chip_w_two_context_response(session_id,
+                                context,
+                                context_2,
+                                lifespan=50,
+                                text=None,
+                                chips=None,
+                                variable_name=None,
+                                variable_name_2=None,
+                                variable=None,
+                                variable_2=None,
+                                dgs_videos_bot=None,
+                                dgs_videos_chips=None,
+                                content_videos=None):
+    """
+can send optional text, some chips and save a context variable
+    :param session_id: the unique identifier for the agent. str
+    :param context: name of the context where the variable is saved in GDF. str
+    :param lifespan: int, the amount of interactions that a context variable will be preserved. defaults to 50
+    :param variable_name: the key of the variable to be saved
+    :param variable: the value of the variable to be saved
+    :param text: the text that will be sent as message
+    :param chips: the suggestion buttons: array of strings
+    :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
+    has to be in format{str(title):str(url)}
+    :param dgs_videos_chips: the DGS videos displayed alongside the response options from the user,
+    has to be in format{str(title):str(url)}
+    :return: json response object
+    :return:
+    """
+    resp = deepcopy(SAMPLE_CHIP_W_TWO_CONTEXT_JSON)
+    if text:
+        resp['fulfillmentMessages'][0]['text']['text'][0] = text
+    if chips:
+        resp['fulfillmentMessages'][1]['payload']['richContent'][0][0]['options'] = [{'text': i} for i in chips]
+    if session_id:
+        resp['outputContexts'][0]['name'] = 'projects/kommkrake-pcsi/locations/global/agent/sessions/' + str(
+            session_id) + '/contexts/' + str(context)
+        if variable_name:
+            resp['outputContexts'][0]['parameters'][variable_name] = variable
+        if lifespan:
+            resp['outputContexts'][0]['lifespanCount'] = lifespan
+
+        resp['outputContexts'][1]['name'] = 'projects/kommkrake-pcsi/locations/global/agent/sessions/' + str(
+            session_id) + '/contexts/' + str(context_2)
+        if variable_name_2:
+            resp['outputContexts'][1]['parameters'][variable_name_2] = variable_2
+        if lifespan:
+            resp['outputContexts'][1]['lifespanCount'] = lifespan
+
     if dgs_videos_bot:
         resp['fulfillmentMessages'][1]['payload']['dgs_videos_bot'] = [{title: url} for title, url in
                                                                        dgs_videos_bot.items()]

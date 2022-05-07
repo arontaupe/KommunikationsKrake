@@ -96,7 +96,7 @@ seems to be broken on database side. would be cool if it worked tho
     return api_response
 
 
-def get_event_by_id(event_id):
+def get_single_event_by_id(event_id):
     """
  only works for old events somehow
     :param event_id: int
@@ -107,10 +107,16 @@ def get_event_by_id(event_id):
         api_response = event_api.get_event_by_id(event_id, accept_language=accept_language)
         # pprint(api_response)
     except ApiException as e:
-        print("Exception when calling EventApi->get_events_by_name: %s\n" % e)
+        print("Exception when calling EventApi->get_single_event_by_id: %s\n" % e)
     # TODO
     return api_response
 
+
+# old events work
+# print(get_single_event_by_id(50))
+
+# current events dont
+# print(get_single_event_by_id(854))
 
 
 def get_full_event_list(accessibility=None):
@@ -122,23 +128,29 @@ def get_full_event_list(accessibility=None):
     if accessibility:
         try:
             # get all events
-            api_response = event_api.get_all_events(accessible=[accessibility],
-                                                    accept_language=accept_language,
-                                                    entries=30,
-                                                    conjunction_accessible='and'
-                                                    )
+            resp = event_api.get_all_events(accessible=[accessibility],
+                                            accept_language=accept_language,
+                                            entries=30,
+                                            conjunction_accessible='and'
+                                            )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
         try:
             # get all events
-            api_response = event_api.get_all_events(accept_language=accept_language,
-                                                    entries=30)
+            resp = event_api.get_all_events(accept_language=accept_language,
+                                            entries=30
+                                            )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
-    resp = api_response
-    pprint(resp)
+    titles = []
+    ids = []
+    for i in resp.get('items'):
+        titles.append(i.get('title'))
+        ids.append(i.get('id'))
+
+    # pprint(resp)
     event_count = resp['count']
 
     events = {}
@@ -146,7 +158,10 @@ def get_full_event_list(accessibility=None):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
-        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        next_date = 'Die Veranstaltung ist schon vorbei.'
+        if resp['items'][i]['next_date']:
+            next_date = resp['items'][i]['next_date']['isdate']
+        events[i]['next_date'] = next_date
         events[i]['duration'] = resp['items'][i]['duration_minutes']
         events[i]['location'] = resp['items'][i]['location']['name']
         events[i]['artist_name'] = resp['items'][i]['artist_name']
@@ -170,10 +185,8 @@ def get_full_event_list(accessibility=None):
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
-    return event_count, events
 
-
-# print(get_accessibility_ids_clean())
+    return event_count, events, titles, ids
 
 
 def get_partial_event_list(num_events=int, accessibility=None):
@@ -211,7 +224,10 @@ def get_partial_event_list(num_events=int, accessibility=None):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
-        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        next_date = 'Die Veranstaltung ist schon vorbei.'
+        if resp['items'][i]['next_date']:
+            next_date = resp['items'][i]['next_date']['isdate']
+        events[i]['next_date'] = next_date
         events[i]['duration'] = resp['items'][i]['duration_minutes']
         events[i]['location'] = resp['items'][i]['location']['name']
         events[i]['artist_name'] = resp['items'][i]['artist_name']
@@ -272,7 +288,10 @@ def get_upcoming_event_list(accessibility=None):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
-        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        next_date = 'Die Veranstaltung ist schon vorbei.'
+        if resp['items'][i]['next_date']:
+            next_date = resp['items'][i]['next_date']['isdate']
+        events[i]['next_date'] = next_date
         events[i]['duration'] = resp['items'][i]['duration_minutes']
         events[i]['location'] = resp['items'][i]['location']['name']
         events[i]['artist_name'] = resp['items'][i]['artist_name']
@@ -329,7 +348,10 @@ def get_timeframe_event_list(to_date,
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
-        events[i]['next_date'] = resp['items'][i]['next_date']['isdate']
+        next_date = 'Die Veranstaltung ist schon vorbei.'
+        if resp['items'][i]['next_date']:
+            next_date = resp['items'][i]['next_date']['isdate']
+        events[i]['next_date'] = next_date
         events[i]['duration'] = resp['items'][i]['duration_minutes']
         events[i]['location'] = resp['items'][i]['location']['name']
         events[i]['artist_name'] = resp['items'][i]['artist_name']

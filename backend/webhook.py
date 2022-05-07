@@ -7,16 +7,21 @@ import random
 pprint('keep pprint')
 # server functionality
 from flask import Flask, request  # makes the thing ngrokable
+from flask_debugtoolbar import DebugToolbarExtension
+import logging
 # Import datetime class from datetime module
-
 from datetime import datetime, timedelta
 
 # import the response functionality
-from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
-    context_response, button_response, event_schedule_response, event_detail_response
+from response_func import image_response, \
+    chip_response, chip_w_context_response, \
+    chip_w_two_context_response, \
+    event_response, text_response, \
+    context_response, button_response, \
+    event_schedule_response, event_detail_response
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id, \
-    retrieve_interests
+    retrieve_interests, whether_searched_events
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
     get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
@@ -337,7 +342,7 @@ this is the main intent switch function. All intents that use the backend must b
         interests = retrieve_interests(output_contexts=output_contexts)
         codes = map_bedarf_for_db(bedarf=bedarf)
         # print(codes)
-        event_count, events = get_full_event_list(accessibility=codes)
+        event_count, events, titles, ids = get_full_event_list(accessibility=codes)
         event_count, events = order_events_by_interest(interests=interests, event_count=event_count, events=events)
         if events and event_count:
             text = ''
@@ -447,8 +452,34 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.details':
         try:
             event_id = retrieve_event_id(output_contexts=output_contexts)
+        except Exception as e:
+            print("Exception when trying to access event_id: %s\n" % e)
+
+        if whether_searched_events(output_contexts=output_contexts) == False:
+            if event_id:
+                return chip_w_context_response(session_id=session_id,
+                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                    '3. Wie handhabt ihr Corona?\r\n'
+                                                    '4. Wo und Wann findet sie statt?\r\n',
+                                               chips=['Barrierefreiheit',
+                                                      'Programmtext',
+                                                      'Coronasituation',
+                                                      'Datum und Ort',
+                                                      'Zeig mir die Veranstaltung auf Sommerblut.de'
+                                                      ],
+                                               variable_name='event_id',
+                                               variable=event_id,
+                                               context='event_id',
+                                               dgs_videos_bot=make_video_array(['AC20']),
+                                               dgs_videos_chips=make_video_array(
+                                                   ['RC30', 'RC31', 'RC32', 'RC33', 'RC34'])
+                                               )
+
+        try:
             event_count, events = retrieve_found_events(output_contexts)
-            if event_id != 0 and events is not None:
+            if event_id and events is not None:
                 return chip_w_context_response(session_id=session_id,
                                                text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
                                                     '1. Ist die Veranstaltung barrierefrei?\r\n'
@@ -688,35 +719,38 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'faq.event':
 
-        try:
+        event_count, events, titles, ids = get_full_event_list()
+
+        if events:
             event_title = parameters.get('event_title')
-            titles, ids = get_all_titles_ids()
-            if len(event_title) != 0:
-                idx = titles.index(event_title)
-                event_id = ids[idx]
-
-                return chip_w_context_response(session_id=session_id,
-                                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-                                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
-                                                    '2. Worum geht es genau in der Veranstaltung\r\n'
-                                                    '3. Wie handhabt ihr Corona?\r\n'
-                                                    '4. Wo und Wann findet sie statt?\r\n',
-                                               chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
-                                                      'Datum und Ort',
-                                                      'Zeig mir die Veranstaltung auf Sommerblut.de',
-                                                      'Zurück: Ich habe eine Frage'],
-                                               variable_name='event_id',
-                                               variable=event_id,
-                                               context='event_id')
-            else:
-
-                chips = random.sample(titles, 3)
+            if event_title is '':
+                chips = random.sample(titles, 5)
+                print(chips)
                 return chip_response(text='Du kannst den Namen der Veranstaltung in das Textfeld unten eingeben. '
                                           'Oder eine von unten wählen:',
                                      chips=chips)
+            else:
+                idx = titles.index(event_title)
+                event_id = ids[idx]
+                print(event_id)
+                return chip_w_two_context_response(session_id=session_id,
+                                                   text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                        '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                        '2. Worum geht es genau in der Veranstaltung\r\n'
+                                                        '3. Wie handhabt ihr Corona?\r\n'
+                                                        '4. Wo und Wann findet sie statt?\r\n',
+                                                   chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
+                                                          'Datum und Ort',
+                                                          'Zeig mir die Veranstaltung auf Sommerblut.de',
+                                                          'Zurück: Ich habe eine Frage'],
+                                                   variable_name='event_id',
+                                                   variable_name_2='events_found',
+                                                   variable=event_id,
+                                                   variable_2=events,
+                                                   context='event_id',
+                                                   context_2='events_found'
+                                                   )
 
-        except Exception as e:
-            print("Exception when trying to identify the event asked about-> faq.event: %s\n" % e)
 
     elif intent_name == 'faq.tickets.sale_location':
         return chip_response(
