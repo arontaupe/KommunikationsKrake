@@ -723,9 +723,9 @@ this is the main intent switch function. All intents that use the backend must b
 
         if events:
             event_title = parameters.get('event_title')
-            if event_title is '':
+            if event_title == '':
                 chips = random.sample(titles, 5)
-                print(chips)
+                # print(chips)
                 return chip_response(text='Du kannst den Namen der Veranstaltung in das Textfeld unten eingeben. '
                                           'Oder eine von unten wählen:',
                                      chips=chips)
