@@ -1,17 +1,18 @@
 # import flask dependencies
 import json  # make me interact with json
 # use pretty printing for json responses
-import os
-from pprint import pprint
-import random
+import os  # can grab environment variables
+from pprint import pprint  # needed for nice json printouts
+import random  # generates random chips for me
 # server functionality
-from flask import Flask, request  # makes the thing ngrokable
+from flask import Flask, request  # makes a flask app and serves it to a specified port
 
 # Import datetime class from datetime module
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta  # used for calculation of timewindows
 
-from flask_httpauth import HTTPBasicAuth
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
+from werkzeug.security import check_password_hash, \
+    generate_password_hash  # hashes the pasword, so its not passed in clear
 
 auth = HTTPBasicAuth()
 
@@ -371,6 +372,7 @@ this is the main intent switch function. All intents that use the backend must b
         codes = map_bedarf_for_db(bedarf=bedarf)
         # print(codes)
         event_count, events, titles, ids = get_full_event_list(accessibility=codes)
+
         event_count, events = order_events_by_interest(interests=interests, event_count=event_count, events=events)
         if events and event_count:
             text = ''
@@ -559,13 +561,14 @@ this is the main intent switch function. All intents that use the backend must b
                                                chips=['Barrierefreiheit', 'Programmtext', 'Coronamaßnahmen',
                                                       'Datum und Ort',
                                                       'Zeig mir die Veranstaltung auf sommerblut.de',
-                                                      'Zurück: Veranstaltungsübersicht'],
+                                                      'Zurück: Veranstaltungs-empfehlungen'],
                                                variable_name='event_id',
                                                variable=event_id,
                                                context='event_id')
             else:
                 return chip_response(
-                    text='Ich habe leider keine Events gespeichert. Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
+                    text='Ich habe leider keine Veranstaltungen gespeichert. '
+                         'Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
                     chips=['Zugänglichkeit auswählen', 'Interessen angeben'])
 
         except Exception as e:
@@ -577,7 +580,8 @@ this is the main intent switch function. All intents that use the backend must b
         event_count, events = retrieve_found_events(output_contexts)
         if events is None:
             return chip_response(
-                text='Ich habe leider keine Events gespeichert. Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
+                text='Ich habe leider keine Events gespeichert. '
+                     'Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
                 chips=['Zugänglichkeit auswählen', 'Interessen angeben'])
 
         next_event_index = event_index = int(retrieve_event_index(output_contexts))
@@ -587,10 +591,12 @@ this is the main intent switch function. All intents that use the backend must b
                                            context='event_index',
                                            variable_name='event_index',
                                            variable=next_event_index,
-                                           text='Ich habe dir nun alle ausgewählten Events gezeigt. '
+                                           text='Ich habe dir nun alle ausgewählten Veranstaltungen gezeigt. '
                                                 'Was möchtest du nun tun?',
-                                           chips=['Zurück: Hauptmenü',
-                                                  'Zeig mir die Veranstaltungen noch einmal'])
+                                           chips=['Zeig mir die Veranstaltungen noch einmal',
+                                                  'Zurück zum Hauptmenü'],
+                                           dgs_videos_bot=make_video_array(['A19b']),
+                                           dgs_videos_chips=make_video_array(['RC29b', 'AC7']))
         if event_index == 0:
             event_index = event_count - 2
             next_event_index = event_index + 1
@@ -601,14 +607,16 @@ this is the main intent switch function. All intents that use the backend must b
             event_index = event_index - 2
             next_event_index = event_index + 1
 
-        print(event_index, next_event_index, event_count)
+        # print(event_index, next_event_index, event_count)
         if event_index == 0:
             chips = ['Zeig mir das nächste Event',
                      'Mehr zur Veranstaltung']
+            dgs_videos_chips = make_video_array(['RC28', 'RC29'])
         else:
-            chips = ['Zeig mir das letzte Event',
-                     'Zeig mir das nächste Event',
+            chips = ['Zeig mir die letzte Empfehlung nochmal',
+                     'Gib mir eine weitere Empfehlung',
                      'Mehr zur Veranstaltung']
+            dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])
         return event_response(
             text='Ich empfehle dir noch einmal die letzte Veranstaltung. '
                  'Ich kann dir dir mehr erzählen oder eine andere Veranstaltung vorschlagen',
@@ -619,7 +627,8 @@ this is the main intent switch function. All intents that use the backend must b
             display_num=display_num,
             display_index=event_index,
             events=events,
-            chips=chips
+            chips=chips,
+            dgs_videos_chips=dgs_videos_chips
         )
 
     elif intent_name == 'script.event.details - linkout':

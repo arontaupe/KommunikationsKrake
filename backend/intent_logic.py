@@ -177,7 +177,7 @@ def order_events_by_interest(interests, events=None, event_count=None):
     """
     if event_count is not None:
         user_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+        # read out user interests
         for i in range(len(interests)):
             if interests[i] == 'Ja':
                 user_interests[i] = 1
@@ -186,6 +186,7 @@ def order_events_by_interest(interests, events=None, event_count=None):
         # print(f'Interests: {interests}')
         # print(f'User Interests: {user_interests}')
 
+        # remap the event profile to array
         for i in events:
             score = 0
             event_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -213,12 +214,17 @@ def order_events_by_interest(interests, events=None, event_count=None):
 
             for j in user_interests:
                 if user_interests[j] == event_interests[j]:
+                    score += 2
+                elif user_interests[j] == 2:
                     score += 1
+                else:
+                    score -= 1
+
             # store each interest ranking score in the list, for future reference
             events[i]['interest_ranking'] = score
             # print(events[i]['interest_ranking'])
         # print(events.keys())
         # the actual sorting, highest ranking first
         events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
-        # print(events.keys())
+        #print(events.keys())
     return event_count, events
