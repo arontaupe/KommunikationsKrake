@@ -837,12 +837,21 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_chips=make_video_array(['RC1a', 'RC1b', 'RC2', 'RC3']))
 
     elif intent_name == 'script.bot.introvideo':
+        ls_video = parameters.get('ls_video')
+        if ls_video == 'JA':
+            return chip_response(
+                text='Video: Wie funktioniert der Chatbot und was kann er alles:',
+                chips=['Weiter zum Hauptmenü'],
+                # dgs_videos_bot=None,
+                dgs_videos_chips=make_video_array(['RC4']),
+                content_videos=make_video_array(['Intro_Video_LS']))
+
         return chip_response(
             text='Video: Wie funktioniert der Chatbot und was kann er alles:',
             chips=['Weiter zum Hauptmenü'],
             # dgs_videos_bot=None,
             dgs_videos_chips=make_video_array(['RC4']),
-            content_videos=make_video_array(['Intro_Video_LS']))
+            content_videos=make_video_array(['Intro_Video']))
 
     elif intent_name == 'script.main_menu':
         return chip_response(
@@ -866,7 +875,8 @@ this is the main intent switch function. All intents that use the backend must b
                                         'Veranstaltungsberatung'],
                                  # dgs_videos_bot=make_video_array(['A2']),
                                  content_videos=make_video_array(['E1']),
-                                 dgs_videos_chips=make_video_array(['RC7', 'RC3', 'RC6']))
+                                 dgs_videos_chips=make_video_array(['RC7', 'RC3', 'RC6'])
+                                 )
 
         return chip_response(
             text='Hier wird ein Video gezeigt:\r\n '
@@ -901,26 +911,6 @@ this is the main intent switch function. All intents that use the backend must b
                    'Frage zu Ällei, dem Chatbot'],
             # dgs_videos_bot=make_video_array(['A2']),
             # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
-        )
-
-    elif intent_name == 'access.help':
-        return chip_response(
-            text='Hier kommt eine Hilfestellung zur Benutzung von Ällei, dem Chatbot.',
-            chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
-                   # 'Frage zur Barrierefreiheit',
-                   'Frage zu Ällei, dem Chatbot'],
-            # dgs_videos_bot=make_video_array(['A2']),
-            # dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
-        )
-    elif intent_name == 'access.options':
-        return chip_response(
-            text='Heiraten, Häusle bauen, und dann sterben, höchstwahrscheinlich',
-            chips=['Frage zu einer konkreten Veranstaltung', 'Frage zum Sommerblut allgemein',
-                   # 'Frage zur Barrierefreiheit',
-                   'Frage zu Ällei, dem Chatbot'],
-            # TODO
-            dgs_videos_bot=make_video_array(['Intro_Video_LS']),
-            dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7'])
         )
 
     elif intent_name == 'script.play_sb_video':
