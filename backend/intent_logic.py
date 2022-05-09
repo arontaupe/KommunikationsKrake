@@ -89,7 +89,7 @@ retrieves all stored events from GDF and displays them
 
     event_index = int(retrieve_event_index(output_contexts))
 
-    print(event_index, type(event_index))
+    # print(event_index, type(event_index))
     # pprint(events)
     title = events.get(str(list(events)[event_index]))['title']
 
@@ -151,7 +151,6 @@ def map_bedarf_for_db(bedarf=None):
                 codes.append(accessibilities[
                                  'Induktions·schleife [Eine Induktions·schleife ist für schwerhörige Menschen. '
                                  'Sie können den Ton der Veranstaltung dann direkt in ihrem Hör·gerät hören.]'])
-                codes.append(accessibilities['Audiodeskription'])
                 codes.append(accessibilities['Übersetzung in Gebärden·sprache'])
             if bedarf[3] == 1.0:  # Mobilitätseinschränkung
                 codes.append(accessibilities['Rollstuhl'])
