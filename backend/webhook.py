@@ -856,8 +856,21 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7', 'Feedback1']))
 
     elif intent_name == 'script.bot_theme_input':
+        ls_video = parameters.get('ls_video')
+        if ls_video == 'JA':
+            return chip_response(
+            text='Hier wird ein Video gezeigt:\r\n'
+                 ' "Barrierefreiheit im digitalen Raum"\r\n'
+                 'Dieses Video ist leider noch nicht verfügbar.',
+            chips=['Mehr über Sommerblut erfahren',
+                   'Ich habe eine Frage',
+                   'Veranstaltungsberatung'],
+            # dgs_videos_bot=make_video_array(['A2']),
+            content_videos=make_video_array(['E1']),
+            dgs_videos_chips=make_video_array(['RC7', 'RC3', 'RC6'])
         return chip_response(
-            text='Hier wird ein Video gezeigt: "Barrierefreiheit im digitalen Raum"\r\n'
+            text='Hier wird ein Video gezeigt:\r\n '
+                 '"Barrierefreiheit im digitalen Raum"\r\n'
                  'Dieses Video ist leider noch nicht verfügbar.',
             chips=['Mehr über Sommerblut erfahren',
                    'Ich habe eine Frage',
