@@ -3,8 +3,6 @@ import json  # make me interact with json
 # use pretty printing for json responses
 from pprint import pprint
 import random
-
-pprint('keep pprint')
 # server functionality
 from flask import Flask, request  # makes the thing ngrokable
 from flask_debugtoolbar import DebugToolbarExtension
@@ -322,9 +320,18 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'teach.fingeralhabet':
         try:
             fa_letter = parameters.get('FA-Zeichen')
+            if fa_letter == '':
+                chips = chips = random.sample(
+                    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+                     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'], 5)
+                return chip_response(text='Na klar.\r\n'
+                                          'Welchen Buchstaben möchtest du denn lernen?\r\n'
+                                          'Gib einen Buchstaben ein.\r\n'
+                                          'Ich zeige ihn dir.\r\n',
+                                     chips=chips)
             folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
             return image_response(url=str(folder) + str(fa_letter) + '.png?raw=true',
-                                  chips=['Noch ein Buchstabe', 'Menü'])
+                                  chips=['Ich möchte noch einen Buchstaben lernen', 'Zurück zum Hauptmenü'])
         except Exception as e:
             print("Exception when trying to access fa_letter: %s\n" % e)
             return text_response('Mir sind leider die Bilder ausgegangen.')
@@ -332,8 +339,9 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'faq.sommerblut.team':
         return button_response(url='https://www.sommerblut.de/ls/ueber-uns/profil-team',
                                button_text='Das Team vom Sommerblut',
-                               text=' Das Sommerblut hat ein ganz tolles Team. Du kannst sie hier finden',
-                               chips=['Ich habe eine andere Frage', 'Zurück: Hauptmenü'])
+                               text=' Das Sommerblut hat ein ganz tolles Team. \r\n'
+                                    ' Du kannst sie hier finden',
+                               chips=['Ich habe eine andere Frage', 'Zurück zum Hauptmenü'])
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
@@ -816,10 +824,12 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.welcome':
         return chip_response(
-            text='Hi! \r\nMein Name ist Ällei! \r\n'
+            text='Hi! \r\n'
+                 'Mein Name ist Ällei! \r\n'
                  'Schön, dass du hier bist. \r\n'
                  'Suchst Du nach Informationen über das Sommerblut Festival? \r\n'
-                 'Ich kann Dir helfen. Bist du das erste mal hier? \r\n'
+                 'Ich kann Dir helfen. \r\n'
+                 'Bist du das erste mal hier? \r\n'
                  'Dann schau dir gern das Einführungs-Video an.\r\n',
             chips=['Einführungsvideo', 'Einführungsvideo in leichter Sprache', 'Kenne ich schon: Hauptmenü',
                    'Ich habe eine Frage'],
