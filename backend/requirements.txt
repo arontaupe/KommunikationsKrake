@@ -7,3 +7,5 @@ six>=1.10
 python_dateutil>=2.5.3
 setuptools>=21.0.0
 google-cloud-dialogflow==2.13.0
+Werkzeug~=2.1.2
+Flask-HTTPAuth

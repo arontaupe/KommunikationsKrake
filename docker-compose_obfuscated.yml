@@ -9,7 +9,12 @@ services:
     environment:
       - DB_USER=*******
       - DB_PASS=********
+      - USER=****
+      - PASS=****
       - BASEURL=https://datenbank.sommerblut.de
+      - BASEURL_DEV=https://development.sommerblut.de
+      - MAIL_SENDER_ADDRESS=chatbot@sommerblut.de
+      - MAIL_PASS=*****
 
     ports:
       - "5003:5000"

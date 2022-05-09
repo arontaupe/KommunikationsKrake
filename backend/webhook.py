@@ -1,14 +1,19 @@
 # import flask dependencies
 import json  # make me interact with json
 # use pretty printing for json responses
+import os
 from pprint import pprint
 import random
 # server functionality
 from flask import Flask, request  # makes the thing ngrokable
-from flask_debugtoolbar import DebugToolbarExtension
-import logging
+
 # Import datetime class from datetime module
 from datetime import datetime, timedelta
+
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import check_password_hash, generate_password_hash
+
+auth = HTTPBasicAuth()
 
 # import the response functionality
 from response_func import image_response, \
@@ -30,6 +35,21 @@ from intent_logic import collect_accessibility_needs, show_full_event_list, map_
 
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
+
+user = os.environ.get('USER')
+pw = os.environ.get('PASS')
+
+users = {
+    user: generate_password_hash(pw)
+}
+
+
+@auth.verify_password
+def verify_password(username, password):
+    if username in users:
+        return check_password_hash(users.get(username), password)
+    return False
+
 
 # initialize the flask app
 app = Flask(__name__)
@@ -963,6 +983,7 @@ this is the main intent switch function. All intents that use the backend must b
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
+@auth.login_required
 def update():
     """
 Main listener to DF, will call handle_intent upon being activated
