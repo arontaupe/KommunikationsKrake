@@ -159,11 +159,15 @@ def get_full_event_list(accessibility=None):
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
         next_date = 'Die Veranstaltung ist schon vorbei.'
+        next_date = None
         if resp['items'][i]['next_date']:
             next_date = resp['items'][i]['next_date']['isdate']
         events[i]['next_date'] = next_date
         events[i]['duration'] = resp['items'][i]['duration_minutes']
-        events[i]['location'] = resp['items'][i]['location']['name']
+        location = None
+        if resp['items'][i]['location']:
+            location = resp['items'][i]['location']['name']
+        events[i]['location'] = location
         events[i]['artist_name'] = resp['items'][i]['artist_name']
         events[i]['info_text'] = resp['items'][i]['info_text']
         events[i]['subtitle'] = resp['items'][i]['subtitle']
@@ -174,9 +178,11 @@ def get_full_event_list(accessibility=None):
         events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['category'] = resp['items'][i]['category']
         # somehow the DB response is broken here, therefore some steps to fix that.
-        image_json = resp['items'][i]['event_images']
-        parsed = json.loads(image_json)
-        image = parsed['mainimage']['name']
+        image = None
+        if resp['items'][i]['event_images']:
+            image_json = resp['items'][i]['event_images']
+            parsed = json.loads(image_json)
+            image = parsed['mainimage']['name']
         events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['program_content'] = resp['items'][i]['program_content']
@@ -185,7 +191,7 @@ def get_full_event_list(accessibility=None):
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
-
+    # print(events)
     return event_count, events, titles, ids
 
 
