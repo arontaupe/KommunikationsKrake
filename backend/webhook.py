@@ -1005,7 +1005,7 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.play_sb_video':
         return chip_response(
             text='Video: Was ist Sommerblut?',
-            chips=['weiter: Themenvorstellung'],
+            chips=['Weiter zur Themenvorstellung'],
             content_videos=make_video_array(['SB_Intro']),
             dgs_videos_chips=make_video_array(['AC6'])
         )
@@ -1013,7 +1013,7 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.sb_theme.play_video':
         return chip_response(
             text='Hier ist ein Video zum Thema "Mach mal neu". ',
-            chips=['Weiter: Bedarfsfilter'],
+            chips=['Weiter zum Bedarfsfilter'],
             content_videos=make_video_array(['SB_Theme']),
             dgs_videos_chips=make_video_array(['RC13'])
         )
