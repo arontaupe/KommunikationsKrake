@@ -4,7 +4,7 @@ import json
 import os
 from pprint import pprint
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
 
@@ -324,42 +324,88 @@ def get_upcoming_event_list(accessibility=None):
     return event_count, events
 
 
-def get_timeframe_event_list(to_date,
-                             from_date=datetime.now(),
+def get_timeframe_event_list(from_date=datetime.now(),
+                             num_days=None,
                              accessibility=None):
     """
     get all events within a specified timeframe with accessibility
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
-    try:
-        # get all events
-        query = '?entries=30&toDate=[\"' + str(to_date) + '\"]'
+    if num_days:
+        until_date = from_date + timedelta(days=num_days)
         if accessibility:
-            query = query + '&accessible=' + str(accessibility)
+            try:
+                # get all events
+                resp = event_api.get_all_events(accept_language=accept_language,
+                                                entries=30,
+                                                to_date=[f'["{until_date}"]'],
+                                                from_date=[f'["{from_date}"]'],
+                                                accessible=[accessibility],
+                                                conjunction_accessible='and'
+                                                )
+                # pprint(resp['count'])
+            except ApiException as e:
+                print("Exception when calling EventsApi->get all events: %s\n" % e)
+        else:
+            try:
+                # get all events
+                resp = event_api.get_all_events(accept_language=accept_language,
+                                                entries=30,
+                                                to_date=[f'["{until_date}"]'],
+                                                from_date=[f'["{from_date}"]'],
+                                                )
+                # pprint(resp['count'])
+            except ApiException as e:
+                print("Exception when calling EventsApi->get all events: %s\n" % e)
+    else:
+        if accessibility:
+            try:
+                # get all events
+                resp = event_api.get_all_events(accept_language=accept_language,
+                                                entries=30,
+                                                from_date=[f'["{from_date}"]'],
+                                                accessible=[accessibility],
+                                                conjunction_accessible='and'
+                                                )
+                # pprint(resp['count'])
+            except ApiException as e:
+                print("Exception when calling EventsApi->get all events: %s\n" % e)
+        else:
+            try:
+                # get all events
+                resp = event_api.get_all_events(accept_language=accept_language,
+                                                entries=30,
+                                                from_date=[f'["{from_date}"]'],
+                                                )
+                # pprint(resp['count'])
+            except ApiException as e:
+                print("Exception when calling EventsApi->get all events: %s\n" % e)
 
-        suburl = '/api/events.json'
-        url = BASEURL + suburl + query
-        print('Request to:' + url)
-        response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-        print('Status Code: ' + str(response.status_code))
-        #('Response from: ' + str(response.url))
-        resp = response.json()
-    except ApiException as e:
-        print("Exception when calling EventsApi->get all timeframe events: %s\n" % e)
+    titles = []
+    ids = []
+    for i in resp.get('items'):
+        titles.append(i.get('title'))
+        ids.append(i.get('id'))
 
+    # pprint(resp)
     event_count = resp['count']
+
     events = {}
     for i in range(event_count):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
         next_date = 'Die Veranstaltung ist schon vorbei.'
+        next_date = None
         if resp['items'][i]['next_date']:
             next_date = resp['items'][i]['next_date']['isdate']
         events[i]['next_date'] = next_date
         events[i]['duration'] = resp['items'][i]['duration_minutes']
-        events[i]['location'] = resp['items'][i]['location']['name']
+        location = None
+        if resp['items'][i]['location']:
+            location = resp['items'][i]['location']['name']
+        events[i]['location'] = location
         events[i]['artist_name'] = resp['items'][i]['artist_name']
         events[i]['info_text'] = resp['items'][i]['info_text']
         events[i]['subtitle'] = resp['items'][i]['subtitle']
@@ -370,9 +416,11 @@ def get_timeframe_event_list(to_date,
         events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['category'] = resp['items'][i]['category']
         # somehow the DB response is broken here, therefore some steps to fix that.
-        image_json = resp['items'][i]['event_images']
-        parsed = json.loads(image_json)
-        image = parsed['mainimage']['name']
+        image = None
+        if resp['items'][i]['event_images']:
+            image_json = resp['items'][i]['event_images']
+            parsed = json.loads(image_json)
+            image = parsed['mainimage']['name']
         events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
         events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
         events[i]['program_content'] = resp['items'][i]['program_content']
@@ -381,7 +429,8 @@ def get_timeframe_event_list(to_date,
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
-    return event_count, events
+    # print(events)
+    return event_count, events, titles, ids
 
 
 def get_event_schedule(event_id):

@@ -27,7 +27,8 @@ from response_func import image_response, \
 from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id, \
     retrieve_interests, whether_searched_events
 # import the database functions
-from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, get_event_schedule, get_event_title, \
+from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, \
+    get_event_schedule, get_event_title, \
     get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
 from video_builder import make_video_array
 
@@ -393,13 +394,18 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts=output_contexts)
-
+        print(f'Bedarf: {bedarf}')
         interests = retrieve_interests(output_contexts=output_contexts)
+        print(f'Interests: {interests}')
         codes = map_bedarf_for_db(bedarf=bedarf)
-        # print(codes)
+        print(f'Accessibility Codes: {codes}')
         event_count, events, titles, ids = get_full_event_list(accessibility=codes)
-
-        event_count, events = order_events_by_interest(interests=interests, event_count=event_count, events=events)
+        print(f'Event Count: {event_count}')
+        print(f'Titles: {titles}')
+        event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
+                                                                    events=events)
+        print(f'Event Count: {event_count}')
+        print(f'Titles: {titles}')
         if events and event_count:
             text = ''
             if event_count > 5:
@@ -446,9 +452,11 @@ this is the main intent switch function. All intents that use the backend must b
         try:
             # here we are making the database call and see whether we need to filter further
             bedarf = retrieve_bedarf(output_contexts)
-            # interests = retrieve_interests()
+            interests = retrieve_interests(output_contexts=output_contexts)
             codes = map_bedarf_for_db(bedarf=bedarf)
-            event_count, events = get_upcoming_event_list(accessibility=codes)
+            event_count, events, titles, ids = get_timeframe_event_list(accessibility=codes)
+            event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
+                                                                        events=events)
 
             text = f'Okay, hier kommt mein heißer Tipp an noch stattfindenden Veranstaltungen für dich! ',
             chips = ["Zeig mir die Veranstaltungen"]
@@ -473,15 +481,13 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.time.filter.nextdays':
         try:
             num_next_days_filter = int(parameters.get('num_next_days_filter'))
-
-            # here we are making the database call and see whether we need to filter further
-            bedarf = retrieve_bedarf(output_contexts)
-            # interests = retrieve_interests()
+            bedarf = retrieve_bedarf(output_contexts=output_contexts)
+            interests = retrieve_interests(output_contexts=output_contexts)
             codes = map_bedarf_for_db(bedarf=bedarf)
-
-            event_count, events = get_timeframe_event_list(
-                to_date=datetime.now() + timedelta(days=num_next_days_filter),
-                accessibility=codes)
+            event_count, events, titles, ids = get_timeframe_event_list(num_days=num_next_days_filter,
+                                                                        accessibility=codes)
+            event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
+                                                                        events=events)  # here we are making the database call and see whether we need to filter further
 
             text = f'Okay, hier sind die Veranstaltungen in den nächsten {num_next_days_filter} Tagen für dich'
             chips = ["Zeig mir die Veranstaltungen"]
@@ -534,7 +540,7 @@ this is the main intent switch function. All intents that use the backend must b
                                                )
 
         try:
-            event_count, events = retrieve_found_events(output_contexts)
+            event_count, events, titles, ids = retrieve_found_events(output_contexts)
             if event_id and events is not None:
                 return chip_w_context_response(session_id=session_id,
                                                text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
@@ -616,7 +622,7 @@ this is the main intent switch function. All intents that use the backend must b
 
 
     elif intent_name == 'script.event.menu.previous':
-        event_count, events = retrieve_found_events(output_contexts)
+        event_count, events, titles, ids = retrieve_found_events(output_contexts)
         if events is None:
             return chip_response(
                 text='Ich habe leider keine Events gespeichert. '
@@ -678,7 +684,7 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.event.details - program':
         event_id = retrieve_event_id(output_contexts)
-        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         program_content = 'Ich habe leider keine Programmbeschreibung gefunden'
         title = 'der Veranstaltung'
         if event_id and events:
@@ -695,7 +701,7 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.event.details - corona':
         event_id = retrieve_event_id(output_contexts)
-        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        event_count, events, tittles, ids = retrieve_found_events(output_contexts=output_contexts)
         health_infection_notice = ' Ich konnte leider keine Infos zum Coronaschutz finden \r\n'
         title = 'der Veranstaltung'
         if event_id and events:
@@ -714,7 +720,7 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.event.details - accessibility':
         event_id = retrieve_event_id(output_contexts)
-        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         accessible_other = 'Ich konnte leider keine Infos zur Barrierefreiheit finden'
         title = 'der Veranstaltung'
         if event_id and events:
@@ -737,7 +743,7 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.event.details - schedule':
         event_id = retrieve_event_id(output_contexts)
-        event_count, events = retrieve_found_events(output_contexts=output_contexts)
+        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         if event_id and events:
             for e in range(event_count):
                 if events[str(e)].get('id') == event_id:

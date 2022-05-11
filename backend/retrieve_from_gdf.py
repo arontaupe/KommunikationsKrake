@@ -12,7 +12,10 @@ def retrieve_bedarf(output_contexts=None):
     return accessibilities
 
 def retrieve_found_events(output_contexts=None):
-    #print('retrieving found events')
+    # print('retrieving found events')
+    titles = []
+    ids = []
+
     event_count = events = None
     if output_contexts:
         num_contexts = len(output_contexts)
@@ -21,7 +24,11 @@ def retrieve_found_events(output_contexts=None):
             if 'events_found' in output_contexts[i]['name']:
                 events = output_contexts[i]['parameters']['events_found']
                 event_count = len(events)
-    return event_count, events
+        for i in events:
+            titles.append(events[i].get('title'))
+            ids.append(events[i].get('id'))
+
+    return event_count, events, titles, ids
 
 def whether_searched_events(output_contexts=None):
     if output_contexts:

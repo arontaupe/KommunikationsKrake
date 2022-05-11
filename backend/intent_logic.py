@@ -82,16 +82,16 @@ retrieves all stored events from GDF and displays them
     :param session_id:
     :return:
     """
-    event_count, events = retrieve_found_events(output_contexts)
+    event_count, events, titles, ids = retrieve_found_events(output_contexts)
+
     if events is None:
         return chip_response(text='Ich habe leider keine Events gespeichert',
                              chips=['Barrierefreiheit angeben'])
 
     event_index = int(retrieve_event_index(output_contexts))
-
+    print(event_index)
     # print(event_index, type(event_index))
     # pprint(events)
-    title = events.get(str(list(events)[event_index]))['title']
 
     display_num = 1
     next_event_index = event_index
@@ -111,7 +111,10 @@ retrieves all stored events from GDF and displays them
                                        dgs_videos_chips=make_video_array(['RC29b', 'AC7']))
 
     next_event_index = event_index + 1
-    #print(event_index, next_event_index, event_count)
+    # print(event_index, next_event_index, event_count)
+
+    title = titles[event_index]
+
     if event_index == 0:
         chips = ['Gib mir eine weitere Empfehlung',
                  'Ich möchte mehr zur Veranstaltung wissen']
@@ -226,5 +229,16 @@ def order_events_by_interest(interests, events=None, event_count=None):
         # print(events.keys())
         # the actual sorting, highest ranking first
         events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
-        #print(events.keys())
-    return event_count, events
+        print(events.keys())
+        # rename keys
+
+        events = dict(zip(list(range(len(events))), list(events.values())))
+        print(events.keys())
+
+        titles = []
+        ids = []
+        for i in events:
+            titles.append(events[i].get('title'))
+            ids.append(events[i].get('id'))
+
+    return event_count, events, titles, ids

@@ -296,16 +296,21 @@ sends a response card displaying one event from the array of events according to
             # print(date)
         if events.get(str(e))['duration']:
             duration = int(events.get(str(e))['duration'])
-            subline = subline + f'Spieldauer: {duration} Minuten \r\n'
+            subline += f'Spieldauer: {duration} Minuten \r\n'
         if events.get(str(e))['location']:
             location = events.get(str(e))['location']
             subline += f'Spielort: {location}\r\n'
         if events.get(str(e))['artist_name']:
             artist_name = events.get(str(e))['artist_name']
-            subline = subline + f'Künstler: {artist_name}\r\n'
+            subline += f'Künstler: {artist_name}\r\n'
         if events.get(str(e))['max_capacity']:
             capacity = events.get(str(e))['max_capacity']
-            subline = subline + f'Maximale Platzanzahl: {capacity}\r\n'
+            subline += f'Maximale Platzanzahl: {capacity}\r\n'
+
+        if events.get(str(e))['price_vvk']:
+            price = int(events.get(str(e))['price_vvk'])
+            subline += f'Preis: {price}  Euro \r\n'
+
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][1]['subtitle'] = subline
         if events.get(str(e))['event_images']:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][0]['rawUrl'] = events.get(str(e))[
@@ -325,13 +330,9 @@ sends a response card displaying one event from the array of events according to
         if description:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['text'] = description
         sale_msg = 'Tickets hier kaufen \r\n'
-        if events.get(str(e))['price_vvk']:
-            price = int(events.get(str(e))['price_vvk'])
-            sale_msg += f'Preis: {price}  Euro \r\n'
 
-        resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
-        resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))[
-            'ticket_link']
+        # resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
+        # resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))['ticket_link']
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['title'] = 'Kurzbeschreibung'
 
     if chips:

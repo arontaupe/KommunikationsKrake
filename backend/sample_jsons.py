@@ -302,6 +302,79 @@ SAMPLE_EVENT_JSON_1 = {
                                 }
                             },
                             "text": ""
+                        }
+                    ],
+                    [
+                        {
+                            "type": "chips",
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ]
+                        }
+                    ]
+                ],
+                "event": {}
+            }
+        }
+    ],
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        }
+    ]
+}
+
+SAMPLE_EVENT_W_BUTTON_JSON_1 = {
+    "fulfillmentText": "Event",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
+                "content_videos": {},
+                "richContent": [
+                    [
+                        {
+                            "type": "image",
+                            "rawUrl": ""
+                        },
+                        {
+                            "type": "info",
+                            "title": "",
+                            "subtitle": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
+                        },
+                        {
+                            "type": "accordion",
+                            "title": "",
+                            "subtitle": "",
+                            "image": {
+                                "src": {
+                                    "rawUrl": ""
+                                }
+                            },
+                            "text": ""
                         },
                         {
                             "type": "button",
