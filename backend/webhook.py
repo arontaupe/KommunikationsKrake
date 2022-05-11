@@ -396,18 +396,18 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
         bedarf = retrieve_bedarf(output_contexts=output_contexts)
-        print(f'Bedarf: {bedarf}')
+        # print(f'Bedarf: {bedarf}')
         interests = retrieve_interests(output_contexts=output_contexts)
-        print(f'Interests: {interests}')
+        # print(f'Interests: {interests}')
         codes = map_bedarf_for_db(bedarf=bedarf)
-        print(f'Accessibility Codes: {codes}')
+        # print(f'Accessibility Codes: {codes}')
         event_count, events, titles, ids = get_full_event_list(accessibility=codes)
-        print(f'Event Count: {event_count}')
-        print(f'Titles: {titles}')
+        # print(f'Event Count: {event_count}')
+        # print(f'Titles: {titles}')
         event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
                                                                     events=events)
-        print(f'Event Count: {event_count}')
-        print(f'Titles: {titles}')
+        # print(f'Event Count: {event_count}')
+        # print(f'Titles: {titles}')
         if events and event_count:
             text = ''
             if event_count > 5:
