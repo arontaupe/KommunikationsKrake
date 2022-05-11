@@ -66,7 +66,6 @@ def get_accessibility_ids():
     return accessibilities
 
 
-
 def get_accessibility_ids_clean():
     """
     :return: all accessibility classes and their ID as a dict
@@ -259,69 +258,6 @@ def get_partial_event_list(num_events=int, accessibility=None):
         events[i]['interest_ranking'] = None
     return event_count, events
 
-
-def get_upcoming_event_list(accessibility=None):
-    """
-    get all upcoming events with accessibility
-    :param accessibility: numeric id 0-9
-    :return: json with list of all events fulfilling the accessibility
-    """
-    if accessibility:
-        try:
-            # get all events
-            api_response = event_api.get_all_events(accessible=[accessibility],
-                                                    accept_language=accept_language,
-                                                    entries=30,
-                                                    time=['upcoming'],
-                                                    conjunction_accessible='and'
-                                                    )
-        except ApiException as e:
-            print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)
-    else:
-        try:
-            # get all events
-            api_response = event_api.get_all_events(accept_language=accept_language,
-                                                    entries=30,
-                                                    time=['upcoming'])
-        except ApiException as e:
-            print("Exception when calling EventsApi->get all upcoming events: %s\n" % e)
-
-    resp = api_response
-    event_count = resp['count']
-
-    events = {}
-    for i in range(event_count):
-        events[i] = {}
-        events[i]['id'] = resp['items'][i]['id']
-        events[i]['title'] = resp['items'][i]['title']
-        next_date = 'Die Veranstaltung ist schon vorbei.'
-        if resp['items'][i]['next_date']:
-            next_date = resp['items'][i]['next_date']['isdate']
-        events[i]['next_date'] = next_date
-        events[i]['duration'] = resp['items'][i]['duration_minutes']
-        events[i]['location'] = resp['items'][i]['location']['name']
-        events[i]['artist_name'] = resp['items'][i]['artist_name']
-        events[i]['info_text'] = resp['items'][i]['info_text']
-        events[i]['subtitle'] = resp['items'][i]['subtitle']
-        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
-        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
-        events[i]['price_ak'] = resp['items'][i]['price_ak']
-        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
-        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
-        events[i]['category'] = resp['items'][i]['category']
-        # somehow the DB response is broken here, therefore some steps to fix that.
-        image_json = resp['items'][i]['event_images']
-        parsed = json.loads(image_json)
-        image = parsed['mainimage']['name']
-        events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
-        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
-        events[i]['program_content'] = resp['items'][i]['program_content']
-        events[i]['short_description'] = resp['items'][i]['short_description']
-        events[i]['health_infection_notice'] = resp['items'][i]['health_infection_notice']
-        events[i]['interest'] = resp['items'][i]['interest']
-        events[i]['accessible_other'] = resp['items'][i]['accessible_other']
-        events[i]['interest_ranking'] = None
-    return event_count, events
 
 
 def get_timeframe_event_list(from_date=datetime.now(),

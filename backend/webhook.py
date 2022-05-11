@@ -29,7 +29,7 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_e
 # import the database functions
 from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, \
     get_event_schedule, get_event_title, \
-    get_partial_event_list, get_upcoming_event_list, get_timeframe_event_list, get_all_titles_ids
+    get_partial_event_list, get_timeframe_event_list, get_all_titles_ids
 from video_builder import make_video_array
 
 # import all background intent_logic functionality
@@ -283,7 +283,7 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.6 - ja' or \
             intent_name == 'script.interest.select.6 - nein':
         interest_6 = parameters.get('interest_6')
-        return chip_w_context_response(text=interest_6 + ', Ich merke, dass das wichtig ist.',
+        return chip_w_context_response(text=interest_6 + ', ich merke, das ist wichtig.',
                                        chips=["Weiter: Frage 7"],
                                        session_id=session_id,
                                        context='interest_6',
@@ -305,7 +305,7 @@ this is the main intent switch function. All intents that use the backend must b
             intent_name == 'script.interest.select.7 - ja' or \
             intent_name == 'script.interest.select.7 - nein':
         interest_7 = parameters.get('interest_7')
-        return chip_w_context_response(text='Dass du ' + interest_7 + ' klickst, find ich gut!',
+        return chip_w_context_response(text='' + interest_7 + ' , find ich gut!',
                                        chips=["Weiter: Frage 8"],
                                        session_id=session_id,
                                        context='interest_7',
@@ -365,6 +365,7 @@ this is the main intent switch function. All intents that use the backend must b
                 chips = chips = random.sample(
                     ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
                      'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'], 5)
+                chips.append('Mehr Buchstaben vorschlagen')
                 return chip_response(text='Na klar.\r\n'
                                           'Welchen Buchstaben möchtest du denn lernen?\r\n'
                                           'Gib einen Buchstaben ein.\r\n'
@@ -374,7 +375,8 @@ this is the main intent switch function. All intents that use the backend must b
                                      )
             folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
             return image_response(url=str(folder) + str(fa_letter) + '.png?raw=true',
-                                  chips=['Ich möchte noch einen Buchstaben lernen', 'Zurück zum Hauptmenü'],
+                                  chips=['Ich möchte noch einen Buchstaben lernen',
+                                         'Zurück zum Hauptmenü'],
                                   dgs_videos_bot=make_video_array(['Finger1']),
                                   dgs_videos_chips=make_video_array(['Finger2', 'AC7'])
                                   )
@@ -529,14 +531,14 @@ this is the main intent switch function. All intents that use the backend must b
                                                       'Programmtext',
                                                       'Coronasituation',
                                                       'Datum und Ort',
-                                                      'Zeig mir die Veranstaltung auf Sommerblut.de'
-                                                      ],
+                                                      'Zeig mir die Veranstaltung auf Sommerblut.de',
+                                                      'Zurück: Ich habe eine andere Frage'],
                                                variable_name='event_id',
                                                variable=event_id,
                                                context='event_id',
                                                dgs_videos_bot=make_video_array(['AC20']),
                                                dgs_videos_chips=make_video_array(
-                                                   ['RC30', 'RC31', 'RC32', 'RC33', 'RC34'])
+                                                   ['RC30', 'RC31', 'RC32', 'RC33', 'RC34', 'RC3'])
                                                )
 
         try:
@@ -721,7 +723,7 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.event.details - accessibility':
         event_id = retrieve_event_id(output_contexts)
         event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
-        accessible_other = 'Ich konnte leider keine Infos zur Barrierefreiheit finden'
+        accessible_other = 'Ich konnte leider keine Infos zur Barrierefreiheit finden\r\n'
         title = 'der Veranstaltung'
         if event_id and events:
             for e in range(event_count):
@@ -746,21 +748,31 @@ this is the main intent switch function. All intents that use the backend must b
         event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         if event_id and events:
             for e in range(event_count):
-                if events[str(e)].get('id') == event_id:
-                    duration = int(events[str(e)].get('duration'))
-                    title = events[str(e)].get('title')
-                    location = events[str(e)].get('location')
-                    price = int(events[str(e)].get('price_vvk'))
-                    image = events[str(e)].get('event_images')
+                index = str(e)
+                text = ''
+                if events[index].get('id') == event_id:
+                    duration = title = location = price = image = None
+                    if events[index].get('title'):
+                        title = events[index].get('title')
+                        text += f'{title} \r\n '
+                    if events[index].get('duration'):
+                        duration = int(events[index].get('duration'))
+                        text += f' dauert {duration} Minuten. \r\n '
+                    if events[index].get('location'):
+                        location = events[index].get('location')
+                        text += f'Es findet statt an diesem Ort: {location}. \r\n'
+                    if events[index].get('price_vvk'):
+                        price = int(events[index].get('price_vvk'))
+                        text += f'Er kostet {price} Euro. \r\n'
+                    if events[index].get('event_images'):
+                        image = events[index].get('event_images')
+
                     return event_detail_response(duration=duration,
                                                  title=title,
                                                  location=location,
                                                  price=price,
                                                  image=image,
-                                                 text=f'{title} dauert {duration} Minuten. \r\n '
-                                                      f'Es findet statt an diesem Ort: {location}. \r\n'
-                                                      f'Er kostet {price} Euro. \r\n'
-                                                      f'(Event_ID: {event_id})',
+                                                 text=text,
                                                  chips=['Zurück zu den Einzelheiten zur Veranstaltung',
                                                         'Hauptmenü',
                                                         'Zu welchen Zeiten kann ich die Veranstaltung besuchen?'],
@@ -782,8 +794,7 @@ this is the main intent switch function. All intents that use the backend must b
 
         return event_schedule_response(play_count,
                                        plays,
-                                       text=f'Titel der Veranstaltung: {event_title} \r\n'
-                                            f'Veranstaltungs-Nummer: {event_id}',
+                                       text=f'Titel der Veranstaltung: {event_title} \r\n',
                                        chips=['Ich möchte online ein Ticket kaufen',
                                               'Ich möchte ein Ticket am Telefon kaufen',
                                               'Ich möchte Tickets an der Theaterkasse kaufen',
@@ -811,6 +822,7 @@ this is the main intent switch function. All intents that use the backend must b
             event_title = parameters.get('event_title')
             if event_title == '':
                 chips = random.sample(titles, 5)
+                chips.append('Mehr Veranstaltungen vorschlagen')
                 # print(chips)
                 return chip_response(text='Du kannst den Namen der Veranstaltung in das Textfeld unten eingeben. '
                                           'Oder eine von unten wählen:',
@@ -999,7 +1011,7 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Alles klar. Du kannst die Frage unten in das Textfeld schreiben. '
                  'Oder du kannst aus einem Bereich auswählen:',
-            chips=['Frage zu einer konkreten Veranstaltung',
+            chips=['Ich habe eine Frage zu einer bestimmten Veranstaltung',
                    'Frage zum Sommerblut allgemein',
                    # 'Frage zur Barrierefreiheit',
                    'Frage zu Ällei, dem Chatbot',

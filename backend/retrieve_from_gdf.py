@@ -24,9 +24,10 @@ def retrieve_found_events(output_contexts=None):
             if 'events_found' in output_contexts[i]['name']:
                 events = output_contexts[i]['parameters']['events_found']
                 event_count = len(events)
-        for i in events:
-            titles.append(events[i].get('title'))
-            ids.append(events[i].get('id'))
+        if events:
+            for i in events:
+                titles.append(events[i].get('title'))
+                ids.append(events[i].get('id'))
 
     return event_count, events, titles, ids
 
