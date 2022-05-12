@@ -2,13 +2,10 @@ from __future__ import print_function
 
 import json
 import os
-from pprint import pprint
-
 from datetime import datetime, timedelta
+
 import requests
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
-
-from retrieve_from_gdf import retrieve_bedarf
 
 # import dependencies for database request# import dependencies for database request
 import sb_db  # sommerblut datenbank openapi
@@ -53,15 +50,15 @@ def get_accessibility_ids():
     """
     try:
         # get all accessibilities
-        api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
+        resp = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
     except ApiException as e:
         print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
 
     accessibilities = {}
     # TODO clean up here, give back the original dict
-    num_categories = len(api_response)
+    num_categories = len(resp)
     for i in range(num_categories):
-        accessibilities[api_response[i]['name']] = api_response[i]['id']
+        accessibilities[resp[i]['name']] = resp[i]['id']
     # print(accessibilities)
     return accessibilities
 
@@ -72,11 +69,10 @@ def get_accessibility_ids_clean():
     """
     try:
         # get all accessibilities
-        api_response = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
+        resp = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
     except ApiException as e:
         print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
-    # print(api_response)
-    return api_response
+    return resp
 
 
 def get_events_by_name(event_name):
@@ -197,6 +193,7 @@ def get_full_event_list(accessibility=None):
 def get_partial_event_list(num_events=int, accessibility=None):
     """
     should get the full info to display on the cards later, but for a set amount of events
+    :param num_events:
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
@@ -218,7 +215,6 @@ def get_partial_event_list(num_events=int, accessibility=None):
 
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
-    event_count = 0
     if num_events <= resp['count']:
         event_count = num_events
     else:
@@ -259,12 +255,13 @@ def get_partial_event_list(num_events=int, accessibility=None):
     return event_count, events
 
 
-
 def get_timeframe_event_list(from_date=datetime.now(),
                              num_days=None,
                              accessibility=None):
     """
     get all events within a specified timeframe with accessibility
+    :param from_date:
+    :param num_days:
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
@@ -333,7 +330,6 @@ def get_timeframe_event_list(from_date=datetime.now(),
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
         next_date = 'Die Veranstaltung ist schon vorbei.'
-        next_date = None
         if resp['items'][i]['next_date']:
             next_date = resp['items'][i]['next_date']['isdate']
         events[i]['next_date'] = next_date
@@ -386,7 +382,7 @@ def get_event_schedule(event_id):
 
     plays = {}
     play_count = len(resp)
-    #print(play_count)
+    # print(play_count)
 
     for i in range(play_count):
         plays[i] = {}
@@ -419,16 +415,17 @@ def get_all_titles_ids():
     except ApiException as e:
         print("Exception when calling EventsApi->get all titles: %s\n" % e)
 
-def get_event_title(id):
+
+def get_event_title(event_id):
     """
 gets an event title by supplying the numeric id
-    :param id: event id, int
+    :param event_id: event id, int
     :return: the event and important variables
     """
-    suburl = '/api/events/' + str(id) + '.json'
+    suburl = '/api/events/' + str(event_id) + '.json'
     url = BASEURL + suburl
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    #print('Status Code: ' + str(response.status_code))
+    # print('Status Code: ' + str(response.status_code))
     resp = response.json()
     title = resp['title']
     return title

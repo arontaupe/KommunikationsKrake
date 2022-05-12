@@ -2,38 +2,27 @@
 import json  # make me interact with json
 # use pretty printing for json responses
 import os  # can grab environment variables
-from pprint import pprint  # needed for nice json printouts
 import random  # generates random chips for me
+
 # server functionality
 from flask import Flask, request  # makes a flask app and serves it to a specified port
-
-# Import datetime class from datetime module
-from datetime import datetime, timedelta  # used for calculation of timewindows
-
 from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
 from werkzeug.security import check_password_hash, \
-    generate_password_hash  # hashes the pasword, so its not passed in clear
-
-auth = HTTPBasicAuth()
-
-# import the response functionality
-from response_func import image_response, \
-    chip_response, chip_w_context_response, \
-    chip_w_two_context_response, \
-    event_response, text_response, \
-    context_response, button_response, \
-    event_schedule_response, event_detail_response
-# import functionality to read out variables from gdf
-from retrieve_from_gdf import retrieve_bedarf, retrieve_found_events, retrieve_event_index, retrieve_event_id, \
-    retrieve_interests, whether_searched_events
-# import the database functions
-from sb_db_request import test_sb_db, get_accessibility_ids, get_full_event_list, \
-    get_event_schedule, get_event_title, \
-    get_partial_event_list, get_timeframe_event_list, get_all_titles_ids
-from video_builder import make_video_array
+    generate_password_hash  # hashes the pasword, so it is not passed in clear
 
 # import all background intent_logic functionality
-from intent_logic import collect_accessibility_needs, show_full_event_list, map_bedarf_for_db, order_events_by_interest
+from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_events_by_interest, show_full_event_list
+# import the response functionality
+from response_func import button_response, chip_response, chip_w_context_response, chip_w_two_context_response, \
+    event_detail_response, event_response, event_schedule_response, image_response, text_response
+# import functionality to read out variables from gdf
+from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, retrieve_found_events, \
+    retrieve_interests, whether_searched_events
+# import the database functions
+from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, test_sb_db
+from video_builder import make_video_array
+
+# Import datetime class from datetime module
 
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
@@ -44,6 +33,7 @@ pw = os.environ.get('PASS')
 users = {
     user: generate_password_hash(pw)
 }
+auth = HTTPBasicAuth()
 
 
 @auth.verify_password
@@ -92,8 +82,7 @@ this is the main intent switch function. All intents that use the backend must b
 
     if intent_name == 'test.fulfillment':
         # several options for feature testing
-        now = datetime.now()
-        # return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {now}'}
+        # return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {datetime.now()}'}
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
         # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
@@ -151,12 +140,7 @@ this is the main intent switch function. All intents that use the backend must b
         )
 
     elif intent_name == 'script.interest.select.1':
-        # here we are done with collecting the accessibility and have to store it for further use
-        prev_selection_bedarf = None
-        for i in range(num_contexts):
-            if 'save_bedarf' in output_contexts[i]['name']:
-                prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-                # print('Saving final Accessibility: ' + str(prev_selection_bedarf))
+
         return chip_response(
             text='Erste Aussage: \r\n'
                  'Menschliche Körper faszinieren mich.',
@@ -362,7 +346,7 @@ this is the main intent switch function. All intents that use the backend must b
         try:
             fa_letter = parameters.get('FA-Zeichen')
             if fa_letter == '':
-                chips = chips = random.sample(
+                chips = random.sample(
                     ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
                      'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'], 5)
                 chips.append('Mehr Buchstaben vorschlagen')
@@ -373,7 +357,8 @@ this is the main intent switch function. All intents that use the backend must b
                                      chips=chips,
                                      dgs_videos_bot=make_video_array(['Finger1'])
                                      )
-            folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
+            folder = 'https://github.com/arontaupe/KommunikationsKrake/blob/' \
+                     '262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/'
             return image_response(url=str(folder) + str(fa_letter) + '.png?raw=true',
                                   chips=['Ich möchte noch einen Buchstaben lernen',
                                          'Zurück zum Hauptmenü'],
@@ -409,7 +394,6 @@ this is the main intent switch function. All intents that use the backend must b
         # print(f'Event Count: {event_count}')
         # print(f'Titles: {titles}')
         if events and event_count:
-            text = ''
             if event_count > 5:
                 text = 'Ich habe sehr viele Veranstaltungen für dich gefunden. ' \
                        'Möchtest du ein bestimmtes Datum auswählen?',
@@ -479,7 +463,6 @@ this is the main intent switch function. All intents that use the backend must b
                 chips=['Zeig mir alle zukünftigen Veranstaltungen', "Zeig mir alle Veranstaltungen"])
 
 
-
     elif intent_name == 'script.time.filter.nextdays':
         try:
             num_next_days_filter = int(parameters.get('num_next_days_filter'))
@@ -489,7 +472,8 @@ this is the main intent switch function. All intents that use the backend must b
             event_count, events, titles, ids = get_timeframe_event_list(num_days=num_next_days_filter,
                                                                         accessibility=codes)
             event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
-                                                                        events=events)  # here we are making the database call and see whether we need to filter further
+                                                                        events=events)
+            # here we are making the database call and see whether we need to filter further
 
             text = f'Okay, hier sind die Veranstaltungen in den nächsten {num_next_days_filter} Tagen für dich'
             chips = ["Zeig mir die Veranstaltungen"]
@@ -519,7 +503,7 @@ this is the main intent switch function. All intents that use the backend must b
         except Exception as e:
             print("Exception when trying to access event_id: %s\n" % e)
 
-        if whether_searched_events(output_contexts=output_contexts) == False:
+        if not whether_searched_events(output_contexts=output_contexts):
             if event_id:
                 return chip_w_context_response(session_id=session_id,
                                                text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
@@ -714,7 +698,8 @@ this is the main intent switch function. All intents that use the backend must b
                     title = events[str(e)].get('title')
         return chip_response(
             text=f'Diese Corona-Regeln gelten bei {title}: \r\n'
-                 f'{health_infection_notice}',
+                 f'{health_infection_notice}\r\n'
+                 f'Möchtest du weitere Informationen zur Veranstaltung?',
             chips=['Zurück zu den Einzelheiten zur Veranstaltung'],
             dgs_videos_chips=make_video_array(['RC34c']),
             dgs_videos_bot=make_video_array([f'{title}_Corona'])
@@ -732,8 +717,8 @@ this is the main intent switch function. All intents that use the backend must b
                         accessible_other = events[str(e)].get('accessible_other')
                     title = events[str(e)].get('title')
         return chip_response(
-            text=f'Das sind die Corona-Regeln bei {title}: \r\n'
-                 f'{accessible_other}'
+            text=f'Das sind die Barriere-Informationen bei {title}: \r\n'
+                 f'{accessible_other}\r\n'
                  f'Möchtest du weitere Informationen zur Veranstaltung?',
             chips=['Zurück zu den Einzelheiten zur Veranstaltung',
                    'Ich brauche Unterstützung bei der Veranstaltung. Mit wem kann ich Kontakt aufnehmen?',
@@ -748,24 +733,24 @@ this is the main intent switch function. All intents that use the backend must b
         event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         if event_id and events:
             for e in range(event_count):
-                index = str(e)
+                e_idx = str(e)
                 text = ''
-                if events[index].get('id') == event_id:
+                if events[e_idx].get('id') == event_id:
                     duration = title = location = price = image = None
-                    if events[index].get('title'):
-                        title = events[index].get('title')
+                    if events[e_idx].get('title'):
+                        title = events[e_idx].get('title')
                         text += f'{title} \r\n '
-                    if events[index].get('duration'):
-                        duration = int(events[index].get('duration'))
+                    if events[e_idx].get('duration'):
+                        duration = int(events[e_idx].get('duration'))
                         text += f' dauert {duration} Minuten. \r\n '
-                    if events[index].get('location'):
-                        location = events[index].get('location')
+                    if events[e_idx].get('location'):
+                        location = events[e_idx].get('location')
                         text += f'Es findet statt an diesem Ort: {location}. \r\n'
-                    if events[index].get('price_vvk'):
-                        price = int(events[index].get('price_vvk'))
+                    if events[e_idx].get('price_vvk'):
+                        price = int(events[e_idx].get('price_vvk'))
                         text += f'Er kostet {price} Euro. \r\n'
-                    if events[index].get('event_images'):
-                        image = events[index].get('event_images')
+                    if events[e_idx].get('event_images'):
+                        image = events[e_idx].get('event_images')
 
                     return event_detail_response(duration=duration,
                                                  title=title,
@@ -1079,11 +1064,11 @@ Main listener to DF, will call handle_intent upon being activated
     :return: the response to DF
     """
     if request.method == 'POST':
-        update = request.data.decode("utf8")
-        update = json.loads(update)
+        resp = request.data.decode("utf8")
+        resp = json.loads(resp)
         # print("====================================== REQUEST.DATA ======================================")
         # pprint(update)
-        response = handle_intent(update['queryResult']['intent']['displayName'], update)
+        response = handle_intent(resp['queryResult']['intent']['displayName'], resp)
 
         # if response:
         # print("====================================== RESPONSE.DATA ======================================")

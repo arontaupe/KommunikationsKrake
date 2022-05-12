@@ -1,18 +1,12 @@
 # responsible for defining what kind of responses can get sent by the backend
 
 from copy import deepcopy  # needed for the copying of the sample jsons
+
 # load in the prototype jsons
-from sample_jsons import SAMPLE_IMAGE_JSON, \
-    SAMPLE_CHIP_JSON, \
-    SAMPLE_TEXT_JSON, \
-    SAMPLE_CONTEXT_JSON, \
-    SAMPLE_CHIP_W_CONTEXT_JSON, \
-    SAMPLE_CHIP_W_TWO_CONTEXT_JSON, \
-    SAMPLE_EVENT_JSON_1, \
-    SAMPLE_BUTTON_JSON, \
-    SAMPLE_EVENT_SCHEDULE_JSON, \
-    SAMPLE_EVENT_DETAILS_JSON
-import datetime
+from sample_jsons import SAMPLE_BUTTON_JSON, SAMPLE_CHIP_JSON, SAMPLE_CHIP_W_CONTEXT_JSON, \
+    SAMPLE_CHIP_W_TWO_CONTEXT_JSON, SAMPLE_CONTEXT_JSON, SAMPLE_EVENT_DETAILS_JSON, SAMPLE_EVENT_JSON_1, \
+    SAMPLE_EVENT_SCHEDULE_JSON, SAMPLE_IMAGE_JSON, SAMPLE_TEXT_JSON
+
 
 def chip_response(text=None,
                   chips=None,
@@ -21,6 +15,7 @@ def chip_response(text=None,
                   content_videos=None):
     """
 sends a text response, takes an optional array of suggestion chips
+    :param content_videos: 
     :param text: the text that will be sent as message
     :param chips: the suggestion buttons: array of strings
     :param dgs_videos_bot:  the DGS videos displayed alongside the messages of the bot,
@@ -50,8 +45,9 @@ sends a text response, takes an optional array of suggestion chips
 def text_response(text=None, dgs_videos_bot=None, content_videos=None):
     """
 this method sends a standard text response to the bot and can transport a dict of dgs_videos
+    :param content_videos: 
     :param text: the text that will be sent as message
-    :param dgs_videos_bot:  dict: for each text, there should be a youtube url with a title and equivalent content
+    :param dgs_videos_bot:  dict: for each text, there should be a YouTube url with a title and equivalent content
 has to be in format{str(title):str(url)}
     :return:  json response object
     """
@@ -100,6 +96,7 @@ def chip_w_context_response(session_id,
                             content_videos=None):
     """
 can send optional text, some chips and save a context variable
+    :param content_videos: 
     :param session_id: the unique identifier for the agent. str
     :param context: name of the context where the variable is saved in GDF. str
     :param lifespan: int, the amount of interactions that a context variable will be preserved. defaults to 50
@@ -153,6 +150,10 @@ def chip_w_two_context_response(session_id,
                                 content_videos=None):
     """
 can send optional text, some chips and save a context variable
+    :param variable_2:
+    :param content_videos:
+    :param variable_name_2: 
+    :param context_2: 
     :param session_id: the unique identifier for the agent. str
     :param context: name of the context where the variable is saved in GDF. str
     :param lifespan: int, the amount of interactions that a context variable will be preserved. defaults to 50
@@ -210,6 +211,7 @@ def image_response(url,
                    content_videos=None):
     """
 sends an image along with text and chips to the user
+    :param content_videos: 
     :param url: string, is hopefully a valid image url
     :param title: displayed as title in response, string
     :param subtitle: displayed as subtitle in response, string
@@ -258,6 +260,7 @@ def event_response(session_id,
                    content_videos=None):
     """
 sends a response card displaying one event from the array of events according to the display index param
+    :param content_videos: 
     :param session_id: the unique identifier for the agent. str
     :param display_num: Number of events to show. currently modified to only support one event
     :param events: array of found_events
@@ -329,8 +332,8 @@ sends a response card displaying one event from the array of events according to
 
         if description:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['text'] = description
-        sale_msg = 'Tickets hier kaufen \r\n'
 
+        # sale_msg = 'Tickets hier kaufen \r\n'
         # resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
         # resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))['ticket_link']
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['title'] = 'Kurzbeschreibung'
@@ -366,6 +369,7 @@ def button_response(url,
                     content_videos=None):
     """
 sends a clickable button that can link out
+    :param content_videos: 
     :param url:
     :param button_text:
     :param text: the text that will be sent as message
@@ -408,6 +412,7 @@ def event_detail_response(title,
                           content_videos=None):
     """
 sends out a card with more info on a specific event
+    :param content_videos: 
     :param title:
     :param duration:
     :param location:
@@ -460,6 +465,7 @@ def event_schedule_response(play_count,
                             content_videos=None):
     """
 sends out a card for each scheduled play the currently selected event has
+    :param content_videos: 
     :param play_count:
     :param plays:
     :param text: the text that will be sent as message

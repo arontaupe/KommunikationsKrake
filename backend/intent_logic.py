@@ -1,11 +1,8 @@
 # use pretty printing for json responses
-from pprint import pprint
 # import the response functionality
-from response_func import image_response, chip_response, chip_w_context_response, event_response, text_response, \
-    context_response, button_response, event_schedule_response
-
-from retrieve_from_gdf import retrieve_found_events, retrieve_event_index
-from sb_db_request import get_accessibility_ids, get_all_titles_ids
+from response_func import chip_response, chip_w_context_response, event_response
+from retrieve_from_gdf import retrieve_event_index, retrieve_found_events
+from sb_db_request import get_accessibility_ids
 from video_builder import make_video_array
 
 
@@ -94,7 +91,6 @@ retrieves all stored events from GDF and displays them
     # pprint(events)
 
     display_num = 1
-    next_event_index = event_index
     # print(event_index, next_event_index, event_count)
 
     if event_index == event_count:
@@ -138,6 +134,7 @@ retrieves all stored events from GDF and displays them
         dgs_videos_bot=make_video_array([f'{title}_Kurzi'])
     )
 
+
 def map_bedarf_for_db(bedarf=None):
     accessibilities = get_accessibility_ids()
     codes = []
@@ -178,6 +175,9 @@ def order_events_by_interest(interests, events=None, event_count=None):
     :param event_count: number of elements in events
     :return: events list, but sorted according to interest score
     """
+    titles = []
+    ids = []
+
     if event_count is not None:
         user_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         # read out user interests
@@ -227,7 +227,7 @@ def order_events_by_interest(interests, events=None, event_count=None):
             events[i]['interest_ranking'] = score
             # print(events[i]['interest_ranking'])
         # print(events.keys())
-        # the actual sorting, highest ranking first
+        # the actual sorting, the highest ranking first
         events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
         print(events.keys())
         # rename keys
@@ -235,8 +235,6 @@ def order_events_by_interest(interests, events=None, event_count=None):
         events = dict(zip(list(range(len(events))), list(events.values())))
         print(events.keys())
 
-        titles = []
-        ids = []
         for i in events:
             titles.append(events[i].get('title'))
             ids.append(events[i].get('id'))
