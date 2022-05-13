@@ -8,7 +8,7 @@ import random  # generates random chips for me
 from flask import Flask, request  # makes a flask app and serves it to a specified port
 from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
 from werkzeug.security import check_password_hash, \
-    generate_password_hash  # hashes the pasword, so it is not passed in clear
+    generate_password_hash  # hashes the password, so it is not passed in clear
 
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_events_by_interest, show_full_event_list
@@ -84,7 +84,8 @@ this is the main intent switch function. All intents that use the backend must b
         # several options for feature testing
         # return {'fulfillmentText': f'Webhook : Der Webhook funktioniert. {datetime.now()}'}
         # return chip_response(chips=['Der', 'Webhook', 'funktioniert'])
-        # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
+        # return image_response(url = 'https://github.com/arontaupe/KommunikationsKrake/blob/'
+        #                            '262cd82afae5fac968fa1d535a87d53cd99b9048/backend/sources/fa/a.png?raw=true')
 
         return text_response(text='Das Backend ist ansprechbar',
                              dgs_videos_bot=make_video_array(titles=['3', '2', '1']))
@@ -462,7 +463,6 @@ this is the main intent switch function. All intents that use the backend must b
                 text='Ich habe leider einen Fehler in meinen Berechnungen gemacht, kannst du das nochmal sagen?',
                 chips=['Zeig mir alle zukünftigen Veranstaltungen', "Zeig mir alle Veranstaltungen"])
 
-
     elif intent_name == 'script.time.filter.nextdays':
         try:
             num_next_days_filter = int(parameters.get('num_next_days_filter'))
@@ -498,6 +498,7 @@ this is the main intent switch function. All intents that use the backend must b
         return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
 
     elif intent_name == 'script.event.details':
+        event_id = None
         try:
             event_id = retrieve_event_id(output_contexts=output_contexts)
         except Exception as e:
@@ -604,8 +605,6 @@ this is the main intent switch function. All intents that use the backend must b
 
         except Exception as e:
             print("Exception when trying to access event details and event_id: %s\n" % e)
-
-
 
     elif intent_name == 'script.event.menu.previous':
         event_count, events, titles, ids = retrieve_found_events(output_contexts)
@@ -739,16 +738,16 @@ this is the main intent switch function. All intents that use the backend must b
                     duration = title = location = price = image = None
                     if events[e_idx].get('title'):
                         title = events[e_idx].get('title')
-                        text += f'{title} \r\n '
+                        text += f'{title} \r\n \r\n'
                     if events[e_idx].get('duration'):
                         duration = int(events[e_idx].get('duration'))
-                        text += f' dauert {duration} Minuten. \r\n '
+                        text += f' Dauer: {duration} Minuten. \r\n '
                     if events[e_idx].get('location'):
                         location = events[e_idx].get('location')
-                        text += f'Es findet statt an diesem Ort: {location}. \r\n'
+                        text += f'Ort: {location}. \r\n'
                     if events[e_idx].get('price_vvk'):
                         price = int(events[e_idx].get('price_vvk'))
-                        text += f'Er kostet {price} Euro. \r\n'
+                        text += f'Preis: {price} Euro. \r\n'
                     if events[e_idx].get('event_images'):
                         image = events[e_idx].get('event_images')
 
@@ -842,7 +841,6 @@ this is the main intent switch function. All intents that use the backend must b
                                                        ['RC30', 'RC31', 'RC32', 'RC33', 'RC34'])
                                                    )
 
-
     elif intent_name == 'faq.tickets.sale_location':
         return chip_response(
             text='An folgenden Orten können Tickets gekauft werden:\r\n'
@@ -887,7 +885,6 @@ this is the main intent switch function. All intents that use the backend must b
                              dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                              )
-
 
     elif intent_name == 'faq.bot.cando':
         return chip_response(
@@ -1020,7 +1017,6 @@ this is the main intent switch function. All intents that use the backend must b
             content_videos=make_video_array(['SB_Theme']),
             dgs_videos_chips=make_video_array(['RC13'])
         )
-
 
     elif intent_name == 'script.sb_intro':
         return chip_response(
