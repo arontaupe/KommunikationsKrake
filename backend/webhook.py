@@ -322,7 +322,7 @@ this is the main intent switch function. All intents that use the backend must b
         # print(f'Event_count: {event_count}')
         # print(f'Titles: {titles}')
 
-        while entries * page < event_count:
+        while entries * page < event_count and len(events) <= event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
             # print(f'IDs Cache: {ids_cache}')
             # print(f'Events_cache: {events_cache}')
