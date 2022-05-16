@@ -47,8 +47,11 @@ gets the accessibility info stored in GDF and performs a database request with t
                                            variable_name='prev_selection_bedarf',
                                            variable=new_bedarf,
                                            text=f'Okay, ich habe {bedarf} abgespeichert.',
-                                           chips=["Weiter: Interessenselektor",
-                                                  "Menü"])
+                                           chips=["Weiter: Interessen angeben",
+                                                  "Zurück zum Hauptmenü"],
+                                           dgs_videos_chips=make_video_array(['E1', 'AC7']),
+                                           # dgs_videos_bot=make_video_array([''])
+                                           )
         elif bedarf == 'leichte Sprache':
             new_bedarf[1] = 1
         elif bedarf == 'Höreinschränkung':
@@ -65,9 +68,9 @@ gets the accessibility info stored in GDF and performs a database request with t
                                    variable=new_bedarf,
                                    text=f'Brauchst Du noch eine andere Form von Barrierefreiheit?',
                                    chips=["Ja",
-                                          "Nein, weiter zum Interessenselektor",
-                                          "Menü"],
-                                   dgs_videos_chips=make_video_array(['AC2', 'AC1']),
+                                          "Nein, weiter zum Interessen angeben",
+                                          "Zurück zum Haupt-menü"],
+                                   dgs_videos_chips=make_video_array(['AC2', 'AC1', 'AC7']),
                                    dgs_videos_bot=make_video_array(['A6'])
                                    )
 
@@ -231,7 +234,6 @@ def order_events_by_interest(interests, events=None, event_count=None):
         events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
         print(events.keys())
         # rename keys
-
         events = dict(zip(list(range(len(events))), list(events.values())))
         print(events.keys())
 

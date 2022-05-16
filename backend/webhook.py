@@ -5,6 +5,8 @@ import os  # can grab environment variables
 import random  # generates random chips for me
 
 # server functionality
+from pprint import pprint
+
 from flask import Flask, request  # makes a flask app and serves it to a specified port
 from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
 from werkzeug.security import check_password_hash, \
@@ -16,8 +18,9 @@ from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_e
 from response_func import button_response, chip_response, chip_w_context_response, chip_w_two_context_response, \
     event_detail_response, event_response, event_schedule_response, image_response, text_response
 # import functionality to read out variables from gdf
-from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, retrieve_found_events, \
-    retrieve_interests, whether_searched_events
+from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, \
+    retrieve_found_events, \
+    retrieve_interests, retrieve_page_cache, whether_searched_events
 # import the database functions
 from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, test_sb_db
 from video_builder import make_video_array
@@ -140,208 +143,132 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_chips=make_video_array(['RC21'])
         )
 
-    elif intent_name == 'script.interest.select.1':
+    elif intent_name == 'script.interest.collect':
+        try:
+            interest_1 = parameters.get('interest_1')
+            interest_2 = parameters.get('interest_2')
+            interest_3 = parameters.get('interest_3')
+            interest_4 = parameters.get('interest_4')
+            interest_5 = parameters.get('interest_5')
+            interest_6 = parameters.get('interest_6')
+            interest_7 = parameters.get('interest_7')
+            interest_8 = parameters.get('interest_8')
+            interest_9 = parameters.get('interest_9')
+        except Exception as e:
+            print("Exception when trying to access the interests:script.interest.collect %s\n" % e)
+            return text_response('Ich bekomme keine Interessen gesagt')
 
-        return chip_response(
-            text='Erste Aussage: \r\n'
-                 'Menschliche Körper faszinieren mich.',
-            chips=["Ja", "Nein", "Ist mir egal"],
-            dgs_videos_bot=make_video_array(['A8']),
-            dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-        )
-
-    elif intent_name == 'script.interest.select.1 - egal' or \
-            intent_name == 'script.interest.select.1 - ja' or \
-            intent_name == 'script.interest.select.1 - nein':
-        interest_1 = parameters.get('interest_1')
-        return chip_w_context_response(text='Soso, ' + interest_1 + ' also.',
-                                       chips=["Weiter: Frage 2"],
-                                       session_id=session_id,
-                                       context='interest_1',
-                                       variable_name='interest_1',
-                                       variable=interest_1,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.2':
-        # here we are asking for interest_2
-        return chip_response(text='Mich interessieren Lebenswege, die nicht ganz normal verlaufen.',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A9']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.2 - egal' or \
-            intent_name == 'script.interest.select.2 - ja' or \
-            intent_name == 'script.interest.select.2 - nein':
-        interest_2 = parameters.get('interest_2')
-        return chip_w_context_response(text=interest_2 + ', interessant.',
-                                       chips=["Weiter: Frage 3"],
-                                       session_id=session_id,
-                                       context='interest_2',
-                                       variable_name='interest_2',
-                                       variable=interest_2,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.3':
-        # here we are asking for interest_3
-        return chip_response(text='Ich beschäftige mich gerne mit Ritualen.\r\n'
-                                  'Zum Beispiel: Ich zünde eine Kerze für jemanden an.',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A10']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.3 - egal' or \
-            intent_name == 'script.interest.select.3 - ja' or \
-            intent_name == 'script.interest.select.3 - nein':
-        interest_3 = parameters.get('interest_3')
-        return chip_w_context_response(text='Rituale eher so: ' + interest_3,
-                                       chips=["Weiter: Frage 4"],
-                                       session_id=session_id,
-                                       context='interest_3',
-                                       variable_name='interest_3',
-                                       variable=interest_3,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.4':
-        # here we are asking for interest_4
-        return chip_response(text='Ich mag Poetisches. \r\n'
-                                  'Zum Beispiel: Schöne Musik. Oder: Schöne Bilder.',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A11']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.4 - egal' or \
-            intent_name == 'script.interest.select.4 - ja' or \
-            intent_name == 'script.interest.select.4 - nein':
-        interest_4 = parameters.get('interest_4')
-        return chip_w_context_response(text=interest_4 + '? Poesie steckt überall.',
-                                       chips=["Weiter: Frage 5"],
-                                       session_id=session_id,
-                                       context='interest_4',
-                                       variable_name='interest_4',
-                                       variable=interest_4,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.5':
-        # here we are asking for interest_5
-        return chip_response(text='Ich sehne mich nach einer guten Zukunft.',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A12']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.5 - egal' or \
-            intent_name == 'script.interest.select.5 - ja' or \
-            intent_name == 'script.interest.select.5 - nein':
-        interest_5 = parameters.get('interest_5')
-        return chip_w_context_response(text=interest_5 + ', also ich finde UTOPIA gut.',
-                                       chips=["Weiter: Frage 6"],
-                                       session_id=session_id,
-                                       context='interest_5',
-                                       variable_name='interest_5',
-                                       variable=interest_5,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.6':
-        # here we are asking for interest_6
-        return chip_response(text='Ich interessiere mich für die Frage:\r\n'
-                                  'Welche Themen sind in unserer Gesellschaft gerade wichtig? \r\n'
-                                  'Worüber wird gerade gesprochen?',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A13']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.6 - egal' or \
-            intent_name == 'script.interest.select.6 - ja' or \
-            intent_name == 'script.interest.select.6 - nein':
-        interest_6 = parameters.get('interest_6')
-        return chip_w_context_response(text=interest_6 + ', ich merke, das ist wichtig.',
-                                       chips=["Weiter: Frage 7"],
-                                       session_id=session_id,
-                                       context='interest_6',
-                                       variable_name='interest_6',
-                                       variable=interest_6,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.7':
-        # here we are asking for interest_7
-        return chip_response(text='Ich bin gerne draußen unterwegs und mag Natur.',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A14']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.7 - egal' or \
-            intent_name == 'script.interest.select.7 - ja' or \
-            intent_name == 'script.interest.select.7 - nein':
-        interest_7 = parameters.get('interest_7')
-        return chip_w_context_response(text='' + interest_7 + ' , find ich gut!',
-                                       chips=["Weiter: Frage 8"],
-                                       session_id=session_id,
-                                       context='interest_7',
-                                       variable_name='interest_7',
-                                       variable=interest_7,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.8':
-        # here we are asking for interest_8
-        return chip_response(text='Ich möchte nur zuhören.\r\n'
-                                  'Ich möchte nicht selbst bei etwas mitmachen müssen. ',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A16']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.8 - egal' or \
-            intent_name == 'script.interest.select.8 - ja' or \
-            intent_name == 'script.interest.select.8 - nein':
-        interest_8 = parameters.get('interest_8')
-        return chip_w_context_response(text='Ich habe mir gemerkt, dass du ' + interest_8 + ' geantwortet hast.',
-                                       chips=["Weiter: Frage 9"],
-                                       session_id=session_id,
-                                       context='interest_8',
-                                       variable_name='interest_8',
-                                       variable=interest_8,
-                                       dgs_videos_bot=make_video_array(['RC20']),
-                                       dgs_videos_chips=make_video_array(['RC21'])
-                                       )
-
-    elif intent_name == 'script.interest.select.9':
-        # here we are asking for interest_9
-        return chip_response(text='Ich möchte nicht so viel nachdenken. \r\n'
-                                  'Ich will lieber etwas Lustiges sehen.',
-                             chips=["Ja", "Nein", "Ist mir egal"],
-                             dgs_videos_bot=make_video_array(['A15']),
-                             dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
-                             )
-
-    elif intent_name == 'script.interest.select.9 - egal' or \
-            intent_name == 'script.interest.select.9 - ja' or \
-            intent_name == 'script.interest.select.9 - nein':
-        interest_9 = parameters.get('interest_9')
-        return chip_w_context_response(text=None,
-                                       chips=["Weiter zu den Veranstaltungstipps", "Menü"],
-                                       session_id=session_id,
-                                       context='interest_9',
-                                       variable_name='interest_9',
-                                       variable=interest_9)
+        while interest_1 == '':
+            return chip_response(text='1. Aussage: \r\n'
+                                      'Menschliche Körper faszinieren mich.',
+                                 chips=["Ja", "Nein", "Ist mir egal"],
+                                 dgs_videos_bot=make_video_array(['A8']),
+                                 dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4']))
+        while interest_2 == '':
+            return chip_w_context_response(text='2. Aussage: \r\n'
+                                                'Mich interessieren Lebenswege, die nicht ganz normal verlaufen.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_1',
+                                           variable_name='interest_1',
+                                           variable=interest_1,
+                                           dgs_videos_bot=make_video_array(['A9']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_3 == '':
+            return chip_w_context_response(text='3. Aussage: \r\n'
+                                                'Ich beschäftige mich gerne mit Ritualen.\r\n'
+                                                'Zum Beispiel: Ich zünde eine Kerze für jemanden an.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_2',
+                                           variable_name='interest_2',
+                                           variable=interest_2,
+                                           dgs_videos_bot=make_video_array(['A10']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_4 == '':
+            return chip_w_context_response(text='4. Aussage: \r\n'
+                                                'Ich mag Poetisches. \r\n'
+                                                'Zum Beispiel: Schöne Musik. '
+                                                'Oder: Schöne Bilder.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_3',
+                                           variable_name='interest_3',
+                                           variable=interest_3,
+                                           dgs_videos_bot=make_video_array(['A11']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_5 == '':
+            return chip_w_context_response(text='5. Aussage: \r\n'
+                                                'Ich sehne mich nach einer guten Zukunft.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_4',
+                                           variable_name='interest_4',
+                                           variable=interest_4,
+                                           dgs_videos_bot=make_video_array(['A12']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_6 == '':
+            return chip_w_context_response(text='6. Aussage: \r\n'
+                                                'Ich interessiere mich für die Frage:\r\n'
+                                                'Welche Themen sind in unserer Gesellschaft gerade wichtig? \r\n'
+                                                'Worüber wird gerade gesprochen?',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_5',
+                                           variable_name='interest_5',
+                                           variable=interest_5,
+                                           dgs_videos_bot=make_video_array(['A13']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_7 == '':
+            return chip_w_context_response(text='7. Aussage: \r\n'
+                                                'Ich bin gerne draußen unterwegs und mag Natur.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_6',
+                                           variable_name='interest_6',
+                                           variable=interest_6,
+                                           dgs_videos_bot=make_video_array(['A14']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_8 == '':
+            return chip_w_context_response(text='8. Aussage: \r\n'
+                                                'Ich möchte nur zuhören.\r\n'
+                                                'Ich möchte nicht selbst bei etwas mitmachen müssen.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_7',
+                                           variable_name='interest_7',
+                                           variable=interest_7,
+                                           dgs_videos_bot=make_video_array(['A16']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        while interest_9 == '':
+            return chip_w_context_response(text='9. Aussage: \r\n'
+                                                'Ich möchte nicht so viel nachdenken. \r\n'
+                                                'Ich will lieber etwas Lustiges sehen.',
+                                           chips=["Ja", "Nein", "Ist mir egal"],
+                                           session_id=session_id,
+                                           context='interest_8',
+                                           variable_name='interest_8',
+                                           variable=interest_8,
+                                           dgs_videos_bot=make_video_array(['A15']),
+                                           dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
+                                           )
+        else:
+            return chip_w_context_response(text='Danke für deine Antworten.',
+                                           session_id=session_id,
+                                           context='interest_9',
+                                           variable_name='interest_9',
+                                           variable=interest_9,
+                                           dgs_videos_bot=make_video_array(['RC20']),
+                                           dgs_videos_chips=make_video_array(['RC21b']),
+                                           chips=['Weiter zu den Veranstaltungstipps']
+                                           )
 
     elif intent_name == 'teach.fingeralhabet':
         try:
@@ -387,9 +314,51 @@ this is the main intent switch function. All intents that use the backend must b
         # print(f'Interests: {interests}')
         codes = map_bedarf_for_db(bedarf=bedarf)
         # print(f'Accessibility Codes: {codes}')
-        event_count, events, titles, ids = get_full_event_list(accessibility=codes)
+        entries = 10
+        page = retrieve_page_cache(output_contexts=output_contexts)
+        print(f'Page: {page}')
+
+        event_count, events, titles, ids = get_full_event_list(accessibility=codes, entries=entries, page=page)
+        # print(f'Event_count: {event_count}')
+        # print(f'Titles: {titles}')
+
+        while entries * page < event_count:
+            _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
+            # print(f'IDs Cache: {ids_cache}')
+            # print(f'Events_cache: {events_cache}')
+            if events_cache is None:
+                # print('No events stored')
+                pass
+            else:
+                # pprint(f'Events as list: {list(events_cache)}')
+                # events = list(events)  # .append(list(events_cache))
+                # print(f'Events Joined: {events}')
+                # print(f'Event Keys: {events.keys()}')
+                # pprint(f'Event Values: {list(events.values())}')
+                event_list = list(events.values())
+                event_list.extend(list(events_cache.values()))
+                # pprint(f'Joined Values: {event_list}')
+                # rename keys
+                events = dict(zip(list(range(len(event_list))), event_list))
+                # pprint(f'New Events: {events.keys()}')
+
+            page += 1
+            return chip_w_two_context_response(text='Das sind viele Vorschläge. \r\n'
+                                                    'Ich muss nochmal suchen.',
+                                               chips=['Finde mehr Veranstaltungstipps'],
+                                               session_id=session_id,
+                                               context='events_found',
+                                               variable_name='events_found',
+                                               variable=events,
+                                               lifespan=3,
+                                               context_2='page_cache',
+                                               variable_name_2='page_cache',
+                                               variable_2=page
+                                               )
         # print(f'Event Count: {event_count}')
         # print(f'Titles: {titles}')
+        # get final list of events
+        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
                                                                     events=events)
         # print(f'Event Count: {event_count}')
@@ -422,8 +391,11 @@ this is the main intent switch function. All intents that use the backend must b
                                            dgs_videos_chips=dgs_videos_chips
                                            )
         else:
-            return chip_response(text='Ich habe leider keine Events mit deinen Barrierefreiheiten gefunden',
-                                 chips=['Weiter zum Veranstaltungstipp'])
+            return chip_response(text='Ich habe leider keine Veranstaltungen mit deinen Barrierefreiheiten gefunden',
+                                 chips=['Barrierefreiheit angeben', 'Zurück zum Hauptmenü'],
+                                 dgs_videos_bot=make_video_array(['A18b']),
+                                 dgs_videos_chips=make_video_array(['RC13', 'AC7'])
+                                 )
 
     elif intent_name == 'script.time.filter':
         return chip_response(text='Das wird spannend! Ich kann dir nun: '
@@ -800,7 +772,46 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'faq.event':
 
-        event_count, events, titles, ids = get_full_event_list()
+        entries = 10
+        page = retrieve_page_cache(output_contexts=output_contexts)
+        print(f'Page: {page}')
+
+        event_count, events, titles, ids = get_full_event_list(entries=entries, page=page)
+        # print(f'Event_count: {event_count}')
+        # print(f'Titles: {titles}')
+
+        while entries * page < event_count:
+            _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
+            # print(f'IDs Cache: {ids_cache}')
+            # print(f'Events_cache: {events_cache}')
+            if events_cache is None:
+                # print('No events stored')
+                pass
+            else:
+                event_list = list(events.values())
+                event_list.extend(list(events_cache.values()))
+                # pprint(f'Joined Values: {event_list}')
+                # rename keys
+                events = dict(zip(list(range(len(event_list))), event_list))
+                # pprint(f'New Events: {events.keys()}')
+
+            page += 1
+            return chip_w_two_context_response(text='Das sind viele Veranstaltungen. \r\n'
+                                                    'Ich muss nochmal suchen.',
+                                               chips=['Finde mehr Veranstaltungen'],
+                                               session_id=session_id,
+                                               context='events_found',
+                                               variable_name='events_found',
+                                               variable=events,
+                                               lifespan=3,
+                                               context_2='page_cache',
+                                               variable_name_2='page_cache',
+                                               variable_2=page
+                                               )
+        # print(f'Event Count: {event_count}')
+        # print(f'Titles: {titles}')
+        # get final list of events
+        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
 
         if events:
             event_title = parameters.get('event_title')

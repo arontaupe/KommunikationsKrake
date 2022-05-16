@@ -26,18 +26,19 @@ print(datetime.now())
 try:
     # get all events
     api_response = event_api.get_all_events(accept_language=accept_language,
-                                            entries=30,
+                                            entries=10,
+                                            page=1,
                                             # from_date=datetime.now(),
                                             # to_date=[f'["{datetime.now()}"]'],
-                                            accessible=[[4, 8]],
+                                            # accessible=[[4, 8, 9]],
                                             conjunction_category="accessible",
                                             conjunction_accessible="and",
                                             )
     # print(api_response)
-    pprint(api_response['count'])
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling EventsApi->get all events: %s\n" % e)
-print(list(range(10)))
+
 '''
 try:
     # get all accessibilities

@@ -29,7 +29,7 @@ def retrieve_found_events(output_contexts=None):
             for i in events:
                 titles.append(events[i].get('title'))
                 ids.append(events[i].get('id'))
-
+    # print(events)
     return event_count, events, titles, ids
 
 
@@ -70,6 +70,17 @@ def retrieve_event_id(output_contexts=None):
     if event_id is not None:
         return int(event_id)
     return
+
+
+def retrieve_page_cache(output_contexts=None):
+    page_cache = 1
+    if output_contexts:
+        num_contexts = len(output_contexts)
+        for i in range(num_contexts):
+            if 'page_cache' in output_contexts[i]['name']:
+                page_cache = output_contexts[i]['parameters']['page_cache']
+        return int(page_cache)
+    return page_cache
 
 
 def retrieve_interests(output_contexts=None):

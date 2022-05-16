@@ -3,6 +3,7 @@ from __future__ import print_function
 import json
 import os
 from datetime import datetime, timedelta
+from pprint import pprint
 
 import requests
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
@@ -114,7 +115,7 @@ def get_single_event_by_id(event_id):
 # print(get_single_event_by_id(854))
 
 
-def get_full_event_list(accessibility=None):
+def get_full_event_list(accessibility=None, page=1, entries=10):
     """
     should get the full info to display on the cards later
     :param accessibility: numeric id 0-9
@@ -125,7 +126,8 @@ def get_full_event_list(accessibility=None):
             # get all events
             resp = event_api.get_all_events(accessible=[accessibility],
                                             accept_language=accept_language,
-                                            entries=30,
+                                            entries=entries,
+                                            page=page,
                                             conjunction_accessible='and'
                                             )
         except ApiException as e:
@@ -134,7 +136,8 @@ def get_full_event_list(accessibility=None):
         try:
             # get all events
             resp = event_api.get_all_events(accept_language=accept_language,
-                                            entries=30
+                                            entries=entries,
+                                            page=page
                                             )
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
@@ -147,9 +150,19 @@ def get_full_event_list(accessibility=None):
 
     # pprint(resp)
     event_count = resp['count']
-
+    print(f'Event Count {event_count}')
+    print(f'Entries  {entries}')
+    if event_count <= entries:
+        call_count = event_count
+        print(f'Callcount {call_count}')
+    elif event_count >= entries * page:
+        call_count = entries
+        print(f'Callcount {call_count}')
+    else:
+        call_count = len(resp['items'])
+        print(f'Callcount {call_count}')
     events = {}
-    for i in range(event_count):
+    for i in range(call_count):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
@@ -186,8 +199,11 @@ def get_full_event_list(accessibility=None):
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
-    # print(events)
+    # pprint(events.items())
     return event_count, events, titles, ids
+
+
+# get_full_event_list(page=3)
 
 
 def get_partial_event_list(num_events=int, accessibility=None):
