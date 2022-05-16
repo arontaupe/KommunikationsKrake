@@ -5,6 +5,7 @@ import os  # can grab environment variables
 import random  # generates random chips for me
 
 # server functionality
+from datetime import datetime
 from pprint import pprint
 
 from flask import Flask, request  # makes a flask app and serves it to a specified port
@@ -57,7 +58,8 @@ def index():
     :return: Hello World
     """
     return 'Hello World! This is the running Webhook for Sommerblut. ' \
-           'For the API please append /webhook to the current url'
+           'For the API please append /webhook to the current url\r\n' \
+           f'Last Modified: {datetime.fromtimestamp(os.stat("webhook.py").st_mtime)}'
 
 
 def handle_intent(intent_name, req_json):
