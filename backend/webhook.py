@@ -355,7 +355,9 @@ this is the main intent switch function. All intents that use the backend must b
                                                lifespan=3,
                                                context_2='page_cache',
                                                variable_name_2='page_cache',
-                                               variable_2=page
+                                               variable_2=page,
+                                               dgs_videos_bot=make_video_array(['E1']),
+                                               dgs_videos_chips=make_video_array(['RC21b'])
                                                )
         # print(f'Event Count: {event_count}')
         # print(f'Titles: {titles}')
