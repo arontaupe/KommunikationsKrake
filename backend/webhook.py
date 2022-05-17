@@ -310,63 +310,63 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
-        bedarf = retrieve_bedarf(output_contexts=output_contexts)
-        # print(f'Bedarf: {bedarf}')
-        interests = retrieve_interests(output_contexts=output_contexts)
-        # print(f'Interests: {interests}')
-        codes = map_bedarf_for_db(bedarf=bedarf)
-        # print(f'Accessibility Codes: {codes}')
-        entries = 10
-        page = retrieve_page_cache(output_contexts=output_contexts)
+        try:
+            bedarf = retrieve_bedarf(output_contexts=output_contexts)
+            codes = map_bedarf_for_db(bedarf=bedarf)
+        except Exception as e:
+            print("Exception when trying to access Accessibilities: %s\n" % e)
+        print(f'Accessibilites: {bedarf}')
+        print(f'Accessibility Codes: {codes}')
+        try:
+            interests = retrieve_interests(output_contexts=output_contexts)
+        except Exception as e:
+            print("Exception when trying to access Interests: %s\n" % e)
+        print(f'Interests: {interests}')
+        entries = 10  # the number that decides how many events get called per round
+        page = retrieve_page_cache(output_contexts=output_contexts)  # page = index of the call batch
         print(f'Page: {page}')
-
+        # call the database, if no page number exists yet, the first page will return
         event_count, events, titles, ids = get_full_event_list(accessibility=codes, entries=entries, page=page)
-        # print(f'Event_count: {event_count}')
-        # print(f'Titles: {titles}')
+        print(f'Event_count: {event_count}')
+        print(f'Titles: {titles}')
 
+        # while less events than stated in event_count are present, make another call
+        # if page var is lost, the second clause catches it
         while entries * page < event_count and len(events) <= event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
             # print(f'IDs Cache: {ids_cache}')
-            # print(f'Events_cache: {events_cache}')
             if events_cache is None:
-                # print('No events stored')
-                pass
+                pass  # do nothing when no cache is present, just hand over the caught events
             else:
-                # pprint(f'Events as list: {list(events_cache)}')
-                # events = list(events)  # .append(list(events_cache))
-                # print(f'Events Joined: {events}')
-                # print(f'Event Keys: {events.keys()}')
-                # pprint(f'Event Values: {list(events.values())}')
                 event_list = list(events.values())
                 event_list.extend(list(events_cache.values()))
                 # pprint(f'Joined Values: {event_list}')
                 # rename keys
                 events = dict(zip(list(range(len(event_list))), event_list))
                 # pprint(f'New Events: {events.keys()}')
-
             page += 1
-            return chip_w_two_context_response(text='Das sind viele Vorschläge. \r\n'
-                                                    'Ich muss nochmal suchen.',
+            return chip_w_two_context_response(text='Das sind viele Vorschläge. \r\n Ich muss nochmal suchen.',
                                                chips=['Finde mehr Veranstaltungstipps'],
                                                session_id=session_id,
                                                context='events_found',
                                                variable_name='events_found',
                                                variable=events,
-                                               lifespan=3,
+                                               lifespan=5,
                                                context_2='page_cache',
                                                variable_name_2='page_cache',
                                                variable_2=page,
                                                dgs_videos_bot=make_video_array(['E1']),
-                                               dgs_videos_chips=make_video_array(['RC21b'])
+                                               dgs_videos_chips=make_video_array(['RC21b']),
                                                )
-        # print(f'Event Count: {event_count}')
-        # print(f'Titles: {titles}')
         # get final list of events
         event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
-        event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
-                                                                    events=events)
-        # print(f'Event Count: {event_count}')
-        # print(f'Titles: {titles}')
+        print(f'IDs: {ids}')
+        if events:
+            event_count, events, titles, ids = order_events_by_interest(interests=interests,
+                                                                        event_count=event_count,
+                                                                        events=events)
+        print(f'IDs: {ids}')
+        print(f'Event Count: {event_count}')
         if events and event_count:
             if event_count > 5:
                 text = 'Ich habe sehr viele Veranstaltungen für dich gefunden. ' \

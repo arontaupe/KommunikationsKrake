@@ -4,6 +4,7 @@ from response_func import chip_response, chip_w_context_response, event_response
 from retrieve_from_gdf import retrieve_event_index, retrieve_found_events
 from sb_db_request import get_accessibility_ids
 from video_builder import make_video_array
+import random
 
 
 def collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id):
@@ -143,25 +144,23 @@ def map_bedarf_for_db(bedarf=None):
     codes = []
     if bedarf:
         if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
-                bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]:
+                bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
+                bedarf[0] == 1.0:
             codes = None
         else:
-            # if bedarf[0] == 1: # kein Bedarf
-            #    events = get_event_names_w_access()
             if bedarf[1] == 1.0:  # leichte Sprache
                 codes.append(accessibilities['Leichte Sprache'])
             if bedarf[2] == 1.0:  # Höreinschränkung
-                codes.append(accessibilities[
-                                 'Induktions·schleife [Eine Induktions·schleife ist für schwerhörige Menschen. '
-                                 'Sie können den Ton der Veranstaltung dann direkt in ihrem Hör·gerät hören.]'])
-                codes.append(accessibilities['Übersetzung in Gebärden·sprache'])
+                choice = random.choice(['Induktions·schleife [Eine Induktions·schleife ist für schwerhörige Menschen.'
+                                        'Sie können den Ton der Veranstaltung dann direkt in ihrem Hör·gerät hören.]',
+                                        'Übersetzung in Gebärden·sprache'])
+                codes.append(accessibilities[choice])
             if bedarf[3] == 1.0:  # Mobilitätseinschränkung
-                codes.append(accessibilities['Rollstuhl'])
-                codes.append(accessibilities['Geh·behinderung/ Aufzüge'])
+                choice = random.choice(['Rollstuhl', 'Geh·behinderung/ Aufzüge'])
+                codes.append(accessibilities[choice])
             if bedarf[4] == 1.0:  # Visuelle Einschränkung
-                codes.append(accessibilities['Fühl-Tour'])
-                codes.append(accessibilities['Unter·titel/ Ober·titel'])
-                codes.append(accessibilities['Seh·behinderung/ Seh·schwäche'])
+                choice = random.choice(['Fühl-Tour', 'Unter·titel/ Ober·titel', 'Seh·behinderung/ Seh·schwäche'])
+                codes.append(accessibilities[choice])
             # if bedarf[5] == 1.0:  # begrenzte Reize
             # codes.append(accessibilities['Leichte Sprache'])
     return codes
