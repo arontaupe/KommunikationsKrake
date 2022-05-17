@@ -1062,7 +1062,7 @@ this is the main intent switch function. All intents that use the backend must b
             url='mailto:chatbot@sommerblut.de',
             chips=['Tschüss', 'Hauptmenü'],
             dgs_videos_bot=make_video_array(['Feedback2']),
-            dgs_videos_chips=make_video_array(['AC7'])
+            dgs_videos_chips=make_video_array(['E1', 'AC7'])
         )
 
 
