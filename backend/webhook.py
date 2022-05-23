@@ -6,6 +6,7 @@ import random  # generates random chips for me
 
 # server functionality
 from datetime import datetime
+import time
 from pprint import pprint
 
 from flask import Flask, request  # makes a flask app and serves it to a specified port
@@ -26,7 +27,10 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event
 from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, test_sb_db
 from video_builder import make_video_array
 
-# Import datetime class from datetime module
+import threading
+
+# makes caching of the api requests possible
+import requests_cache
 
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
@@ -49,6 +53,10 @@ def verify_password(username, password):
 
 # initialize the flask app
 app = Flask(__name__)
+
+
+## create cache
+# requests_cache.install_cache('request_cache', backend='sqlite', expire_after=28800)  # set to expire after 8 hours
 
 
 @app.route('/')
@@ -317,18 +325,15 @@ this is the main intent switch function. All intents that use the backend must b
             print("Exception when trying to access Accessibilities: %s\n" % e)
         print(f'Accessibilites: {bedarf}')
         print(f'Accessibility Codes: {codes}')
-        try:
-            interests = retrieve_interests(output_contexts=output_contexts)
-        except Exception as e:
-            print("Exception when trying to access Interests: %s\n" % e)
-        print(f'Interests: {interests}')
-        entries = 10  # the number that decides how many events get called per round
-        page = retrieve_page_cache(output_contexts=output_contexts)  # page = index of the call batch
-        print(f'Page: {page}')
+
+        entries = 50  # the number that decides how many events get called per round
+        # page = retrieve_page_cache(output_contexts=output_contexts)  # page = index of the call batch
+        page = 1
+        # print(f'Page: {page}')
         # call the database, if no page number exists yet, the first page will return
-        event_count, events, titles, ids = get_full_event_list(accessibility=codes, entries=entries, page=page)
+        event_count, events, titles, ids = get_full_event_list(accessibility=codes, page=page, entries=entries)
         print(f'Event_count: {event_count}')
-        print(f'Titles: {titles}')
+        # print(f'Titles: {titles}')
 
         # while less events than stated in event_count are present, make another call
         # if page var is lost, the second clause catches it
@@ -359,14 +364,19 @@ this is the main intent switch function. All intents that use the backend must b
                                                dgs_videos_chips=make_video_array(['RC21b']),
                                                )
         # get final list of events
-        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
-        print(f'IDs: {ids}')
+        # event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
+        # print(f'IDs: {ids}')
         if events:
+            try:
+                interests = retrieve_interests(output_contexts=output_contexts)
+            except Exception as e:
+                print("Exception when trying to access Interests: %s\n" % e)
+            # print(f'Interests: {interests}')
             event_count, events, titles, ids = order_events_by_interest(interests=interests,
                                                                         event_count=event_count,
                                                                         events=events)
-        print(f'IDs: {ids}')
-        print(f'Event Count: {event_count}')
+        # print(f'IDs: {ids}')
+        # print(f'Event Count: {event_count}')
         if events and event_count:
             if event_count > 5:
                 text = 'Ich habe sehr viele Veranstaltungen für dich gefunden. ' \
@@ -776,13 +786,14 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'faq.event':
 
-        entries = 10
-        page = retrieve_page_cache(output_contexts=output_contexts)
-        print(f'Page: {page}')
+        entries = 50
+        # page = retrieve_page_cache(output_contexts=output_contexts)
+        page = 1
+        # print(f'Page: {page}')
 
-        event_count, events, titles, ids = get_full_event_list(entries=entries, page=page)
+        event_count, events, titles, ids = get_full_event_list(page=page, entries=entries)
         # print(f'Event_count: {event_count}')
-        # print(f'Titles: {titles}')
+        print(f'Titles: {titles}')
 
         while entries * page < event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
@@ -1076,6 +1087,8 @@ Main listener to DF, will call handle_intent upon being activated
     """
     if request.method == 'POST':
         resp = request.data.decode("utf8")
+        # pprint(resp)
+        #  print(f"Time: {datetime.now()} / Used Cache: {request.from_cache}")
         resp = json.loads(resp)
         # print("====================================== REQUEST.DATA ======================================")
         # pprint(update)
@@ -1090,8 +1103,24 @@ Main listener to DF, will call handle_intent upon being activated
         return "Incorrect request format (/)"
 
 
-# run the app 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002, debug=True)
+def update_db_cache():
+    while 1:
+        pre = time.perf_counter()
+        get_full_event_list(entries=50)
+        get_full_event_list(page=1, entries=10)
+        get_full_event_list(page=2, entries=10)
+        post = time.perf_counter()
+        print(f'DB Refresh time: {post - pre:.5f}')
+        time.sleep(30)
 
-print("Backend started without error")
+
+# run the app
+if __name__ == '__main__':
+    x = threading.Thread(target=update_db_cache,
+                         # daemon=True
+                         )
+    x.start()
+    app.run(host='0.0.0.0', port=5002, debug=True)
+    # x.join()
+
+    print("Backend restarting")

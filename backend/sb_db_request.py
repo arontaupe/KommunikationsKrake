@@ -2,8 +2,10 @@ from __future__ import print_function
 
 import json
 import os
+import timeit
 from datetime import datetime, timedelta
 from pprint import pprint
+import time
 
 import requests
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
@@ -13,6 +15,9 @@ import sb_db  # sommerblut datenbank openapi
 # import the response functionality
 from response_func import chip_response
 from sb_db.rest import ApiException
+
+# used for caching the api responses from the db
+from cachetools import cached, TTLCache
 
 BASEURL = os.environ.get('BASEURL')
 BASEURL_DEV = os.environ.get('BASEURL_DEV')
@@ -114,13 +119,14 @@ def get_single_event_by_id(event_id):
 # current events dont
 # print(get_single_event_by_id(854))
 
-
+@cached(cache=TTLCache(maxsize=1024, ttl=timedelta(hours=24), timer=datetime.today))
 def get_full_event_list(accessibility=None, page=1, entries=10):
     """
     should get the full info to display on the cards later
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
+    # t_init = time.perf_counter()
     if accessibility:
         try:
             # get all events
@@ -150,17 +156,20 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
 
     # pprint(resp)
     event_count = resp['count']
-    print(f'Event Count {event_count}')
-    print(f'Entries  {entries}')
+    # print(f'Event Count {event_count}')
+    # print(f'Entries  {entries}')
     if event_count <= entries:
         call_count = event_count
-        print(f'Callcount {call_count}')
+        # print(f'Callcount {call_count}')
     elif event_count >= entries * page:
         call_count = entries
-        print(f'Callcount {call_count}')
+    # print(f'Callcount {call_count}')
     else:
         call_count = len(resp['items'])
-        print(f'Callcount {call_count}')
+        # print(f'Callcount {call_count}')
+    # t_0 = time.perf_counter()
+
+    # print(f'Time needed for API Call: {t_0 - t_init}')
     events = {}
     for i in range(call_count):
         events[i] = {}
@@ -199,11 +208,13 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
+    t_1 = time.perf_counter()
+    # print(f'Time Needed for parse: {t_1 - t_0}')
     # pprint(events.items())
     return event_count, events, titles, ids
 
 
-# get_full_event_list(page=3)
+# get_full_event_list(page=1, entries=15)
 
 
 def get_partial_event_list(num_events=int, accessibility=None):
@@ -237,6 +248,7 @@ def get_partial_event_list(num_events=int, accessibility=None):
         event_count = resp['count']
 
     events = {}
+
     for i in range(event_count):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']

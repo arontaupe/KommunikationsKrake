@@ -141,13 +141,14 @@ retrieves all stored events from GDF and displays them
 
 def map_bedarf_for_db(bedarf=None):
     accessibilities = get_accessibility_ids()
-    codes = []
+    codes = None
     if bedarf:
         if bedarf == [1.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
                 bedarf == [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] or \
                 bedarf[0] == 1.0:
             codes = None
         else:
+            codes = []
             if bedarf[1] == 1.0:  # leichte Sprache
                 codes.append(accessibilities['Leichte Sprache'])
             if bedarf[2] == 1.0:  # Höreinschränkung
