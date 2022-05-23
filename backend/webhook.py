@@ -3,11 +3,10 @@ import json  # make me interact with json
 # use pretty printing for json responses
 import os  # can grab environment variables
 import random  # generates random chips for me
-
+import threading
+import time
 # server functionality
 from datetime import datetime
-import time
-from pprint import pprint
 
 from flask import Flask, request  # makes a flask app and serves it to a specified port
 from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
@@ -22,15 +21,12 @@ from response_func import button_response, chip_response, chip_w_context_respons
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, \
     retrieve_found_events, \
-    retrieve_interests, retrieve_page_cache, whether_searched_events
+    retrieve_interests, whether_searched_events
 # import the database functions
 from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, test_sb_db
 from video_builder import make_video_array
 
-import threading
 
-# makes caching of the api requests possible
-import requests_cache
 
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
