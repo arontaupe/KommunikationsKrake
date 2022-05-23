@@ -26,8 +26,6 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event
 from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, test_sb_db
 from video_builder import make_video_array
 
-
-
 # console should say 200 meaning we have a link to the SB_DB
 test_sb_db()
 
@@ -50,8 +48,7 @@ def verify_password(username, password):
 # initialize the flask app
 app = Flask(__name__)
 
-
-## create cache
+# create cache
 # requests_cache.install_cache('request_cache', backend='sqlite', expire_after=28800)  # set to expire after 8 hours
 
 
@@ -66,12 +63,11 @@ def index():
            f'Last Modified: {datetime.fromtimestamp(os.stat("webhook.py").st_mtime)}'
 
 
-def handle_intent(intent_name, req_json):
+def handle_intent(intent_name):
     """
     Handle the webhook request.
 this is the main intent switch function. All intents that use the backend must be routed here.
     :param intent_name:
-    :param req_json: the raw format from DF
     :return: None
     """
     # build a request object
@@ -1088,7 +1084,7 @@ Main listener to DF, will call handle_intent upon being activated
         resp = json.loads(resp)
         # print("====================================== REQUEST.DATA ======================================")
         # pprint(update)
-        response = handle_intent(resp['queryResult']['intent']['displayName'], resp)
+        response = handle_intent(intent_name=resp['queryResult']['intent']['displayName'])
 
         # if response:
         # print("====================================== RESPONSE.DATA ======================================")
