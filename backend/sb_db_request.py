@@ -2,12 +2,12 @@ from __future__ import print_function
 
 import json
 import os
-import timeit
-from datetime import datetime, timedelta
-from pprint import pprint
 import time
+from datetime import datetime, timedelta
 
 import requests
+# used for caching the api responses from the db
+from cachetools import TTLCache, cached
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
 
 # import dependencies for database request# import dependencies for database request
@@ -15,9 +15,6 @@ import sb_db  # sommerblut datenbank openapi
 # import the response functionality
 from response_func import chip_response
 from sb_db.rest import ApiException
-
-# used for caching the api responses from the db
-from cachetools import cached, TTLCache
 
 BASEURL = os.environ.get('BASEURL')
 BASEURL_DEV = os.environ.get('BASEURL_DEV')

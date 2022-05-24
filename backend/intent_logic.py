@@ -152,7 +152,7 @@ def map_bedarf_for_db(bedarf=None):
             if bedarf[1] == 1.0:  # leichte Sprache
                 codes.append(accessibilities['Leichte Sprache'])
             if bedarf[2] == 1.0:  # Höreinschränkung
-                choice = random.choice(['Induktions·schleife [Eine Induktions·schleife ist für schwerhörige Menschen.'
+                choice = random.choice(['Induktions·schleife [Eine Induktions·schleife ist für schwerhörige Menschen. '
                                         'Sie können den Ton der Veranstaltung dann direkt in ihrem Hör·gerät hören.]',
                                         'Übersetzung in Gebärden·sprache'])
                 codes.append(accessibilities[choice])

@@ -1,17 +1,6 @@
-# import flask dependencies
-import json  # make me interact with json
-# use pretty printing for json responses
-import os  # can grab environment variables
 import random  # generates random chips for me
-import threading
-import time
-# server functionality
-from datetime import datetime
 
-from flask import Flask, request  # makes a flask app and serves it to a specified port
-from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
-from werkzeug.security import check_password_hash, \
-    generate_password_hash  # hashes the password, so it is not passed in clear
+from flask import request  # makes a flask app and serves it to a specified port
 
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_events_by_interest, show_full_event_list
@@ -23,51 +12,15 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event
     retrieve_found_events, \
     retrieve_interests, whether_searched_events
 # import the database functions
-from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, test_sb_db
+from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list
 from video_builder import make_video_array
-
-# console should say 200 meaning we have a link to the SB_DB
-test_sb_db()
-
-user = os.environ.get('USER')
-pw = os.environ.get('PASS')
-
-users = {
-    user: generate_password_hash(pw)
-}
-auth = HTTPBasicAuth()
-
-
-@auth.verify_password
-def verify_password(username, password):
-    if username in users:
-        return check_password_hash(users.get(username), password)
-    return False
-
-
-# initialize the flask app
-app = Flask(__name__)
-
-# create cache
-# requests_cache.install_cache('request_cache', backend='sqlite', expire_after=28800)  # set to expire after 8 hours
-
-
-@app.route('/')
-def index():
-    """
-  default route, has text, so I can see when the app is running
-    :return: Hello World
-    """
-    return 'Hello World! This is the running Webhook for Sommerblut. ' \
-           'For the API please append /webhook to the current url\r\n' \
-           f'Last Modified: {datetime.fromtimestamp(os.stat("webhook.py").st_mtime)}'
 
 
 def handle_intent(intent_name):
     """
     Handle the webhook request.
 this is the main intent switch function. All intents that use the backend must be routed here.
-    :param intent_name:
+    :param intent_name: the name given in the dialogflow interface
     :return: None
     """
     # build a request object
@@ -310,13 +263,17 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.time.select':
         # here we are making the database call and see whether we need to filter further
+        bedarf = None
+        codes = None
         try:
             bedarf = retrieve_bedarf(output_contexts=output_contexts)
             codes = map_bedarf_for_db(bedarf=bedarf)
         except Exception as e:
             print("Exception when trying to access Accessibilities: %s\n" % e)
-        print(f'Accessibilites: {bedarf}')
-        print(f'Accessibility Codes: {codes}')
+        if bedarf:
+            print(f'Accessibilites: {bedarf}')
+        if codes:
+            print(f'Accessibility Codes: {codes}')
 
         entries = 50  # the number that decides how many events get called per round
         # page = retrieve_page_cache(output_contexts=output_contexts)  # page = index of the call batch
@@ -327,6 +284,7 @@ this is the main intent switch function. All intents that use the backend must b
         print(f'Event_count: {event_count}')
         # print(f'Titles: {titles}')
 
+        # obsolete, only used when chunking instead of caching
         # while less events than stated in event_count are present, make another call
         # if page var is lost, the second clause catches it
         while entries * page < event_count and len(events) <= event_count:
@@ -368,7 +326,6 @@ this is the main intent switch function. All intents that use the backend must b
                                                                         event_count=event_count,
                                                                         events=events)
         # print(f'IDs: {ids}')
-        # print(f'Event Count: {event_count}')
         if events and event_count:
             if event_count > 5:
                 text = 'Ich habe sehr viele Veranstaltungen für dich gefunden. ' \
@@ -777,22 +734,17 @@ this is the main intent switch function. All intents that use the backend must b
                              )
 
     elif intent_name == 'faq.event':
-
         entries = 50
         # page = retrieve_page_cache(output_contexts=output_contexts)
         page = 1
-        # print(f'Page: {page}')
-
         event_count, events, titles, ids = get_full_event_list(page=page, entries=entries)
-        # print(f'Event_count: {event_count}')
         print(f'Titles: {titles}')
 
+        # obsolete, only necessary for chunked and not cached responses
         while entries * page < event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
             # print(f'IDs Cache: {ids_cache}')
-            # print(f'Events_cache: {events_cache}')
             if events_cache is None:
-                # print('No events stored')
                 pass
             else:
                 event_list = list(events.values())
@@ -818,7 +770,7 @@ this is the main intent switch function. All intents that use the backend must b
         # print(f'Event Count: {event_count}')
         # print(f'Titles: {titles}')
         # get final list of events
-        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
+        # event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
 
         if events:
             event_title = parameters.get('event_title')
@@ -1067,52 +1019,3 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_bot=make_video_array(['Feedback2']),
             dgs_videos_chips=make_video_array(['E1', 'AC7'])
         )
-
-
-# create a route for webhook
-@app.route('/webhook', methods=['GET', 'POST'])
-@auth.login_required
-def update():
-    """
-Main listener to DF, will call handle_intent upon being activated
-    :return: the response to DF
-    """
-    if request.method == 'POST':
-        resp = request.data.decode("utf8")
-        # pprint(resp)
-        #  print(f"Time: {datetime.now()} / Used Cache: {request.from_cache}")
-        resp = json.loads(resp)
-        # print("====================================== REQUEST.DATA ======================================")
-        # pprint(update)
-        response = handle_intent(intent_name=resp['queryResult']['intent']['displayName'])
-
-        # if response:
-        # print("====================================== RESPONSE.DATA ======================================")
-        # pprint(response)
-
-        return response
-    else:
-        return "Incorrect request format (/)"
-
-
-def update_db_cache():
-    while 1:
-        pre = time.perf_counter()
-        get_full_event_list(entries=50)
-        get_full_event_list(page=1, entries=10)
-        get_full_event_list(page=2, entries=10)
-        post = time.perf_counter()
-        print(f'DB Refresh time: {post - pre:.5f}')
-        time.sleep(30)
-
-
-# run the app
-if __name__ == '__main__':
-    x = threading.Thread(target=update_db_cache,
-                         # daemon=True
-                         )
-    x.start()
-    app.run(host='0.0.0.0', port=5002, debug=True)
-    # x.join()
-
-    print("Backend restarting")
