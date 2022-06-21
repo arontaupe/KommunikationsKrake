@@ -4,6 +4,7 @@ import json
 import os
 import time
 from datetime import datetime, timedelta
+from pprint import pprint
 
 import requests
 # used for caching the api responses from the db
@@ -400,14 +401,17 @@ def get_event_schedule(event_id):
         # returns all upcoming eventDates for the given eventId
         resp = running_events_api.get_all_next_event_dates_by_event_id(event_id,
                                                                        accept_language=accept_language)
-        # print('getting event schedule')
+        # resp = event_api.get_event_by_id(event_id, accept_language=accept_language)
+        print('getting event schedule')
+        # print(resp.event_dates)
         # pprint(resp)
+
     except ApiException as e:
-        print("Exception when calling RunningEventsApi->get_all_next_event_dates_by_event_id: %s\n" % e)
+        print("Exception when calling EventsApi->get_all_next_event_dates_by_event_id: %s\n" % e)
 
     plays = {}
     play_count = len(resp)
-    # print(play_count)
+    print(f'{play_count=}')
 
     for i in range(play_count):
         plays[i] = {}
@@ -421,7 +425,7 @@ def get_event_schedule(event_id):
         plays[i]['additional_title'] = resp[i]['additional_title']
         # pprint(resp[i])
     # print(play_count)
-    # pprint(plays)
+    # pprint(f'{plays=}')
     return play_count, plays
 
 

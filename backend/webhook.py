@@ -710,7 +710,14 @@ this is the main intent switch function. All intents that use the backend must b
         event_id = int(retrieve_event_id(output_contexts))
         play_count, plays = get_event_schedule(event_id)
         event_title = get_event_title(event_id)
-
+        # print(f'{play_count=}')
+        if play_count == 0:
+            return chip_response(text=f'Titel der Veranstaltung: {event_title} \r\n'
+                                      f'Die Veranstaltung ist bereits vorüber.',
+                                 chips=['Zurück zu den Einzelheiten zur Veranstaltung',
+                                        'Zurück zur Übersicht der Veranstaltungen'],
+                                 dgs_videos_chips=make_video_array(['RC34c', 'RC34b'])
+                                 )
         return event_schedule_response(play_count,
                                        plays,
                                        text=f'Titel der Veranstaltung: {event_title} \r\n',
@@ -738,7 +745,7 @@ this is the main intent switch function. All intents that use the backend must b
         # page = retrieve_page_cache(output_contexts=output_contexts)
         page = 1
         event_count, events, titles, ids = get_full_event_list(page=page, entries=entries)
-        print(f'Titles: {titles}')
+        # print(f'Titles: {titles}')
 
         # obsolete, only necessary for chunked and not cached responses
         while entries * page < event_count:
