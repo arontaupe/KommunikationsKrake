@@ -6,3 +6,4 @@ pandas~=1.4.2
 six~=1.15.0
 Werkzeug~=2.1.2
 cachetools~=4.2.4
+flask_httpauth~=4.7.0
