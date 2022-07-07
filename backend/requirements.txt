@@ -5,5 +5,8 @@ urllib3~=1.26.9
 pandas~=1.4.2
 six~=1.15.0
 Werkzeug~=2.1.2
-cachetools~=4.2.4
-flask_httpauth~=4.7.0
+cachetools~=5.0.0
+Flask-HTTPAuth~=4.7.0
+python_dateutil>=2.5.3
+setuptools>=21.0.0
+google-cloud-dialogflow==2.13.0
