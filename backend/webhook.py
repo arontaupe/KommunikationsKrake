@@ -1,5 +1,4 @@
 import random  # generates random chips for me
-
 from flask import request  # makes a flask app and serves it to a specified port
 
 # import all background intent_logic functionality

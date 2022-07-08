@@ -6,12 +6,13 @@ from datetime import datetime
 import json  # make me interact with json
 
 from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
-from werkzeug.security import check_password_hash, \
-    generate_password_hash  # hashes the password, so it is not passed in clear
+from werkzeug.security import check_password_hash, generate_password_hash
+# hashes the password, so it is not passed in clear
 
 from sb_db_request import get_full_event_list
 from webhook import handle_intent
-import pprint
+
+# import pprint
 
 # initialize the flask app
 app = Flask(__name__)
