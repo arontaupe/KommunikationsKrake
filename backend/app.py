@@ -25,6 +25,8 @@ users = {
 }
 auth = HTTPBasicAuth()
 
+def get_port():
+    return int(os.environ.get("PORT", 5002))
 
 @auth.verify_password
 def verify_password(username, password):
@@ -85,6 +87,6 @@ if __name__ == '__main__':
                          )
     x.start()
     # execute and expose the backend as a flask app on a given port
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=get_port(), debug=True)
     # only appears when app is stopped
     print("Backend restarting")
