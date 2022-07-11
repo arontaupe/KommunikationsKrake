@@ -43,7 +43,7 @@ def index():
     """
     return 'Hello World! This is the running Webhook for Sommerblut. ' \
            'For the API please append /webhook to the current url\r\n' \
-           f'Last Modified: {datetime.fromtimestamp(os.stat("webhook.py").st_mtime)}'
+        # f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
 
 
 # create a route for webhook
