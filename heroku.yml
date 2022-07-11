@@ -2,5 +2,14 @@ build:
   docker:
     web: Dockerfile
     worker: worker/Dockerfile
-  run:
-    web: python3 backend/app.py --host='0.0.0.0' --port=$PORT backend/app:app
+  config:
+    DB_USER: api_ticketing
+    DB_PASS: [T!ck28O1api
+    USER: chatbot
+    PASS: allei
+    BASEURL: https://datenbank.sommerblut.de
+    BASEURL_DEV: https://development.sommerblut.de
+    MAIL_SENDER_ADDRESS: chatbot@sommerblut.de
+    MAIL_PASS: Aellei2022
+run:
+  web: python3 backend/app.py --host='0.0.0.0' --port=$PORT backend/app:app
