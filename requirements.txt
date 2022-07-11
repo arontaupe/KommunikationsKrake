@@ -11,3 +11,5 @@ python_dateutil>=2.5.3
 setuptools>=21.0.0
 google-cloud-dialogflow>=2.14.1
 gunicorn>=19.9.0
+./backend
+./backend/sb_db
