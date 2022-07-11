@@ -1158,7 +1158,7 @@ auth = HTTPBasicAuth()
 
 
 def get_port():
-    return int(os.environ.get("PORT", 5002))
+    return int(os.environ.get("PORT", 5003))
 
 
 @auth.verify_password
@@ -1176,7 +1176,7 @@ def index():
     """
     return 'Hello World! This is the running Webhook for Sommerblut. ' \
            'For the API please append /webhook to the current url\r\n' \
-        # f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
+           f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
 
 
 # create a route for webhook
