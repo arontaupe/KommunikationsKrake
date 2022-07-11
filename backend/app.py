@@ -12,8 +12,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from sb_db_request import get_full_event_list
 from webhook import handle_intent
 
-# import pprint
-
 # initialize the flask app
 app = Flask(__name__)
 
