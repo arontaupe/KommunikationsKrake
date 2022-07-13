@@ -315,6 +315,7 @@ this is the main intent switch function. All intents that use the backend must b
         # get final list of events
         # event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
         # print(f'IDs: {ids}')
+
         if events:
             try:
                 interests = retrieve_interests(output_contexts=output_contexts)
