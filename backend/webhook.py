@@ -741,6 +741,17 @@ this is the main intent switch function. All intents that use the backend must b
                              dgs_videos_chips=make_video_array(['RC34c'])
 
                              )
+    elif intent_name == 'faq.finance.how':
+        return button_response(url='https://www.sommerblut.de/de/ueber-uns/foerderer-und-sponsoren',
+                               button_text='Unsere Sponsoren',
+                               text='Zu unseren Sponsoren gehören das "Hostel Köln", '
+                                    'das "Maritim Hotel Köln" und die "REWE Group". '
+                                    'Alle aktuellen Sponsoren und Förderer findest du hier auf unserer Website:  '
+                                    'https://www.sommerblut.de/de/ueber-uns/foerderer-und-sponsoren',
+                               chips=['Ich habe eine andere Frage'],
+                               dgs_videos_bot=make_video_array(['A21']),
+                               dgs_videos_chips=make_video_array(['RC34c'])
+                               )
 
     elif intent_name == 'faq.event':
         entries = 50
