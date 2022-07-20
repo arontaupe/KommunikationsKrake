@@ -25,8 +25,27 @@ def give_smalltalk(intent_name):
 
     if intent_name == 'smalltalk.agent.bad':
         return chip_response(text='Das macht mich traurig.  \r\n'
+                                  'Ich lerne aus den Eingaben der Nutzer*innen...\r\n'
                                   'Wenn dir etwas nicht gefällt, schreib doch bitte eine Nachricht.\r\n'
                                   'Ich versuche dann, mich zu verbessern.\r\n',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren'],
+                             dgs_videos_bot=make_video_array(['E2']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+    if intent_name == 'smalltalk.agent.clever':
+        return chip_response(text='Ich bin so schlau, ich kann dir das Fingeralphabet beibringen, wie wäre das?\r\n'
+                                  'Ich versuche dann, mich zu verbessern.\r\n',
+                             chips=['Fingeralphabet lernen',
+                                    'Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren'],
+                             dgs_videos_bot=make_video_array(['E2']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+
+    if intent_name == 'smalltalk.agent.annoying':
+        return chip_response(text='Ich spreche Leichte Sprache.\r\n'
+                                  ' Alle sollen mich Verstehen können.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
                              dgs_videos_bot=make_video_array(['E2']),
@@ -38,6 +57,14 @@ def give_smalltalk(intent_name):
                                   'Ist das gut oder schlecht? \r\n'
                                   'Wenn dir etwas nicht gefällt, schreib doch bitte eine Nachricht.\r\n'
                                   'Ich versuche dann, mich zu verbessern.\r\n',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren'],
+                             dgs_videos_bot=make_video_array(['E2']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+
+    if intent_name == 'smalltalk.agent.real':
+        return chip_response(text='Ich wurde von echten Menschen gemacht.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
                              dgs_videos_bot=make_video_array(['E2']),
@@ -88,14 +115,26 @@ def give_smalltalk(intent_name):
                              )
 
     if intent_name == 'smalltalk.user.loves_agent':
-        return chip_response(text='Das freut mich sehr \r\n'
-                                  'Ich habe dich auch sehr gern. \r\n'
-                                  'Vielleicht treffen wir uns nächstes Jahr auf dem Sommerblut Festival?\r\n',
-                             chips=['Zurück zum Hauptmenü',
-                                    'Team von Ällei kontaktieren', ],
-                             dgs_videos_bot=make_video_array(['E2']),
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-                             )
+        return chip_response(
+            text='“Ohne dich wären die Gefühle von heute nur die leere Hülle der Gefühle von damals.” -- Amelie\r\n'
+                 'Das freut mich sehr \r\n'
+                 'Ich habe dich auch sehr gern. \r\n'
+                 'Vielleicht treffen wir uns nächstes Jahr auf dem Sommerblut Festival?\r\n',
+            chips=['Zurück zum Hauptmenü',
+                   'Team von Ällei kontaktieren', ],
+            dgs_videos_bot=make_video_array(['E2']),
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+        )
+
+    if intent_name == 'smalltalk.agent.date_user':
+        return chip_response(
+            text='Dafür fühle ich mich nicht bereit. \r\n'
+                 'Vielleicht in ein paar Updates.\r\n',
+            chips=['Zurück zum Hauptmenü',
+                   'Team von Ällei kontaktieren', ],
+            dgs_videos_bot=make_video_array(['E2']),
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+        )
 
     else:
         return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt.  \r\n',
