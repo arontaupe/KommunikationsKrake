@@ -889,6 +889,21 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_chips=make_video_array(['AC7']),
         )
 
+    elif intent_name == 'faq.sommerblut.for-who':
+        return chip_response(
+            text='Das Sommerblut ist für alle da.',
+            chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
+            dgs_videos_chips=make_video_array(['AC7']),
+        )
+
+    elif intent_name == 'faq.sommerblut.how-many-visitors':
+        return chip_response(
+            text='2022 kamen im Mai über 7000 Besucher*innen zum Sommerblut Festival.',
+            chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
+            dgs_videos_chips=make_video_array(['AC7']),
+        )
+
+
     elif intent_name == 'faq.knowledge.chatbot':
         return chip_response(
             text='Ein Chatbot Ist eine Maschine, die sich mit dir unterhalten kann wie ein Mensch.',
@@ -898,12 +913,58 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'faq.knowledge.whoami':
         return chip_response(
-            text='Ich bin Ällei, ein Chatbot. '
-                 'Ich lebe auf der Website des Sommerblut Festivals. '
+            text='Ich bin Ällei, ein Chatbot. \r\n'
+                 'Ich lebe auf der Website des Sommerblut Festivals. \r\n'
                  'Komm mich gern besuchen!',
             chips=['Zurück zum  Hauptmenü', 'Ich habe eine andere Frage'],
             dgs_videos_chips=make_video_array(['AC7', 'RC3']),
         )
+
+    elif intent_name == 'faq.sommerblut.donate':
+        return button_response(url='https://www.sommerblut.de/de/ueber-uns/unterstuetzen',
+                               button_text='Spenden an Sommerblut',
+                               text='Großartig. \r\n'
+                                    'Das höre ich gern. \r\n'
+                                    'Hier findest du alle Infos dazu: ',
+                               chips=['Zurück zum  Hauptmenü',
+                                      'Ich habe eine andere Frage'],
+                               dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                               )
+
+    elif intent_name == 'faq.sommerblut.cooperation':
+        return chip_response(
+            text='Ja, oft sogar. \r\n'
+                 'Wir freuen uns immer, wenn wir andere arbeiten lassen können.',
+            chips=['Zurück zum  Hauptmenü',
+                   'Ich habe eine andere Frage'],
+            dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+        )
+
+    elif intent_name == 'faq.sommerblut.discount':
+        return chip_response(
+            text='Wir bieten ermäßigte Tickets für viele unterschiedliche Gruppen und Menschen:\r\n '
+                 'Schüler:innen, Studierende, Azubis und Freiwilligendienstleistende.\r\n'
+                 'Menschen mit Nachweis über eine Behinderung.\r\n'
+                 'Menschen, die Hartz IV oder andere Bezüge und soziale Hilfen erhalten. \r\n'
+                 'Solltest Du dir unsicher sein, ob Du in eine dieser Kategorien fällst, \r\n'
+                 'schicke uns einfach eine E-Mail und frag nach. \r\n'
+                 'Wir möchten Sommerblut für alle Menschen so zugänglich wie möglich gestalten.',
+            chips=['Zurück zum  Hauptmenü',
+                   'Ich habe eine andere Frage'],
+            dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+        )
+
+    elif intent_name == 'faq.sommerblut.career':
+        return button_response(url='mailto:info@sommerblut.de',
+                               button_text='Schreib uns eine Mail',
+                               text='Wir freuen uns immer, wenn das Sommerblut Team wächst. '
+                                    'Schau doch einmal bei den Ausschreibungen vorbei. '
+                                    'Oder du kannst meine Kolleg*innen fragen. '
+                                    'Hier ist die Email Adresse:  info@sommerblut.de',
+                               chips=['Zurück zum  Hauptmenü',
+                                      'Ich habe eine andere Frage'],
+                               dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                               )
 
     elif intent_name == 'script.welcome':
         return chip_response(

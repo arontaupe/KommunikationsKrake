@@ -1,3 +1,5 @@
+import random
+
 from response_func import chip_response
 from video_builder import make_video_array
 
@@ -77,6 +79,28 @@ def give_smalltalk(intent_name):
                                   'Wenn dir etwas nicht gefällt, schreib doch bitte eine Nachricht.\r\n'
                                   'Möchtest du vielleicht das Fingeralphabet mit mir trainieren?\r\n',
                              chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren',
+                                    'Ich möchte das Fingeralphabet lernen'],
+                             dgs_videos_bot=make_video_array(['E2']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+
+    if intent_name == 'smalltalk.tell-joke':
+        jokebase = ['Arbeiten am Computer ist wie U-Boot fahren: \r\n'
+                    'Wenn man ein Fenster aufmacht, fangen die Probleme an.',
+                    'Was denkt ein Computer?\r\n'
+                    '"Gott ist groß, der Mensch ist klein, dann muss ich wohl dazwischen sein."',
+                    'Ein leerer Bus kommt an eine Haltestelle, zehn Fahrgäste steigen ein. \r\n'
+                    'An der nächsten Haltestelle steigen elf Menschen aus, und der Bus fährt weiter. \r\n'
+                    'Drei Wissenschaftler*innen kommentieren das Geschehen.Biologe: "Ganz einfach! \r\n'
+                    'Die Fahrgäste haben sich vermehrt."Physikerin: \r\n'
+                    '"Zehn Prozent Messtoleranz müssen immer drin sein.\r\n'
+                    '"Mathematikerin: "Wenn jetzt einer einsteigt, ist der Bus leer."'
+                    ]
+        joke = random.sample(jokebase, 1)
+        return chip_response(text=f'Hier ist mein Bester Witz:\r\n {joke}',
+                             chips=['Noch ein Witz'
+                                    'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
                                     'Ich möchte das Fingeralphabet lernen'],
                              dgs_videos_bot=make_video_array(['E2']),
