@@ -37,46 +37,53 @@ def give_description(query):
     return description
 
 
-def give_glossary(intent_name, parameters):
+def give_glossary(intent_name, parameters, output_contexts=None):
     if intent_name == 'glossary.select':
         # read in the query in case there is one given already
-        query = parameters.get('glossary')
+        glossary_context = False
+        if output_contexts:
+            num_contexts = len(output_contexts)
+            for i in range(num_contexts):
+                if 'glossary' in output_contexts[i]['name']:
+                    glossary_context = True
 
-        if query == '':
-            chips = random.sample(list(give_glossary_terms()), 2)
-            print('no query was given yet')
-            print(chips)
-            chips.append('Zurück zum Hauptmenü')
-            chips.append('Ich will andere Begriffe bekommen')
-            chips.append('Ich habe eine Frage')
-            chips.append('Team von Ällei kontaktieren')
-            print(chips)
+        query = parameters.get('glossary')
+        chips = random.sample(list(give_glossary_terms()), 4)
+        chips.append('Zurück zum Hauptmenü')
+        chips.append('Ich will andere Begriffe bekommen')
+
+        if glossary_context is True and query == '':
+            text = 'Welchen Begriff soll ich dir erklären? ' \
+                   '\r\n Hier sind ein paar Wörter, die ich schon kenne: ' \
+                   '\r\n Klicke einfach eins an. ' \
+                   '\r\n Oder du gibst ein neues Wort ein, vielleicht kann ich es dann bald erklären. \r\n'
+            return chip_response(text=text,
+                                 chips=chips,
+                                 dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+                                 )
+
+        elif query == '':
             return chip_response(text='Welchen Begriff soll ich dir erklären? \r\n'
                                       'Hier sind ein paar Wörter, die ich schon kenne: \r\n'
                                       'Klicke einfach eins an. \r\n'
-                                      'Oder du gibst ein neues Wort ein, vielleicht kann ich es dann bald erklären. \r\n',
+                                      'Oder du gibst ein neues Wort ein, dann kann ich es bestimmt bald erklären. \r\n',
                                  chips=chips,
-                                 dgs_videos_bot=make_video_array(['E2']),
                                  dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                                  )
         else:
             description = give_description(query)
-            print('got query')
             if description:
+                description += "\r\n Hast du noch eine Frage?"
                 return chip_response(text=description,
                                      chips=['Zurück zum Hauptmenü',
-                                            'Ich will andere Begriffe bekommen',
-                                            'Ich habe eine Frage',
-                                            'Team von Ällei kontaktieren'],
-                                     dgs_videos_bot=make_video_array(['E2']),
+                                            'Ich will andere Begriffe bekommen'],
                                      dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                                      )
             else:
-                return chip_response(text='Zu diesem Begriff habe ich leider noch keine Erklärung.',
+                return chip_response(text='Zu diesem Begriff habe ich leider noch keine Erklärung.\r\n'
+                                          'Ich merke ihn mir und habe vielleicht bald eine parat.',
                                      chips=['Zurück zum Hauptmenü',
                                             'Ich will andere Begriffe bekommen'
-                                            'Ich habe eine Frage',
                                             'Team von Ällei kontaktieren'],
-                                     dgs_videos_bot=make_video_array(['E2']),
                                      dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                                      )

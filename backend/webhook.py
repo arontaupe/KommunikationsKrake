@@ -879,7 +879,7 @@ this is the main intent switch function. All intents that use the backend must b
         return give_smalltalk(intent_name)
 
     elif 'glossary' in intent_name:
-        return give_glossary(intent_name, parameters)
+        return give_glossary(intent_name, parameters, output_contexts)
 
     elif intent_name == 'faq.bot.cando':
         return chip_response(
@@ -1003,8 +1003,12 @@ this is the main intent switch function. All intents that use the backend must b
                  'Ich kann dir zum Beispiel noch mehr über mich erzählen.\r\n'
                  'Und über künstliche Intelligenz.\r\n'
                  'Oder ich berate dich, welche Veranstaltung dir gefallen wird.\r\n',
-            chips=['Video: Ällei und KI', 'Video: Ällei und KI in Leichter Sprache', 'Veranstaltungsberatung',
-                   'Mehr über Sommerblut erfahren', 'Team von Ällei kontaktieren'],
+            chips=['Video: Ällei und KI',
+                   'Video: Ällei und KI in Leichter Sprache',
+                   'Veranstaltungsberatung',
+                   'Mehr über Sommerblut erfahren',
+                   'Team von Ällei kontaktieren',
+                   'Ich habe eine Frage'],
             dgs_videos_bot=make_video_array(['A2']),
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7', 'Feedback1']))
 
@@ -1053,7 +1057,8 @@ this is the main intent switch function. All intents that use the backend must b
                    'Frage zum Sommerblut allgemein',
                    # 'Frage zur Barrierefreiheit',
                    'Frage zu Ällei, dem Chatbot',
-                   'Das Fingeralphabet kennen lernen'],
+                   'Das Fingeralphabet kennen lernen',
+                   'Begriff erklären'],
             dgs_videos_bot=make_video_array(['F1']),
             dgs_videos_chips=make_video_array(['FA1', 'FA2', 'FA4', 'FA5'])
         )
