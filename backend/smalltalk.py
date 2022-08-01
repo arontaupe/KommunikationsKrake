@@ -98,8 +98,10 @@ def give_smalltalk(intent_name):
                     '"Mathematikerin: "Wenn jetzt einer einsteigt, ist der Bus leer."'
                     ]
         joke = random.sample(jokebase, 1)
-        return chip_response(text=f'Hier ist mein Bester Witz:\r\n {joke}',
-                             chips=['Noch ein Witz'
+        text = 'Hier ist mein Bester Witz:\r\n'
+        text += str(joke[0])
+        return chip_response(text=text,
+                             chips=['Noch ein Witz',
                                     'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
                                     'Ich möchte das Fingeralphabet lernen'],
