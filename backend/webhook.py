@@ -859,7 +859,6 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
         )
 
-
     elif intent_name == 'faq.sommerblut.size':
         return chip_response(
             text='Vom 6. bis 22. Mai 2022 hat das Sommerblut Festival 17 Produktionen \r\n'
@@ -868,7 +867,6 @@ this is the main intent switch function. All intents that use the backend must b
                    'Zurück zum Hauptmenü'],
             dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
         )
-
 
     elif intent_name == 'faq.assistance.bring_human':
         return button_response(button_text="Mail schreiben",
@@ -901,8 +899,6 @@ this is the main intent switch function. All intents that use the backend must b
                                       'Zurück zum Hauptmenü'],
                                dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                                )
-
-
 
     elif intent_name == 'faq.tickets.sale_phone':
         return button_response(url='tel:+4922142076000',
@@ -960,7 +956,6 @@ this is the main intent switch function. All intents that use the backend must b
             chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
             dgs_videos_chips=make_video_array(['AC7']),
         )
-
 
     elif intent_name == 'faq.knowledge.chatbot':
         return chip_response(

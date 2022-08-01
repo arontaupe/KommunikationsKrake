@@ -92,20 +92,20 @@ def give_smalltalk(intent_name):
                     '"Gott ist groß, der Mensch ist klein, dann muss ich wohl dazwischen sein."',
                     'Ein leerer Bus kommt an eine Haltestelle, zehn Fahrgäste steigen ein. \r\n'
                     'An der nächsten Haltestelle steigen elf Menschen aus, und der Bus fährt weiter. \r\n'
-                    'Drei Wissenschaftler*innen kommentieren das Geschehen.Biologe: "Ganz einfach! \r\n'
+                    'Drei Wissenschaftler*innen kommentieren das Geschehen.\r\n'
+                    'Biologe: "Ganz einfach! \r\n'
                     'Die Fahrgäste haben sich vermehrt."Physikerin: \r\n'
                     '"Zehn Prozent Messtoleranz müssen immer drin sein.\r\n'
                     '"Mathematikerin: "Wenn jetzt einer einsteigt, ist der Bus leer."'
                     ]
         joke = random.sample(jokebase, 1)
-        text = 'Hier ist mein Bester Witz:\r\n'
+        text = 'Hier ist mein bester Witz:\r\n'
         text += str(joke[0])
         return chip_response(text=text,
                              chips=['Noch ein Witz',
                                     'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
                                     'Ich möchte das Fingeralphabet lernen'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
