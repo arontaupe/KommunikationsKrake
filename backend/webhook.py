@@ -846,6 +846,64 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
         )
 
+    elif intent_name == 'faq.covid':
+        return chip_response(
+            text='Wir möchten, dass sich auf unserem Festival alle Menschen gut und sicher fühlen. \r\n'
+                 'Daher ist es wichtig, dass sich alle Besucher:innen an die geltenden Corona-Maßnahmen halten. \r\n'
+                 'Da unser Festival an vielen verschiedenen Orten in der Stadt stattfindet, \r\n'
+                 'können die Corona-Regeln je nach Ort unterschiedlich sein. \r\n'
+                 'Bitte informiere dich vor deinem Besuch über die geltenden Coronaregeln \r\n'
+                 'am jeweiligen Veranstaltungsort.\r\n',
+            chips=['Ich habe eine andere Frage',
+                   'Zurück zum Hauptmenü'],
+            dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+        )
+
+
+    elif intent_name == 'faq.sommerblut.size':
+        return chip_response(
+            text='Vom 6. bis 22. Mai 2022 hat das Sommerblut Festival 17 Produktionen \r\n'
+                 'und Gastspiele mit 63 Aufführungen an 13 unterschiedlichen Spielorten realisiert.\r\n',
+            chips=['Ich habe eine andere Frage',
+                   'Zurück zum Hauptmenü'],
+            dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+        )
+
+
+    elif intent_name == 'faq.assistance.bring_human':
+        return button_response(button_text="Mail schreiben",
+                               url='mailto:info@sommerblut.de',
+                               text='Menschen mit Nachweis über eine Behinderung können eine Begleitperson mitbringen. \r\n'
+                                    'Schicke uns einfach eine E-Mail und frag nach, um ein solches Ticket zu erhalten: \r\n'
+                                    'info@sommerblut.de.\r\n',
+                               chips=['Ich habe eine andere Frage',
+                                      'Zurück zum Hauptmenü'],
+                               dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                               )
+
+    elif intent_name == 'faq.need_human':
+        return button_response(button_text="Ruf uns direkt hier an",
+                               url='tel:+4922129499134',
+                               text='Schreib uns an die info@sommerblut.de \r\n'
+                                    'oder ruf unser Büro an unter: +49 (221) 29 49 91 – 34',
+                               chips=['Ich habe eine andere Frage',
+                                      'Zurück zum Hauptmenü'],
+                               dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                               )
+
+    elif intent_name == 'faq.assistance.bring_dog':
+        return button_response(button_text="Mail schreiben",
+                               url='mailto:info@sommerblut.de',
+                               text='In der Regel kannst du mit einem Assistenzhund zu unseren Veranstaltungen kommen. \r\n'
+                                    'Am besten fragst du aber für den spezifischen Standort bei unserem Team nach. \r\n'
+                                    'Schicke uns einfach eine E-Mail an info@sommerblut.de',
+                               chips=['Ich habe eine andere Frage',
+                                      'Zurück zum Hauptmenü'],
+                               dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                               )
+
+
+
     elif intent_name == 'faq.tickets.sale_phone':
         return button_response(url='tel:+4922142076000',
                                button_text='Direkt anrufen',
