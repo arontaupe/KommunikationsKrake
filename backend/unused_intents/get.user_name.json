@@ -1,0 +1,425 @@
+{
+  "id": "b002a6af-06ce-466d-ab68-ecb457de08f2",
+  "name": "get.user_name",
+  "auto": true,
+  "condition": "",
+  "conditionalFollowupEvents": [],
+  "conditionalResponses": [],
+  "context": [],
+  "contexts": [],
+  "endInteraction": false,
+  "events": [],
+  "fallbackIntent": false,
+  "liveAgentHandoff": false,
+  "parentId": null,
+  "followUpIntents": [],
+  "priority": 500000,
+  "responses": [
+    {
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "noInputPromptMessages": [],
+          "noMatchPromptMessages": [],
+          "promptMessages": [],
+          "defaultValue": "",
+          "name": "person",
+          "dataType": "@sys.person",
+          "isList": true,
+          "required": true,
+          "prompts": [
+            "Wer bist du?",
+            "Wie ist dein Name?",
+            "Wie heisst du?"
+          ],
+          "value": "$person",
+          "outputDialogContexts": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "messages": [
+        {
+          "type": "message",
+          "condition": "",
+          "speech": [
+            "Es freut mich, dich kennen zu lernen, $person"
+          ]
+        }
+      ],
+      "resetContexts": false
+    }
+  ],
+  "rootParentId": null,
+  "templates": [],
+  "userSays": [
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "meine eltern gaben mir den namen ",
+          "userDefined": false
+        },
+        {
+          "text": "Inge",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "dce69f79-0d46-4f48-8be9-e1c0bf2d3bed",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "meine freunde nennen mich ",
+          "userDefined": false
+        },
+        {
+          "text": "Bruno",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "96901f9a-eb1c-46da-82f6-1b385cddbe88",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "du kannst mich ",
+          "userDefined": false
+        },
+        {
+          "text": "Peter",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        },
+        {
+          "text": " nennen",
+          "userDefined": false
+        }
+      ],
+      "count": 0,
+      "id": "8ecbd564-be2b-4694-989f-7302f51900cc",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "man nennt mich ",
+          "userDefined": false
+        },
+        {
+          "text": "Farad",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "2ce6abd4-9de9-43be-b668-1b6c256e6aa2",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "ich heisse ",
+          "userDefined": false
+        },
+        {
+          "text": "Eckard",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "9c1dab28-1f85-4c69-bf4f-6a2396db908d",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "ich heiße ",
+          "userDefined": false
+        },
+        {
+          "text": "Remi",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "4db0e155-018d-403d-aa4a-53c2f7b7cecd",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "mein Name ist ",
+          "userDefined": false
+        },
+        {
+          "text": "Maria",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "4f22e494-880f-47c1-bdff-3872b8cf6e91",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "ich bin ",
+          "userDefined": false
+        },
+        {
+          "text": "Anton",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "19fac232-6cd0-4a44-917b-c9a4786f0392",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Ich bin ",
+          "userDefined": false
+        },
+        {
+          "text": "Domingos",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "65b87305-5f31-4878-a1e2-e431ecaccf74",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Ich bin ",
+          "userDefined": false
+        },
+        {
+          "text": "Linda",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 1,
+      "id": "568dd0aa-17e3-47f4-8c7a-2e4519c2d9dc",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Ich heisse ",
+          "userDefined": false
+        },
+        {
+          "text": "Aron Petau",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "46f5205c-08b5-4fca-92e1-5d959e68d94f",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Wolfgang",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        },
+        {
+          "text": " mein Name",
+          "userDefined": false
+        }
+      ],
+      "count": 0,
+      "id": "b9e13680-c918-42b7-aaf0-8e4fcfb760df",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Ich bin ",
+          "userDefined": false
+        },
+        {
+          "text": "Sven",
+          "userDefined": true,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "cd673691-bf44-4315-8c49-ecb1f7673387",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "mein Name ist ",
+          "userDefined": false
+        },
+        {
+          "text": "Hanna",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "b898e23a-d552-4a94-8cb4-3d2e9a9da663",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Ich heisse ",
+          "userDefined": false
+        },
+        {
+          "text": "Jens",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "aaa36425-68d0-4f3f-a876-cb063251452f",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "ich bin ",
+          "userDefined": false
+        },
+        {
+          "text": "Aron",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "b2d99d7f-43e2-4cde-9c43-a0037387fb8c",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Karl",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        },
+        {
+          "text": " der ",
+          "userDefined": false
+        },
+        {
+          "text": "Käfer",
+          "userDefined": false,
+          "meta": "@sys.ignore",
+          "alias": null
+        }
+      ],
+      "count": 0,
+      "id": "81e94523-c278-491b-b7a9-f4f6cff0c68c",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Karl",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "d894ff32-4d11-432c-9250-3292a43e39ff",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "Ich heisse ",
+          "userDefined": false
+        },
+        {
+          "text": "Ingo",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "3ef28629-b59e-4f3d-aabc-82e7881e3e79",
+      "updated": null
+    },
+    {
+      "isTemplate": false,
+      "data": [
+        {
+          "text": "ich bin aber ",
+          "userDefined": false
+        },
+        {
+          "text": "toni",
+          "userDefined": false,
+          "alias": "person",
+          "meta": "@sys.person"
+        }
+      ],
+      "count": 0,
+      "id": "96ab88c1-2286-411b-9c93-0def35846c90",
+      "updated": null
+    }
+  ],
+  "webhookForSlotFilling": false,
+  "webhookUsed": true
+}

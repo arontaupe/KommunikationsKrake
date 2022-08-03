@@ -11,7 +11,6 @@ def give_smalltalk(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Ich habe eine Frage',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                              )
     if intent_name == 'smalltalk.agent.answer_my_question':
@@ -21,7 +20,6 @@ def give_smalltalk(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Ich habe eine Frage',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                              )
 
@@ -32,7 +30,6 @@ def give_smalltalk(intent_name):
                                   'Ich versuche dann, mich zu verbessern.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
     if intent_name == 'smalltalk.agent.clever':
@@ -41,7 +38,6 @@ def give_smalltalk(intent_name):
                              chips=['Fingeralphabet lernen',
                                     'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -50,7 +46,6 @@ def give_smalltalk(intent_name):
                                   ' Alle sollen mich Verstehen können.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -61,7 +56,6 @@ def give_smalltalk(intent_name):
                                   'Ich versuche dann, mich zu verbessern.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -69,7 +63,6 @@ def give_smalltalk(intent_name):
         return chip_response(text='Ich wurde von echten Menschen gemacht.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -81,7 +74,6 @@ def give_smalltalk(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
                                     'Ich möchte das Fingeralphabet lernen'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -116,7 +108,6 @@ def give_smalltalk(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
                                     'Ich möchte das Fingeralphabet lernen'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -126,7 +117,6 @@ def give_smalltalk(intent_name):
                                   'Wenn du mich einstellen möchtest, schreib doch eine Nachricht an mein Team.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren', ],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -136,7 +126,6 @@ def give_smalltalk(intent_name):
                                   'Kennst du eine gute Adresse da?\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren', ],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -148,7 +137,6 @@ def give_smalltalk(intent_name):
                  'Vielleicht treffen wir uns nächstes Jahr auf dem Sommerblut Festival?\r\n',
             chips=['Zurück zum Hauptmenü',
                    'Team von Ällei kontaktieren', ],
-            dgs_videos_bot=make_video_array(['E2']),
             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
         )
 
@@ -158,7 +146,6 @@ def give_smalltalk(intent_name):
                  'Vielleicht in ein paar Updates.\r\n',
             chips=['Zurück zum Hauptmenü',
                    'Team von Ällei kontaktieren', ],
-            dgs_videos_bot=make_video_array(['E2']),
             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
         )
 
@@ -166,6 +153,5 @@ def give_smalltalk(intent_name):
         return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt.  \r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_bot=make_video_array(['E2']),
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
