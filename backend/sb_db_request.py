@@ -212,7 +212,7 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
     return event_count, events, titles, ids
 
 
-# get_full_event_list(page=1, entries=15)
+# print(get_full_event_list(page=1, entries=5))
 
 
 def get_partial_event_list(num_events=int, accessibility=None):

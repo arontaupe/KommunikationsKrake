@@ -76,7 +76,7 @@ gets the accessibility info stored in GDF and performs a database request with t
                                    )
 
 
-def show_full_event_list(output_contexts, session_id):
+def show_full_event_list(output_contexts, session_id, random=None):
     """
 retrieves all stored events from GDF and displays them
     :param output_contexts:
@@ -125,6 +125,8 @@ retrieves all stored events from GDF and displays them
                  'Ich möchte mehr zur Veranstaltung wissen']
         dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])
 
+    if random:
+        event_index = random.randint(0, event_count)
     return event_response(
         session_id=session_id,
         context='event_index',

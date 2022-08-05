@@ -5,7 +5,8 @@ from flask import request  # makes a flask app and serves it to a specified port
 from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_events_by_interest, show_full_event_list
 # import the response functionality
 from response_func import button_response, chip_response, chip_w_context_response, chip_w_two_context_response, \
-    event_detail_response, event_response, event_schedule_response, image_response, text_response
+    event_detail_response, event_response, event_schedule_response, image_response, text_response, \
+    chip_w_three_context_response
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, \
     retrieve_found_events, \
@@ -723,6 +724,54 @@ this is the main intent switch function. All intents that use the backend must b
                                        dgs_videos_chips=make_video_array(['RC37', 'RC38', 'RC39', 'RC34c', 'RC34b'])
                                        )
 
+    elif intent_name == 'script.random_event':
+        entries = 50
+        page = 1
+        event_count, events, titles, ids = get_full_event_list(page=page, entries=entries)
+        if events:
+            title = random.sample(titles, 1)
+            event_title = title[0]
+
+            idx = titles.index(event_title)
+            event_id = ids[idx]
+            # print(event_id)
+            return chip_w_three_context_response(session_id=session_id,
+                                                 text=f'Ich habe dir die Veranstaltung {event_title} gefunden.\r\n'
+                                                      'Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                      '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                      '2. Worum geht es genau in der Veranstaltung? \r\n'
+                                                      '3. Wie handhabt ihr Corona?\r\n'
+                                                      '4. Wo und Wann findet sie statt?\r\n',
+                                                 chips=['Barrierefreiheit',
+                                                        'Programmtext',
+                                                        'Coronamaßnahmen',
+                                                        'Datum und Ort',
+                                                        'Zeig mir die Veranstaltung auf Sommerblut.de',
+                                                        'Zurück: Ich habe eine Frage'],
+                                                 variable_name='event_id',
+                                                 variable_name_2='events_found',
+                                                 variable=event_id,
+                                                 variable_2=events,
+                                                 context='event_id',
+                                                 context_2='events_found',
+                                                 context_3='scripteventdetails-followup',
+                                                 dgs_videos_bot=make_video_array(['AC20']),
+                                                 dgs_videos_chips=make_video_array(
+                                                     ['RC30', 'RC31', 'RC32', 'RC33', 'RC34'])
+                                                 )
+        else:
+            return chip_response(text='FEHLER! ich habe keine Events gefunden',
+                                 chips=['Zurück zum Hauptmenü',
+                                        'Ich habe eine Frage',
+                                        'Team von Ällei kontaktieren'],
+                                 dgs_videos_chips=make_video_array(['F2']),
+                                 # dgs_videos_bot=make_video_array(['A23']),
+                                 )
+
+
+
+
+
     elif intent_name == 'faq.event':
         entries = 50
         # page = retrieve_page_cache(output_contexts=output_contexts)
@@ -800,8 +849,6 @@ this is the main intent switch function. All intents that use the backend must b
                                                    dgs_videos_chips=make_video_array(
                                                        ['RC30', 'RC31', 'RC32', 'RC33', 'RC34'])
                                                    )
-
-
 
     elif intent_name == 'script.tickets.sale':
         return button_response(url='https://t.rausgegangen.de/tickets/shop/sommerblut-2022',

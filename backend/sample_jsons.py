@@ -112,6 +112,55 @@ SAMPLE_CHIP_W_TWO_CONTEXT_JSON = {
     ]
 }
 
+SAMPLE_CHIP_W_THREE_CONTEXT_JSON = {
+    "fulfillmentText": "Suggestion Chips",
+    "fulfillmentMessages": [
+        {
+            "text": {
+                "text": [
+                    ""
+                ]
+            }
+        },
+        {
+            "payload": {
+                "dgs_videos_bot": {},
+                "dgs_videos_chips": {},
+                "content_videos": {},
+                "richContent": [
+                    [
+                        {
+                            "options": [
+                                {
+                                    "text": "Chip1"
+                                }
+                            ],
+                            "type": "chips"
+                        }
+                    ]
+                ]
+            }
+        }
+    ],
+    "outputContexts": [
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        },
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        },
+        {
+            "name": "projects/kommkrake-pcsi/locations/global/agent/sessions/session-id/contexts/context-name",
+            "lifespanCount": 50,
+            "parameters": {}
+        }
+    ]
+}
+
 SAMPLE_CHIP_JSON = {
     "fulfillmentText": "Suggestion Chips",
     "fulfillmentMessages": [

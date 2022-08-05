@@ -149,6 +149,42 @@ def give_smalltalk(intent_name):
             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
         )
 
+    if intent_name == 'smalltalk.emotions.wow':
+        return chip_response(
+            text='Ich bin auch jedes mal wieder beeindruckt.',
+            chips=['Zurück zum Hauptmenü',
+                   'Team von Ällei kontaktieren', ],
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+        )
+
+    if intent_name == 'smalltalk.emotions.ha_ha':
+        return chip_response(
+            text='Meldung vom Humormodul. Sehr lustig. \r\n'
+                 'Soll ich dir vielleicht einen Witz erzählen?',
+            chips=['Erzähl mir einen Witz',
+                   'Team von Ällei kontaktieren', ],
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+        )
+
+    if intent_name == 'smalltalk.greetings.how_are_you':
+        return chip_response(
+            text='Meldung vom Humormodul. Sehr lustig. \r\n'
+                 'Soll ich dir vielleicht einen Witz erzählen?',
+            chips=['Erzähl mir einen Witz',
+                   'Team von Ällei kontaktieren', ],
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+        )
+
+    if intent_name == 'smalltalk.dialog.wrong':
+        return chip_response(
+            text='Da habe ich dich wohl falsch verstanden.\r\n'
+                 'Ich bin noch am lernen.\r\n'
+                 'Magst du vielleicht einen Blick in unsere Veranstaltungen werfen?',
+            chips=['Welche Veranstaltungen gibt es?',
+                   'Team von Ällei kontaktieren', ],
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+        )
+
     else:
         return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt.  \r\n',
                              chips=['Zurück zum Hauptmenü',
