@@ -1,6 +1,6 @@
 import random
 
-from response_func import chip_response
+from response_func import chip_response, button_response
 from video_builder import make_video_array
 
 
@@ -77,6 +77,35 @@ def give_smalltalk(intent_name):
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
+    if intent_name == 'smalltalk.data_privacy':
+        return chip_response(text='Grundsätzlich werden die reinen Konversationsverläufe gespeichert. '
+                                  'Sie werden von mir, Ällei, und von Google als Trainingsdaten für meine '
+                                  'künstliche Intelligenz genutzt. '
+                                  'Zum Beispiel können Fragen, die ich nicht beantworten konnte, '
+                                  'von meinem Entwickler*innen-Team eingesehen und zur Verbesserungen genutzt werden. '
+                                  'Wir möchten diesesn Prozess so transparent wie möglich machen, '
+                                  'hier kannst du weitere Informationen finden: TODO\r\n',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren',
+                                    'Ich möchte das Fingeralphabet lernen'],
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+
+    if intent_name == 'smalltalk.you_are_spy':
+        return button_response(button_text='Link zum Blogeintrag (TODO)',
+                               url='TODO',
+                               text='Ich stehe nicht in direkten Kontakt mit der NSA.\r\n'
+                                    'Aber ich nutze Google Dienstleistungen.\r\n'
+                                    'Über Google gibt es immer wieder Veröffentlichungen, die nahelegen, \r\n'
+                                    'dass es sehr wohl direkte absprachen zwischen Geheimdiensten\r\n'
+                                    'und dem IT-Unternehmen gibt.\r\n'
+                                    'Was wir mit deinen Daten machen, kannst du hier weiter lesen: \r\n',
+                               chips=['Zurück zum Hauptmenü',
+                                      'Team von Ällei kontaktieren',
+                                      'Ich möchte das Fingeralphabet lernen'],
+                               dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                               )
+
     if intent_name == 'smalltalk.tell-joke':
         jokebase = ['Arbeiten am Computer ist wie U-Boot fahren: \r\n'
                     'Wenn man ein Fenster aufmacht, fangen die Probleme an.',
@@ -93,11 +122,32 @@ def give_smalltalk(intent_name):
         joke = random.sample(jokebase, 1)
         text = 'Hier ist mein bester Witz:\r\n'
         text += str(joke[0])
+        text += '\r\n Hast du auch einen Witz für mich?'
         return chip_response(text=text,
-                             chips=['Noch ein Witz',
+                             chips=['Ja',
+                                    'Nein, ich mache keine Witze',
+                                    'Noch ein Witz',
                                     'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
                                     'Ich möchte das Fingeralphabet lernen'],
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+
+    if intent_name == 'smalltalk.tell-joke.back - yes':
+        return chip_response(text='HaHa, den kannte ich nocht nicht, merke ich mir!\r\n'
+                                  'Möchtest du vielleicht das Fingeralphabet mit mir trainieren?\r\n',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren',
+                                    'Ich möchte das Fingeralphabet lernen'],
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
+
+    if intent_name == 'smalltalk.tell-joke.back - no':
+        return chip_response(text='Schade. Ich höre immer gern neue Witze.\r\n'
+                                  'Möchtest du vielleicht einen Veranstaltungsvorschlag haben?\r\n',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren',
+                                    'Schlag mir eine Veranstaltung vor'],
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 

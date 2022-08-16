@@ -768,10 +768,6 @@ this is the main intent switch function. All intents that use the backend must b
                                  # dgs_videos_bot=make_video_array(['A23']),
                                  )
 
-
-
-
-
     elif intent_name == 'faq.event':
         entries = 50
         # page = retrieve_page_cache(output_contexts=output_contexts)

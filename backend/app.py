@@ -23,8 +23,10 @@ users = {
 }
 auth = HTTPBasicAuth()
 
+
 def get_port():
     return int(os.environ.get("PORT", 5002))
+
 
 @auth.verify_password
 def verify_password(username, password):
@@ -41,7 +43,7 @@ def index():
     """
     return 'Hello World! This is the running Webhook for Sommerblut. ' \
            'For the API please append /webhook to the current url\r\n' \
-        # f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
+           f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
 
 
 # create a route for webhook
@@ -64,7 +66,7 @@ Main listener to DF, will call handle_intent upon being activated
 
 def update_db_cache():
     """
-responsible for a multi-threaded updating of the cache.
+responsible for a multithreaded updating of the cache.
 anything in here will be executed regularly in parallel to the app
     """
     while 1:
@@ -74,7 +76,7 @@ anything in here will be executed regularly in parallel to the app
         get_full_event_list(page=2, entries=10)
         post = time.perf_counter()
         print(f'DB Refresh time: {post - pre:.5f}')
-        time.sleep(30)
+        time.sleep(180)
 
 
 # run the app
