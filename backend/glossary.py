@@ -19,7 +19,6 @@ builds a video dict with titles and urls based on the .csv. preserves the order 
     terms = np.array(df.term.values.tolist())
     return terms
 
-
 def give_description(query):
     """
     builds a video dict with titles and urls based on the .csv. preserves the order of elements.
@@ -73,10 +72,17 @@ def give_glossary(intent_name, parameters, output_contexts=None):
         else:
             description = give_description(query)
             if description:
+                description = f'{query} \r\n' + description
                 description += "\r\n Hast du noch eine Frage?"
+                chips = ['Zurück zum Hauptmenü',
+                         'Ich will andere Begriffe bekommen']
+                # interlink the glossary via buttons
+                for entry in give_glossary_terms():
+                    if entry in description:
+                        chips.append(f'Was bedeutet {entry}?')
+
                 return chip_response(text=description,
-                                     chips=['Zurück zum Hauptmenü',
-                                            'Ich will andere Begriffe bekommen'],
+                                     chips=chips,
                                      dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                                      )
             else:

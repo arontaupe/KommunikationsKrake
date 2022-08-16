@@ -41,7 +41,8 @@ def index():
   default route, has text, so I can see when the app is running
     :return: Hello World
     """
-    return 'Hello World! This is the running Webhook for Sommerblut. ' \
+    return 'Hello World! \r\n' \
+           'This is the running Webhook for Sommerblut. \r\n' \
            'For the API please append /webhook to the current url\r\n' \
            f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
 
