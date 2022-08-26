@@ -17,6 +17,7 @@ from video_builder import make_video_array
 from smalltalk import give_smalltalk
 from glossary import give_glossary
 from faq import give_faq
+from feedback import give_feedback
 
 
 def handle_intent(intent_name):
@@ -868,6 +869,9 @@ this is the main intent switch function. All intents that use the backend must b
     elif 'faq' in intent_name:
         return give_faq(intent_name)
 
+    elif 'feedback' in intent_name:
+        return give_feedback(intent_name)
+
     elif 'glossary' in intent_name:
         return give_glossary(intent_name, parameters, output_contexts)
 
@@ -979,14 +983,4 @@ this is the main intent switch function. All intents that use the backend must b
                    'Nein, weiter zur Veranstaltungsberatung'],
             dgs_videos_bot=make_video_array(['A4']),
             dgs_videos_chips=make_video_array(['RC11', 'RC12'])
-        )
-
-    elif intent_name == 'mail.feedback':
-        return button_response(
-            text='Du kannst uns eine Email schreiben: ',
-            button_text='Email an Ällei',
-            url='mailto:chatbot@sommerblut.de',
-            chips=['Tschüss', 'Hauptmenü'],
-            dgs_videos_bot=make_video_array(['Feedback2']),
-            dgs_videos_chips=make_video_array(['E1', 'AC7'])
         )

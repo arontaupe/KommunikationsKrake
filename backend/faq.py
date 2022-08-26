@@ -20,8 +20,20 @@ def give_faq(intent_name):
                              chips=['Zurück zu den Einzelheiten zur Veranstaltung'],
                              dgs_videos_bot=make_video_array(['A21']),
                              dgs_videos_chips=make_video_array(['RC34c'])
-
                              )
+
+    elif intent_name == 'faq.assistance.onsite':
+        return button_response(text='Das kommt auf die Veranstaltung an.'
+                                    ' Wir möchten Sommerblut für alle Menschen so zugänglich wie möglich gestalten. '
+                                    'Schicke uns einfach eine E-Mail und frag nach: info@sommerblut.de. \r\n'
+                                    'Oder per Telefon: 0221 – 29 49 91 34\r\n',
+                               url='mail:info@sommerblut.de',
+                               button_text='Anfrage per Email',
+                               chips=['Hauptmenü'],
+                               # dgs_videos_bot=make_video_array(['A21']),
+                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               )
+
     elif intent_name == 'faq.finance.how':
         return button_response(url='https://www.sommerblut.de/de/ueber-uns/foerderer-und-sponsoren',
                                button_text='Unsere Sponsoren',
