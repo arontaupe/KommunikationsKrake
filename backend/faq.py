@@ -29,15 +29,101 @@ def give_faq(intent_name):
                              # dgs_videos_bot=make_video_array(['A21']),
                              # dgs_videos_chips=make_video_array(['RC34c'])
                              )
+    elif intent_name == 'faq.sommerblut.where':
+        return chip_response(text='Das Festival findet dezentral statt. \r\n'
+                                  'Die ganze Stadt ist Sommerblut! \r\n'
+                                  'Wenn du persönlich mit jemandem aus dem Sommerblut Team reden willst,\r\n'
+                                  ' komm doch gerne mal zu einer unserer Veranstaltungen! \r\n'
+                                  'Du kannst auch im Büro anrufen oder eine Mail schreiben, \r\n'
+                                  'wenn es schnell gehen muss.\r\n',
+                             chips=[
+                                 'Wann ist die nächste Veranstaltung?',
+                                 'Mit dem Team telefonieren',
+                                 'Eine Mail schreiben'
+                             ],
+                             # dgs_videos_bot=make_video_array(['A21']),
+                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             )
+    elif intent_name == 'faq.sommerblut.where':
+        return chip_response(text='Das Festival findet dezentral statt. \r\n'
+                                  'Die ganze Stadt ist Sommerblut! \r\n'
+                                  'Wenn du persönlich mit jemandem aus dem Sommerblut Team reden willst,\r\n'
+                                  ' komm doch gerne mal zu einer unserer Veranstaltungen! \r\n'
+                                  'Du kannst auch im Büro anrufen oder eine Mail schreiben, \r\n'
+                                  'wenn es schnell gehen muss.\r\n',
+                             chips=[
+                                 'Wann ist die nächste Veranstaltung?',
+                                 'Mit dem Team telefonieren',
+                                 'Eine Mail schreiben'
+                             ],
+                             # dgs_videos_bot=make_video_array(['A21']),
+                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             )
 
+    elif intent_name == 'faq.sommerblut.where - phone':
+        return button_response(url='tel:+49 221 29499139',
+                               button_text='Direkt anrufen',
+                               text='Okay, die Telefonnummer ist: +49 221 29499139\r\n',
+                               chips=[
+                                   'Wann ist die nächste Veranstaltung?'
+                               ],
+                               # dgs_videos_bot=make_video_array(['A21']),
+                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               )
 
+    elif intent_name == 'faq.sommerblut.where - mail':
+        return button_response(url='mailto:info@sommerblut.de',
+                               button_text='Direkt Mail schreiben',
+                               text='Okay, die Email ist: info@sommerblut.de\r\n',
+                               chips=[
+                                   'Wann ist die nächste Veranstaltung?'
+                               ],
+                               # dgs_videos_bot=make_video_array(['A21']),
+                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               )
+    elif intent_name == 'faq.sommerblut.gender_ratio':
+        return chip_response(
+            text='Okay, die Email ist: info@sommerblut.de\r\n',
+            chips=['Was ist Gender?',
+                   'Welche Produktionen beschäftigen sich mit Geschlechterverhältnissen?',
+                   'Wer ist das Sommerblut Team?'
+                   ],
+            # dgs_videos_bot=make_video_array(['A21']),
+            # dgs_videos_chips=make_video_array(['RC34c'])
+        )
+
+    elif intent_name == 'faq.sommerblut.gender_ratio - which_events':
+        return button_response(url='https://www.sommerblut.de/ls/veranstaltung/855-queertopolis',
+                               button_text='Queertopolis anschauen',
+                               text='Damit hat sich vor allem Queertopolis auseinander gesetzt.\r\n'
+                                    'Schau dir das doch mal an!',
+                               chips=[],
+                               # dgs_videos_bot=make_video_array(['A21']),
+                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               )
+
+    elif intent_name == 'faq.sommerblut.name':
+        return chip_response(text='Da muss ich dich vermutlich enttäuschen. \r\n'
+                                  'Hinter diesem Namen verbirgt sich keine allzu spannende Geschichte.\r\n '
+                                  'Das Kulturfestival Sommerblut ist ein Vorbote des Hochsommers,\r\n '
+                                  'denn es findet immer im Mai statt. Und wir könnten nicht existieren, \r\n'
+                                  'wenn nicht viele verschiedene Menschen mit viel Herzblut dabei wären. \r\n'
+                                  'Möchtest du mehr über das Festival erfahren?\r\n',
+                             chips=['Was gibt es für Veranstaltungen?',
+                                    'Worum geht es beim Sommerblut Festival?',
+                                    'Wie lautet das Festivalmotto?',
+                                    'Nein, ich möchte einen Witz erzählen'
+                                    ],
+                             # dgs_videos_bot=make_video_array(['A21']),
+                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             )
 
     elif intent_name == 'faq.assistance.onsite':
         return button_response(text='Das kommt auf die Veranstaltung an.'
                                     ' Wir möchten Sommerblut für alle Menschen so zugänglich wie möglich gestalten. '
                                     'Schicke uns einfach eine E-Mail und frag nach: info@sommerblut.de. \r\n'
                                     'Oder per Telefon: 0221 – 29 49 91 34\r\n',
-                               url='mail:info@sommerblut.de',
+                               url='mailto:info@sommerblut.de',
                                button_text='Anfrage per Email',
                                chips=['Hauptmenü'],
                                # dgs_videos_bot=make_video_array(['A21']),
@@ -198,6 +284,7 @@ def give_faq(intent_name):
                  'Schüler:innen, Studierende, Azubis und Freiwilligendienstleistende.\r\n'
                  'Menschen mit Nachweis über eine Behinderung.\r\n'
                  'Menschen, die Hartz IV oder andere Bezüge und soziale Hilfen erhalten. \r\n'
+                 'Auch mit Kölnpass gibt es Anspruch auf ermäßigte Tickets.\r\n'
                  'Solltest Du dir unsicher sein, ob Du in eine dieser Kategorien fällst, \r\n'
                  'schicke uns einfach eine E-Mail und frag nach. \r\n'
                  'Wir möchten Sommerblut für alle Menschen so zugänglich wie möglich gestalten.',

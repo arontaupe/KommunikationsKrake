@@ -12,7 +12,8 @@ from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event
     retrieve_found_events, \
     retrieve_interests, whether_searched_events
 # import the database functions
-from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list
+from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, \
+    get_next_event
 from video_builder import make_video_array
 from smalltalk import give_smalltalk
 from glossary import give_glossary
@@ -984,3 +985,44 @@ this is the main intent switch function. All intents that use the backend must b
             dgs_videos_bot=make_video_array(['A4']),
             dgs_videos_chips=make_video_array(['RC11', 'RC12'])
         )
+
+    elif intent_name == 'script.next_event':
+        entries = 50
+        page = 1
+        _, events, _, _ = get_full_event_list(page=page, entries=entries)
+        if events:
+            event_title, event_id, next_date = get_next_event()
+            if next_date:
+                return chip_w_three_context_response(session_id=session_id,
+                                                     text=f'Als nächstes findet {event_title} gefunden.\r\n'
+                                                          f'Beginn ist {next_date}.\r\n'
+                                                          'Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+                                                          '1. Ist die Veranstaltung barrierefrei?\r\n'
+                                                          '2. Worum geht es genau in der Veranstaltung? \r\n'
+                                                          '3. Wie handhabt ihr Corona?\r\n'
+                                                          '4. Wo und Wann findet sie statt?\r\n',
+                                                     chips=['Barrierefreiheit',
+                                                            'Programmtext',
+                                                            'Coronamaßnahmen',
+                                                            'Datum und Ort',
+                                                            'Zeig mir die Veranstaltung auf Sommerblut.de',
+                                                            'Zurück: Ich habe eine Frage'],
+                                                     variable_name='event_id',
+                                                     variable_name_2='events_found',
+                                                     variable=event_id,
+                                                     variable_2=events,
+                                                     context='event_id',
+                                                     context_2='events_found',
+                                                     context_3='scripteventdetails-followup',
+                                                     dgs_videos_bot=make_video_array(['AC20']),
+                                                     dgs_videos_chips=make_video_array(
+                                                         ['RC30', 'RC31', 'RC32', 'RC33', 'RC34'])
+                                                     )
+        else:
+            return chip_response(text='FEHLER! ich habe keine Events gefunden',
+                                 chips=['Zurück zum Hauptmenü',
+                                        'Ich habe eine Frage',
+                                        'Team von Ällei kontaktieren'],
+                                 dgs_videos_chips=make_video_array(['F2']),
+                                 # dgs_videos_bot=make_video_array(['A23']),
+                                 )

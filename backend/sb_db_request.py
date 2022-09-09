@@ -444,7 +444,6 @@ def get_all_titles_ids():
     except ApiException as e:
         print("Exception when calling EventsApi->get all titles: %s\n" % e)
 
-
 def get_event_title(event_id):
     """
 gets an event title by supplying the numeric id
@@ -458,3 +457,20 @@ gets an event title by supplying the numeric id
     resp = response.json()
     title = resp['title']
     return title
+
+
+def get_next_event():
+    try:
+        # returns all upcoming events
+        resp = running_events_api.get_all_next_event_dates(accept_language=accept_language)
+        play = resp[0]
+        title = play['event']['title']
+        print(title)
+        id = play['event']['id']
+        next_date = play['event']['next_date']['isdate']
+        print(id)
+        print(next_date)
+    except ApiException as e:
+        print("Exception when calling RunningEventsApi->get_all_next_event_dates: %s\n" % e)
+
+    return title, id, next_date
