@@ -22,6 +22,16 @@ def give_faq(intent_name):
                              dgs_videos_chips=make_video_array(['RC34c'])
                              )
 
+    elif intent_name == 'faq.sb.credo.next':
+        return chip_response(text='Unser Motto für 2023 ist: \r\n'
+                                  'Geh dahin, wo die Angst ist.\r\n',
+                             chips=[],
+                             # dgs_videos_bot=make_video_array(['A21']),
+                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             )
+
+
+
     elif intent_name == 'faq.assistance.onsite':
         return button_response(text='Das kommt auf die Veranstaltung an.'
                                     ' Wir möchten Sommerblut für alle Menschen so zugänglich wie möglich gestalten. '

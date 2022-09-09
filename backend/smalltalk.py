@@ -245,7 +245,7 @@ def give_smalltalk(intent_name):
         )
 
     elif intent_name == 'smalltalk.agent.suck':
-        return chip_response(
+        return chip_response(f
             text='Ich gebe mir Mühe dich zu verstehen. \r\n'
                  'Du musst Geduld mit mir haben.\r\n '
                  'Ich bin jung und lerne noch, du weißt sicher wie das ist. \r\n',
