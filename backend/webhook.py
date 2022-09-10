@@ -25,7 +25,7 @@ def handle_intent(intent_name):
     """
     Handle the webhook request.
 this is the main intent switch function. All intents that use the backend must be routed here.
-    :param intent_name: the name given in the dialogflow interface
+    param intent_name: the name given in the dialogflow interface
     :return: None
     """
     # build a request object

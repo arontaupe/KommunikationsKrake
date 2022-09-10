@@ -89,7 +89,7 @@ def give_glossary(intent_name, parameters, output_contexts=None):
                 return chip_response(text='Zu diesem Begriff habe ich leider noch keine Erklärung.\r\n'
                                           'Ich merke ihn mir und habe vielleicht bald eine parat.',
                                      chips=['Zurück zum Hauptmenü',
-                                            'Ich will andere Begriffe bekommen'
+                                            'Ich will andere Begriffe bekommen',
                                             'Team von Ällei kontaktieren'],
-                                     dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+                                     # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                                      )
