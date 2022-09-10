@@ -994,7 +994,7 @@ this is the main intent switch function. All intents that use the backend must b
             event_title, event_id, next_date = get_next_event()
             if next_date:
                 return chip_w_three_context_response(session_id=session_id,
-                                                     text=f'Als nächstes findet {event_title} gefunden.\r\n'
+                                                     text=f'Als nächstes findet {event_title} statt.\r\n'
                                                           f'Beginn ist {next_date}.\r\n'
                                                           'Was möchtest du mehr wissen über die Veranstaltung?\r\n'
                                                           '1. Ist die Veranstaltung barrierefrei?\r\n'
