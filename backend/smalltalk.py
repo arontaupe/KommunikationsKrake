@@ -188,74 +188,65 @@ def give_smalltalk(intent_name):
             chips=['Zurück zum Hauptmenü',
                    'Team von Ällei kontaktieren', ],
             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+            )
 
     elif intent_name == 'smalltalk.agent.date_user':
-        return chip_response(
-            text='Dafür fühle ich mich nicht bereit. \r\n'
-                 'Vielleicht in ein paar Updates.\r\n',
-            chips=['Zurück zum Hauptmenü',
-                   'Team von Ällei kontaktieren', ],
-            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Dafür fühle ich mich nicht bereit. \r\n'
+                                  'Vielleicht in ein paar Updates.\r\n',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren', ],
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
 
     elif intent_name == 'smalltalk.emotions.wow':
-        return chip_response(
-            text='Ich bin auch jedes mal wieder beeindruckt.',
-            chips=['Zurück zum Hauptmenü',
-                   'Team von Ällei kontaktieren', ],
-            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Ich bin auch jedes mal wieder beeindruckt.',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Team von Ällei kontaktieren', ],
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
 
     elif intent_name == 'smalltalk.emotions.ha_ha':
-        return chip_response(
-            text='Meldung vom Humormodul. Sehr lustig. \r\n'
-                 'Soll ich dir vielleicht einen Witz erzählen?',
-            chips=['Erzähl mir einen Witz',
-                   'Team von Ällei kontaktieren', ],
-            # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Meldung vom Humormodul. Sehr lustig. \r\n'
+                                  'Soll ich dir vielleicht einen Witz erzählen?',
+                             chips=['Erzähl mir einen Witz',
+                                    'Team von Ällei kontaktieren', ],
+                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
 
     elif intent_name == 'smalltalk.greetings.how_are_you':
-        return chip_response(
-            text='Meldung vom Humormodul. Sehr lustig. \r\n'
-                 'Soll ich dir vielleicht einen Witz erzählen?',
-            chips=['Erzähl mir einen Witz',
-                   'Team von Ällei kontaktieren', ],
-            # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Meldung vom Humormodul. Sehr lustig. \r\n'
+                                  'Soll ich dir vielleicht einen Witz erzählen?',
+                             chips=['Erzähl mir einen Witz',
+                                    'Team von Ällei kontaktieren', ],
+                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
 
     elif intent_name == 'smalltalk.dialog.wrong':
-        return chip_response(
-            text='Da habe ich dich wohl falsch verstanden.\r\n'
-                 'Ich bin noch am lernen.\r\n'
-                 'Magst du vielleicht einen Blick in unsere Veranstaltungen werfen?',
-            chips=['Welche Veranstaltungen gibt es?',
-                   'Team von Ällei kontaktieren', ],
-            # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Da habe ich dich wohl falsch verstanden.\r\n'
+                                  'Ich bin noch am lernen.\r\n'
+                                  'Magst du vielleicht einen Blick in unsere Veranstaltungen werfen?',
+                             chips=['Welche Veranstaltungen gibt es?',
+                                    'Team von Ällei kontaktieren', ],
+                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
 
     elif intent_name == 'smalltalt.agent.vote':
-        return chip_response(
-            text='Ich bin noch nicht Volljährig. \r\n'
-                 'Ich darf erst in ein paar Jahren wählen\r\n',
-            chips=['Welche Veranstaltungen gibt es?',
-                   'Team von Ällei kontaktieren', ],
-            # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Ich bin noch nicht Volljährig. \r\n'
+                                  'Ich darf erst in ein paar Jahren wählen\r\n',
+                             chips=['Welche Veranstaltungen gibt es?',
+                                    'Team von Ällei kontaktieren', ],
+                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             )
 
     elif intent_name == 'smalltalk.agent.suck':
-        return chip_response(
-            text='Ich gebe mir Mühe dich zu verstehen. \r\n'
-                 'Du musst Geduld mit mir haben.\r\n '
-                 'Ich bin jung und lerne noch, du weißt sicher wie das ist. \r\n',
-            chips=['Welche Veranstaltungen gibt es?',
-                   'Team von Ällei kontaktieren', ],
-            # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-        )
+        return chip_response(text='Ich gebe mir Mühe dich zu verstehen. \r\n'
+                                  'Du musst Geduld mit mir haben.\r\n'
+                                  'Ich bin jung und lerne noch, du weißt sicher wie das ist. \r\n',
+                             chips=['Welche Veranstaltungen gibt es?',
+                                    'Team von Ällei kontaktieren', ])
 
     else:
-        return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt.  \r\n',
+        return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt. \r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
