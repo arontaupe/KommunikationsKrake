@@ -82,14 +82,13 @@ The Feedback Module. Responsible for any intents with feedback in their name.
         )
 
     elif intent_name == 'feedback.sb.bad - fallback':
-        return button_response(
-            text='Ich habe nicht verstanden, wie du deine Kritik äussern möchtest. \r\n'
-                 'Schreib mir am besten eine Mail. \r\n'
-                 'Ich versuche dann, dir weiterzuhelfen. \r\n',
-            button_text='Kritik in einer Mail schreiben',
-            url='mailto:chatbot@sommerblut.de',
-            chips=['Weiter chatten',
-                   'Hauptmenü'],
-            # dgs_videos_bot=make_video_array(['Feedback2']),
-            # dgs_videos_chips=make_video_array(['E1', 'AC7'])
-        )
+        return button_response(text='Ich habe nicht verstanden, wie du deine Kritik äussern möchtest. \r\n'
+                                    'Schreib mir am besten eine Mail. \r\n'
+                                    'Ich versuche dann, dir weiterzuhelfen. \r\n',
+                               button_text='Kritik in einer Mail schreiben',
+                               url='mailto:chatbot@sommerblut.de',
+                               chips=['Weiter chatten',
+                                      'Hauptmenü'],
+                               # dgs_videos_bot=make_video_array(['Feedback2']),
+                               # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                               )
