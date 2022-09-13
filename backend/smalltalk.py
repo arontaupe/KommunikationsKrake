@@ -11,7 +11,7 @@ def give_smalltalk(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Ich habe eine Frage',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1'])
                              )
     elif intent_name == 'smalltalk.agent.answer_my_question':
         return chip_response(text='Ich kann mich manchmal nicht gut erinnern. \r\n'
@@ -20,7 +20,7 @@ def give_smalltalk(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Ich habe eine Frage',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1'])
                              )
 
     elif intent_name == 'smalltalk.agent.bad':
@@ -30,15 +30,15 @@ def give_smalltalk(intent_name):
                                   'Ich versuche dann, mich zu verbessern.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
+
     elif intent_name == 'smalltalk.agent.clever':
         return chip_response(text='Ich bin so schlau, ich kann dir das Fingeralphabet beibringen, wie wäre das?\r\n'
                                   'Ich versuche dann, mich zu verbessern.\r\n',
                              chips=['Fingeralphabet lernen',
                                     'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
     elif intent_name == 'smalltalk.agent.annoying':
@@ -46,7 +46,7 @@ def give_smalltalk(intent_name):
                                   ' Alle sollen mich Verstehen können.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
 
     elif intent_name == 'smalltalk.agent.crazy':
@@ -56,14 +56,14 @@ def give_smalltalk(intent_name):
                                   'Ich versuche dann, mich zu verbessern.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
 
     elif intent_name == 'smalltalk.agent.real':
         return chip_response(text='Ich wurde von echten Menschen gemacht.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
 
     elif intent_name == 'smalltalk.agent.funny':
@@ -73,8 +73,7 @@ def give_smalltalk(intent_name):
                                   'Möchtest du vielleicht das Fingeralphabet mit mir trainieren?\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
-                                    'Ich möchte das Fingeralphabet lernen'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Ich möchte das Fingeralphabet lernen']
                              )
 
     elif intent_name == 'smalltalk.data_privacy':
@@ -87,8 +86,7 @@ def give_smalltalk(intent_name):
                                   'hier kannst du weitere Informationen finden: TODO\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
-                                    'Ich möchte das Fingeralphabet lernen'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Ich möchte das Fingeralphabet lernen']
                              )
 
     elif intent_name == 'smalltalk.you_are_spy':
@@ -102,8 +100,7 @@ def give_smalltalk(intent_name):
                                     'Was wir mit deinen Daten machen, kannst du hier weiter lesen: \r\n',
                                chips=['Zurück zum Hauptmenü',
                                       'Team von Ällei kontaktieren',
-                                      'Ich möchte das Fingeralphabet lernen'],
-                               # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                      'Ich möchte das Fingeralphabet lernen']
                                )
 
     elif intent_name == 'smalltalk.tell-joke':
@@ -129,8 +126,7 @@ def give_smalltalk(intent_name):
                                     'Noch ein Witz',
                                     'Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
-                                    'Ich möchte das Fingeralphabet lernen'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Ich möchte das Fingeralphabet lernen']
                              )
 
     elif intent_name == 'smalltalk.tell-joke.back - yes':
@@ -138,8 +134,7 @@ def give_smalltalk(intent_name):
                                   'Möchtest du vielleicht das Fingeralphabet mit mir trainieren?\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
-                                    'Ich möchte das Fingeralphabet lernen'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Ich möchte das Fingeralphabet lernen']
                              )
 
     elif intent_name == 'smalltalk.tell-joke.back - no':
@@ -147,8 +142,7 @@ def give_smalltalk(intent_name):
                                   'Möchtest du vielleicht einen Veranstaltungsvorschlag haben?\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
-                                    'Schlag mir eine Veranstaltung vor'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Schlag mir eine Veranstaltung vor']
                              )
 
     elif intent_name == 'smalltalk.agent.good':
@@ -157,8 +151,7 @@ def give_smalltalk(intent_name):
                                   'Möchtest du vielleicht das Fingeralphabet mit mir trainieren?\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren',
-                                    'Ich möchte das Fingeralphabet lernen'],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Ich möchte das Fingeralphabet lernen']
                              )
 
     elif intent_name == 'smalltalk.agent.occupation':
@@ -175,7 +168,7 @@ def give_smalltalk(intent_name):
                                   'Gerade bin ich auf Reisen in den USA \r\n'
                                   'Kennst du eine gute Adresse da?\r\n',
                              chips=['Zurück zum Hauptmenü',
-                                    'Team von Ällei kontaktieren', ],
+                                    'Team von Ällei kontaktieren'],
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )
 
@@ -186,39 +179,37 @@ def give_smalltalk(intent_name):
                  'Ich habe dich auch sehr gern. \r\n'
                  'Vielleicht treffen wir uns nächstes Jahr auf dem Sommerblut Festival?\r\n',
             chips=['Zurück zum Hauptmenü',
-                   'Team von Ällei kontaktieren', ],
-            dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
-            )
+                   'Team von Ällei kontaktieren'],
+            dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
+        )
 
     elif intent_name == 'smalltalk.agent.date_user':
         return chip_response(text='Dafür fühle ich mich nicht bereit. \r\n'
                                   'Vielleicht in ein paar Updates.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren', ],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
 
     elif intent_name == 'smalltalk.emotions.wow':
         return chip_response(text='Ich bin auch jedes mal wieder beeindruckt.',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren', ],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
 
     elif intent_name == 'smalltalk.emotions.ha_ha':
         return chip_response(text='Meldung vom Humormodul. Sehr lustig. \r\n'
                                   'Soll ich dir vielleicht einen Witz erzählen?',
                              chips=['Erzähl mir einen Witz',
-                                    'Team von Ällei kontaktieren', ],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Team von Ällei kontaktieren']
                              )
 
     elif intent_name == 'smalltalk.greetings.how_are_you':
         return chip_response(text='Meldung vom Humormodul. Sehr lustig. \r\n'
                                   'Soll ich dir vielleicht einen Witz erzählen?',
                              chips=['Erzähl mir einen Witz',
-                                    'Team von Ällei kontaktieren', ],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Team von Ällei kontaktieren']
                              )
 
     elif intent_name == 'smalltalk.dialog.wrong':
@@ -226,16 +217,14 @@ def give_smalltalk(intent_name):
                                   'Ich bin noch am lernen.\r\n'
                                   'Magst du vielleicht einen Blick in unsere Veranstaltungen werfen?',
                              chips=['Welche Veranstaltungen gibt es?',
-                                    'Team von Ällei kontaktieren', ],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Team von Ällei kontaktieren']
                              )
 
     elif intent_name == 'smalltalt.agent.vote':
         return chip_response(text='Ich bin noch nicht Volljährig. \r\n'
                                   'Ich darf erst in ein paar Jahren wählen\r\n',
                              chips=['Welche Veranstaltungen gibt es?',
-                                    'Team von Ällei kontaktieren', ],
-                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                                    'Team von Ällei kontaktieren'],
                              )
 
     elif intent_name == 'smalltalk.agent.suck':
@@ -243,11 +232,11 @@ def give_smalltalk(intent_name):
                                   'Du musst Geduld mit mir haben.\r\n'
                                   'Ich bin jung und lerne noch, du weißt sicher wie das ist. \r\n',
                              chips=['Welche Veranstaltungen gibt es?',
-                                    'Team von Ällei kontaktieren', ])
+                                    'Team von Ällei kontaktieren'])
 
     else:
         return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt. \r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
