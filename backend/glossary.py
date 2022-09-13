@@ -19,6 +19,7 @@ builds a video dict with titles and urls based on the .csv. preserves the order 
     terms = np.array(df.term.values.tolist())
     return terms
 
+
 def give_description(query):
     """
     builds a video dict with titles and urls based on the .csv. preserves the order of elements.

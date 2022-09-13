@@ -1,4 +1,5 @@
 # responsible for defining what kind of responses can get sent by the backend
+# ensures compliance with google protobuf json standards
 
 from copy import deepcopy  # needed for the copying of the sample jsons
 

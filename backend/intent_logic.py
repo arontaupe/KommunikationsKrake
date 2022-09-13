@@ -1,3 +1,5 @@
+# this document contains all helper functions that are used to calculate responses.
+
 # use pretty printing for json responses
 # import the response functionality
 from response_func import chip_response, chip_w_context_response, event_response
@@ -13,7 +15,7 @@ gets the accessibility info stored in GDF and performs a database request with t
     :param parameters:
     :param num_contexts:
     :param output_contexts:
-    :param session_id:
+    :param session_id: The Unique Session ID with Google. Can be overwritten to open new Session.
     :return:
     """
     bedarf = parameters.get('bedarf')
@@ -79,8 +81,9 @@ gets the accessibility info stored in GDF and performs a database request with t
 def show_full_event_list(output_contexts, session_id, random=None):
     """
 retrieves all stored events from GDF and displays them
+    :param random: boolean whether mixing should happen or not
     :param output_contexts:
-    :param session_id:
+    :param session_id: The Unique Session ID with Google. Can be overwritten to open new Session.
     :return:
     """
     event_count, events, titles, ids = retrieve_found_events(output_contexts)

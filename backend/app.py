@@ -14,10 +14,10 @@ from webhook import handle_intent
 
 # initialize the flask app
 app = Flask(__name__)
-
+# get variables from outside the container
 user = os.environ.get('USER')
 pw = os.environ.get('PASS')
-
+# hash the password
 users = {
     user: generate_password_hash(pw)
 }
@@ -25,11 +25,21 @@ auth = HTTPBasicAuth()
 
 
 def get_port():
+    """
+finds out if the environment has a predefined port, otherwise use 5002
+    :return: port number
+    """
     return int(os.environ.get("PORT", 5002))
 
 
 @auth.verify_password
 def verify_password(username, password):
+    """
+Checks if http user is in user list and checks for correctness of password
+    :param username:
+    :param password:
+    :return: boolean verified or not
+    """
     if username in users:
         return check_password_hash(users.get(username), password)
     return False
@@ -38,7 +48,7 @@ def verify_password(username, password):
 @app.route('/')
 def index():
     """
-  default route, has text, so I can see when the app is running
+  default route, has text, so I can see when the app is running, indicates the Last date of update
     :return: Hello World
     """
     return 'Hello World! \r\n' \
@@ -52,8 +62,9 @@ def index():
 @auth.login_required
 def update():
     """
-Main listener to DF, will call handle_intent upon being activated
-    :return: the response to DF
+Main listener to google-DF, will call handle_intent upon being activated.
+Ignores anything that is not a POST-Request.
+    :return: the response to google-DF
     """
     if request.method == 'POST':
         resp = request.data.decode("utf8")
@@ -68,7 +79,7 @@ Main listener to DF, will call handle_intent upon being activated
 def update_db_cache():
     """
 responsible for a multithreaded updating of the cache.
-anything in here will be executed regularly in parallel to the app
+anything in here will be executed regularly in parallel to the main app
     """
     while 1:
         pre = time.perf_counter()
@@ -90,4 +101,4 @@ if __name__ == '__main__':
     # execute and expose the backend as a flask app on a given port
     app.run(host='0.0.0.0', port=get_port(), debug=True)
     # only appears when app is stopped
-    print("Backend restarting")
+    print("Backend stopped")

@@ -3,6 +3,11 @@ from video_builder import make_video_array
 
 
 def give_feedback(intent_name):
+    """
+The Feedback Module. Responsible for any intents with feedback in their name.
+    :param intent_name: the name of the identified intent that needs a response
+    :return: response for passing to google-DF in compliant json format
+    """
     if intent_name == 'mail.feedback':
         return button_response(
             text='Du kannst uns eine Email schreiben: ',
@@ -23,7 +28,6 @@ def give_feedback(intent_name):
             # dgs_videos_bot=make_video_array(['Feedback2']),
             # dgs_videos_chips=make_video_array(['E1', 'AC7'])
         )
-
 
     elif intent_name == 'feedback.sb.bad':
         return button_response(
@@ -66,7 +70,6 @@ def give_feedback(intent_name):
             # dgs_videos_bot=make_video_array(['Feedback2']),
             # dgs_videos_chips=make_video_array(['E1', 'AC7'])
         )
-
 
     elif intent_name == 'feedback.sb.bad - continue':
         return chip_response(
