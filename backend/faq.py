@@ -96,8 +96,15 @@ The FAQ Module. Responsible for any intents with faq in their name.
                                text='Damit hat sich vor allem Queertopolis auseinander gesetzt.\r\n'
                                     'Schau dir das doch mal an!',
                                chips=[],
-                               # dgs_videos_bot=make_video_array(['A21']),
-                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               )
+
+    elif intent_name == 'faq.sommerblut.newsletter':
+        return button_response(url='mailto:info@sommerblut.de',
+                               button_text='Mail senden',
+                               text='Lass dich in unseren Newsletter eintragen: \r\n'
+                                    'Schreib uns gerne eine Mail mit dem Betreff Newsletter an: \r\n'
+                                    'info@sommerblut.de\r\n',
+                               chips=[],
                                )
 
     elif intent_name == 'faq.sommerblut.name':
