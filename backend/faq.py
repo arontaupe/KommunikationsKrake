@@ -79,7 +79,10 @@ The FAQ Module. Responsible for any intents with faq in their name.
                                # dgs_videos_chips=make_video_array(['RC34c'])
                                )
     elif intent_name == 'faq.sommerblut.gender_ratio':
-        return chip_response(text='Okay, die Email ist: info@sommerblut.de\r\n',
+        return chip_response(text='Das Sommerblut Festival thematisiert in seinen vielfältigen Produktionen \r\n'
+                                  'immer wieder Genderrollen und Sexismus. \r\n'
+                                  'Das Team vom Sommerblut bemüht sich um ein ausgewogenes Verhältnis\r\n'
+                                  ' aller Geschlechter, hat jedoch dazu keine festgeschriebenen Regelungen. \r\n',
                              chips=['Was ist Gender?',
                                     'Welche Produktionen beschäftigen sich mit Geschlechterverhältnissen?',
                                     'Wer ist das Sommerblut Team?'],
