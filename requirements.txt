@@ -9,6 +9,6 @@ cachetools>=5.2.0
 Flask-HTTPAuth~=4.7.0
 python_dateutil>=2.5.3
 setuptools==65.3.0
-google-cloud-dialogflow==2.15.2
+#google-cloud-dialogflow==2.15.2
 gunicorn>=19.9.0
 numpy==1.23.3

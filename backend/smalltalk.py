@@ -13,6 +13,7 @@ def give_smalltalk(intent_name):
                                     'Team von Ällei kontaktieren'],
                              dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1'])
                              )
+    
     elif intent_name == 'smalltalk.agent.answer_my_question':
         return chip_response(text='Ich kann mich manchmal nicht gut erinnern. \r\n'
                                   'Ich habe vergessen, was du möchtest\r\n'
@@ -43,7 +44,7 @@ def give_smalltalk(intent_name):
 
     elif intent_name == 'smalltalk.agent.annoying':
         return chip_response(text='Ich spreche Leichte Sprache.\r\n'
-                                  ' Alle sollen mich Verstehen können.\r\n',
+                                  'Alle sollen mich Verstehen können.\r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
@@ -206,8 +207,7 @@ def give_smalltalk(intent_name):
                              )
 
     elif intent_name == 'smalltalk.greetings.how_are_you':
-        return chip_response(text='Meldung vom Humormodul. Sehr lustig. \r\n'
-                                  'Soll ich dir vielleicht einen Witz erzählen?',
+        return chip_response(text='Mir geht`s spitze! Und Dir?',
                              chips=['Erzähl mir einen Witz',
                                     'Team von Ällei kontaktieren']
                              )
@@ -220,9 +220,9 @@ def give_smalltalk(intent_name):
                                     'Team von Ällei kontaktieren']
                              )
 
-    elif intent_name == 'smalltalt.agent.vote':
-        return chip_response(text='Ich bin noch nicht Volljährig. \r\n'
-                                  'Ich darf erst in ein paar Jahren wählen\r\n',
+    elif intent_name == 'smalltalk.agent.vote':
+        return chip_response(text='Ich bin noch nicht Volljährig.\r\n'
+                                  'Ich darf erst in ein paar Jahren wählen.\r\n',
                              chips=['Welche Veranstaltungen gibt es?',
                                     'Team von Ällei kontaktieren']
                              )
