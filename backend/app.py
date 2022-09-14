@@ -1,14 +1,15 @@
 from flask import Flask, request  # makes a flask app and serves it to a specified port
 import os  # can grab environment variables
-import threading
-import time
-from datetime import datetime
+import threading  # enables multithread behaviour
+import time  # accurately measures time differences
+from datetime import datetime  # handles dates
 import json  # make me interact with json
 
 from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
 from werkzeug.security import check_password_hash, generate_password_hash
 # hashes the password, so it is not passed in clear
 
+# import internal modules
 from sb_db_request import get_full_event_list
 from webhook import handle_intent
 

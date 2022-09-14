@@ -224,7 +224,7 @@ def give_smalltalk(intent_name):
         return chip_response(text='Ich bin noch nicht Volljährig. \r\n'
                                   'Ich darf erst in ein paar Jahren wählen\r\n',
                              chips=['Welche Veranstaltungen gibt es?',
-                                    'Team von Ällei kontaktieren'],
+                                    'Team von Ällei kontaktieren']
                              )
 
     elif intent_name == 'smalltalk.agent.suck':
@@ -232,7 +232,8 @@ def give_smalltalk(intent_name):
                                   'Du musst Geduld mit mir haben.\r\n'
                                   'Ich bin jung und lerne noch, du weißt sicher wie das ist. \r\n',
                              chips=['Welche Veranstaltungen gibt es?',
-                                    'Team von Ällei kontaktieren'])
+                                    'Team von Ällei kontaktieren']
+                             )
 
     else:
         return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt. \r\n',
