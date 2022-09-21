@@ -4,8 +4,8 @@ from video_builder import make_video_array
 
 def give_faq(intent_name):
     """
-The FAQ Module. Responsible for any intents with faq in their name.
-    :param intent_name: the name of the identified intent that needs a response
+    The FAQ Module. Responsible for any intents with faq in their name.
+    param intent_name: the name of the identified intent that needs a response
     :return: response for passing to google-DF in compliant json format
     """
     if intent_name == 'faq.sommerblut.team':
@@ -176,7 +176,8 @@ The FAQ Module. Responsible for any intents with faq in their name.
 
     elif intent_name == 'faq.sommerblut.size':
         return chip_response(text='Vom 6. bis 22. Mai 2022 hat das Sommerblut Festival 17 Produktionen \r\n'
-                                  'und Gastspiele mit 63 Aufführungen an 13 unterschiedlichen Spielorten realisiert.\r\n',
+                                  'und Gastspiele mit 63 Aufführungen an 13 unterschiedlichen Spielorten '
+                                  'realisiert.\r\n',
                              chips=['Ich habe eine andere Frage',
                                     'Zurück zum Hauptmenü'],
                              dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
