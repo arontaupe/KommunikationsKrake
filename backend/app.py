@@ -15,14 +15,14 @@ from webhook import handle_intent
 
 # initialize the flask app
 app = Flask(__name__)
+
+
 # get variables from outside the container
-user = os.environ.get('USER')
-pw = os.environ.get('PASS')
+# user = os.environ.get('USER')
+# pw = os.environ.get('PASS')
 # hash the password
-users = {
-    user: generate_password_hash(pw)
-}
-auth = HTTPBasicAuth()
+# users = {user: generate_password_hash(pw)}
+# auth = HTTPBasicAuth()
 
 
 def get_port():
@@ -33,6 +33,7 @@ finds out if the environment has a predefined port, otherwise use 5002
     return int(os.environ.get("PORT", 5002))
 
 
+'''
 @auth.verify_password
 def verify_password(username, password):
     """
@@ -44,7 +45,7 @@ Checks if http user is in user list and checks for correctness of password
     if username in users:
         return check_password_hash(users.get(username), password)
     return False
-
+'''
 
 @app.route('/')
 def index():
@@ -60,7 +61,7 @@ def index():
 
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def update():
     """
 Main listener to google-DF, will call handle_intent upon being activated.
