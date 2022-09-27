@@ -3,7 +3,7 @@
 /DB_USER.txt
 DB_PASS.txt
 DB_USER.txt
-/backend/mail_creds.json
+/archive/mail_creds.json
 
 .DS_Store
 /database/
@@ -162,7 +162,7 @@ cython_debug/
 .idea/
 docker-compose.yml
 /docker-compose.yml
-backend/mail_creds.json
-/backend/openAPI_datenbank_sommerblut.json
+archive/mail_creds.json
+/archive/openAPI_datenbank_sommerblut.json
 /backend/openAPI_datenbank_sommerblut.yaml
 /backend/sb_db/docs/

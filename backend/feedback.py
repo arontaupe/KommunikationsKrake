@@ -4,7 +4,7 @@ from video_builder import make_video_array
 
 def give_feedback(intent_name):
     """
-The Feedback Module. Responsible for any intents with feedback in their name.
+The Feedback Module. Responsible for any intents with feedback in their name
     :param intent_name: the name of the identified intent that needs a response
     :return: response for passing to google-DF in compliant json format
     """

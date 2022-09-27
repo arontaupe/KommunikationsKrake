@@ -5,8 +5,8 @@ import time  # accurately measures time differences
 from datetime import datetime  # handles dates
 import json  # make me interact with json
 
-from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
-from werkzeug.security import check_password_hash, generate_password_hash
+# from flask_httpauth import HTTPBasicAuth  # protects the rest api from being publicly available
+# from werkzeug.security import check_password_hash, generate_password_hash
 # hashes the password, so it is not passed in clear
 
 # import internal modules
@@ -17,7 +17,7 @@ from webhook import handle_intent
 app = Flask(__name__)
 
 
-# get variables from outside the container
+# get variables from outside the container, used for password protection
 # user = os.environ.get('USER')
 # pw = os.environ.get('PASS')
 # hash the password
@@ -47,16 +47,22 @@ Checks if http user is in user list and checks for correctness of password
     return False
 '''
 
+
 @app.route('/')
 def index():
     """
   default route, has text, so I can see when the app is running, indicates the Last date of update
     :return: Hello World
     """
-    return 'Hello World! \r\n' \
-           'This is the running Webhook for Sommerblut. \r\n' \
-           'For the API please append /webhook to the current url\r\n' \
-           f'Last Modified: {datetime.fromtimestamp(os.stat("app.py").st_mtime)}'
+    time_modified = datetime.fromtimestamp(os.stat("app.py").st_mtime)
+    format_str = "%d/%m/%Y %H:%M:%S"
+    # format datetime using strftime()
+    time_modified = time_modified.strftime(format_str)
+    text = 'Hello World! <br/><br/>' \
+           'This is the running Webhook for the Chatbot Aellei by Sommerblut. <br/>' \
+           'For talking to the API please append /webhook to the current url. <br/>' \
+           f'Last Modified: {time_modified}'
+    return text
 
 
 # create a route for webhook

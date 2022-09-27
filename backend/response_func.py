@@ -1,5 +1,5 @@
 # responsible for defining what kind of responses can get sent by the backend
-# ensures compliance with google protobuf json standards
+# ensures compliance with Google protobuf json standards
 
 from copy import deepcopy  # needed for the copying of the sample jsons
 
@@ -268,7 +268,7 @@ can send optional text, some chips and save a context variable
                                                                        content_videos.items()]
     return resp
 
-# sends a single image, along with optional text, a title, alt text and some chips
+
 def image_response(url,
                    text=None,
                    title='',
