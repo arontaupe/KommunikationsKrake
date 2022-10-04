@@ -31,7 +31,7 @@ def give_faq(intent_name):
     elif intent_name == 'faq.sb.credo.next':
         return chip_response(text='Unser Motto für 2023 ist: \r\n'
                                   'Geh dahin, wo die Angst ist.\r\n',
-                             chips=[],
+                             chips=['Ich habe eine andere Frage'],
                              # dgs_videos_bot=make_video_array(['A21']),
                              # dgs_videos_chips=make_video_array(['RC34c'])
                              )
@@ -105,7 +105,7 @@ def give_faq(intent_name):
                                text='Lass dich in unseren Newsletter eintragen: \r\n'
                                     'Schreib uns gerne eine Mail mit dem Betreff Newsletter an: \r\n'
                                     'info@sommerblut.de\r\n',
-                               chips=[],
+                               chips=['Ich habe eine andere Frage'],
                                )
 
     elif intent_name == 'faq.sommerblut.name':
@@ -240,7 +240,7 @@ def give_faq(intent_name):
                              )
 
     elif intent_name == 'faq.sommerblut.how-many-visitors':
-        return chip_response(text='2022 kamen im Mai über 7000 Besucher*innen zum Sommerblut Festival.',
+        return chip_response(text='2022 kamen im Mai über 7000 Besucher:innen zum Sommerblut Festival.',
                              chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
                              dgs_videos_chips=make_video_array(['AC7']),
                              )
@@ -307,7 +307,7 @@ def give_faq(intent_name):
 
     elif intent_name == 'faq.sommerblut':
         faq_sb_pool = ['Ich möchte mehr über das Motto 2022 wissen.',
-                       'Was ist das nächste Motto?'
+                       'Was ist das nächste Motto?',
                        'Womit beschäftigt sich das Sommerblut?',
                        'Wer steckt hinter dem Sommerblut?',
                        'Für wen ist Sommerblut?',
@@ -332,7 +332,8 @@ def give_faq(intent_name):
 
     elif intent_name == 'faq.chatbot':
         faq_chatbot_pool = ['Was bedeutet Ällei?',
-                            'Bist du ein Spion?'
+                            'Bist du ein Spion?',
+                            'Ich verstehe ein Wort nicht'
                             ]
         chips = random.sample(faq_chatbot_pool, 2)
         chips.append('Andere Frage zum Chatbot')

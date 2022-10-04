@@ -26,7 +26,7 @@ def give_smalltalk(intent_name):
 
     elif intent_name == 'smalltalk.agent.bad':
         return chip_response(text='Das macht mich traurig.  \r\n'
-                                  'Ich lerne aus den Eingaben der Nutzer*innen...\r\n'
+                                  'Ich lerne aus den Eingaben der Nutzer:innen...\r\n'
                                   'Wenn dir etwas nicht gefällt, schreib doch bitte eine Nachricht.\r\n'
                                   'Ich versuche dann, mich zu verbessern.\r\n',
                              chips=['Zurück zum Hauptmenü',
@@ -82,7 +82,7 @@ def give_smalltalk(intent_name):
                                   'Sie werden von mir, Ällei, und von Google als Trainingsdaten für meine '
                                   'künstliche Intelligenz genutzt. '
                                   'Zum Beispiel können Fragen, die ich nicht beantworten konnte, '
-                                  'von meinem Entwickler*innen-Team eingesehen und zur Verbesserungen genutzt werden. '
+                                  'von meinem Entwickler:innen-Team eingesehen und zur Verbesserungen genutzt werden. '
                                   'Wir möchten diesesn Prozess so transparent wie möglich machen, '
                                   'hier kannst du weitere Informationen finden: TODO\r\n',
                              chips=['Zurück zum Hauptmenü',
@@ -111,7 +111,7 @@ def give_smalltalk(intent_name):
                     '"Gott ist groß, der Mensch ist klein, dann muss ich wohl dazwischen sein."',
                     'Ein leerer Bus kommt an eine Haltestelle, zehn Fahrgäste steigen ein. \r\n'
                     'An der nächsten Haltestelle steigen elf Menschen aus, und der Bus fährt weiter. \r\n'
-                    'Drei Wissenschaftler*innen kommentieren das Geschehen.\r\n'
+                    'Drei Wissenschaftler:innen kommentieren das Geschehen.\r\n'
                     'Biologe: "Ganz einfach! \r\n'
                     'Die Fahrgäste haben sich vermehrt."Physikerin: \r\n'
                     '"Zehn Prozent Messtoleranz müssen immer drin sein.\r\n'
