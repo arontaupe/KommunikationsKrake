@@ -99,14 +99,16 @@ anything in here will be executed regularly in parallel to the main app
         time.sleep(180)
 
 
-# run the app
-if __name__ == '__main__':
+def main():
     # start the thread that is keeping the cache updated
-    x = threading.Thread(target=update_db_cache,
-                         # daemon=True
-                         )
+    x = threading.Thread(target=update_db_cache)
     x.start()
     # execute and expose the backend as a flask app on a given port
     app.run(host='0.0.0.0', port=get_port(), debug=True)
     # only appears when app is stopped
     print("Backend stopped")
+
+
+# run the app
+if __name__ == '__main__':
+    main()

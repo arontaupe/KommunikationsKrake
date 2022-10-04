@@ -79,7 +79,7 @@ def give_glossary(intent_name, parameters, output_contexts=None):
                          'Ich will andere Begriffe bekommen']
                 # interlink the glossary via buttons
                 for entry in give_glossary_terms():
-                    if entry in description:
+                    if entry in description and entry != query:
                         chips.append(f'Was bedeutet {entry}?')
 
                 return chip_response(text=description,

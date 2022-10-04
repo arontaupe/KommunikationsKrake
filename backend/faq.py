@@ -1,5 +1,6 @@
 from response_func import chip_response, button_response
 from video_builder import make_video_array
+import random  # generates random chips for me
 
 
 def give_faq(intent_name):
@@ -294,23 +295,50 @@ def give_faq(intent_name):
     elif intent_name == 'faq.sommerblut.career':
         return button_response(url='mailto:info@sommerblut.de',
                                button_text='Schreib uns eine Mail',
-                               text='Wir freuen uns immer, wenn das Sommerblut Team wächst. '
-                                    'Schau doch einmal bei den Ausschreibungen vorbei. '
-                                    'Oder du kannst meine Kolleg*innen fragen. '
-                                    'Hier ist die Email Adresse:  info@sommerblut.de',
+                               text='Wir freuen uns immer, wenn das Sommerblut Team wächst.\r\n '
+                                    'Schau doch einmal bei den Ausschreibungen vorbei. \r\n'
+                                    'Oder du kannst meine Kolleg:innen fragen.\r\n '
+                                    'Hier ist die Email Adresse: \r\n'
+                                    ' info@sommerblut.de',
                                chips=['Zurück zum  Hauptmenü',
                                       'Ich habe eine andere Frage'],
                                dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                                )
 
     elif intent_name == 'faq.sommerblut':
+        faq_sb_pool = ['Ich möchte mehr über das Motto 2022 wissen.',
+                       'Was ist das nächste Motto?'
+                       'Womit beschäftigt sich das Sommerblut?',
+                       'Wer steckt hinter dem Sommerblut?',
+                       'Für wen ist Sommerblut?',
+                       'Was bedeutet Sommerblut?',
+                       'Wo findet das Festival statt?',
+                       'Wie viele Besucher:innen habt Ihr?',
+                       'Was ist euer Genderschnitt?',
+                       'Wie finanziert sich das Sommerblut?',
+                       'Wie spende Ich?',
+                       'Kann ich beim Sommerblut arbeiten?',
+                       'Gibt einen Newsletter?',
+                       'Bekomme Ich eine Ermäßigung?',
+                       'Gibt es Informationen zu Corona?',
+                       ]
+        chips = random.sample(faq_sb_pool, 4)
+        chips.append('Andere Frage zum Sommerblut')
         return chip_response(text='Okay, was willst du über das Sommerblut wissen?',
-                             chips=['Ich möchte mehr über das Motto 2022 wissen.',
-                                    'Womit beschäftigt sich das Sommerblut?',
-                                    # 'Frage zur Barrierefreiheit',
-                                    'Wer steckt hinter dem Sommerblut?'],
+                             chips=chips,
                              dgs_videos_bot=make_video_array(['F3']),
                              dgs_videos_chips=make_video_array(['FA9', 'FA10', 'FA11'])
+                             )
+
+    elif intent_name == 'faq.chatbot':
+        faq_chatbot_pool = ['Was bedeutet Ällei?',
+                            'Bist du ein Spion?'
+                            ]
+        chips = random.sample(faq_chatbot_pool, 2)
+        chips.append('Andere Frage zum Chatbot')
+        return chip_response(text='Okay, was willst du über mich wissen?',
+                             chips=chips,
+                             dgs_videos_bot=make_video_array(['F3']),
                              )
 
     elif intent_name == 'faq.start':
@@ -318,7 +346,6 @@ def give_faq(intent_name):
                                   'Oder du kannst aus einem Bereich auswählen:\r\n',
                              chips=['Ich habe eine Frage zu einer bestimmten Veranstaltung',
                                     'Frage zum Sommerblut allgemein',
-                                    # 'Frage zur Barrierefreiheit',
                                     'Frage zu Ällei, dem Chatbot',
                                     'Das Fingeralphabet kennen lernen',
                                     'Begriff erklären'],
@@ -331,7 +358,9 @@ def give_faq(intent_name):
             text='Ich bin noch am lernen. \r\n'
                  'Ich kann dir Veranstaltungen empfehlen und Fragen beantworten. \r\n'
                  'Hoffentlich bin ich bald so fit im Internet wie du.\r\n',
-            chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
+            chips=['Hauptmenü',
+                   'Ich habe eine Frage',
+                   'Team von Ällei kontaktieren'],
             dgs_videos_chips=make_video_array(['AC7']),
         )
 
