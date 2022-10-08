@@ -3,10 +3,12 @@ from flask import request  # makes a flask app and serves it to a specified port
 
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_events_by_interest, show_full_event_list
+
 # import the response functionality
 from response_func import button_response, chip_response, chip_w_context_response, chip_w_two_context_response, \
     event_detail_response, event_response, event_schedule_response, image_response, text_response, \
     chip_w_three_context_response
+
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, \
     retrieve_found_events, \
@@ -19,6 +21,9 @@ from smalltalk import give_smalltalk
 from glossary import give_glossary
 from faq import give_faq
 from feedback import give_feedback
+from send_yagmail import send_mail
+from calendar_events import create_ics
+from datetime import datetime, timedelta
 
 
 def handle_intent(intent_name):
@@ -296,7 +301,8 @@ this is the main intent switch function. All intents that use the backend must b
                 events = dict(zip(list(range(len(event_list))), event_list))
                 # pprint(f'New Events: {events.keys()}')
             page += 1
-            return chip_w_two_context_response(text='Das sind viele Vorschläge. \r\n Ich muss nochmal suchen.',
+            return chip_w_two_context_response(text='Das sind viele Vorschläge. \r\n '
+                                                    'Ich muss nochmal suchen.',
                                                chips=['Finde mehr Veranstaltungstipps'],
                                                session_id=session_id,
                                                context='events_found',
@@ -428,6 +434,116 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'script.event.menu':
         return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
+
+    elif intent_name == 'script.event.menu - send_as_mail - consent':
+
+        consent = parameters.get('consent')
+
+        while consent == 'undefined':
+            return chip_response(text='Um eine E-Mail senden zu können, brauche ich dein Einverständnis. \r\n'
+                                      'Gibst du dein Einverständnis?'
+                                      'Bitte antworte mit Ja oder Nein.',
+                                 chips=['Ja', 'Nein'])
+
+
+    elif intent_name == 'script.event.menu - send_as_mail - consent - no':
+        return chip_response(text='Okay, dann kann Ich dir leider keine Email senden.\r\n'
+                                  'Möchtest du etwas anderes tun?\r\n',
+                             chips=['Gib mir eine weitere Empfehlung',
+                                    'Ich möchte mehr zur Veranstaltung wissen'],
+                             dgs_videos_chips=make_video_array(['RC28', 'RC29']))
+
+
+
+    elif intent_name == 'script.event.menu - send_as_mail - consent - yes':
+        mail_addr = parameters.get('mail_addr')
+
+        while mail_addr == '':
+            return chip_response(text='Okay, dann brauche ich deine E-Mail Adresse.\r\n'
+                                      'Gib sie einfach unten ein.',
+                                 chips=['Ich will doch keine Email angeben', ],
+                                 )
+
+        event_count, events, titles, ids = retrieve_found_events(output_contexts)
+
+        if events is None:
+            return chip_response(
+                text='Ich habe leider keine Events gespeichert, \r\n'
+                     'ich konnte die E-Mail nicht senden',
+                chips=['Barrierefreiheit angeben'])
+
+        prefix = mail_addr.split('@')[0]
+
+        event_index = int(retrieve_event_index(output_contexts))
+
+        title = titles[event_index]
+        event_id = ids[event_index]
+        url = 'https://www.sommerblut.de/ls/event/' + str(int(event_id))
+
+        for e in range(event_count):
+            e_idx = str(e)
+            event = events[e_idx]
+            if event.get('id') == event_id:
+                title = event.get('title', None)
+                subtitle = event.get('subtitle', None)
+                duration = event.get('duration', None)
+                if duration:
+                    duration = int(duration)
+                location = event.get('location', None)
+                short_description = event.get('short_description', None)
+                price = event.get('price_vvk', None)
+                if price:
+                    price = int(price)
+                image = event.get('event_images', None)
+                artist_name = event.get('artist_name', None)
+                ticket_link = event.get('ticket_link', None)
+                next_date = min_date = max_date = None
+                if event.get('next_date'):
+                    next_date = event['next_date']
+                    print(next_date)
+                if event.get('min_date'):
+                    min_date = event['min_date']
+                    print(min_date)
+                if event.get('max_date'):
+                    max_date = event['max_date']
+                    print(max_date)
+
+        start = end = None
+        if next_date and duration:
+            start = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z')
+            end = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z') + timedelta(minutes=(int(duration)))
+        else:
+            start = min_date
+            end = max_date
+
+        create_ics(name=title,
+                   desc=f'ID: {event_id} '
+                        f'{url}',
+                   dtstart=start,
+                   dtend=end,
+                   organizer=artist_name,
+                   location=location)
+        contents = f'Hallo liebe:r {prefix},\r\n' \
+                   f'Hier eine Einladung zu {title}\r\n' \
+                   f'{subtitle}\r\n' \
+                   f'Künstler:in: {artist_name}\r\n' \
+                   f'{short_description}\r\n' \
+                   f'Von {start} bis {end}\r\n' \
+                   f'Ort: {location}\r\n' \
+                   f'Preis: {price}\r\n' \
+                   f'Hier buchen: {ticket_link}\r\n' \
+                   f'Mehr Informationen: {url}\r\n'
+
+        send_mail(TO=mail_addr,
+                  subject=f'Ällei grüßt und schickt eine Einladung zu {title}',
+                  contents=contents,
+                  attachments=f'events/{title}.ics')
+
+        return chip_response(text=f'Cool! ich habe gerade eine E-Mail an {mail_addr} gesendet.\r\n'
+                                  f'Was möchtest du nun tun?\r\n',
+                             chips=['Zeig mir weitere Veranstaltungen',
+                                    'Erzähl mir einen Witz'],
+                             )
 
     elif intent_name == 'script.event.details':
         event_id = None

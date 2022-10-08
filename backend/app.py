@@ -12,6 +12,7 @@ import json  # make me interact with json
 # import internal modules
 from sb_db_request import get_full_event_list
 from webhook import handle_intent
+from send_yagmail import send_mail
 
 # initialize the flask app
 app = Flask(__name__)

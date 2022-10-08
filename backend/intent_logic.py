@@ -120,12 +120,14 @@ retrieves all stored events from GDF and displays them
 
     if event_index == 0:
         chips = ['Gib mir eine weitere Empfehlung',
-                 'Ich möchte mehr zur Veranstaltung wissen']
+                 'Ich möchte mehr zur Veranstaltung wissen',
+                 'Schick mir Infos zur Veranstaltung per Mail']
         dgs_videos_chips = make_video_array(['RC28', 'RC29'])
     else:
         chips = ['Zeig mir die letzte Empfehlung nochmal',
                  'Gib mir eine weitere Empfehlung',
-                 'Ich möchte mehr zur Veranstaltung wissen']
+                 'Ich möchte mehr zur Veranstaltung wissen',
+                 'Schick mir Infos zur Veranstaltung per Mail']
         dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])
 
     if random:

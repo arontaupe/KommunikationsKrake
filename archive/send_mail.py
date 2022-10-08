@@ -1,56 +1,38 @@
-from __future__ import print_function
-
-import os.path
-
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-
-# If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
-def main():
-    """Shows basic usage of the Gmail API.
-    Lists the user's Gmail labels.
-    """
-    creds = None
-    # The file token.json stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
-    if os.path.exists('mail_creds.json'):
-        creds = Credentials.from_authorized_user_file('mail_creds.json', SCOPES)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                'credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
+def send_email(sender_addr, sender_pwd, recipient_addr, subject, body):
+    FROM = sender_addr
+    TO = recipient_addr if isinstance(recipient_addr, list) else [recipient_addr]
+    SUBJECT = subject
+    TEXT = body
+    try:
+        message = """From: %s\nTo: %s\nSubject: %s\n\n%s
+        """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
+    except:
+        print('Composing Message Failed')
 
     try:
-        # Call the Gmail API
-        service = build('gmail', 'v1', credentials=creds)
-        results = service.users().labels().list(userId='me').execute()
-        labels = results.get('labels', [])
-
-        if not labels:
-            print('No labels found.')
-            return
-        print('Labels:')
-        for label in labels:
-            print(label['name'])
-
-    except HttpError as error:
-        # TODO(developer) - Handle errors from gmail API.
-        print(f'An error occurred: {error}')
+        server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+        server_ssl.ehlo()  # optional, called by login()
+        server_ssl.login(FROM, sender_pwd)
+        server_ssl.sendmail(FROM, TO, message)
+        # server_ssl.quit()
+        server_ssl.close()
+        print(f'Success: sent  mail to {TO}')
+    except:
+        print(f'Mail to {TO} failed to send')
 
 
-if __name__ == '__main__':
-    main()
+send_email(sender_addr='chatbot@sommerblut.de',
+           sender_pwd='Aellei2022',
+           recipient_addr=['aron@petau.net'],
+           subject='Hallo',
+           body='Ich kann jetzt auch Mails Schreiben\n'
+                'Bisher geht nur Text und auch leider keine Sonderzeichen,\n '
+                'aber vielleicht reicht das ja erstmal.\n'
+                'Liebe Gruesse\n'
+                'Aellei'
+           )
