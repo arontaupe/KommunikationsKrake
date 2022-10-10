@@ -44,23 +44,18 @@ def whether_searched_events(output_contexts=None):
 
 
 def retrieve_event_index(output_contexts=None):
-    # print('retrieving event_index')
     event_index = None
     if output_contexts:
         num_contexts = len(output_contexts)
-        # print('Number of contexts: ' + str(num_contexts))
         for i in range(num_contexts):
-            # pprint(output_contexts[i]['name'])
             if 'event_index' in output_contexts[i]['name']:
                 event_index = output_contexts[i]['parameters']['event_index']
-                # pprint('found event_display_count')
     if event_index is None:
         event_index = 0
     return event_index
 
 
 def retrieve_event_id(output_contexts=None):
-    # print('retrieving event_id')
     event_id = None
     if output_contexts:
         num_contexts = len(output_contexts)

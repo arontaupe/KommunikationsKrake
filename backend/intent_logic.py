@@ -93,13 +93,8 @@ retrieves all stored events from GDF and displays them
                              chips=['Barrierefreiheit angeben'])
 
     event_index = int(retrieve_event_index(output_contexts))
-    print(event_index)
-    # print(event_index, type(event_index))
-    # pprint(events)
-
     display_num = 1
-    # print(event_index, next_event_index, event_count)
-
+    # Case: Wir sind am ende der Liste
     if event_index == event_count:
         next_event_index = 0
         return chip_w_context_response(session_id=session_id,
@@ -117,21 +112,21 @@ retrieves all stored events from GDF and displays them
     # print(event_index, next_event_index, event_count)
 
     title = titles[event_index]
-
+    # Case: we are at the beginning of the list
+    chips = ['Gib mir eine weitere Empfehlung',
+             'Ich möchte mehr zur Veranstaltung wissen',
+             'Schick mir Infos zur Veranstaltung per Mail']
     if event_index == 0:
-        chips = ['Gib mir eine weitere Empfehlung',
-                 'Ich möchte mehr zur Veranstaltung wissen',
-                 'Schick mir Infos zur Veranstaltung per Mail']
-        dgs_videos_chips = make_video_array(['RC28', 'RC29'])
+        dgs_videos_chips = make_video_array(['RC28', 'RC29'])  # TODO
+    # Case: we are in the middle of the list
     else:
-        chips = ['Zeig mir die letzte Empfehlung nochmal',
-                 'Gib mir eine weitere Empfehlung',
-                 'Ich möchte mehr zur Veranstaltung wissen',
-                 'Schick mir Infos zur Veranstaltung per Mail']
-        dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])
+        chips.append('Zeig mir die letzte Empfehlung nochmal')
+        dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])  # TODO
 
+    # Case some random event from the list is required
     if random:
         event_index = random.randint(0, event_count)
+    # Final Response
     return event_response(
         session_id=session_id,
         context='event_index',

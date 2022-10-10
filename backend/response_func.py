@@ -494,7 +494,11 @@ sends out a card with more info on a specific event
     has to be in format{str(title):str(url)}
     :return: json response object
     """
-    event_details = {'title': title, 'duration': duration, 'location': location, 'price': price, 'image': image}
+    event_details = {'title': title,
+                     'duration': duration,
+                     'location': location,
+                     'price': price,
+                     'image': image}
 
     resp = deepcopy(SAMPLE_EVENT_DETAILS_JSON)
 

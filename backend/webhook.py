@@ -24,6 +24,7 @@ from feedback import give_feedback
 from send_yagmail import send_mail
 from calendar_events import create_ics
 from datetime import datetime, timedelta
+import yagmail
 
 
 def handle_intent(intent_name):
@@ -436,15 +437,17 @@ this is the main intent switch function. All intents that use the backend must b
         return show_full_event_list(output_contexts=output_contexts, session_id=session_id)
 
     elif intent_name == 'script.event.menu - send_as_mail - consent':
-
         consent = parameters.get('consent')
-
         while consent == 'undefined':
             return chip_response(text='Um eine E-Mail senden zu können, brauche ich dein Einverständnis. \r\n'
-                                      'Gibst du dein Einverständnis?'
-                                      'Bitte antworte mit Ja oder Nein.',
+                                      'Deine Adresse zählt zu den persönlichen Daten.\r\n'
+                                      'Deine Mail-Adresse wird dabei an Google weitergeleitet. \r\n'
+                                      'Google darf die Adresse dann genau wie alle deine Eingaben\r\n'
+                                      'als Trainings-Daten verwenden und speichern.\r\n'
+                                      'Bei Sommerblut wird deine Adresse nicht gespeichert.\r\n'
+                                      'Gibst du dein Einverständnis?\r\n'
+                                      'Bitte antworte mit Ja oder Nein.\r\n',
                                  chips=['Ja', 'Nein'])
-
 
     elif intent_name == 'script.event.menu - send_as_mail - consent - no':
         return chip_response(text='Okay, dann kann Ich dir leider keine Email senden.\r\n'
@@ -453,14 +456,13 @@ this is the main intent switch function. All intents that use the backend must b
                                     'Ich möchte mehr zur Veranstaltung wissen'],
                              dgs_videos_chips=make_video_array(['RC28', 'RC29']))
 
-
-
     elif intent_name == 'script.event.menu - send_as_mail - consent - yes':
         mail_addr = parameters.get('mail_addr')
 
         while mail_addr == '':
             return chip_response(text='Okay, dann brauche ich deine E-Mail Adresse.\r\n'
-                                      'Gib sie einfach unten ein.',
+                                      'Gib sie einfach unten ein.\r\n'
+                                      'Achte auf die korrekte Schreibweise.\r\n',
                                  chips=['Ich will doch keine Email angeben', ],
                                  )
 
@@ -468,17 +470,16 @@ this is the main intent switch function. All intents that use the backend must b
 
         if events is None:
             return chip_response(
-                text='Ich habe leider keine Events gespeichert, \r\n'
-                     'ich konnte die E-Mail nicht senden',
+                text='Ich habe leider keine Events gespeichert. \r\n'
+                     'Ich konnte die E-Mail nicht senden.\r\n',
                 chips=['Barrierefreiheit angeben'])
 
         prefix = mail_addr.split('@')[0]
-
-        event_index = int(retrieve_event_index(output_contexts))
+        event_index = (int(retrieve_event_index(output_contexts)) + (event_count - 1)) % event_count
 
         title = titles[event_index]
         event_id = ids[event_index]
-        url = 'https://www.sommerblut.de/ls/event/' + str(int(event_id))
+        url = 'https://www.sommerblut.de/ls/veranstaltung/' + str(int(event_id))
 
         for e in range(event_count):
             e_idx = str(e)
@@ -508,21 +509,25 @@ this is the main intent switch function. All intents that use the backend must b
                     max_date = event['max_date']
                     print(max_date)
 
-        start = end = None
-        if next_date and duration:
+        if next_date:
             start = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z')
-            end = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z') + timedelta(minutes=(int(duration)))
+            end = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z') + timedelta(
+                minutes=(int(duration if duration else 60)))
         else:
             start = min_date
             end = max_date
 
+        print(f'{start=}, {end=}')
+
         create_ics(name=title,
-                   desc=f'ID: {event_id} '
+                   desc=f'{subtitle} \r\n'
+                        f'{short_description} \r\n'
                         f'{url}',
                    dtstart=start,
                    dtend=end,
                    organizer=artist_name,
                    location=location)
+
         contents = f'Hallo liebe:r {prefix},\r\n' \
                    f'Hier eine Einladung zu {title}\r\n' \
                    f'{subtitle}\r\n' \
@@ -530,16 +535,27 @@ this is the main intent switch function. All intents that use the backend must b
                    f'{short_description}\r\n' \
                    f'Von {start} bis {end}\r\n' \
                    f'Ort: {location}\r\n' \
-                   f'Preis: {price}\r\n' \
+                   f'Preis: {price} Euro\r\n' \
                    f'Hier buchen: {ticket_link}\r\n' \
-                   f'Mehr Informationen: {url}\r\n'
+                   f'Mehr Informationen: {url}\r\n' \
+                   f'Ich freue mich, dass du mich besucht hast.\r\n' \
+                   f'Komm mich gern wieder besuchen.\r\n' \
+                   f'Dein Ällei\r\n'
 
         send_mail(TO=mail_addr,
                   subject=f'Ällei grüßt und schickt eine Einladung zu {title}',
                   contents=contents,
-                  attachments=f'events/{title}.ics')
+                  attachments=[f'events/{title}.ics'])
 
         return chip_response(text=f'Cool! ich habe gerade eine E-Mail an {mail_addr} gesendet.\r\n'
+                                  f'Was möchtest du nun tun?\r\n',
+                             chips=['Zeig mir weitere Veranstaltungen',
+                                    'Erzähl mir einen Witz'],
+                             )
+
+    elif intent_name == 'script.event.menu - send_as_mail - consent - withdrawn':
+        return chip_response(text=f'Okay, Ich habe deine Einwilligung gelöscht.\r\n'
+                                  f'Du wirst keine E-Mail erhalten.\r\n'
                                   f'Was möchtest du nun tun?\r\n',
                              chips=['Zeig mir weitere Veranstaltungen',
                                     'Erzähl mir einen Witz'],
