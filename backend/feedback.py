@@ -4,7 +4,7 @@ from video_builder import make_video_array
 
 def give_feedback(intent_name):
     """
-The Feedback Module. Responsible for any intents with feedback in their name
+    The Feedback Module. Responsible for any intents with feedback in their name
     :param intent_name: the name of the identified intent that needs a response
     :return: response for passing to google-DF in compliant json format
     """
@@ -12,7 +12,8 @@ The Feedback Module. Responsible for any intents with feedback in their name
         return button_response(text='Du kannst uns eine Email schreiben: ',
                                button_text='Email an Ällei',
                                url='mailto:chatbot@sommerblut.de',
-                               chips=['Tschüss', 'Hauptmenü'],
+                               chips=['Tschüss',
+                                      'Hauptmenü'],
                                dgs_videos_bot=make_video_array(['Feedback2']),
                                dgs_videos_chips=make_video_array(['E1', 'AC7'])
                                )
@@ -28,7 +29,8 @@ The Feedback Module. Responsible for any intents with feedback in their name
                              )
 
     elif intent_name == 'feedback.sb.bad':
-        return button_response(text='Wenn du dich über etwas beschweren oder konstruktive Kritik äußern möchtest: \r\n'
+        return button_response(text='Wenn du dich über etwas beschweren oder \r\n'
+                                    'konstruktive Kritik äußern möchtest: \r\n'
                                     'Schreib mir gerne eine Mail. \r\n'
                                     'Ich versuche dann, dir weiterzuhelfen. \r\n',
                                button_text='Kritik in einer Mail schreiben',

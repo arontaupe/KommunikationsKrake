@@ -79,10 +79,10 @@ def retrieve_page_cache(output_contexts=None):
 
 
 def retrieve_interests(output_contexts=None):
-    num_contexts = len(output_contexts)
-    interest_1 = interest_2 = interest_3 = interest_4 = interest_5 = interest_6 = interest_7 = interest_8 = interest_9 = None
+    interest_1 = interest_2 = interest_3 = interest_4 = interest_5 = \
+        interest_6 = interest_7 = interest_8 = interest_9 = None
 
-    for i in range(num_contexts):
+    for i in range(len(output_contexts)):
         if 'interest_1' in output_contexts[i]['name']:
             interest_1 = output_contexts[i]['parameters']['interest_1']
         if 'interest_2' in output_contexts[i]['name']:
@@ -101,5 +101,5 @@ def retrieve_interests(output_contexts=None):
             interest_8 = output_contexts[i]['parameters']['interest_8']
         if 'interest_9' in output_contexts[i]['name']:
             interest_9 = output_contexts[i]['parameters']['interest_9']
-
-    return [interest_1, interest_2, interest_3, interest_4, interest_5, interest_6, interest_7, interest_8, interest_9]
+    return [interest_1, interest_2, interest_3, interest_4, interest_5,
+            interest_6, interest_7, interest_8, interest_9]

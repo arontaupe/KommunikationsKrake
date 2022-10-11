@@ -1,6 +1,5 @@
 # this document contains all helper functions that are used to calculate responses.
 
-# use pretty printing for json responses
 # import the response functionality
 from response_func import chip_response, chip_w_context_response, event_response
 from retrieve_from_gdf import retrieve_event_index, retrieve_found_events
@@ -11,7 +10,7 @@ import random
 
 def collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id):
     """
-gets the accessibility info stored in GDF and performs a database request with the accessibility codes
+    gets the accessibility info stored in GDF and performs a database request with the accessibility codes
     :param parameters:
     :param num_contexts:
     :param output_contexts:
@@ -26,10 +25,7 @@ gets the accessibility info stored in GDF and performs a database request with t
                    'Ich suche Veranstaltungen in einfacher Sprache',
                    'Ich habe eine Sehbehinderung',
                    'Ich habe eine Hörbehinderung',
-                   'Ich habe eine Gehbehinderung',
-                   # 'Ich suche eine Veranstaltung ohne schnelle, blinkende Lichter.
-                   # Und ohne laute, plötzliche Geräusche.'
-                   ],
+                   'Ich habe eine Gehbehinderung'],
             dgs_videos_chips=make_video_array(['RC14', 'RC15', 'RC16', 'RC17', 'RC18'])
         )
 
@@ -41,7 +37,6 @@ gets the accessibility info stored in GDF and performs a database request with t
     new_bedarf = [0, 0, 0, 0, 0, 0]
     if prev_selection_bedarf:
         new_bedarf = prev_selection_bedarf
-        # print('Stored on DF: ' + str(new_bedarf))
     if bedarf:
         if bedarf == 'kein Bedarf':
             new_bedarf[0] = 1
@@ -53,7 +48,6 @@ gets the accessibility info stored in GDF and performs a database request with t
                                            chips=["Weiter: Interessen angeben",
                                                   "Zurück zum Hauptmenü"],
                                            dgs_videos_chips=make_video_array(['E1', 'AC7']),
-                                           # dgs_videos_bot=make_video_array([''])
                                            )
         elif bedarf == 'leichte Sprache':
             new_bedarf[1] = 1
@@ -74,15 +68,15 @@ gets the accessibility info stored in GDF and performs a database request with t
                                           "Nein, weiter zum Interessen angeben",
                                           "Zurück zum Haupt-menü"],
                                    dgs_videos_chips=make_video_array(['AC2', 'AC1', 'AC7']),
-                                   dgs_videos_bot=make_video_array(['A6'])
+                                   dgs_videos_bot=make_video_array(['A6'])  # TODO
                                    )
 
 
-def show_full_event_list(output_contexts, session_id, random=None):
+def show_full_event_list(output_contexts, session_id, random_order=False):
     """
-retrieves all stored events from GDF and displays them
-    :param random: boolean whether mixing should happen or not
-    :param output_contexts:
+    retrieves all stored events from GDF and displays them
+    :param random_order: boolean whether mixing should happen or not
+    :param output_contexts: info retrieved from gdf
     :param session_id: The Unique Session ID with Google. Can be overwritten to open new Session.
     :return:
     """
@@ -109,7 +103,6 @@ retrieves all stored events from GDF and displays them
                                        dgs_videos_chips=make_video_array(['RC29b', 'AC7']))
 
     next_event_index = event_index + 1
-    # print(event_index, next_event_index, event_count)
 
     title = titles[event_index]
     # Case: we are at the beginning of the list
@@ -124,7 +117,7 @@ retrieves all stored events from GDF and displays them
         dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])  # TODO
 
     # Case some random event from the list is required
-    if random:
+    if random_order:
         event_index = random.randint(0, event_count)
     # Final Response
     return event_response(
@@ -164,8 +157,6 @@ def map_bedarf_for_db(bedarf=None):
             if bedarf[4] == 1.0:  # Visuelle Einschränkung
                 choice = random.choice(['Fühl-Tour', 'Unter·titel/ Ober·titel', 'Seh·behinderung/ Seh·schwäche'])
                 codes.append(accessibilities[choice])
-            # if bedarf[5] == 1.0:  # begrenzte Reize
-            # codes.append(accessibilities['Leichte Sprache'])
     return codes
 
 
@@ -173,15 +164,13 @@ def order_events_by_interest(interests, events=None, event_count=None):
     """
     bekommt einen interessenarray mit ints: [0,1,1,1,0,0,1,0,0]
     muss similarity score errechnen mit events[i]['interests'] und dann liste sortieren nach the highest score
-
     Names of the entities from DB: BODIES, LIFE, RITUALS, POETRY, UTOPIA, SOCIETY, NATURE, NONACTIVE, FUNNY
     :param interests: array with 9 ints
     :param events: list of events
     :param event_count: number of elements in events
     :return: events list, but sorted according to interest score
     """
-    titles = []
-    ids = []
+    titles = ids = []
 
     if event_count is not None:
         user_interests = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -191,8 +180,6 @@ def order_events_by_interest(interests, events=None, event_count=None):
                 user_interests[i] = 1
             if interests[i] == 'Ist mir egal':
                 user_interests[i] = 2
-        # print(f'Interests: {interests}')
-        # print(f'User Interests: {user_interests}')
 
         # remap the event profile to array
         for i in events:
@@ -218,7 +205,6 @@ def order_events_by_interest(interests, events=None, event_count=None):
                         event_interests[7] = 1
                     elif interest == 'FUNNY':
                         event_interests[8] = 1
-                # print(f'Event Interests: {event_interests}')
 
             for j in user_interests:
                 if user_interests[j] == event_interests[j]:
@@ -227,17 +213,12 @@ def order_events_by_interest(interests, events=None, event_count=None):
                     score += 1
                 else:
                     score -= 1
-
             # store each interest ranking score in the list, for future reference
             events[i]['interest_ranking'] = score
-            # print(events[i]['interest_ranking'])
-        # print(events.keys())
         # the actual sorting, the highest ranking first
         events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
-        print(events.keys())
         # rename keys
         events = dict(zip(list(range(len(events))), list(events.values())))
-        print(events.keys())
 
         for i in events:
             titles.append(events[i].get('title'))

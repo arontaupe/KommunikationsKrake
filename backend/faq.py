@@ -241,13 +241,17 @@ def give_faq(intent_name):
 
     elif intent_name == 'faq.sommerblut.how-many-visitors':
         return chip_response(text='2022 kamen im Mai über 7000 Besucher:innen zum Sommerblut Festival.',
-                             chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
+                             chips=['Hauptmenü',
+                                    'Ich habe eine Frage',
+                                    'Team von Ällei kontaktieren'],
                              dgs_videos_chips=make_video_array(['AC7']),
                              )
 
     elif intent_name == 'faq.knowledge.chatbot':
-        return chip_response(text='Ein Chatbot Ist eine Maschine, die sich mit dir unterhalten kann wie ein Mensch.',
-                             chips=['Zurück zum Hauptmenü', 'Ich habe eine andere Frage'],
+        return chip_response(text='Ein Chatbot Ist eine Maschine, \r\n'
+                                  'die sich mit dir unterhalten kann wie ein Mensch.',
+                             chips=['Zurück zum Hauptmenü',
+                                    'Ich habe eine andere Frage'],
                              dgs_videos_chips=make_video_array(['AC7']),
                              )
 
@@ -255,7 +259,8 @@ def give_faq(intent_name):
         return chip_response(text='Ich bin Ällei, ein Chatbot. \r\n'
                                   'Ich lebe auf der Website des Sommerblut Festivals. \r\n'
                                   'Komm mich gern besuchen!',
-                             chips=['Zurück zum  Hauptmenü', 'Ich habe eine andere Frage'],
+                             chips=['Zurück zum  Hauptmenü',
+                                    'Ich habe eine andere Frage'],
                              dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                              )
 
@@ -333,8 +338,7 @@ def give_faq(intent_name):
     elif intent_name == 'faq.chatbot':
         faq_chatbot_pool = ['Was bedeutet Ällei?',
                             'Bist du ein Spion?',
-                            'Ich verstehe ein Wort nicht'
-                            ]
+                            'Ich verstehe ein Wort nicht']
         chips = random.sample(faq_chatbot_pool, 2)
         chips.append('Andere Frage zum Chatbot')
         return chip_response(text='Okay, was willst du über mich wissen?',

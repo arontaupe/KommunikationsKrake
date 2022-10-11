@@ -12,11 +12,9 @@ import json  # make me interact with json
 # import internal modules
 from sb_db_request import get_full_event_list
 from webhook import handle_intent
-from send_yagmail import send_mail
 
 # initialize the flask app
 app = Flask(__name__)
-
 
 # get variables from outside the container, used for password protection
 # user = os.environ.get('USER')
@@ -28,7 +26,7 @@ app = Flask(__name__)
 
 def get_port():
     """
-finds out if the environment has a predefined port, otherwise use 5002
+    finds out if the environment has a predefined port, otherwise use 5002
     :return: port number
     """
     return int(os.environ.get("PORT", 5002))
@@ -71,14 +69,13 @@ def index():
 # @auth.login_required
 def update():
     """
-Main listener to google-DF, will call handle_intent upon being activated.
-Ignores anything that is not a POST-Request.
+    Main listener to google-DF, will call handle_intent upon being activated.
+    Ignores anything that is not a POST-Request.
     :return: the response to google-DF
     """
     if request.method == 'POST':
         resp = request.data.decode("utf8")
         resp = json.loads(resp)
-        # print("====================================== REQUEST.DATA ======================================")
         response = handle_intent(intent_name=resp['queryResult']['intent']['displayName'])
         return response
     else:
@@ -87,8 +84,8 @@ Ignores anything that is not a POST-Request.
 
 def update_db_cache():
     """
-responsible for a multithreaded updating of the cache.
-anything in here will be executed regularly in parallel to the main app
+    responsible for a multithreaded updating of the cache.
+    anything in here will be executed regularly in parallel to the main app
     """
     while 1:
         pre = time.perf_counter()

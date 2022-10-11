@@ -1,11 +1,8 @@
 from __future__ import print_function
-
 import json
 import os
 import time
 from datetime import datetime, timedelta
-from pprint import pprint
-
 import requests
 # used for caching the api responses from the db
 from cachetools import TTLCache, cached
@@ -32,10 +29,9 @@ accessibilities_api = sb_db.AccessibilitiesApi(sb_db.ApiClient(configuration))
 event_api = sb_db.EventsApi(sb_db.ApiClient(configuration))
 running_events_api = sb_db.RunningEventsApi(sb_db.ApiClient(configuration))
 
-accept_language = 'ls'  # str | request specific language (optional)
+accept_language = 'ls'  # str | options: ('ls', 'de', 'en')
 
 
-# makes sure the webhook is online and working
 def test_sb_db():
     """
     Used for testing whether the SB DB is reachable
@@ -44,7 +40,6 @@ def test_sb_db():
     url = BASEURL + "/api/accessibilities.json"
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
     print('Database Status Code: ' + str(response.status_code))  # response 200 := success. all 400eds:= really bad
-
     return chip_response('Status der Datenbank: ' + str(response.status_code), ['Menü', 'Exit'])
 
 
@@ -53,17 +48,14 @@ def get_accessibility_ids():
     :return: all accessibility classes and their ID as a dict
     """
     try:
-        # get all accessibilities
         resp = accessibilities_api.get_all_accessibilities(accept_language=accept_language)
     except ApiException as e:
         print("Exception when calling AccessibilitiesApi->get_all_accessibilities: %s\n" % e)
 
     accessibilities = {}
-    # TODO clean up here, give back the original dict
     num_categories = len(resp)
     for i in range(num_categories):
         accessibilities[resp[i]['name']] = resp[i]['id']
-    # print(accessibilities)
     return accessibilities
 
 
@@ -81,7 +73,7 @@ def get_accessibility_ids_clean():
 
 def get_events_by_name(event_name):
     """
-seems to be broken on database side. would be cool if it worked tho
+    seems to be broken on database side. would be cool if it worked tho
     :param event_name:
     :return:
     """
@@ -97,34 +89,28 @@ seems to be broken on database side. would be cool if it worked tho
 
 def get_single_event_by_id(event_id):
     """
- only works for old events somehow
+    only works for old events somehow
     :param event_id: int
     :return: json response
     """
     try:
         # get a specific event by name
         api_response = event_api.get_event_by_id(event_id, accept_language=accept_language)
-        # pprint(api_response)
     except ApiException as e:
         print("Exception when calling EventApi->get_single_event_by_id: %s\n" % e)
     # TODO
     return api_response
 
 
-# old events work
-# print(get_single_event_by_id(50))
-
-# current events dont
-# print(get_single_event_by_id(854))
-
 @cached(cache=TTLCache(maxsize=1024, ttl=timedelta(hours=24), timer=datetime.today))
 def get_full_event_list(accessibility=None, page=1, entries=10):
     """
     should get the full info to display on the cards later
+    :param entries:
+    :param page:
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
-    # t_init = time.perf_counter()
     if accessibility:
         try:
             # get all events
@@ -132,8 +118,7 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
                                             accept_language=accept_language,
                                             entries=entries,
                                             page=page,
-                                            conjunction_accessible='and'
-                                            )
+                                            conjunction_accessible='and')
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
@@ -146,35 +131,25 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
-    titles = []
-    ids = []
+    titles = ids = []
     for i in resp.get('items'):
         titles.append(i.get('title'))
         ids.append(i.get('id'))
 
-    # pprint(resp)
     event_count = resp['count']
-    # print(f'Event Count {event_count}')
-    # print(f'Entries  {entries}')
     if event_count <= entries:
         call_count = event_count
-        # print(f'Callcount {call_count}')
     elif event_count >= entries * page:
         call_count = entries
-    # print(f'Callcount {call_count}')
     else:
         call_count = len(resp['items'])
-        # print(f'Callcount {call_count}')
-    # t_0 = time.perf_counter()
 
-    # print(f'Time needed for API Call: {t_0 - t_init}')
     events = {}
     for i in range(call_count):
         events[i] = {}
         events[i]['id'] = resp['items'][i]['id']
         events[i]['title'] = resp['items'][i]['title']
         next_date = 'Die Veranstaltung ist schon vorbei.'
-        next_date = None
         if resp['items'][i]['next_date']:
             next_date = resp['items'][i]['next_date']['isdate']
         events[i]['next_date'] = next_date
@@ -206,13 +181,7 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
-    t_1 = time.perf_counter()
-    # print(f'Time Needed for parse: {t_1 - t_0}')
-    # pprint(events.items())
     return event_count, events, titles, ids
-
-
-# print(get_full_event_list(page=1, entries=5))
 
 
 def get_partial_event_list(num_events=int, accessibility=None):
@@ -224,20 +193,16 @@ def get_partial_event_list(num_events=int, accessibility=None):
     """
     if accessibility:
         try:
-            # get all events
             resp = event_api.get_all_events(accessible=[accessibility],
                                             accept_language=accept_language,
                                             entries=num_events,
-                                            conjunction_accessible='and'
-                                            )
+                                            conjunction_accessible='and')
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
         try:
-            # get all events
             resp = event_api.get_all_events(accept_language=accept_language,
                                             entries=num_events)
-
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     if num_events <= resp['count']:
@@ -295,59 +260,45 @@ def get_timeframe_event_list(from_date=datetime.now(),
         until_date = from_date + timedelta(days=num_days)
         if accessibility:
             try:
-                # get all events
                 resp = event_api.get_all_events(accept_language=accept_language,
                                                 entries=30,
                                                 to_date=[f'["{until_date}"]'],
                                                 from_date=[f'["{from_date}"]'],
                                                 accessible=[accessibility],
-                                                conjunction_accessible='and'
-                                                )
-                # pprint(resp['count'])
+                                                conjunction_accessible='and')
             except ApiException as e:
                 print("Exception when calling EventsApi->get all events: %s\n" % e)
         else:
             try:
-                # get all events
                 resp = event_api.get_all_events(accept_language=accept_language,
                                                 entries=30,
                                                 to_date=[f'["{until_date}"]'],
-                                                from_date=[f'["{from_date}"]'],
-                                                )
-                # pprint(resp['count'])
+                                                from_date=[f'["{from_date}"]'])
             except ApiException as e:
                 print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
         if accessibility:
             try:
-                # get all events
                 resp = event_api.get_all_events(accept_language=accept_language,
                                                 entries=30,
                                                 from_date=[f'["{from_date}"]'],
                                                 accessible=[accessibility],
-                                                conjunction_accessible='and'
-                                                )
-                # pprint(resp['count'])
+                                                conjunction_accessible='and')
             except ApiException as e:
                 print("Exception when calling EventsApi->get all events: %s\n" % e)
         else:
             try:
-                # get all events
                 resp = event_api.get_all_events(accept_language=accept_language,
                                                 entries=30,
-                                                from_date=[f'["{from_date}"]'],
-                                                )
-                # pprint(resp['count'])
+                                                from_date=[f'["{from_date}"]'])
             except ApiException as e:
                 print("Exception when calling EventsApi->get all events: %s\n" % e)
 
-    titles = []
-    ids = []
+    titles = ids = []
     for i in resp.get('items'):
         titles.append(i.get('title'))
         ids.append(i.get('id'))
 
-    # pprint(resp)
     event_count = resp['count']
 
     events = {}
@@ -387,7 +338,6 @@ def get_timeframe_event_list(from_date=datetime.now(),
         events[i]['interest'] = resp['items'][i]['interest']
         events[i]['accessible_other'] = resp['items'][i]['accessible_other']
         events[i]['interest_ranking'] = None
-    # print(events)
     return event_count, events, titles, ids
 
 
@@ -401,11 +351,6 @@ def get_event_schedule(event_id):
         # returns all upcoming eventDates for the given eventId
         resp = running_events_api.get_all_next_event_dates_by_event_id(event_id,
                                                                        accept_language=accept_language)
-        # resp = event_api.get_event_by_id(event_id, accept_language=accept_language)
-        print('getting event schedule')
-        # print(resp.event_dates)
-        # pprint(resp)
-
     except ApiException as e:
         print("Exception when calling EventsApi->get_all_next_event_dates_by_event_id: %s\n" % e)
 
@@ -423,19 +368,15 @@ def get_event_schedule(event_id):
         plays[i]['opening_time'] = resp[i]['opening_time']
         plays[i]['ticket_link'] = resp[i]['ticket_link']
         plays[i]['additional_title'] = resp[i]['additional_title']
-        # pprint(resp[i])
-    # print(play_count)
-    # pprint(f'{plays=}')
+
     return play_count, plays
 
 
 def get_all_titles_ids():
     try:
-        # get all events
         resp = event_api.get_all_events(accept_language=accept_language,
                                         entries=30)
-        titles = []
-        ids = []
+        titles = ids = []
         for i in resp.get('items'):
             titles.append(i.get('title'))
             ids.append(i.get('id'))
@@ -444,16 +385,16 @@ def get_all_titles_ids():
     except ApiException as e:
         print("Exception when calling EventsApi->get all titles: %s\n" % e)
 
+
 def get_event_title(event_id):
     """
-gets an event title by supplying the numeric id
+    gets an event title by supplying the numeric id
     :param event_id: event id, int
     :return: the event and important variables
     """
     suburl = '/api/events/' + str(event_id) + '.json'
     url = BASEURL + suburl
     response = requests.get(url, auth=HTTPBasicAuth(DB_USER, DB_PASS))
-    # print('Status Code: ' + str(response.status_code))
     resp = response.json()
     title = resp['title']
     return title
@@ -465,11 +406,8 @@ def get_next_event():
         resp = running_events_api.get_all_next_event_dates(accept_language=accept_language)
         play = resp[0]
         title = play['event']['title']
-        print(title)
         id = play['event']['id']
         next_date = play['event']['next_date']['isdate']
-        print(id)
-        print(next_date)
     except ApiException as e:
         print("Exception when calling RunningEventsApi->get_all_next_event_dates: %s\n" % e)
 

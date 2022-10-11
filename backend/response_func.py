@@ -401,9 +401,6 @@ sends a response card displaying one event from the array of events according to
         if description:
             resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['text'] = description
 
-        # sale_msg = 'Tickets hier kaufen \r\n'
-        # resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['text'] = sale_msg + '\r\n'
-        # resp['fulfillmentMessages'][1]['payload']['richContent'][i][4]['link'] = events.get(str(e))['ticket_link']
         resp['fulfillmentMessages'][1]['payload']['richContent'][i][2]['title'] = 'Kurzbeschreibung'
 
     if chips:

@@ -8,12 +8,10 @@ import numpy as np
 
 def give_glossary_terms():
     """
-builds a video dict with titles and urls based on the .csv. preserves the order of elements.
+    builds a video dict with titles and urls based on the .csv. preserves the order of elements.
     param titles: array of strings with the video titles
     :return: dict: {'term':'description'}
     """
-    # opening the CSV file
-
     # Read CSV file into DataFrame df
     df = pd.read_csv('glossary.csv')
     terms = np.array(df.term.values.tolist())
@@ -27,7 +25,6 @@ def give_description(query):
         :return: dict: {'title':'url'}
     """
     description = ''
-
     # Read CSV file into DataFrame df
     df = pd.read_csv('glossary.csv')
     df = df.loc[df['term'] == query]
@@ -66,14 +63,16 @@ def give_glossary(intent_name, parameters, output_contexts=None):
             return chip_response(text='Welchen Begriff soll ich dir erklären? \r\n'
                                       'Hier sind ein paar Wörter, die ich schon kenne: \r\n'
                                       'Klicke einfach eins an. \r\n'
-                                      'Oder du gibst ein neues Wort ein, dann kann ich es bestimmt bald erklären. \r\n',
+                                      'Oder du gibst ein neues Wort ein, \r\n'
+                                      'dann kann ich es bestimmt bald erklären. \r\n',
                                  chips=chips,
                                  dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
                                  )
         else:
             description = give_description(query)
             if description:
-                description = f'{query} \r\n' + description
+                description = f'{query} \r\n' \
+                              f'{description}\r\n'
                 description += "\r\n Hast du noch eine Frage?"
                 chips = ['Zurück zum Hauptmenü',
                          'Ich will andere Begriffe bekommen']
