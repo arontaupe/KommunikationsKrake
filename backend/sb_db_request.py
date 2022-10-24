@@ -113,7 +113,6 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
     """
     if accessibility:
         try:
-            # get all events
             resp = event_api.get_all_events(accessible=[accessibility],
                                             accept_language=accept_language,
                                             entries=entries,
@@ -123,11 +122,9 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
             print("Exception when calling EventsApi->get all events: %s\n" % e)
     else:
         try:
-            # get all events
             resp = event_api.get_all_events(accept_language=accept_language,
                                             entries=entries,
-                                            page=page
-                                            )
+                                            page=page)
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
@@ -147,40 +144,50 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
     events = {}
     for i in range(call_count):
         events[i] = {}
-        events[i]['id'] = resp['items'][i]['id']
-        events[i]['title'] = resp['items'][i]['title']
+        event = resp['items'][i]
+        events[i]['id'] = event['id']
+        events[i]['title'] = event['title']
         next_date = 'Die Veranstaltung ist schon vorbei.'
-        if resp['items'][i]['next_date']:
-            next_date = resp['items'][i]['next_date']['isdate']
+        if event['next_date']:
+            next_date = event['next_date']['isdate']
         events[i]['next_date'] = next_date
-        events[i]['duration'] = resp['items'][i]['duration_minutes']
-        location = None
-        if resp['items'][i]['location']:
-            location = resp['items'][i]['location']['name']
+        events[i]['duration'] = event['duration_minutes']
+        location = address = None
+        if event['location']:
+            location = event['location']['name']
+            address = ''
+            address += event['location']['street'] if event['location']['street'] else ''
+            address += event['location']['number'] if event['location']['number'] else ''
+            address += ', ' if address != '' else ''
+            address += event['location']['postal'] if event['location']['postal'] else ''
+            address += event['location']['city'] if event['location']['city'] else ''
+
         events[i]['location'] = location
-        events[i]['artist_name'] = resp['items'][i]['artist_name']
-        events[i]['info_text'] = resp['items'][i]['info_text']
-        events[i]['subtitle'] = resp['items'][i]['subtitle']
-        events[i]['ticket_link'] = resp['items'][i]['ticket_link']
-        events[i]['price_vvk'] = resp['items'][i]['price_vvk']
-        events[i]['price_ak'] = resp['items'][i]['price_ak']
-        events[i]['max_capacity'] = resp['items'][i]['max_capacity']
-        events[i]['accessible_request_sommerblut'] = resp['items'][i]['accessible_request_sommerblut']
-        events[i]['category'] = resp['items'][i]['category']
+        events[i]['address'] = address
+        events[i]['artist_name'] = event['artist_name']
+        events[i]['info_text'] = event['info_text']
+        events[i]['subtitle'] = event['subtitle']
+        events[i]['ticket_link'] = event['ticket_link']
+        events[i]['price_vvk'] = event['price_vvk']
+        events[i]['price_ak'] = event['price_ak']
+        events[i]['max_capacity'] = event['max_capacity']
+        events[i]['accessible_request_sommerblut'] = event['accessible_request_sommerblut']
+        events[i]['category'] = event['category']
         # somehow the DB response is broken here, therefore some steps to fix that.
         image = None
-        if resp['items'][i]['event_images']:
-            image_json = resp['items'][i]['event_images']
+        if event['event_images']:
+            image_json = event['event_images']
             parsed = json.loads(image_json)
             image = parsed['mainimage']['name']
         events[i]['event_images'] = 'https://datenbank.sommerblut.de/media/images/normal/' + str(image)
-        events[i]['accessibility'] = resp['items'][i]['accessible_request_sommerblut']
-        events[i]['program_content'] = resp['items'][i]['program_content']
-        events[i]['short_description'] = resp['items'][i]['short_description']
-        events[i]['health_infection_notice'] = resp['items'][i]['health_infection_notice']
-        events[i]['interest'] = resp['items'][i]['interest']
-        events[i]['accessible_other'] = resp['items'][i]['accessible_other']
+        events[i]['accessibility'] = event['accessible_request_sommerblut']
+        events[i]['program_content'] = event['program_content']
+        events[i]['short_description'] = event['short_description']
+        events[i]['health_infection_notice'] = event['health_infection_notice']
+        events[i]['interest'] = event['interest']
+        events[i]['accessible_other'] = event['accessible_other']
         events[i]['interest_ranking'] = None
+
     return event_count, events, titles, ids
 
 

@@ -491,6 +491,7 @@ this is the main intent switch function. All intents that use the backend must b
                 if duration:
                     duration = int(duration)
                 location = event.get('location', None)
+                address = event.get('address', None)
                 short_description = event.get('short_description', None)
                 price = event.get('price_vvk', None)
                 if price:
@@ -513,9 +514,13 @@ this is the main intent switch function. All intents that use the backend must b
             start = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z')
             end = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z') + timedelta(
                 minutes=(int(duration if duration else 60)))
+
         else:
-            start = min_date
-            end = max_date
+            start = datetime.strptime(min_date, '%Y-%m-%dT%H:%M:%S%z')
+            end = datetime.strptime(max_date, '%Y-%m-%dT%H:%M:%S%z')
+
+        start_str = datetime.strftime(start, 'Beginn am %d.%m.%Y um %M:%S% Uhr')
+        end_str = datetime.strftime(end, 'bis zum %d.%m.%Y um %M:%S% Uhr')
 
         print(f'{start=}, {end=}')
 
@@ -526,21 +531,24 @@ this is the main intent switch function. All intents that use the backend must b
                    dtstart=start,
                    dtend=end,
                    organizer=artist_name,
-                   location=location)
+                   location=f'{location}{address}')
+        default = 'Hier fehlt mir eine Info, schau lieber auf der Webseite nach.'
 
-        contents = f'Hallo liebe:r {prefix},\r\n' \
-                   f'Hier eine Einladung zu {title}\r\n' \
-                   f'{subtitle}\r\n' \
-                   f'Künstler:in: {artist_name}\r\n' \
-                   f'{short_description}\r\n' \
-                   f'Von {start} bis {end}\r\n' \
-                   f'Ort: {location}\r\n' \
-                   f'Preis: {price} Euro\r\n' \
-                   f'Hier buchen: {ticket_link}\r\n' \
-                   f'Mehr Informationen: {url}\r\n' \
-                   f'Ich freue mich, dass du mich besucht hast.\r\n' \
-                   f'Komm mich gern wieder besuchen.\r\n' \
-                   f'Dein Ällei\r\n'
+        contents = f"Hallo liebe:r {prefix},\r\n" \
+                   f"Du hast dich beim Sommerblut-Festival für {title} interessiert.\r\n" \
+                   f"Hier nun ein paar weitere Infos dazu:\r\n \r\n" \
+                   f"{subtitle if subtitle else ''}\r\n" \
+                   f"Künstler:in: {artist_name if artist_name else default}\r\n" \
+                   f"{short_description if short_description else ''}\r\n" \
+                   f"{start_str} {end_str}\r\n" \
+                   f"Ort: {location if location else default}\r\n" \
+                   f"{address if address else ''}\r\n" \
+                   f"Preis in Euro: {price if price else default} \r\n" \
+                   f"Hier buchen: {ticket_link if ticket_link else default}\r\n" \
+                   f"Mehr Informationen: {url if url else default}\r\n" \
+                   f"Ich freue mich, dass du mich besucht hast.\r\n" \
+                   f"Komm mich gern wieder besuchen.\r\n \r\n" \
+                   f"Dein Ällei\r\n"
 
         send_mail(TO=mail_addr,
                   subject=f'Ällei grüßt und schickt eine Einladung zu {title}',
