@@ -93,7 +93,7 @@ this is the main intent switch function. All intents that use the backend must b
         for i in range(num_contexts):
             if 'save_bedarf' in output_contexts[i]['name']:
                 prev_selection_bedarf = output_contexts[i]['parameters']['prev_selection_bedarf']
-                # print('Saving final Accessibility: ' + str(prev_selection_bedarf))
+
         return chip_w_context_response(
             text='Ich möchte dir Veranstaltungen empfehlen.\r\n'
                  'Veranstaltungen, die gut zu dir passen.\r\n'
@@ -280,27 +280,22 @@ this is the main intent switch function. All intents that use the backend must b
         entries = 50  # the number that decides how many events get called per round
         # page = retrieve_page_cache(output_contexts=output_contexts)  # page = index of the call batch
         page = 1
-        # print(f'Page: {page}')
         # call the database, if no page number exists yet, the first page will return
         event_count, events, titles, ids = get_full_event_list(accessibility=codes, page=page, entries=entries)
         print(f'Event_count: {event_count}')
-        # print(f'Titles: {titles}')
 
         # obsolete, only used when chunking instead of caching
         # while less events than stated in event_count are present, make another call
         # if page var is lost, the second clause catches it
         while entries * page < event_count and len(events) <= event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
-            # print(f'IDs Cache: {ids_cache}')
             if events_cache is None:
                 pass  # do nothing when no cache is present, just hand over the caught events
             else:
                 event_list = list(events.values())
                 event_list.extend(list(events_cache.values()))
-                # pprint(f'Joined Values: {event_list}')
                 # rename keys
                 events = dict(zip(list(range(len(event_list))), event_list))
-                # pprint(f'New Events: {events.keys()}')
             page += 1
             return chip_w_two_context_response(text='Das sind viele Vorschläge. \r\n '
                                                     'Ich muss nochmal suchen.',
@@ -316,20 +311,15 @@ this is the main intent switch function. All intents that use the backend must b
                                                dgs_videos_bot=make_video_array(['E1']),
                                                dgs_videos_chips=make_video_array(['RC21b']),
                                                )
-        # get final list of events
-        # event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
-        # print(f'IDs: {ids}')
 
         if events:
             try:
                 interests = retrieve_interests(output_contexts=output_contexts)
             except Exception as e:
                 print("Exception when trying to access Interests: %s\n" % e)
-            # print(f'Interests: {interests}')
             event_count, events, titles, ids = order_events_by_interest(interests=interests,
                                                                         event_count=event_count,
                                                                         events=events)
-        # print(f'IDs: {ids}')
         if events and event_count:
             if event_count > 5:
                 text = 'Ich habe sehr viele Veranstaltungen für dich gefunden. ' \
@@ -502,13 +492,10 @@ this is the main intent switch function. All intents that use the backend must b
                 next_date = min_date = max_date = None
                 if event.get('next_date'):
                     next_date = event['next_date']
-                    print(next_date)
                 if event.get('min_date'):
                     min_date = event['min_date']
-                    print(min_date)
                 if event.get('max_date'):
                     max_date = event['max_date']
-                    print(max_date)
 
         if next_date:
             start = datetime.strptime(next_date, '%Y-%m-%dT%H:%M:%S%z')
@@ -521,8 +508,6 @@ this is the main intent switch function. All intents that use the backend must b
 
         start_str = datetime.strftime(start, 'Beginn am %d.%m.%Y um %M:%S% Uhr')
         end_str = datetime.strftime(end, 'bis zum %d.%m.%Y um %M:%S% Uhr')
-
-        print(f'{start=}, {end=}')
 
         create_ics(name=title,
                    desc=f'{subtitle} \r\n'
@@ -709,7 +694,6 @@ this is the main intent switch function. All intents that use the backend must b
             event_index = event_index - 2
             next_event_index = event_index + 1
 
-        # print(event_index, next_event_index, event_count)
         if event_index == 0:
             chips = ['Zeig mir das nächste Event',
                      'Mehr zur Veranstaltung']
@@ -847,7 +831,7 @@ this is the main intent switch function. All intents that use the backend must b
         event_id = int(retrieve_event_id(output_contexts))
         play_count, plays = get_event_schedule(event_id)
         event_title = get_event_title(event_id)
-        # print(f'{play_count=}')
+
         if play_count == 0:
             return chip_response(text=f'Titel der Veranstaltung: {event_title} \r\n'
                                       f'Die Veranstaltung ist bereits vorüber.',
@@ -876,7 +860,6 @@ this is the main intent switch function. All intents that use the backend must b
 
             idx = titles.index(event_title)
             event_id = ids[idx]
-            # print(event_id)
             return chip_w_three_context_response(session_id=session_id,
                                                  text=f'Ich habe dir die Veranstaltung {event_title} gefunden.\r\n'
                                                       'Was möchtest du mehr wissen über die Veranstaltung?\r\n'
@@ -915,21 +898,17 @@ this is the main intent switch function. All intents that use the backend must b
         # page = retrieve_page_cache(output_contexts=output_contexts)
         page = 1
         event_count, events, titles, ids = get_full_event_list(page=page, entries=entries)
-        # print(f'Titles: {titles}')
 
         # obsolete, only necessary for chunked and not cached responses
         while entries * page < event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
-            # print(f'IDs Cache: {ids_cache}')
             if events_cache is None:
                 pass
             else:
                 event_list = list(events.values())
                 event_list.extend(list(events_cache.values()))
-                # pprint(f'Joined Values: {event_list}')
                 # rename keys
                 events = dict(zip(list(range(len(event_list))), event_list))
-                # pprint(f'New Events: {events.keys()}')
 
             page += 1
             return chip_w_two_context_response(text='Das sind viele Veranstaltungen. \r\n'
@@ -944,8 +923,7 @@ this is the main intent switch function. All intents that use the backend must b
                                                variable_name_2='page_cache',
                                                variable_2=page
                                                )
-        # print(f'Event Count: {event_count}')
-        # print(f'Titles: {titles}')
+
         # get final list of events
         # event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
 
@@ -954,7 +932,6 @@ this is the main intent switch function. All intents that use the backend must b
             if event_title == '':
                 chips = random.sample(titles, 5)
                 chips.append('Mehr Veranstaltungen vorschlagen')
-                # print(chips)
                 return chip_response(text='Du kannst den Namen der Veranstaltung in das Textfeld unten eingeben. '
                                           'Oder eine von unten wählen:',
                                      chips=chips,
@@ -964,7 +941,6 @@ this is the main intent switch function. All intents that use the backend must b
             else:
                 idx = titles.index(event_title)
                 event_id = ids[idx]
-                # print(event_id)
                 return chip_w_two_context_response(session_id=session_id,
                                                    text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
                                                         '1. Ist die Veranstaltung barrierefrei?\r\n'

@@ -89,7 +89,8 @@ def update_db_cache():
     """
     while 1:
         pre = time.perf_counter()
-        get_full_event_list(entries=50)
+        get_full_event_list(page=1, entries=50)
+        get_full_event_list(accessibility=None, page=1, entries=50)
         get_full_event_list(page=1, entries=10)
         get_full_event_list(page=2, entries=10)
         post = time.perf_counter()
