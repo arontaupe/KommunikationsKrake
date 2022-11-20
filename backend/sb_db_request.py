@@ -186,6 +186,7 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
         events[i]['health_infection_notice'] = event['health_infection_notice']
         events[i]['interest'] = event['interest']
         events[i]['accessible_other'] = event['accessible_other']
+        events[i]['ensembles'] = event['ensembles']
         events[i]['interest_ranking'] = None
 
     return event_count, events, titles, ids

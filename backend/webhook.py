@@ -19,6 +19,7 @@ from sb_db_request import get_event_schedule, get_event_title, get_full_event_li
 from video_builder import make_video_array
 from smalltalk import give_smalltalk
 from glossary import give_glossary
+from team import give_team
 from faq import give_faq
 from feedback import give_feedback
 from send_yagmail import send_mail
@@ -716,10 +717,30 @@ this is the main intent switch function. All intents that use the backend must b
             chips=chips,
             dgs_videos_chips=dgs_videos_chips
         )
+    elif intent_name == 'script.event.details - location':
+        event_id = retrieve_event_id(output_contexts)
+        event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
+        location = address = 'Für die Veranstaltung ist leider kein Ort eingetragen.'
+        if event_id and events:
+            for e in range(event_count):
+                if events[str(e)].get('id') == event_id:
+                    location = events[str(e)].get('location')
+                    address = events[str(e)].get('address')
+                    title = events[str(e)].get('title')
+
+        return chip_response(
+            text=f'Hier ist der Veranstaltungsort von {title}: \r\n'
+                 f'{location}\r\n'
+                 f'Die Adresse lautet: {address}\r\n',
+            chips=['Zurück zu den Einzelheiten zur Veranstaltung'],
+            # dgs_videos_chips=make_video_array(['RC34c']),
+            # dgs_videos_bot=make_video_array([f'{title}_Lang'])
+        )
+
 
     elif intent_name == 'script.event.details - linkout':
         event_id = retrieve_event_id(output_contexts)
-        url = 'https://www.sommerblut.de/en/event/' + str(event_id)
+        url = 'https://www.sommerblut.de/ls/event/' + str(event_id)
         button_text = 'Link zum Event'
         return button_response(url=url, button_text=button_text, chips=['Zurück: Veranstaltungsdetails'])
 
@@ -801,6 +822,9 @@ this is the main intent switch function. All intents that use the backend must b
                     if events[e_idx].get('location'):
                         location = events[e_idx].get('location')
                         text += f'Ort: {location}. \r\n'
+                    if events[e_idx].get('address'):
+                        address = events[e_idx].get('address')
+                        text += f'Adresse: {address}. \r\n'
                     if events[e_idx].get('price_vvk'):
                         price = int(events[e_idx].get('price_vvk'))
                         text += f'Preis: {price} Euro. \r\n'
@@ -992,6 +1016,9 @@ this is the main intent switch function. All intents that use the backend must b
     elif 'glossary' in intent_name:
         return give_glossary(intent_name, parameters, output_contexts)
 
+    elif 'team.sommerblut' in intent_name:
+        return give_team(intent_name, parameters, output_contexts)
+
     elif intent_name == 'script.welcome':
         return chip_response(
             text='Hi! \r\n'
@@ -1027,14 +1054,15 @@ this is the main intent switch function. All intents that use the backend must b
         return chip_response(
             text='Okay, worauf hast du jetzt Lust?\r\n'
                  'Ich kann dir zum Beispiel noch mehr über mich erzählen.\r\n'
-                 'Und über künstliche Intelligenz.\r\n'
+            # 'Und über künstliche Intelligenz.\r\n'
                  'Oder ich berate dich, welche Veranstaltung dir gefallen wird.\r\n',
-            chips=['Video: Ällei und KI',
-                   'Video: Ällei und KI in Leichter Sprache',
-                   'Veranstaltungsberatung',
-                   'Mehr über Sommerblut erfahren',
-                   'Team von Ällei kontaktieren',
-                   'Ich habe eine Frage'],
+            chips=[  # 'Video: Ällei und KI',
+                # 'Video: Ällei und KI in Leichter Sprache',
+                'Veranstaltungsberatung',
+                'Mehr über Sommerblut erfahren',
+                'Team von Ällei kontaktieren',
+                'Kontaktmöglichkeiten zum Sommerblut-Team',
+                'Ich habe eine Frage'],
             dgs_videos_bot=make_video_array(['A2']),
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7', 'Feedback1']))
 
