@@ -12,7 +12,8 @@ def retrieve_bedarf(output_contexts=None):
 
 
 def retrieve_found_events(output_contexts=None):
-    titles = ids = []
+    titles = []
+    ids = []
 
     event_count = events = None
     if output_contexts:

@@ -12,6 +12,7 @@ from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
 import sb_db  # sommerblut datenbank openapi
 # import the response functionality
 from response_func import chip_response
+from retrieve_from_gdf import retrieve_found_events
 from sb_db.rest import ApiException
 
 BASEURL = os.environ.get('BASEURL')
@@ -106,11 +107,13 @@ def get_single_event_by_id(event_id):
 def get_full_event_list(accessibility=None, page=1, entries=10):
     """
     should get the full info to display on the cards later
+    :param output_contexts:
     :param entries:
     :param page:
     :param accessibility: numeric id 0-9
     :return: json with list of all events fulfilling the accessibility
     """
+
     if accessibility:
         try:
             resp = event_api.get_all_events(accessible=[accessibility],
@@ -128,7 +131,8 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
         except ApiException as e:
             print("Exception when calling EventsApi->get all events: %s\n" % e)
 
-    titles = ids = []
+    titles = []
+    ids = []
     for i in resp.get('items'):
         titles.append(i.get('title'))
         ids.append(i.get('id'))
@@ -302,7 +306,8 @@ def get_timeframe_event_list(from_date=datetime.now(),
             except ApiException as e:
                 print("Exception when calling EventsApi->get all events: %s\n" % e)
 
-    titles = ids = []
+    titles = []
+    ids = []
     for i in resp.get('items'):
         titles.append(i.get('title'))
         ids.append(i.get('id'))
@@ -384,7 +389,8 @@ def get_all_titles_ids():
     try:
         resp = event_api.get_all_events(accept_language=accept_language,
                                         entries=30)
-        titles = ids = []
+        titles = []
+        ids = []
         for i in resp.get('items'):
             titles.append(i.get('title'))
             ids.append(i.get('id'))

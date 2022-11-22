@@ -281,7 +281,7 @@ this is the main intent switch function. All intents that use the backend must b
         entries = 50  # the number that decides how many events get called per round
         # page = retrieve_page_cache(output_contexts=output_contexts)  # page = index of the call batch
         page = 1
-        # call the database, if no page number exists yet, the first page will return
+
         event_count, events, titles, ids = get_full_event_list(accessibility=codes, page=page, entries=entries)
         print(f'Event_count: {event_count}')
 
@@ -403,19 +403,28 @@ this is the main intent switch function. All intents that use the backend must b
                                                                         accessibility=codes)
             event_count, events, titles, ids = order_events_by_interest(interests=interests, event_count=event_count,
                                                                         events=events)
-            # here we are making the database call and see whether we need to filter further
 
-            text = f'Okay, hier sind die Veranstaltungen in den nächsten {num_next_days_filter} Tagen für dich'
-            chips = ["Zeig mir die Veranstaltungen"]
-            return chip_w_context_response(text=text,
-                                           chips=chips,
-                                           session_id=session_id,
-                                           context='events_found',
-                                           variable_name='events_found',
-                                           variable=events,
-                                           lifespan=150,
-                                           dgs_videos_chips=make_video_array(['RC27a'])
-                                           )
+            if event_count > 0:
+                text = f'Okay, hier sind die Veranstaltungen in den nächsten {num_next_days_filter} Tagen für dich'
+                chips = ["Zeig mir die Veranstaltungen"]
+                return chip_w_context_response(text=text,
+                                               chips=chips,
+                                               session_id=session_id,
+                                               context='events_found',
+                                               variable_name='events_found',
+                                               variable=events,
+                                               lifespan=150,
+                                               dgs_videos_chips=make_video_array(['RC27a'])
+                                               )
+            else:
+                return chip_response(
+                    text=f'In den nächsten {num_next_days_filter} Tagen habe ich keine Events gefunden.\r\n'
+                         f'Möchtest du deine Suche vergrößern?',
+                    chips=[f'Suche Veranstaltungen in den nächsten {num_next_days_filter + 7} Tagen',
+                           'Zeig mir alle Veranstaltungen'],
+                    # dgs_videos_chips=make_video_array(['RC27a'])
+                )
+                return
         except Exception as e:
             print("Exception when trying to access num_event_filter: %s\n" % e)
             return chip_response(
@@ -458,6 +467,9 @@ this is the main intent switch function. All intents that use the backend must b
                                  )
 
         event_count, events, titles, ids = retrieve_found_events(output_contexts)
+        if events is None:
+            event_count, events, titles, ids = get_full_event_list(page=1, entries=50)
+        print(f'{ids=}')
 
         if events is None:
             return chip_response(
@@ -470,6 +482,7 @@ this is the main intent switch function. All intents that use the backend must b
 
         title = titles[event_index]
         event_id = ids[event_index]
+        print(f'{event_id=}')
         url = 'https://www.sommerblut.de/ls/veranstaltung/' + str(int(event_id))
 
         for e in range(event_count):
@@ -507,17 +520,18 @@ this is the main intent switch function. All intents that use the backend must b
             start = datetime.strptime(min_date, '%Y-%m-%dT%H:%M:%S%z')
             end = datetime.strptime(max_date, '%Y-%m-%dT%H:%M:%S%z')
 
-        start_str = datetime.strftime(start, 'Beginn am %d.%m.%Y um %M:%S% Uhr')
-        end_str = datetime.strftime(end, 'bis zum %d.%m.%Y um %M:%S% Uhr')
+        start_str = datetime.strftime(start, 'Beginn am %d.%m.%Y um %M:%S%z Uhr')
+        end_str = datetime.strftime(end, 'bis zum %d.%m.%Y um %M:%S%z Uhr')
 
         create_ics(name=title,
-                   desc=f'{subtitle} \r\n'
-                        f'{short_description} \r\n'
-                        f'{url}',
+                   desc=f'{subtitle if subtitle else ""} \r\n'
+                        f'{short_description if short_description else ""} \r\n'
+                        f'{url if url else ""}',
                    dtstart=start,
                    dtend=end,
-                   organizer=artist_name,
-                   location=f'{location}{address}')
+                   organizer=artist_name if artist_name else "",
+                   location=f'{location if location else ""}{address if address else ""}')
+
         default = 'Hier fehlt mir eine Info, schau lieber auf der Webseite nach.'
 
         contents = f"Hallo liebe:r {prefix},\r\n" \
@@ -670,7 +684,8 @@ this is the main intent switch function. All intents that use the backend must b
             return chip_response(
                 text='Ich habe leider keine Events gespeichert. '
                      'Hast du schon deinen Zugänglichkeitsbedarf angegeben?',
-                chips=['Zugänglichkeit auswählen', 'Interessen angeben'])
+                chips=['Zugänglichkeit auswählen',
+                       'Interessen angeben'])
 
         next_event_index = event_index = int(retrieve_event_index(output_contexts))
         display_num = 1
@@ -919,16 +934,13 @@ this is the main intent switch function. All intents that use the backend must b
 
     elif intent_name == 'faq.event':
         entries = 50
-        # page = retrieve_page_cache(output_contexts=output_contexts)
         page = 1
         event_count, events, titles, ids = get_full_event_list(page=page, entries=entries)
 
         # obsolete, only necessary for chunked and not cached responses
         while entries * page < event_count:
             _, events_cache, _, ids_cache = retrieve_found_events(output_contexts=output_contexts)
-            if events_cache is None:
-                pass
-            else:
+            if events_cache is not None:
                 event_list = list(events.values())
                 event_list.extend(list(events_cache.values()))
                 # rename keys
@@ -1051,7 +1063,10 @@ this is the main intent switch function. All intents that use the backend must b
             content_videos=make_video_array(['Intro_Video']))
 
     elif intent_name == 'script.main_menu':
-        return chip_response(
+
+        _, events, titles, ids = get_full_event_list(page=1, entries=50)
+
+        return chip_w_context_response(
             text='Okay, worauf hast du jetzt Lust?\r\n'
                  'Ich kann dir zum Beispiel noch mehr über mich erzählen.\r\n'
             # 'Und über künstliche Intelligenz.\r\n'
@@ -1063,6 +1078,11 @@ this is the main intent switch function. All intents that use the backend must b
                 'Team von Ällei kontaktieren',
                 'Kontaktmöglichkeiten zum Sommerblut-Team',
                 'Ich habe eine Frage'],
+            context='events_found',
+            variable_name='events_found',
+            variable=events,
+            lifespan=50,
+            session_id=session_id,
             dgs_videos_bot=make_video_array(['A2']),
             dgs_videos_chips=make_video_array(['RC5a', 'RC5b', 'RC6', 'RC7', 'Feedback1']))
 

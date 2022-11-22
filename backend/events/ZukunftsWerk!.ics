@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Eventkalender//sommerblut.de//
+BEGIN:VEVENT
+SUMMARY:ZukunftsWerk!
+DTSTART;TZID="UTC+01:00":20221204T120000
+DTEND;TZID="UTC+01:00":20221204T160000
+DESCRIPTION: \n \nhttps://www.sommerblut.de/ls/veranstaltung/884
+LOCATION:KM51 – Das Erftmuseum
+NAME:ZukunftsWerk!
+ORGANIZER:Scientist for Future und Christoph Stec
+END:VEVENT
+END:VCALENDAR

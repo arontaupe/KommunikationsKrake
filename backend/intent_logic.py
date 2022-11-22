@@ -81,9 +81,10 @@ def show_full_event_list(output_contexts, session_id, random_order=False):
     :return:
     """
     event_count, events, titles, ids = retrieve_found_events(output_contexts)
+    print(f'{event_count=}')
 
-    if events is None:
-        return chip_response(text='Ich habe leider keine Events gespeichert',
+    if events is None or event_count == 0:
+        return chip_response(text='Ich habe leider keine Events gefunden',
                              chips=['Barrierefreiheit angeben'])
 
     event_index = int(retrieve_event_index(output_contexts))

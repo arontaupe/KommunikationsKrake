@@ -9,8 +9,10 @@ def send_mail(TO, subject, contents=None, attachments=None):
     # set yag instance
     try:
         yag = yagmail.SMTP(FROM, mailpass)
-    except:
+    except Exception as e:
         print('Error setting up Mail Instance')
+        print("Exception when trying to login to Email %s\n" % e)
+
     # Send Message
     try:
         yag.send(to=TO,
@@ -18,5 +20,10 @@ def send_mail(TO, subject, contents=None, attachments=None):
                  contents=contents,
                  attachments=attachments)
         print(f'Success: sent  mail to {TO}')
-    except:
+    except Exception as e:
         print(f'Failed to send Email to {TO}')
+        print(f'wanted to send {subject=}'
+              f'{contents=}'
+              f'{FROM=}'
+              f'{mailpass=}')
+        print("Exception when trying to send Email %s\n" % e)
