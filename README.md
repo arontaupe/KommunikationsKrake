@@ -70,3 +70,5 @@ https://dialogflow.cloud.google.com/#/agent/kommkrake-pcsi/fulfillment
 
 Hat das funktioniert, kann in dem Bot "webhook" oder "test" als test command gesendet werden.
 Ist der Webhook erfolgreich verbunden, werden 3 Buttons mit "Der Webhook funktioniert" gesendet.
+
+Hier testet Jens
