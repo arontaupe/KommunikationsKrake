@@ -1094,7 +1094,7 @@ this is the main intent switch function. All intents that use the backend must b
             button_text=button_text,
             text='Sehr gerne. \r\n '
                  'Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
-            chips=['Blog in einem neuen Fenster öffnen'
+            chips=['Blog in einem neuen Fenster öffnen',
                    'Erzähl mir einen Witz',
                    'Team von Ällei kontaktieren',
                    'Mehr über das Sommerblut erfahren'],
