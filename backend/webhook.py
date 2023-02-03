@@ -1040,10 +1040,10 @@ this is the main intent switch function. All intents that use the backend must b
                  'Ich kann Dir helfen. \r\n'
                  'Bist du das erste mal hier? \r\n'
                  'Dann schau dir gern das Einführungs-Video an.\r\n',
-            chips=['Einführungsvideo', 'Einführungsvideo in leichter Sprache', 'Kenne ich schon: Hauptmenü',
+            chips=['Einführungsvideo ansehen', 'Direkt zum Hauptmenü',
                    'Ich habe eine Frage'],
             dgs_videos_bot=make_video_array(['A1']),
-            dgs_videos_chips=make_video_array(['RC1a', 'RC1b', 'RC2', 'RC3']))
+            dgs_videos_chips=make_video_array(['RC1a', 'RC2', 'RC3']))
 
     elif intent_name == 'script.bot.introvideo':
         ls_video = parameters.get('ls_video')
@@ -1087,15 +1087,14 @@ this is the main intent switch function. All intents that use the backend must b
     elif intent_name == 'script.about_bot':
 
         url = 'https://www.sommerblut.de/de/logbuch1'
-        button_text = 'Link zum Blog von Ällei'
+        button_text = 'Blog in einem neuen Fenster öffnen'
 
         return button_response(
             url=url,
             button_text=button_text,
             text='Sehr gerne. \r\n '
                  'Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
-            chips=['Blog in einem neuen Fenster öffnen',
-                   'Erzähl mir einen Witz',
+            chips=['Erzähl mir einen Witz',
                    'Team von Ällei kontaktieren',
                    'Mehr über das Sommerblut erfahren'],
             # dgs_videos_bot = make_video_array(['A2']),
