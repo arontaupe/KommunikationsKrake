@@ -1007,6 +1007,7 @@ this is the main intent switch function. All intents that use the backend must b
                                chips=['Zeig mir die Veranstaltung auf Sommerblut.de',
                                       'Zurück zu den Einzelheiten zur Veranstaltung'])
 
+
     elif intent_name == 'fallback.default':
         return chip_response(text='Vielleicht habe ich Dich nicht richtig verstanden.\r\n'
                                   'Kannst du das noch einmal anders sagen?',
@@ -1092,8 +1093,7 @@ this is the main intent switch function. All intents that use the backend must b
         return button_response(
             url=url,
             button_text=button_text,
-            text='Sehr gerne. \r\n '
-                 'Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
+            text='Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
             chips=['Erzähl mir einen Witz',
                    'Team von Ällei kontaktieren',
                    'Mehr über das Sommerblut erfahren'],
@@ -1106,32 +1106,6 @@ this is the main intent switch function. All intents that use the backend must b
         return button_response(url=url,
                                button_text=button_text,
                                chips=['Zurück: Hauptmenü'])
-
-    elif intent_name == 'script.bot_theme_input':
-        ls_video = parameters.get('ls_video')
-        if ls_video == 'JA':
-            return chip_response(text='Hier wird ein Video gezeigt:\r\n'
-                                      ' "Barrierefreiheit im digitalen Raum"\r\n'
-                                      'Dieses Video ist leider noch nicht verfügbar.',
-                                 chips=['Mehr über Sommerblut erfahren',
-                                        'Ich habe eine Frage',
-                                        'Veranstaltungsberatung'],
-                                 dgs_videos_bot=make_video_array(['E1']),
-                                 # content_videos=make_video_array(['E1']),
-                                 dgs_videos_chips=make_video_array(['RC7', 'RC3', 'RC6'])
-                                 )
-
-        return chip_response(
-            text='Hier wird ein Video gezeigt:\r\n '
-                 '"Barrierefreiheit im digitalen Raum"\r\n'
-                 'Dieses Video ist leider noch nicht verfügbar.',
-            chips=['Mehr über Sommerblut erfahren',
-                   'Ich habe eine Frage',
-                   'Veranstaltungsberatung'],
-            # dgs_videos_bot=make_video_array(['A2']),
-            content_videos=make_video_array(['E1']),
-            dgs_videos_chips=make_video_array(['RC7', 'RC3', 'RC6'])
-        )
 
     elif intent_name == 'script.play_sb_video':
         return chip_response(

@@ -62,8 +62,8 @@ def give_smalltalk(intent_name):
 
     elif intent_name == 'smalltalk.agent.real':
         return chip_response(text='Ich wurde von echten Menschen gemacht.\r\n',
-                             chips=['Zurück zum Hauptmenü',
-                                    'Team von Ällei kontaktieren'],
+                             chips=['Team von Ällei kontaktieren',
+                                    'Mehr über Ällei erfahren'],
                              dgs_videos_chips=make_video_array(['AC7', 'Feedback1'])
                              )
 
@@ -91,15 +91,15 @@ def give_smalltalk(intent_name):
                              )
 
     elif intent_name == 'smalltalk.you_are_spy':
-        return button_response(button_text='Link zum Blogeintrag (TODO)',
-                               url='TODO',
+        return button_response(button_text='Link zum Blog von Ällei',
+                               url='https://www.sommerblut.de/de/logbuch1',
                                text='Ich stehe nicht in direkten Kontakt mit der NSA.\r\n'
                                     'Aber ich nutze Google Dienstleistungen.\r\n'
                                     'Über Google gibt es immer wieder Veröffentlichungen, die nahelegen, \r\n'
                                     'dass es sehr wohl direkte absprachen zwischen Geheimdiensten\r\n'
                                     'und dem IT-Unternehmen gibt.\r\n'
-                                    'Was wir mit deinen Daten machen, kannst du hier weiter lesen: \r\n',
-                               chips=['Zurück zum Hauptmenü',
+                                    'Wie ich genau funktioniere, kannst du hier weiter lesen: \r\n',
+                               chips=['Andere Frage zum Chatbot',
                                       'Team von Ällei kontaktieren',
                                       'Ich möchte das Fingeralphabet lernen']
                                )
