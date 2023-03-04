@@ -16,6 +16,7 @@ from webhook import handle_intent
 # initialize the flask app
 app = Flask(__name__)
 
+
 # get variables from outside the container, used for password protection
 # user = os.environ.get('USER')
 # pw = os.environ.get('PASS')
@@ -104,10 +105,7 @@ def main():
 	x.start()
 	# execute and expose the backend as a flask app on a given port
 	app.run(host='0.0.0.0', port=get_port(), debug=True)
-	# only appears when app is stopped
-	print("Backend stopped")
 
 
-# run the app
 if __name__ == '__main__':
 	main()

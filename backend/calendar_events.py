@@ -1,7 +1,6 @@
 from icalendar import Calendar, Event, vCalAddress, vText
 import os
 from pathlib import Path
-from datetime import datetime, timedelta
 
 
 def create_ics(name, desc, dtstart, dtend, organizer='MAILTO:info@sommerblut.de', location='Köln'):

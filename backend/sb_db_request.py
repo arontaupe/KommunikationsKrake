@@ -1,7 +1,6 @@
 from __future__ import print_function
 import json
 import os
-import time
 from datetime import datetime, timedelta
 import requests
 # used for caching the api responses from the db

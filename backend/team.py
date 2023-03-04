@@ -20,8 +20,6 @@ def give_contact_by_role(role_query):
 
 
 def give_all_roles():
-    """
-    """
     role_list = ''
     # Read CSV file into DataFrame df
     df = pd.read_csv('team.csv')

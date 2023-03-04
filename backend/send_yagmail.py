@@ -18,12 +18,17 @@ def send_mail(TO, subject, contents=None, attachments=None):
         yag.send(to=TO,
                  subject=subject,
                  contents=contents,
-                 attachments=attachments)
+                 attachments=attachments
+                 )
         print(f'Success: sent  mail to {TO}')
     except Exception as e:
         print(f'Failed to send Email to {TO}')
         print(f'wanted to send {subject=}'
               f'{contents=}'
               f'{FROM=}'
-              f'{mailpass=}')
+              f'{mailpass=}'
+              )
         print("Exception when trying to send Email %s\n" % e)
+
+
+send_mail("aron@petau.net", "Hey", "Test")
