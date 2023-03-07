@@ -16,7 +16,6 @@ from webhook import handle_intent
 # initialize the flask app
 app = Flask(__name__)
 
-
 # get variables from outside the container, used for password protection
 # user = os.environ.get('USER')
 # pw = os.environ.get('PASS')

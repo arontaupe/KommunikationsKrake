@@ -216,7 +216,6 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
 
     def get_basic_auth_token(self):
         """Gets HTTP basic authentication header (string).
-
         :return: The token for basic HTTP authentication.
         """
         return urllib3.util.make_headers(

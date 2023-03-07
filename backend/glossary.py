@@ -1,7 +1,6 @@
 from response_func import chip_response
 from video_builder import make_video_array
-# Load pandas
-import pandas as pd
+import pandas as pd  # Load pandas
 import random  # generates random chips for me
 import numpy as np
 
