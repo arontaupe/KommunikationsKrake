@@ -194,14 +194,13 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
 		events[i]['interest_ranking'] = None
 	return event_count, events, titles, ids
 
+def test_DB_response_time():
+	pre = time.perf_counter()
+	get_full_event_list(page=1, entries=50)
 
-pre = time.perf_counter()
-print(pre)
-get_full_event_list(page=1, entries=50)
+	post = time.perf_counter()
 
-post = time.perf_counter()
-
-print(f'DB Call time: {post - pre:.5f}')
+	print(f'DB Call time: {post - pre:.5f}')
 
 
 def get_partial_event_list(num_events=int, accessibility=None):

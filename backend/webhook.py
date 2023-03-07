@@ -21,6 +21,7 @@ from smalltalk import give_smalltalk
 from glossary import give_glossary
 from team import give_team
 from faq import give_faq
+from fears import fears_module
 from feedback import give_feedback
 from send_yagmail import send_mail
 from calendar_events import create_ics
@@ -1028,6 +1029,9 @@ this is the main intent switch function. All intents that use the backend must b
 	elif 'smalltalk' in intent_name:
 		return give_smalltalk(intent_name)
 
+	elif 'fears' in intent_name:
+		return fears_module(intent_name, parameters, output_contexts, text=req.get('queryResult').get('queryText'))
+
 	elif 'faq' in intent_name:
 		return give_faq(intent_name)
 
@@ -1049,8 +1053,10 @@ this is the main intent switch function. All intents that use the backend must b
 				     'Ich kann Dir helfen. \r\n'
 				     'Bist du das erste mal hier? \r\n'
 				     'Dann schau dir gern das Einführungs-Video an.\r\n',
-				chips=['Einführungsvideo ansehen', 'Direkt zum Hauptmenü',
-				       'Ich habe eine Frage'],
+				chips=['Einführungsvideo ansehen',
+				       'Direkt zum Hauptmenü',
+				       'Ich habe eine Frage',
+				       'Ich habe Angst'],
 				dgs_videos_bot=make_video_array(['A1']),
 				dgs_videos_chips=make_video_array(['RC1a', 'RC2', 'RC3'])
 		)
