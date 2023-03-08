@@ -54,8 +54,6 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			                     chips=['Ich will doch nicht antworten']
 			                     )
 
-		log.info(f'Recognized {fear}')
-		print(f'Recognized {fear}')
 		if fear == 'Ich will doch nicht antworten' or fear == 'Ich mag doch nicht antworten':
 			return chip_response(text='Das kann ich sehr gut nachempfinden.  \r\n'
 			                          'Kann ich dir anvertrauen, was meine größte Angst ist?',
@@ -90,14 +88,14 @@ def fears_module(intent_name, parameters, output_contexts, text):
 		while resolution == '':
 			curated_resolution = random.choice(give_curated_resolutions())
 
-			return chip_response(text=['Meine größte Angst ist es, \r\n'
-			                           'dass sich ganz plötzlich niemand mehr für mich interessiert, \r\n'
-			                           'niemand mehr mit mir redet und ich ewige Zeit \r\n'
-			                           'ganz einsam bis zu meiner endgültigen Löschung\r\n'
-			                           ' verbringen muss.',
-			                           f'Jemand hat mir gesagt, gegen Angst hilft folgendes:\r\n'
-			                           f' {curated_resolution} \r\n'
-			                           f'Was hilft dir mit deiner Angst umzugehen?\r\n'],
+			return chip_response(text=f'Meine größte Angst ist es, \r\n'
+			                          f'dass sich ganz plötzlich niemand mehr für mich interessiert, \r\n'
+			                          f'niemand mehr mit mir redet und ich ewige Zeit \r\n'
+			                          f'ganz einsam bis zu meiner endgültigen Löschung\r\n'
+			                          f' verbringen muss.\r\n'
+			                          f'Jemand hat mir gesagt, gegen Angst hilft folgendes:\r\n'
+			                          f' {curated_resolution} \r\n'
+			                          f'Was hilft dir mit deiner Angst umzugehen?\r\n',
 			                     chips=['Ich will nicht antworten', 'Hast du mehr Tipps, was gegen Angst hilft?']
 			                     )
 		print(f'Recognized {resolution}')
