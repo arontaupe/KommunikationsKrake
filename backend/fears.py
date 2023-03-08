@@ -67,7 +67,6 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			log.info(f'Added {fear}')
 			print(f'Added {fear}')
 			return chip_response(text=f'Das kann ich sehr gut nachempfinden. \r\n'
-			                          f'Ich merke mir, dass {fear} Angst macht.\r\n'
 			                          f'Kann ich dir anvertrauen, was meine größte Angst ist?',
 			                     chips=['Ja', 'Lieber nicht']
 			                     )
@@ -94,9 +93,9 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			return chip_response(text=['Meine größte Angst ist es, \r\n'
 			                           'dass sich ganz plötzlich niemand mehr für mich interessiert, \r\n'
 			                           'niemand mehr mit mir redet und ich ewige Zeit \r\n'
-			                           'ganz einsam auf einem vergessenen Server \r\n'
-			                           'bis zu meiner endgültigen Löschung verbringen muss.',
-			                           f'Jemand hat mir gesagt gegen Angst hilft folgendes:\r\n'
+			                           'ganz einsam bis zu meiner endgültigen Löschung\r\n'
+			                           ' verbringen muss.',
+			                           f'Jemand hat mir gesagt, gegen Angst hilft folgendes:\r\n'
 			                           f' {curated_resolution} \r\n'
 			                           f'Was hilft dir mit deiner Angst umzugehen?\r\n'],
 			                     chips=['Ich will nicht antworten', 'Hast du mehr Tipps, was gegen Angst hilft?']
