@@ -12,7 +12,7 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			fear = random.choice(give_curated_fears())
 			return chip_response(text=f'Es ist immer gut über Ängste zu reden! \r\n'
 			                          f'Jemand hat mir neulich erzählt, \r\n'
-			                          f'ihre größte Angst ist {fear}\r\n'
+			                          f'ihre größte Angst {fear}\r\n'
 			                          f'Magst du mir erzählen, wovor du Angst hast?\r\n',
 			                     chips=['Ja', 'Nein', 'Vor was haben Leute noch so Angst?'],
 			                     dgs_videos_bot=make_video_array(['F4']),
@@ -31,7 +31,7 @@ def fears_module(intent_name, parameters, output_contexts, text):
 		fear1 = random.choice(give_curated_fears())
 		fear2 = random.choice(give_curated_fears())
 		return chip_response(
-				text=f'Also, eine andere Person meinte ihre größte Angst ist \r\n'
+				text=f'Also, eine andere Person meinte ihre größte Angst \r\n'
 				     f'{fear1}\r\n'
 				     f' und noch wer meinte {fear2}\r\n\r\n'
 				     f'Magst du mir nun erzählen, wovor du Angst hast?\r\n',
