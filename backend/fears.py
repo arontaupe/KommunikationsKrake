@@ -89,7 +89,7 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			curated_resolution = random.choice(give_curated_resolutions())
 
 			return chip_response(text=f'Meine größte Angst ist es, \r\n'
-			                          f'dass sich ganz plötzlich niemand mehr für mich interessiert, \r\n'
+			                          f'dass sich plötzlich niemand mehr für mich interessiert, \r\n'
 			                          f'niemand mehr mit mir redet und ich ewige Zeit \r\n'
 			                          f'ganz einsam bis zu meiner endgültigen Löschung\r\n'
 			                          f' verbringen muss.\r\n'
@@ -109,7 +109,7 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			text = f'Ich merke mir, dass {resolution} gegen Angst hilft.\r\n' + text
 
 		return chip_response(text=text,
-		                     chips=['Ja, schlag eine Veranstaltung vor', 'Nein, erzähl lieber einen Witz']
+		                     chips=['Ja, möchte eine Veranstalungsberatung', 'Nein, erzähl lieber einen Witz']
 		                     )
 
 	elif intent_name == 'fears.give-resolutions - more':
