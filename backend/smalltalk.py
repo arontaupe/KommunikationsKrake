@@ -207,9 +207,17 @@ def give_smalltalk(intent_name):
                              )
 
     elif intent_name == 'smalltalk.greetings.how_are_you':
-        return chip_response(text='Mir geht`s spitze! Und Dir?',
+        return chip_response(text='Mir geht`s spitze! Auf was hast du Lust?',
                              chips=['Erzähl mir einen Witz',
-                                    'Team von Ällei kontaktieren']
+                                    'Team von Ällei kontaktieren',
+                                    'Auf nichts, ich habe Angst']
+                             )
+
+    elif intent_name == 'smalltalk.greetings.whatsup':
+        return chip_response(text='Alles gut soweit. Ich kann jetzt auch über Angst reden!',
+                             chips=['Ohje, erzähl mir lieber einen Witz',
+                                    'Okay, ich möchte über Angst reden',
+                                    'Ich habe eine Frage']
                              )
 
     elif intent_name == 'smalltalk.dialog.wrong':
@@ -234,6 +242,8 @@ def give_smalltalk(intent_name):
                              chips=['Welche Veranstaltungen gibt es?',
                                     'Team von Ällei kontaktieren']
                              )
+
+
 
     else:
         return chip_response(text='Smalltalk erkannt, für den es noch keine Antwort gibt. \r\n',

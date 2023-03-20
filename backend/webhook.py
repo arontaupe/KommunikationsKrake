@@ -1044,6 +1044,9 @@ this is the main intent switch function. All intents that use the backend must b
 	elif 'team.sommerblut' in intent_name:
 		return give_team(intent_name, parameters, output_contexts)
 
+	elif 'team.job.description' in intent_name:
+		return give_job(intent_name, parameters, output_contexts)
+
 	elif intent_name == 'script.welcome':
 		return chip_response(
 				text='Hi! \r\n'

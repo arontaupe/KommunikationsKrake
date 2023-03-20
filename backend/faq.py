@@ -428,7 +428,7 @@ def give_faq(intent_name):
                 dgs_videos_chips=make_video_array(['AC7']),
         )
 
-        elif intent_name == 'faq.bot.accessibility':
+    elif intent_name == 'faq.bot.accessibility':
         url = 'https://www.sommerblut.de/de/logbuch3'
         button_text = 'Artikel in einem neuen Fenster öffnen'
         return button_response(
