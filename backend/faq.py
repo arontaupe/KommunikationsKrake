@@ -407,7 +407,37 @@ def give_faq(intent_name):
             text='Ich bin noch am lernen. \r\n'
                  'Ich kann dir Veranstaltungen empfehlen und Fragen beantworten. \r\n'
                  'Hoffentlich bin ich bald so fit im Internet wie du.\r\n',
-            chips=['Hauptmenü',
+            chips=['Ich möchte eine Veranstaltungsberatung',
+                   'Ich habe eine Frage',
+                   'Team von Ällei kontaktieren'],
+            dgs_videos_chips=make_video_array(['AC7']),
+        )
+
+    elif intent_name == 'faq.bot.name':
+        url = 'https://www.sommerblut.de/de/logbuch3'
+        button_text = 'Artikel in einem neuen Fenster öffnen'
+        return button_response(
+				url=url,
+				button_text=button_text,
+                text='Hihi, nett, dass du nach mir fragst! Mein Name ÄLLEI  \r\n'
+                 'leitet sich von dem Szene-Begriff #a11y ab.  \r\n' 
+                 'Genauer wird das auf meinem Blog erklärt. \r\n',
+                chips=['Ich möchte ein Wort erklärt bekommen',
+                   'Ich habe eine Frage',
+                   'Team von Ällei kontaktieren'],
+                dgs_videos_chips=make_video_array(['AC7']),
+        )
+
+        elif intent_name == 'faq.bot.accessibility':
+        url = 'https://www.sommerblut.de/de/logbuch3'
+        button_text = 'Artikel in einem neuen Fenster öffnen'
+        return button_response(
+            url=url,
+            button_text=button_text,
+            text='Ällei macht verschiedene Dinge um barrierefrei zu sein.\r\n'
+                 'Zum Beispiel nutzt Ällei einfache Sprache.  \r\n'
+                 'Genauer wird das auf meinem Blog erklärt. \r\n',
+            chips=['Ich möchte ein Wort erklärt bekommen',
                    'Ich habe eine Frage',
                    'Team von Ällei kontaktieren'],
             dgs_videos_chips=make_video_array(['AC7']),

@@ -1108,7 +1108,8 @@ this is the main intent switch function. All intents that use the backend must b
 		return button_response(
 				url=url,
 				button_text=button_text,
-				text='Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
+				text='Vielleicht fragst du dich: Warum gibt es Ällei überhaupt?\r\n'
+					 'Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
 				chips=['Erzähl mir einen Witz',
 				       'Team von Ällei kontaktieren',
 				       'Mehr über das Sommerblut erfahren'],
@@ -1153,12 +1154,12 @@ this is the main intent switch function. All intents that use the backend must b
 		return chip_response(
 				text='Alles klar.\r\n '
 				     'Beim Sommerblut gibt es ganz unterschiedliche Veranstaltungen.\r\n'
-				     'Dieses Jahr ist unser Motto "Mach mal neu".\r\n'
+				     'Im Jahr 2022 war unser Motto "Mach mal neu".\r\n'
 				     'Soll ich dir dazu mehr erzählen?',
-				chips=['Video: Mehr zum Thema "Mach mal Neu"',
+				chips=['Video: Thema 2022: "Mach mal Neu"',
 				       'Nein, weiter zur Veranstaltungsberatung'],
-				dgs_videos_bot=make_video_array(['A4']),
-				dgs_videos_chips=make_video_array(['RC11', 'RC12'])
+				#dgs_videos_bot=make_video_array(['A4']),
+				#dgs_videos_chips=make_video_array(['RC11', 'RC12'])
 		)
 
 	elif intent_name == 'script.next_event':
