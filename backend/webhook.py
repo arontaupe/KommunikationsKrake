@@ -1,31 +1,31 @@
 import random  # generates random chips for me
+import threading
+from datetime import datetime, timedelta
+
 from flask import request  # makes a flask app and serves it to a specified port
 
+from calendar_events import create_ics
+from faq import give_faq
+from fears import fears_module
+from feedback import give_feedback
+from glossary import give_glossary
 # import all background intent_logic functionality
 from intent_logic import collect_accessibility_needs, map_bedarf_for_db, order_events_by_interest, show_full_event_list
-
 # import the response functionality
-from response_func import button_response, chip_response, chip_w_context_response, chip_w_two_context_response, \
-	event_detail_response, event_response, event_schedule_response, image_response, text_response, \
-	chip_w_three_context_response
-
+from response_func import button_response, chip_response, chip_w_context_response, chip_w_three_context_response, \
+	chip_w_two_context_response, event_detail_response, event_response, event_schedule_response, image_response, \
+	text_response
 # import functionality to read out variables from gdf
 from retrieve_from_gdf import retrieve_bedarf, retrieve_event_id, retrieve_event_index, \
 	retrieve_found_events, \
 	retrieve_interests, whether_searched_events
 # import the database functions
-from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_timeframe_event_list, \
-	get_next_event
-from video_builder import make_video_array
-from smalltalk import give_smalltalk
-from glossary import give_glossary
-from team import give_team
-from faq import give_faq
-from fears import fears_module
-from feedback import give_feedback
+from sb_db_request import get_event_schedule, get_event_title, get_full_event_list, get_next_event, \
+	get_timeframe_event_list
 from send_yagmail import send_mail
-from calendar_events import create_ics
-from datetime import datetime, timedelta
+from smalltalk import give_smalltalk
+from team import give_job, give_team
+from video_builder import make_video_array
 
 
 def handle_intent(intent_name):
@@ -550,21 +550,14 @@ this is the main intent switch function. All intents that use the backend must b
 		           f"Ich freue mich, dass du mich besucht hast.\r\n" \
 		           f"Komm mich gern wieder besuchen.\r\n \r\n" \
 		           f"Dein Ällei\r\n"
-		try:
-			send_mail(to=mail_addr,
-			          subject=f'Ällei grüßt und schickt eine Einladung zu {title}',
-			          contents=contents,
-			          attachments=[f'events/{title}.ics']
-			          )
-		except Exception as e:
-			print("Error sending mail %s\n" % e)
-			return chip_response(text=f'Es gab leider ein Problem. \r\n'
-			                          f'Ich kann keine Email senden. \r\n'
-			                          f'Deine Adresse wird nicht gespeichert.\r\n'
-			                          f'Was möchtest du nun tun?',
-			                     chips=['Zeig mir weitere Veranstaltungen',
-			                            'Erzähl mir einen Witz'],
-			                     )
+
+		thread = threading.Thread(target=send_mail,
+		                          args=(mail_addr,
+		                                f'Ällei grüßt und schickt eine Einladung zu {title}',
+		                                contents,
+		                                [f'events/{title}.ics'])
+		                          )
+		thread.start()
 
 		return chip_response(text=f'Cool! ich habe gerade eine E-Mail an {mail_addr} gesendet.\r\n'
 		                          f'Was möchtest du nun tun?\r\n',
@@ -1030,7 +1023,7 @@ this is the main intent switch function. All intents that use the backend must b
 		return give_smalltalk(intent_name)
 
 	elif 'fears' in intent_name:
-		return fears_module(intent_name, parameters, output_contexts, text=req.get('queryResult').get('queryText'))
+		return fears_module(intent_name, parameters)
 
 	elif 'faq' in intent_name:
 		return give_faq(intent_name)
@@ -1112,7 +1105,7 @@ this is the main intent switch function. All intents that use the backend must b
 				url=url,
 				button_text=button_text,
 				text='Vielleicht fragst du dich: Warum gibt es Ällei überhaupt?\r\n'
-					 'Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
+				     'Ich habe einen eigenen Blog, in dem ihr viel über mich lesen könnt!\r\n',
 				chips=['Erzähl mir einen Witz',
 				       'Team von Ällei kontaktieren',
 				       'Mehr über das Sommerblut erfahren'],
@@ -1161,8 +1154,8 @@ this is the main intent switch function. All intents that use the backend must b
 				     'Soll ich dir dazu mehr erzählen?',
 				chips=['Video: Thema 2022: "Mach mal Neu"',
 				       'Nein, weiter zur Veranstaltungsberatung'],
-				#dgs_videos_bot=make_video_array(['A4']),
-				#dgs_videos_chips=make_video_array(['RC11', 'RC12'])
+				# dgs_videos_bot=make_video_array(['A4']),
+				# dgs_videos_chips=make_video_array(['RC11', 'RC12'])
 		)
 
 	elif intent_name == 'script.next_event':

@@ -1,5 +1,6 @@
-import yagmail
 import os
+
+import yagmail
 
 FROM = os.environ.get('MAIL_SENDER_ADDRESS')
 mailpass = os.environ.get('MAIL_PASS')

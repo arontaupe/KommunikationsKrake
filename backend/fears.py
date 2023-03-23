@@ -1,12 +1,17 @@
-from response_func import chip_response
-from video_builder import make_video_array
-import pandas as pd  # Load pandas
-import random  # generates random chips for me
-import numpy as np
 import logging as log
+import os
+import random  # generates random chips for me
+import threading
+
+import numpy as np
+import pandas as pd  # Load pandas
+
+from response_func import chip_response
+from send_yagmail import send_mail
+from video_builder import make_video_array
 
 
-def fears_module(intent_name, parameters, output_contexts, text):
+def fears_module(intent_name, parameters):
 	if intent_name == 'fears.start':
 		try:
 			fear = random.choice(give_curated_fears())
@@ -28,12 +33,11 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			                     )
 
 	elif intent_name == 'fears.start - more':
-		fear1 = random.choice(give_curated_fears())
-		fear2 = random.choice(give_curated_fears())
+		fears = random.sample(list(give_curated_fears()), k=2)
 		return chip_response(
 				text=f'Also, eine andere Person meinte ihre größte Angst \r\n'
-				     f'{fear1}\r\n'
-				     f' und noch wer meinte {fear2}\r\n\r\n'
+				     f'{fears[0]}\r\n'
+				     f' und noch wer meinte {fears[1]}\r\n\r\n'
 				     f'Magst du mir nun erzählen, wovor du Angst hast?\r\n',
 				chips=['Ja',
 				       'Nein']
@@ -80,7 +84,8 @@ def fears_module(intent_name, parameters, output_contexts, text):
 		return chip_response(text=f'Jemand hat mir gesagt gegen Angst hilft folgendes:\r\n'
 		                          f' {curated_resolution} \r\n'
 		                          f'Was hilft dir mit deiner Angst umzugehen?\r\n',
-		                     chips=['Ich will nicht antworten', 'Hast du mehr Tipps, was gegen Angst hilft?']
+		                     chips=['Ich will nicht antworten',
+		                            'Hast du mehr Tipps, was gegen Angst hilft?']
 		                     )
 
 	elif intent_name == 'fears.tell-own-fears - yes':
@@ -96,33 +101,49 @@ def fears_module(intent_name, parameters, output_contexts, text):
 			                          f'Jemand hat mir gesagt, gegen Angst hilft folgendes:\r\n'
 			                          f' {curated_resolution} \r\n'
 			                          f'Was hilft dir mit deiner Angst umzugehen?\r\n',
-			                     chips=['Ich will nicht antworten', 'Hast du mehr Tipps, was gegen Angst hilft?']
+			                     chips=['Ich will nicht antworten',
+			                            'Hast du mehr Tipps, was gegen Angst hilft?']
 			                     )
 		print(f'Recognized {resolution}')
-		text = f'Mir hilft dieses Jahr auf jeden fall auch das Sommerblut Festival, \r\n' \
+		text = f'Mir hilft dieses Jahr auf jeden Fall auch das Sommerblut Festival, \r\n' \
 		       f'mehr von meiner Angst zu verstehen. \r\n' \
 		       f'Soll ich dir eine Veranstaltung empfehlen?\r\n'
+
 		if resolution != 'Ich will doch nicht antworten':
 			add_resolution(resolution)
 			log.info(f'Added {resolution}')
 			print(f'Added {resolution}')
 			text = f'Ich merke mir, dass {resolution} gegen Angst hilft.\r\n' + text
 
+			fear_path = os.path.abspath("fears_collected.csv")
+
+			thread = threading.Thread(target=send_mail,
+			                          args=(['jens.muehlhoff@sommerblut.de',
+			                                 'aron.petau@sommerblut.de'],
+			                                'Ällei hat neue Ängste und Resolutionen erkannt',
+			                                f'Neue Resolution: {resolution}',
+			                                fear_path)
+			                          )
+			thread.start()
+
 		return chip_response(text=text,
-		                     chips=['Ja, möchte eine Veranstalungsberatung', 'Nein, erzähl lieber einen Witz']
+		                     chips=['Ja, ich möchte eine Veranstaltungsberatung',
+		                            'Nein, erzähl lieber einen Witz']
 		                     )
 
 	elif intent_name == 'fears.give-resolutions - more':
-		resolution1 = random.choice(give_curated_resolutions())
-		resolution2 = random.choice(give_curated_resolutions())
+		curated_resolutions = list(give_curated_resolutions())
+		resolutions = random.sample(curated_resolutions, k=2)
+
 		return chip_response(
 				text=f'Ähm..  dann hat mir noch jemand gesagt:  \r\n'
-				     f'{resolution1}\r\n'
-				     f' und noch wer anders: \r\n{resolution2}\r\n\r\n'
+				     f'{resolutions[0]}\r\n'
+				     f' und noch wer anders: \r\n'
+				     f'{resolutions[1]}\r\n\r\n'
 				     f'Was hilft dir mit deiner Angst umzugehen?\r\n',
 				chips=['Ich will nicht antworten']
 		)
-	
+
 	else:
 		return chip_response(text='Frage zu Angst erkannt, für die es noch keine Antwort gibt.  \r\n',
 		                     chips=['Zurück zum Hauptmenü',
