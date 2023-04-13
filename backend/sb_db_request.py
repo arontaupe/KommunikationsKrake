@@ -1,18 +1,19 @@
 from __future__ import print_function
+
 import json
 import os
+import time
 from datetime import datetime, timedelta
+
 import requests
 # used for caching the api responses from the db
 from cachetools import TTLCache, cached
 from requests.auth import HTTPBasicAuth  # die datenbank läuft über basic auth
-import time
 
 # import dependencies for database request# import dependencies for database request
 import sb_db  # sommerblut datenbank openapi
 # import the response functionality
 from response_func import chip_response
-from retrieve_from_gdf import retrieve_found_events
 from sb_db.rest import ApiException
 
 BASEURL = os.environ.get('BASEURL')
@@ -193,6 +194,7 @@ def get_full_event_list(accessibility=None, page=1, entries=10):
 		events[i]['ensembles'] = event['ensembles']
 		events[i]['interest_ranking'] = None
 	return event_count, events, titles, ids
+
 
 def test_DB_response_time():
 	pre = time.perf_counter()
@@ -414,6 +416,9 @@ def get_all_titles_ids():
 		return titles, ids
 	except ApiException as e:
 		print("Exception when calling EventsApi->get all titles: %s\n" % e)
+
+
+print(get_all_titles_ids())
 
 
 def get_event_title(event_id):

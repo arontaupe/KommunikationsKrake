@@ -109,7 +109,8 @@ def fears_module(intent_name, parameters):
 		       f'mehr von meiner Angst zu verstehen. \r\n' \
 		       f'Soll ich dir eine Veranstaltung empfehlen?\r\n'
 
-		if resolution != 'Ich will doch nicht antworten':
+		if resolution != 'Ich will doch nicht antworten' and \
+				resolution != 'Hast du mehr Tipps, was gegen Angst hilft?':
 			add_resolution(resolution)
 			log.info(f'Added {resolution}')
 			print(f'Added {resolution}')
