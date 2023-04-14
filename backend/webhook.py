@@ -763,7 +763,7 @@ this is the main intent switch function. All intents that use the backend must b
 
 	elif intent_name == 'script.event.details - linkout':
 		event_id = retrieve_event_id(output_contexts)
-		url = 'https://www.sommerblut.de/ls/event/' + str(event_id)
+		url = 'https://www.sommerblut.de/ls/veranstaltung/' + str(event_id)
 		button_text = 'Link zum Event'
 		return button_response(url=url, button_text=button_text, chips=['Zurück: Veranstaltungsdetails'])
 
