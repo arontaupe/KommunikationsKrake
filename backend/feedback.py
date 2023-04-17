@@ -14,8 +14,8 @@ def give_feedback(intent_name):
                                url='mailto:chatbot@sommerblut.de',
                                chips=['Tschüss',
                                       'Hauptmenü'],
-                               dgs_videos_bot=make_video_array(['Feedback2']),
-                               dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                               # dgs_videos_bot=make_video_array(['Feedback2']),
+                               # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                                )
 
     elif intent_name == 'feedback.sb.good':
@@ -24,8 +24,8 @@ def give_feedback(intent_name):
                              chips=['Veranstaltungsberatung'
                                     'Fingeralphabet lernen',
                                     'Hauptmenü'],
-                             # dgs_videos_bot=make_video_array(['Feedback2']),
-                             # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                             # # dgs_videos_bot=make_video_array(['Feedback2']),
+                             # # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                              )
 
     elif intent_name == 'feedback.sb.bad':
@@ -40,8 +40,8 @@ def give_feedback(intent_name):
                                       'Weiter chatten',
                                       'Tschüss',
                                       'Hauptmenü'],
-                               # dgs_videos_bot=make_video_array(['Feedback2']),
-                               # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                               # # dgs_videos_bot=make_video_array(['Feedback2']),
+                               # # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                                )
 
     elif intent_name == 'feedback.sb.bad - phone':
@@ -52,8 +52,8 @@ def give_feedback(intent_name):
                                chips=['Weiter chatten',
                                       'Tschüss',
                                       'Hauptmenü'],
-                               # dgs_videos_bot=make_video_array(['Feedback2']),
-                               # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                               # # dgs_videos_bot=make_video_array(['Feedback2']),
+                               # # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                                )
 
     elif intent_name == 'feedback.sb.bad - team':
@@ -64,8 +64,8 @@ def give_feedback(intent_name):
                                chips=['Weiter chatten',
                                       'Tschüss',
                                       'Hauptmenü'],
-                               # dgs_videos_bot=make_video_array(['Feedback2']),
-                               # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                               # # dgs_videos_bot=make_video_array(['Feedback2']),
+                               # # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                                )
 
     elif intent_name == 'feedback.sb.bad - continue':
@@ -73,8 +73,8 @@ def give_feedback(intent_name):
                              chips=['Ja, Witz erzählen',
                                     'Fingeralphabet lernen',
                                     'Hauptmenü'],
-                             # dgs_videos_bot=make_video_array(['Feedback2']),
-                             # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                             # # dgs_videos_bot=make_video_array(['Feedback2']),
+                             # # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                              )
 
     elif intent_name == 'feedback.sb.bad - fallback':
@@ -85,6 +85,6 @@ def give_feedback(intent_name):
                                url='mailto:chatbot@sommerblut.de',
                                chips=['Weiter chatten',
                                       'Hauptmenü'],
-                               # dgs_videos_bot=make_video_array(['Feedback2']),
-                               # dgs_videos_chips=make_video_array(['E1', 'AC7'])
+                               # # dgs_videos_bot=make_video_array(['Feedback2']),
+                               # # dgs_videos_chips=make_video_array(['E1', 'AC7'])
                                )

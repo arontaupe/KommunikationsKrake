@@ -51,7 +51,7 @@ def give_team(intent_name, parameters, output_contexts):
 			       '\r\n Klicke einfach einen an. '
 			return chip_response(text=text,
 			                     chips=chips,
-			                     # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+			                     # # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
 			                     )
 
 		else:

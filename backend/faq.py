@@ -17,8 +17,9 @@ def give_faq(intent_name):
                                chips=['Ich habe eine andere Frage zum Sommerblut',
                                       'Ansprechpartner*in bei Sommerblut finden',
                                       'Ich habe eine Frage zu einem anderen Thema'],
-                               dgs_videos_bot=make_video_array(['F4']),
-                               dgs_videos_chips=make_video_array(['RC3', 'AC7']))
+                               # dgs_videos_bot=make_video_array(['F4']),
+                               # dgs_videos_chips=make_video_array(['RC3', 'AC7'])
+                              )
 
     elif intent_name == 'faq.contact.accessibility':
         return chip_response(text='Katharina hilft dir gerne bei Fragen zur Barrierefreiheit von Veranstaltungen.\r\n'
@@ -26,8 +27,8 @@ def give_faq(intent_name):
                                   'katharina.wuerzberg@sommerblut.de\r\n'
                                   'Oder per Telefon: 0221 – 29 49 91 34\r\n',
                              chips=['Zurück zu den Einzelheiten zur Veranstaltung'],
-                             dgs_videos_bot=make_video_array(['A21']),
-                             dgs_videos_chips=make_video_array(['RC34c'])
+                             # dgs_videos_bot=make_video_array(['A21']),
+                             # dgs_videos_chips=make_video_array(['RC34c'])
                              )
 
     elif intent_name == 'faq.accessibility':
@@ -38,16 +39,16 @@ def give_faq(intent_name):
                                   'Oder Audiodeskriptionen.\r\n',
                              chips=['Ich will einen Kontakt für persönliche Unterstützung',
                                     'Welche Veranstaltungen sind Barrierefrei?'],
-                             #dgs_videos_bot=make_video_array([]),
-                             #dgs_videos_chips=make_video_array(['RC34c'])
+                             ## dgs_videos_bot=make_video_array([]),
+                             ## dgs_videos_chips=make_video_array(['RC34c'])
                              )
 
     elif intent_name == 'faq.sb.credo.next':
         return chip_response(text='Unser Motto für 2023 ist: \r\n'
                                   'Geh dahin, wo die Angst ist.\r\n',
                              chips=['Ich habe eine andere Frage'],
-                             # dgs_videos_bot=make_video_array(['A21']),
-                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             # # dgs_videos_bot=make_video_array(['A21']),
+                             # # dgs_videos_chips=make_video_array(['RC34c'])
                              )
     elif intent_name == 'faq.sommerblut.where':
         return chip_response(text='Das Festival findet dezentral statt. \r\n'
@@ -59,8 +60,8 @@ def give_faq(intent_name):
                              chips=['Wann ist die nächste Veranstaltung?',
                                     'Mit dem Team telefonieren',
                                     'Eine Mail schreiben'],
-                             # dgs_videos_bot=make_video_array(['A21']),
-                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             # # dgs_videos_bot=make_video_array(['A21']),
+                             # # dgs_videos_chips=make_video_array(['RC34c'])
                              )
     elif intent_name == 'faq.sommerblut.when':
         return chip_response(text='Das Festival findet jedes Jahr im Mai statt. \r\n'
@@ -69,8 +70,8 @@ def give_faq(intent_name):
                              chips=['Wann ist die nächste Veranstaltung?',
                                     'Ich will eine Veranstaltungsberatung',
                                     'Wo gibt es Tickets?'],
-                             # dgs_videos_bot=make_video_array(['A21']),
-                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             # # dgs_videos_bot=make_video_array(['A21']),
+                             # # dgs_videos_chips=make_video_array(['RC34c'])
                              )
 
     elif intent_name == 'faq.sommerblut.where - phone':
@@ -78,8 +79,8 @@ def give_faq(intent_name):
                                button_text='Direkt anrufen',
                                text='Okay, die Telefonnummer ist: +49 221 29499139\r\n',
                                chips=['Wann ist die nächste Veranstaltung?'],
-                               # dgs_videos_bot=make_video_array(['A21']),
-                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               # # dgs_videos_bot=make_video_array(['A21']),
+                               # # dgs_videos_chips=make_video_array(['RC34c'])
                                )
 
     elif intent_name == 'faq.sommerblut.where - mail':
@@ -87,8 +88,8 @@ def give_faq(intent_name):
                                button_text='Direkt Mail schreiben',
                                text='Okay, die Email ist: info@sommerblut.de\r\n',
                                chips=['Wann ist die nächste Veranstaltung?'],
-                               # dgs_videos_bot=make_video_array(['A21']),
-                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               # # dgs_videos_bot=make_video_array(['A21']),
+                               # # dgs_videos_chips=make_video_array(['RC34c'])
                                )
     elif intent_name == 'faq.sommerblut.gender_ratio':
         return chip_response(text='Das Sommerblut Festival thematisiert in seinen vielfältigen Produktionen \r\n'
@@ -98,8 +99,8 @@ def give_faq(intent_name):
                              chips=['Was ist Gender?',
     #                                'Welche Produktionen beschäftigen sich mit Geschlechterverhältnissen?',
                                     'Wer ist das Sommerblut Team?'],
-                             # dgs_videos_bot=make_video_array(['A21']),
-                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             # # dgs_videos_bot=make_video_array(['A21']),
+                             # # dgs_videos_chips=make_video_array(['RC34c'])
                              )
 
     # Solch eine Antwort geht leider nur über ein Tagfilter system, zu spezifisch um sowas in zukunft pflegen
@@ -134,8 +135,8 @@ def give_faq(intent_name):
                                     'Worum geht es beim Sommerblut Festival?',
                                     'Wie lautet das Festivalmotto?',
                                     'Ich habe eine andere Frage zum Sommerblut'],
-                             # dgs_videos_bot=make_video_array(['A21']),
-                             # dgs_videos_chips=make_video_array(['RC34c'])
+                             # # dgs_videos_bot=make_video_array(['A21']),
+                             # # dgs_videos_chips=make_video_array(['RC34c'])
                              )
 
     elif intent_name == 'faq.assistance.onsite':
@@ -146,8 +147,8 @@ def give_faq(intent_name):
                                url='mailto:info@sommerblut.de',
                                button_text='Anfrage per Email',
                                chips=['Hauptmenü'],
-                               # dgs_videos_bot=make_video_array(['A21']),
-                               # dgs_videos_chips=make_video_array(['RC34c'])
+                               # # dgs_videos_bot=make_video_array(['A21']),
+                               # # dgs_videos_chips=make_video_array(['RC34c'])
                                )
 
     elif intent_name == 'faq.finance.how':
@@ -158,8 +159,8 @@ def give_faq(intent_name):
                                     'Alle aktuellen Sponsoren und Förderer findest du hier auf unserer Website:  '
                                     'https://www.sommerblut.de/de/ueber-uns/foerderer-und-sponsoren',
                                chips=['Ich habe eine andere Frage'],
-                               dgs_videos_bot=make_video_array(['A21']),
-                               dgs_videos_chips=make_video_array(['RC34c'])
+                               # dgs_videos_bot=make_video_array(['A21']),
+                               # dgs_videos_chips=make_video_array(['RC34c'])
                                )
 
     elif intent_name == 'faq.tickets.sale_location':
@@ -172,8 +173,8 @@ def give_faq(intent_name):
                                   '50667 Köln, \r\n',
                              chips=['Zeig mir die Veranstaltung auf Sommerblut.de',
                                     'Zurück zu den Einzelheiten zur Veranstaltung'],
-                             dgs_videos_bot=make_video_array(['A24']),
-                             dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                             # dgs_videos_bot=make_video_array(['A24']),
+                             # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                              )
 
     elif intent_name == 'faq.tickets.price':
@@ -182,16 +183,16 @@ def give_faq(intent_name):
                                   'Maximal kosten Tickets 20 Euro.\r\n ',
                              chips=['Wer kann eine ermäßigung bekommen?',
                                     'Wo werden tickets verkauft?'],
-                             #dgs_videos_bot=make_video_array(['A24']),
-                             #dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                             ## dgs_videos_bot=make_video_array(['A24']),
+                             ## dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                              )
 
     elif intent_name == 'faq.tickets.opnv':
         return chip_response(text='Die Eintrittskarten können nicht als Fahrkarte genutzt werden.\r\n',
                              chips = ['Wer kann eine ermäßigung bekommen?',
                                       'Wo werden tickets verkauft?'],
-                             # dgs_videos_bot=make_video_array(['A24']),
-                             # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                             # # dgs_videos_bot=make_video_array(['A24']),
+                             # # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                              )
     elif intent_name == 'faq.tickets.soldout':
         return button_response(url='https://t.rausgegangen.de/tickets/shop/sommerblut-2022',
@@ -213,7 +214,7 @@ def give_faq(intent_name):
                  'am jeweiligen Veranstaltungsort.\r\n',
             chips=['Ich habe eine andere Frage',
                    'Zurück zum Hauptmenü'],
-            dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+            # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
         )
 
     elif intent_name == 'faq.sommerblut.size':
@@ -222,7 +223,7 @@ def give_faq(intent_name):
                                   'realisiert.\r\n',
                              chips=['Ich habe eine andere Frage zum Sommerblut',
                                       'Ich habe eine Frage zu einem anderen Thema'],
-                             dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                             # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                              )
 
     elif intent_name == 'faq.assistance.bring_human':
@@ -235,7 +236,7 @@ def give_faq(intent_name):
                                     'info@sommerblut.de.\r\n',
                                chips=['Ich habe eine andere Frage',
                                       'Zurück zum Hauptmenü'],
-                               dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                               # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                                )
 
     elif intent_name == 'faq.need_human':
@@ -245,7 +246,7 @@ def give_faq(intent_name):
                                     'oder ruf unser Büro an unter: +49 (221) 29 49 91 – 34',
                                chips=['Ich habe eine andere Frage',
                                       'Zurück zum Hauptmenü'],
-                               dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                               # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                                )
 
     elif intent_name == 'faq.assistance.bring_dog':
@@ -258,7 +259,7 @@ def give_faq(intent_name):
                                     'Schicke uns einfach eine E-Mail an info@sommerblut.de',
                                chips=['Ich habe eine andere Frage',
                                       'Zurück zum Hauptmenü'],
-                               dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
+                               # dgs_videos_chips=make_video_array(['RC34', 'RC34c'])
                                )
 
     elif intent_name == 'faq.tickets.sale_phone':
@@ -270,14 +271,14 @@ def give_faq(intent_name):
                                     'Am Telefon kann man die Tickets mit Kreditkarte bezahlen.\r\n',
                                chips=['Zeig mir die Veranstaltung auf Sommerblut.de',
                                       'Zurück zu den Einzelheiten zur Veranstaltung'],
-                               dgs_videos_chips=make_video_array(['RC34', 'RC34c']),
-                               dgs_videos_bot=make_video_array(['A23']),
+                               # dgs_videos_chips=make_video_array(['RC34', 'RC34c']),
+                               # dgs_videos_bot=make_video_array(['A23']),
                                )
 
     elif intent_name == 'faq.sommerblut.for-who':
         return chip_response(text='Das Sommerblut ist für alle da.',
                              chips=['Hauptmenü', 'Ich habe eine Frage', 'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7']),
+                             # dgs_videos_chips=make_video_array(['AC7']),
                              )
 
     elif intent_name == 'faq.sommerblut.how-many-visitors':
@@ -285,7 +286,7 @@ def give_faq(intent_name):
                              chips=['Ich habe eine andere Frage zum Sommerblut',
                                     'Ich habe eine Frage zu einem anderen Thema',
                                     'Ich möchte mehr über Ällei erfahren.'],
-                             dgs_videos_chips=make_video_array(['AC7']),
+                             # dgs_videos_chips=make_video_array(['AC7']),
                              )
 
     elif intent_name == 'faq.knowledge.chatbot':
@@ -294,7 +295,7 @@ def give_faq(intent_name):
                              chips=['Zurück zum Hauptmenü',
                                     'Mehr über Ällei erfahren',
                                     'Ich habe eine andere Frage'],
-                             dgs_videos_chips=make_video_array(['AC7']),
+                             # dgs_videos_chips=make_video_array(['AC7']),
                              )
 
     elif intent_name == 'faq.knowledge.whoami':
@@ -304,7 +305,7 @@ def give_faq(intent_name):
                              chips=['Zurück zum  Hauptmenü',
                                     'Mehr über Ällei erfahren',
                                     'Ich habe eine andere Frage'],
-                             dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                             # dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                              )
 
     elif intent_name == 'faq.sommerblut.donate':
@@ -315,7 +316,7 @@ def give_faq(intent_name):
                                     'Hier findest du alle Infos dazu: ',
                                chips=['Ich habe eine andere Frage zum Sommerblut',
                                       'Ich habe eine Frage zu einem anderen Thema'],
-                               dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                               # dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                                )
 
     elif intent_name == 'faq.sommerblut.cooperation':
@@ -323,7 +324,7 @@ def give_faq(intent_name):
                                   'Wir freuen uns immer, wenn wir andere arbeiten lassen können.',
                              chips=['Ich habe eine andere Frage zum Sommerblut',
                                     'Ich habe eine Frage zu einem anderen Thema'],
-                             dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                             # dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                              )
 
     elif intent_name == 'faq.sommerblut.discount':
@@ -338,7 +339,7 @@ def give_faq(intent_name):
                              chips=['Ich habe eine andere Frage zum Sommerblut',
                                     'Wo kann ich Tickets kaufen?',
                                     'Ich habe eine Frage zu einem anderen Thema'],
-                             dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                             # dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                              )
 
     elif intent_name == 'faq.sommerblut.career':
@@ -350,7 +351,7 @@ def give_faq(intent_name):
                                chips=['Ich habe eine andere Frage zum Sommerblut',
                                       'Wer macht was beim Sommerblut?',
                                       'Ich habe eine Frage zu einem anderen Thema'],
-                               dgs_videos_chips=make_video_array(['AC7', 'RC3']),
+                               # dgs_videos_chips=make_video_array(['AC7', 'RC3']),
                                )
 
     elif intent_name == 'faq.sommerblut':
@@ -374,8 +375,8 @@ def give_faq(intent_name):
         chips.append('Andere Frage zum Sommerblut')
         return chip_response(text='Okay, was willst du über das Sommerblut wissen?',
                              chips=chips,
-                             dgs_videos_bot=make_video_array(['F3']),
-                             dgs_videos_chips=make_video_array(['FA9', 'FA10', 'FA11'])
+                             # dgs_videos_bot=make_video_array(['F3']),
+                             # dgs_videos_chips=make_video_array(['FA9', 'FA10', 'FA11'])
                              )
 
     elif intent_name == 'faq.chatbot':
@@ -387,7 +388,7 @@ def give_faq(intent_name):
         chips.append('Andere Frage zum Chatbot', 'Ich verstehe ein Wort nicht')
         return chip_response(text='Okay, was willst du über mich wissen?',
                              chips=chips,
-                             dgs_videos_bot=make_video_array(['F3']),
+                             # dgs_videos_bot=make_video_array(['F3']),
                              )
 
     elif intent_name == 'faq.start':
@@ -398,8 +399,8 @@ def give_faq(intent_name):
                                     'Frage zu Ällei, dem Chatbot',
                                     'Das Fingeralphabet kennen lernen',
                                     'Begriff erklären'],
-                             dgs_videos_bot=make_video_array(['F1']),
-                             dgs_videos_chips=make_video_array(['FA1', 'FA2', 'FA4', 'FA5'])
+                             # dgs_videos_bot=make_video_array(['F1']),
+                             # dgs_videos_chips=make_video_array(['FA1', 'FA2', 'FA4', 'FA5'])
                              )
 
     elif intent_name == 'faq.bot.cando':
@@ -410,7 +411,7 @@ def give_faq(intent_name):
             chips=['Ich möchte eine Veranstaltungsberatung',
                    'Ich habe eine Frage',
                    'Team von Ällei kontaktieren'],
-            dgs_videos_chips=make_video_array(['AC7']),
+            # dgs_videos_chips=make_video_array(['AC7']),
         )
 
     elif intent_name == 'faq.bot.name':
@@ -425,7 +426,7 @@ def give_faq(intent_name):
                 chips=['Ich möchte ein Wort erklärt bekommen',
                    'Ich habe eine Frage',
                    'Team von Ällei kontaktieren'],
-                dgs_videos_chips=make_video_array(['AC7']),
+                # dgs_videos_chips=make_video_array(['AC7']),
         )
 
     elif intent_name == 'faq.bot.accessibility':
@@ -440,12 +441,12 @@ def give_faq(intent_name):
             chips=['Ich möchte ein Wort erklärt bekommen',
                    'Ich habe eine Frage',
                    'Team von Ällei kontaktieren'],
-            dgs_videos_chips=make_video_array(['AC7']),
+            # dgs_videos_chips=make_video_array(['AC7']),
         )
 
     else:
         return chip_response(text='FAQ erkannt, für den es noch keine Antwort gibt.  \r\n',
                              chips=['Zurück zum Hauptmenü',
                                     'Team von Ällei kontaktieren'],
-                             dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+                             # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
                              )

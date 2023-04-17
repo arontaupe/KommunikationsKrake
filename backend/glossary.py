@@ -55,7 +55,7 @@ def give_glossary(intent_name, parameters, output_contexts=None):
 			       '\r\n Oder du gibst ein neues Wort ein, vielleicht kann ich es dann bald erklären. \r\n'
 			return chip_response(text=text,
 			                     chips=chips,
-			                     dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+			                     # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
 			                     )
 
 		elif len(query) == 0:
@@ -65,7 +65,7 @@ def give_glossary(intent_name, parameters, output_contexts=None):
 			                          'Oder du gibst ein neues Wort ein, \r\n'
 			                          'dann kann ich es bestimmt bald erklären. \r\n',
 			                     chips=chips,
-			                     dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+			                     # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
 			                     )
 		else:
 			query = query[0]  # Google has changed the format it gives back
@@ -83,7 +83,7 @@ def give_glossary(intent_name, parameters, output_contexts=None):
 
 				return chip_response(text=description,
 				                     chips=chips,
-				                     dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+				                     # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
 				                     )
 			else:
 				return chip_response(text='Zu diesem Begriff habe ich leider noch keine Erklärung.\r\n'
@@ -91,5 +91,5 @@ def give_glossary(intent_name, parameters, output_contexts=None):
 				                     chips=['Zurück zum Hauptmenü',
 				                            'Ich will andere Begriffe bekommen',
 				                            'Team von Ällei kontaktieren'],
-				                     # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
+				                     # # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1']),
 				                     )

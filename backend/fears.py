@@ -20,8 +20,8 @@ def fears_module(intent_name, parameters):
 			                          f'ihre größte Angst {fear}\r\n'
 			                          f'Magst du mir erzählen, wovor du Angst hast?\r\n',
 			                     chips=['Ja', 'Nein', 'Vor was haben Leute noch so Angst?'],
-			                     dgs_videos_bot=make_video_array(['F4']),
-			                     dgs_videos_chips=make_video_array(['RC3', 'AC7'])
+			                     # dgs_videos_bot=make_video_array(['F4']),
+			                     # dgs_videos_chips=make_video_array(['RC3', 'AC7'])
 			                     )
 		except Exception as e:
 			print("Exception when accessing curated_fears %s\n" % e)
@@ -149,7 +149,7 @@ def fears_module(intent_name, parameters):
 		return chip_response(text='Frage zu Angst erkannt, für die es noch keine Antwort gibt.  \r\n',
 		                     chips=['Zurück zum Hauptmenü',
 		                            'Team von Ällei kontaktieren'],
-		                     dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
+		                     # dgs_videos_chips=make_video_array(['AC7', 'Feedback1']),
 		                     )
 
 

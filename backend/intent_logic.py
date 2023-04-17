@@ -26,7 +26,7 @@ def collect_accessibility_needs(parameters, num_contexts, output_contexts, sessi
                    'Ich habe eine Sehbehinderung',
                    'Ich habe eine Hörbehinderung',
                    'Ich habe eine Gehbehinderung'],
-            dgs_videos_chips=make_video_array(['RC14', 'RC15', 'RC16', 'RC17', 'RC18'])
+            # dgs_videos_chips=make_video_array(['RC14', 'RC15', 'RC16', 'RC17', 'RC18'])
         )
 
     prev_selection_bedarf = None
@@ -47,7 +47,7 @@ def collect_accessibility_needs(parameters, num_contexts, output_contexts, sessi
                                            text=f'Okay, ich habe {bedarf} abgespeichert.',
                                            chips=["Weiter: Interessen angeben",
                                                   "Zurück zum Hauptmenü"],
-                                           dgs_videos_chips=make_video_array(['E1', 'AC7']),
+                                           # dgs_videos_chips=make_video_array(['E1', 'AC7']),
                                            )
         elif bedarf == 'leichte Sprache':
             new_bedarf[1] = 1
@@ -67,8 +67,8 @@ def collect_accessibility_needs(parameters, num_contexts, output_contexts, sessi
                                    chips=["Ja",
                                           "Nein, weiter zum Interessen angeben",
                                           "Zurück zum Haupt-menü"],
-                                   dgs_videos_chips=make_video_array(['AC2', 'AC1', 'AC7']),
-                                   dgs_videos_bot=make_video_array(['A6'])  # TODO
+                                   # dgs_videos_chips=make_video_array(['AC2', 'AC1', 'AC7']),
+                                   # dgs_videos_bot=make_video_array(['A6'])  # TODO
                                    )
 
 
@@ -100,8 +100,9 @@ def show_full_event_list(output_contexts, session_id, random_order=False):
                                             'Was möchtest du nun tun?',
                                        chips=['Zeig mir die Veranstaltungen noch einmal',
                                               'Zurück zum Hauptmenü'],
-                                       dgs_videos_bot=make_video_array(['A19b']),
-                                       dgs_videos_chips=make_video_array(['RC29b', 'AC7']))
+                                       # dgs_videos_bot=make_video_array(['A19b']),
+                                       # dgs_videos_chips=make_video_array(['RC29b', 'AC7'])
+                                       )
 
     next_event_index = event_index + 1
 
@@ -130,8 +131,8 @@ def show_full_event_list(output_contexts, session_id, random_order=False):
         display_index=event_index,
         events=events,
         chips=chips,
-        dgs_videos_chips=dgs_videos_chips,
-        dgs_videos_bot=make_video_array([f'{title}_Kurzi'])
+        # dgs_videos_chips=dgs_videos_chips,
+        # dgs_videos_bot=make_video_array([f'{title}_Kurzi'])
     )
 
 
