@@ -51,13 +51,11 @@ def give_faq(intent_name):
                              # # dgs_videos_chips=make_video_array(['RC34c'])
                              )
     elif intent_name == 'faq.sommerblut.where':
-        return chip_response(text='Das Festival findet dezentral statt. \r\n'
-                                  'Die ganze Stadt ist Sommerblut! \r\n'
-                                  'Wenn du persönlich mit jemandem aus dem Sommerblut Team reden willst,\r\n'
-                                  'komm doch gerne mal zu einer unserer Veranstaltungen! \r\n'
-                                  'Du kannst auch im Büro anrufen oder eine Mail schreiben, \r\n'
-                                  'wenn es schnell gehen muss.\r\n',
-                             chips=['Wann ist die nächste Veranstaltung?',
+        return chip_response(text='Das Festival findet an verschiedenen Orten in Köln statt. \r\n'
+                                  '2023 gibt es außerdem ein mobiles Festivalzentrum.\r\n'
+                                  'Es heißt: Kiosk.\r\n',
+                             chips=['Wo finde ich das Festivalzentrum "Kiosk" ?',
+                                    'Wann ist die nächste Veranstaltung?',
                                     'Mit dem Team telefonieren',
                                     'Eine Mail schreiben'],
                              # # dgs_videos_bot=make_video_array(['A21']),
@@ -178,9 +176,16 @@ def give_faq(intent_name):
                              )
 
     elif intent_name == 'faq.tickets.price':
-        return chip_response(text='Der Preis für ein Ticket ist unterschiedlich.\r\n'
+        return button_response(
+                             url='https://www.sommerblut.de/de/service/tickets-und-vvk',
+                             button_text='Mehr Informationen zu Tickets auf der Homepage',
+                             text='Der Preis für ein Ticket ist unterschiedlich.\r\n'
                                   'Manche Aufführungen sind kostenlos.\r\n'
-                                  'Maximal kosten Tickets 20 Euro.\r\n ',
+                                  'Bei manchen Aufführung entscheidest du: Wie viel kann ich bezahlen?\r\n '
+                                  'Du kannst danach entscheiden: Wieviel Geld habe ich?  \r\n '
+                                  'Der normale Preis sind 17 Euro. \r\n'
+                                  'Hast du wenig Geld? Zahle 4 Euro. \r\n'
+                                  'Hast du sehr viel Geld? Zahle 48 Euro.',
                              chips=['Wer kann eine ermäßigung bekommen?',
                                     'Wo werden tickets verkauft?'],
                              ## dgs_videos_bot=make_video_array(['A24']),

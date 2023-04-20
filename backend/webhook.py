@@ -582,16 +582,17 @@ this is the main intent switch function. All intents that use the backend must b
 
 		if not whether_searched_events(output_contexts=output_contexts):
 			if event_id:
+				title = get_event_title(event_id)
 				return chip_w_context_response(session_id=session_id,
-				                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
+				                               text=f'Was möchtest du mehr wissen über {title}: \r\n'
 				                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
 				                                    '2. Worum geht es genau in der Veranstaltung?\r\n'
-				                                    '3. Wie handhabt ihr Corona?\r\n'
-				                                    '4. Wo und Wann findet sie statt?\r\n',
+												    '3. Wann genau findet sie statt?\r\n'
+											   	    '4. Wo findet sie statt? Wie lange dauert sie?\r\n',
 				                               chips=['Barrierefreiheit',
 				                                      'Programmtext',
-				                                      'Coronasituation',
-				                                      'Datum und Ort',
+													  'Datum der Veranstaltung',
+				                                      'Ort und Länge',
 				                                      'Zeig mir die Veranstaltung auf Sommerblut.de',
 				                                      'Zurück: Ich habe eine andere Frage'],
 				                               variable_name='event_id',
@@ -604,17 +605,18 @@ this is the main intent switch function. All intents that use the backend must b
 		try:
 			event_count, events, titles, ids = retrieve_found_events(output_contexts)
 			if event_id and events is not None:
+				title = get_event_title(event_id)
 				return chip_w_context_response(session_id=session_id,
-				                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-				                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
-				                                    '2. Worum geht es genau in der Veranstaltung?\r\n'
-				                                    '3. Wie handhabt ihr Corona?\r\n'
-				                                    '4. Wo und Wann findet sie statt?\r\n',
-				                               chips=['Barrierefreiheit',
-				                                      'Programmtext',
-				                                      'Coronasituation',
-				                                      'Datum und Ort',
-				                                      'Zeig mir die Veranstaltung auf Sommerblut.de',
+											   text=f'Was möchtest du mehr wissen über {title}: \r\n'
+													'1. Ist die Veranstaltung barrierefrei?\r\n'
+													'2. Worum geht es genau in der Veranstaltung?\r\n'
+													'3. Wann genau findet sie statt?\r\n'
+											   		'4. Wo findet sie statt? Wie lange dauert sie?\r\n',
+											   chips=['Barrierefreiheit',
+													  'Programmtext',
+													  'Datum der Veranstaltung',
+													  'Ort und Länge',
+													  'Zeig mir die Veranstaltung auf Sommerblut.de',
 				                                      'Zurück: Veranstaltungs-empfehlungen'],
 				                               variable_name='event_id',
 				                               variable=event_id,
@@ -623,17 +625,18 @@ this is the main intent switch function. All intents that use the backend must b
 				                               # dgs_videos_chips=make_video_array(['RC30', 'RC31', 'RC32', 'RC33', 'RC34', 'RC34b'])
 				                               )
 			elif event_id != 0 and events is None:
+				title = get_event_title(event_id)
 				return chip_w_context_response(session_id=session_id,
-				                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-				                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
-				                                    '2. Worum geht es genau in der Veranstaltung?\r\n'
-				                                    '3. Wie handhabt ihr Corona?\r\n'
-				                                    '4. Wo und Wann findet sie statt?\r\n',
-				                               chips=['Barrierefreiheit',
-				                                      'Programmtext',
-				                                      'Coronamaßnahmen',
-				                                      'Datum und Ort',
-				                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+											   text=f'Was möchtest du mehr wissen über {title}: \r\n'
+													'1. Ist die Veranstaltung barrierefrei?\r\n'
+													'2. Worum geht es genau in der Veranstaltung?\r\n'
+													'3. Wann genau findet sie statt?\r\n'
+											   		'4. Wo findet sie statt? Wie lange dauert sie?\r\n',
+											   chips=['Barrierefreiheit',
+													  'Programmtext',
+													  'Datum der Veranstaltung',
+													  'Ort und Länge',
+													  'Zeig mir die Veranstaltung auf Sommerblut.de',
 				                                      'Zurück: Ich habe eine Frage'],
 				                               variable_name='event_id',
 				                               variable=event_id,
@@ -650,18 +653,18 @@ this is the main intent switch function. All intents that use the backend must b
 					event_index = next_event_index - 1
 
 				event_id = events[str(event_index)]['id']
-
+				title = get_event_title(event_id)
 				return chip_w_context_response(session_id=session_id,
-				                               text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-				                                    '1. Ist die Veranstaltung barrierefrei?\r\n'
-				                                    '2. Worum geht es genau in der Veranstaltung?\r\n'
-				                                    '3. Wie handhabt ihr Corona?\r\n'
-				                                    '4. Wo und Wann findet sie statt?\r\n',
-				                               chips=['Barrierefreiheit',
-				                                      'Programmtext',
-				                                      'Coronamaßnahmen',
-				                                      'Datum und Ort',
-				                                      'Zeig mir die Veranstaltung auf sommerblut.de',
+											   text=f'Was möchtest du mehr wissen über {title}: \r\n'
+													'1. Ist die Veranstaltung barrierefrei?\r\n'
+													'2. Worum geht es genau in der Veranstaltung?\r\n'
+													'3. Wann genau findet sie statt?\r\n'
+											   		'4. Wo findet sie statt? Wie lange dauert sie?\r\n',
+											   chips=['Barrierefreiheit',
+													  'Programmtext',
+													  'Datum der Veranstaltung',
+													  'Ort und Länge',
+													  'Zeig mir die Veranstaltung auf Sommerblut.de',
 				                                      'Zurück: Veranstaltungs-empfehlungen'],
 				                               variable_name='event_id',
 				                               variable=event_id,
@@ -819,7 +822,7 @@ this is the main intent switch function. All intents that use the backend must b
 				# dgs_videos_chips=make_video_array(['RC34c', 'RC34d', 'RC36'])
 		)
 
-	elif intent_name == 'script.event.details - schedule':
+	elif intent_name == 'script.event.details - durationlocation':
 		event_id = retrieve_event_id(output_contexts)
 		event_count, events, titles, ids = retrieve_found_events(output_contexts=output_contexts)
 		if event_id and events:
@@ -865,6 +868,29 @@ this is the main intent switch function. All intents that use the backend must b
 					# dgs_videos_chips=make_video_array(['AC7']),
 			)
 
+	elif intent_name == 'script.event.details - showSchedule':
+		event_id = int(retrieve_event_id(output_contexts))
+		play_count, plays = get_event_schedule(event_id)
+		event_title = get_event_title(event_id)
+
+		if play_count == 0:
+			return chip_response(text=f'Titel der Veranstaltung: {event_title} \r\n'
+			                          f'Die Veranstaltung ist bereits vorüber.',
+			                     chips=['Zurück zu den Einzelheiten zur Veranstaltung',
+			                            'Zurück zur Übersicht der Veranstaltungen'],
+			                     # dgs_videos_chips=make_video_array(['RC34c', 'RC34b'])
+			                     )
+		return event_schedule_response(play_count,
+		                               plays,
+		                               text=f'Titel der Veranstaltung: {event_title} \r\n',
+		                               chips=['Ich möchte online ein Ticket kaufen',
+		                                      'Ich möchte ein Ticket am Telefon kaufen',
+		                                      'Ich möchte Tickets an der Theaterkasse kaufen',
+		                                      'Zurück zu den Einzelheiten zur Veranstaltung',
+		                                      'Zurück zur Übersicht der Veranstaltungen'],
+		                               # dgs_videos_chips=make_video_array(['RC37', 'RC38', 'RC39', 'RC34c', 'RC34b'])
+		                               )
+
 	elif intent_name == 'script.event.details.showSchedule':
 		event_id = int(retrieve_event_id(output_contexts))
 		play_count, plays = get_event_schedule(event_id)
@@ -900,14 +926,14 @@ this is the main intent switch function. All intents that use the backend must b
 			                                     text=f'Ich habe dir die Veranstaltung {event_title} gefunden.\r\n'
 			                                          'Was möchtest du mehr wissen über die Veranstaltung?\r\n'
 			                                          '1. Ist die Veranstaltung barrierefrei?\r\n'
-			                                          '2. Worum geht es genau in der Veranstaltung? \r\n'
-			                                          '3. Wie handhabt ihr Corona?\r\n'
-			                                          '4. Wo und Wann findet sie statt?\r\n',
-			                                     chips=['Barrierefreiheit',
-			                                            'Programmtext',
-			                                            'Coronamaßnahmen',
-			                                            'Datum und Ort',
-			                                            'Zeig mir die Veranstaltung auf Sommerblut.de',
+													  '2. Worum geht es genau in der Veranstaltung?\r\n'
+													  '3. Wann genau findet sie statt?\r\n'
+											   		  '4. Wo findet sie statt? Wie lange dauert sie?\r\n',
+											   chips=['Barrierefreiheit',
+													  'Programmtext',
+													  'Datum der Veranstaltung',
+													  'Ort und Länge',
+													  'Zeig mir die Veranstaltung auf Sommerblut.de',
 			                                            'Zurück: Ich habe eine Frage'],
 			                                     variable_name='event_id',
 			                                     variable_name_2='events_found',
@@ -968,18 +994,19 @@ this is the main intent switch function. All intents that use the backend must b
 			else:
 				idx = titles.index(event_title)
 				event_id = ids[idx]
+				title = get_event_title(event_id)
 				return chip_w_two_context_response(session_id=session_id,
-				                                   text='Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-				                                        '1. Ist die Veranstaltung barrierefrei?\r\n'
-				                                        '2. Worum geht es genau in der Veranstaltung? \r\n'
-				                                        '3. Wie handhabt ihr Corona?\r\n'
-				                                        '4. Wo und Wann findet sie statt?\r\n',
-				                                   chips=['Barrierefreiheit',
-				                                          'Programmtext',
-				                                          'Coronamaßnahmen',
-				                                          'Datum und Ort',
-				                                          'Zeig mir die Veranstaltung auf Sommerblut.de',
-				                                          'Zurück: Ich habe eine Frage'],
+												   text=f'Was möchtest du mehr wissen über {title}: \r\n'
+														'1. Ist die Veranstaltung barrierefrei?\r\n'
+														'2. Worum geht es genau in der Veranstaltung?\r\n'
+														'3. Wann genau findet sie statt?\r\n'
+											   			'4. Wo findet sie statt? Wie lange dauert sie?\r\n',
+												   chips=['Barrierefreiheit',
+													  	   'Programmtext',
+													  		'Datum der Veranstaltung',
+													  		'Ort und Länge',
+													  		'Zeig mir die Veranstaltung auf Sommerblut.de',
+				                                            'Zurück: Ich habe eine Frage'],
 				                                   variable_name='event_id',
 				                                   variable_name_2='events_found',
 				                                   variable=event_id,
@@ -1157,16 +1184,16 @@ this is the main intent switch function. All intents that use the backend must b
 				                                     text=f'Als nächstes findet {event_title} statt.\r\n'
 				                                          f'Beginn ist {next_date}.\r\n'
 				                                          'Was möchtest du mehr wissen über die Veranstaltung?\r\n'
-				                                          '1. Ist die Veranstaltung barrierefrei?\r\n'
-				                                          '2. Worum geht es genau in der Veranstaltung? \r\n'
-				                                          '3. Wie handhabt ihr Corona?\r\n'
-				                                          '4. Wo und Wann findet sie statt?\r\n',
-				                                     chips=['Barrierefreiheit',
-				                                            'Programmtext',
-				                                            'Coronamaßnahmen',
-				                                            'Datum und Ort',
-				                                            'Zeig mir die Veranstaltung auf Sommerblut.de',
-				                                            'Zurück: Ich habe eine Frage'],
+													      '1. Ist die Veranstaltung barrierefrei?\r\n'
+														  '2. Worum geht es genau in der Veranstaltung?\r\n'
+														  '3. Wann genau findet sie statt?\r\n'
+											   			  '4. Wo findet sie statt? Wie lange dauert sie?\r\n',
+											   		 chips=['Barrierefreiheit',
+													  		'Programmtext',
+													  		'Datum der Veranstaltung',
+													  		'Ort und Länge',
+													  		'Zeig mir die Veranstaltung auf Sommerblut.de',
+				                                      		'Zurück: Veranstaltungs-empfehlungen'],
 				                                     variable_name='event_id',
 				                                     variable_name_2='events_found',
 				                                     variable=event_id,
