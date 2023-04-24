@@ -390,7 +390,8 @@ def give_faq(intent_name):
                             'Wieso gibt es dich?',
                             ]
         chips = random.sample(faq_chatbot_pool, 2)
-        chips.append('Andere Frage zum Chatbot', 'Ich verstehe ein Wort nicht')
+        chips.append('Andere Frage zum Chatbot')
+        chips.append('Ich verstehe ein Wort nicht')
         return chip_response(text='Okay, was willst du über mich wissen?',
                              chips=chips,
                              # dgs_videos_bot=make_video_array(['F3']),

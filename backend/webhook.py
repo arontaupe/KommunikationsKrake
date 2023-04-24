@@ -117,14 +117,14 @@ this is the main intent switch function. All intents that use the backend must b
 
 		while interest_1 == '':
 			return chip_response(text='1. Aussage: \r\n'
-			                          'Menschliche Körper faszinieren mich.',
+			                          'Menschliche Körper faszinieren mich sehr.',
 			                     chips=["Ja", "Nein", "Ist mir egal"],
 			                     # dgs_videos_bot=make_video_array(['A8']),
 			                     # dgs_videos_chips=make_video_array(['AC1', 'AC2', 'AC4'])
 			                     )
 		while interest_2 == '':
 			return chip_w_context_response(text='2. Aussage: \r\n'
-			                                    'Mich interessieren Lebenswege, die nicht ganz normal verlaufen.',
+			                                    'Mich interessieren Lebenswege sehr, die nicht ganz normal verlaufen.',
 			                               chips=["Ja", "Nein", "Ist mir egal"],
 			                               session_id=session_id,
 			                               context='interest_1',
@@ -171,7 +171,7 @@ this is the main intent switch function. All intents that use the backend must b
 			                               )
 		while interest_6 == '':
 			return chip_w_context_response(text='6. Aussage: \r\n'
-			                                    'Ich interessiere mich für die Frage:\r\n'
+			                                    'Ich möchte etwas sehen, dass aktuelle Fragen behandelt:\r\n'
 			                                    'Welche Themen sind in unserer Gesellschaft gerade wichtig? \r\n'
 			                                    'Worüber wird gerade gesprochen?',
 			                               chips=["Ja", "Nein", "Ist mir egal"],
@@ -1165,10 +1165,11 @@ this is the main intent switch function. All intents that use the backend must b
 		return chip_response(
 				text='Alles klar.\r\n '
 				     'Beim Sommerblut gibt es ganz unterschiedliche Veranstaltungen.\r\n'
-				     'Im Jahr 2022 war unser Motto "Mach mal neu".\r\n'
-				     'Soll ich dir dazu mehr erzählen?',
-				chips=['Video: Thema 2022: "Mach mal Neu"',
-				       'Nein, weiter zur Veranstaltungsberatung'],
+				     'Dieses Jahr ist unser Motto "Geh dahin, wo die Angst ist".\r\n',
+				     #'Soll ich dir dazu mehr erzählen?'
+				chips=[
+						#'Video: Thema 2022: "Mach mal Neu"',
+				       'Weiter zur Veranstaltungsberatung'],
 				# # dgs_videos_bot=make_video_array(['A4']),
 				# # dgs_videos_chips=make_video_array(['RC11', 'RC12'])
 		)
@@ -1211,3 +1212,11 @@ this is the main intent switch function. All intents that use the backend must b
 			                            'Team von Ällei kontaktieren'],
 			                     # dgs_videos_chips=make_video_array(['F2']),
 			                     )
+
+
+#event_count, events, titles, ids = get_full_event_list(page=1, entries=50)
+#event_list = list(events.values())
+#events = dict(zip(list(range(len(event_list))), event_list))
+#interests = get_full_event_list(accessibility=None, page=1, entries=10)
+#print(order_events_by_interest(["Ja","Ja","Ja","Ist mir egal","Ist mir egal",0,0,0,0], events, 22))
+

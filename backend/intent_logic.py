@@ -208,15 +208,24 @@ def order_events_by_interest(interests, events=None, event_count=None):
                     elif interest == 'FUNNY':
                         event_interests[8] = 1
 
-            for j in user_interests:
+            #for j in user_interests:
+            print(user_interests)
+            print(event_interests)
+            for j in range(len(user_interests)):
                 if user_interests[j] == event_interests[j]:
-                    score += 2
+                    #print("Treffer" + str(j))
+                    if j == 7:
+                       score += 4
+                    else:
+                       score += 2
                 elif user_interests[j] == 2:
                     score += 1
                 else:
                     score -= 1
+                    #print("Kein Treffer" + str(j))
             # store each interest ranking score in the list, for future reference
             events[i]['interest_ranking'] = score
+            print(score)
         # the actual sorting, the highest ranking first
         events = dict(sorted(events.items(), key=lambda x: x[1]['interest_ranking'], reverse=True))
         # rename keys
