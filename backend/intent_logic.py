@@ -81,7 +81,7 @@ def show_full_event_list(output_contexts, session_id, random_order=False):
     :return:
     """
     event_count, events, titles, ids = retrieve_found_events(output_contexts)
-    print(f'{event_count=}')
+    #print(f'{event_count=}') Was machte das??
 
     if events is None or event_count == 0:
         return chip_response(text='Ich habe leider keine Events gefunden',

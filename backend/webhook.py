@@ -160,7 +160,8 @@ this is the main intent switch function. All intents that use the backend must b
 			                               )
 		while interest_5 == '':
 			return chip_w_context_response(text='5. Aussage: \r\n'
-			                                    'Ich sehne mich nach einer guten Zukunft.',
+			                                    'Mich interessiert, wie wir eine guten Zukunft haben können.\r\n'
+										   		'Also: Was ist unsere Utopie?',
 			                               chips=["Ja", "Nein", "Ist mir egal"],
 			                               session_id=session_id,
 			                               context='interest_4',
