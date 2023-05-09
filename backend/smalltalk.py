@@ -1,7 +1,6 @@
 import random
 
 from response_func import chip_response, button_response
-from video_builder import make_video_array
 
 
 def give_smalltalk(intent_name):
@@ -13,7 +12,7 @@ def give_smalltalk(intent_name):
                                     'Team von Ällei kontaktieren'],
                              # dgs_videos_chips=make_video_array(['AC7', 'RC3', 'Feedback1'])
                              )
-    
+
     elif intent_name == 'smalltalk.agent.answer_my_question':
         return chip_response(text='Ich kann mich manchmal nicht gut erinnern. \r\n'
                                   'Ich habe vergessen, was du möchtest\r\n'

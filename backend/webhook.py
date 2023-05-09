@@ -622,8 +622,6 @@ this is the main intent switch function. All intents that use the backend must b
 				                               variable_name='event_id',
 				                               variable=event_id,
 				                               context='event_id',
-				                               # dgs_videos_bot=make_video_array(['AC20']),
-				                               # dgs_videos_chips=make_video_array(['RC30', 'RC31', 'RC32', 'RC33', 'RC34', 'RC34b'])
 				                               )
 			elif event_id != 0 and events is None:
 				title = get_event_title(event_id)
@@ -642,8 +640,6 @@ this is the main intent switch function. All intents that use the backend must b
 				                               variable_name='event_id',
 				                               variable=event_id,
 				                               context='event_id',
-				                               # dgs_videos_bot=make_video_array(['AC20']),
-				                               # dgs_videos_chips=make_video_array(['RC30', 'RC31', 'RC32', 'RC33', 'RC34', 'RC34b'])
 				                               )
 
 			elif events is not None:
@@ -670,8 +666,6 @@ this is the main intent switch function. All intents that use the backend must b
 				                               variable_name='event_id',
 				                               variable=event_id,
 				                               context='event_id',
-				                               # dgs_videos_bot=make_video_array(['AC20']),
-				                               # dgs_videos_chips=make_video_array(['RC30', 'RC31', 'RC32', 'RC33', 'RC34', 'RC34b'])
 				                               )
 			else:
 				return chip_response(

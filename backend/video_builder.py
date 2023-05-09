@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def make_video_array(titles):
     """
     builds a video dict with titles and urls based on the .csv. preserves the order of elements.

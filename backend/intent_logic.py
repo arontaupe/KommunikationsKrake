@@ -1,11 +1,11 @@
 # this document contains all helper functions that are used to calculate responses.
 
+import random
+
 # import the response functionality
 from response_func import chip_response, chip_w_context_response, event_response
 from retrieve_from_gdf import retrieve_event_index, retrieve_found_events
 from sb_db_request import get_accessibility_ids
-from video_builder import make_video_array
-import random
 
 
 def collect_accessibility_needs(parameters, num_contexts, output_contexts, session_id):
@@ -89,7 +89,7 @@ def show_full_event_list(output_contexts, session_id, random_order=False):
 
     event_index = int(retrieve_event_index(output_contexts))
     display_num = 1
-    # Case: Wir sind am ende der Liste
+    # Case: Wir sind am Ende der Liste
     if event_index == event_count:
         next_event_index = 0
         return chip_w_context_response(session_id=session_id,
@@ -112,11 +112,10 @@ def show_full_event_list(output_contexts, session_id, random_order=False):
              'Ich möchte mehr zur Veranstaltung wissen',
              'Schick mir Infos zur Veranstaltung per Mail']
     if event_index == 0:
-        dgs_videos_chips = make_video_array(['RC28', 'RC29'])  # TODO
-    # Case: we are in the middle of the list
+        # Case: we are in the middle of the list
+        pass
     else:
         chips.append('Zeig mir die letzte Empfehlung nochmal')
-        dgs_videos_chips = make_video_array(['RC27', 'RC28', 'RC29'])  # TODO
 
     # Case some random event from the list is required
     if random_order:
