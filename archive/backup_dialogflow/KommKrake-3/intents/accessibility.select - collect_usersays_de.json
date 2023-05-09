@@ -1,0 +1,375 @@
+[
+  {
+    "id": "c3cf9f40-9b27-46b7-90e8-2d303a3c4fe7",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "habe eine Gehbehinderung",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1c2d1d2e-c0d3-4f10-babb-3c941facd02b",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "habe eine Hörbehinderung",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "56c7bb6e-ec59-4a50-95ba-8410b7ed6c64",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "habe eine Sehbehinderung",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fa32cc3b-a743-4333-97b0-0c8ae1e0ff1c",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "suche Veranstaltungen in einfacher Sprache",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 4,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "94a4d223-e627-4669-a65d-930532f01c0c",
+    "data": [
+      {
+        "text": "Ich brauche keine Barrierefreiheit",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 7,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6545ef84-8ac0-485e-bc30-1c1f9d6aa576",
+    "data": [
+      {
+        "text": "Zugänglich ohne intensive sensorische Reizungen",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c5efc4d0-ea70-4cd3-b8df-663bcc341c4a",
+    "data": [
+      {
+        "text": "Zugänglich mit ",
+        "userDefined": false
+      },
+      {
+        "text": "Mobilitätseinschränkungen",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "aaf48591-30f8-42e3-8688-c7c3697f162e",
+    "data": [
+      {
+        "text": "Zugänglich mit Höreinschränkungen",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1e53673e-8d32-4233-a3e6-f0c84a8edfb0",
+    "data": [
+      {
+        "text": "Zugänglich mit Seheinschränkung",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e05cd28f-c0a3-4dd4-ba5d-ee4047fe7562",
+    "data": [
+      {
+        "text": "Zugänglich in einfacher Sprache",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8b3c4a19-1618-4a4a-ac6e-e0da4d8080e4",
+    "data": [
+      {
+        "text": "ja, ich wünsche mir einen ",
+        "userDefined": false
+      },
+      {
+        "text": "Gebärdensprachdolmetscher",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "580c21d1-e0c0-4529-8c58-e8c5454bf6f9",
+    "data": [
+      {
+        "text": "ja, ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": " ich.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "62139e89-a15f-4fe1-8703-56fb8383a438",
+    "data": [
+      {
+        "text": "ja",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f994f480-5d3e-4fc4-86c4-513bb82f5bd9",
+    "data": [
+      {
+        "text": "okay",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a9eead90-2aa8-44d2-bf35-13d8356f465f",
+    "data": [
+      {
+        "text": "einverstanden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9cbd0639-877c-4542-abac-42c7e9418005",
+    "data": [
+      {
+        "text": "ja, ich brauche Unterstützung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e393459d-9faf-495b-92aa-ad8410589288",
+    "data": [
+      {
+        "text": "Ich bin",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "blind",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c7fc9614-4fa9-4177-a954-8778b9593d8b",
+    "data": [
+      {
+        "text": "Ich brauche ",
+        "userDefined": false
+      },
+      {
+        "text": "DGS",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": true
+      },
+      {
+        "text": " Unterstützung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "79887eee-c85c-4d56-9208-3c22cc42f1a3",
+    "data": [
+      {
+        "text": "Hörgeschädigt",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3adcd40b-778b-4355-932f-e94130dcb7e9",
+    "data": [
+      {
+        "text": "Ich sitze",
+        "userDefined": false
+      },
+      {
+        "text": " im ",
+        "userDefined": false
+      },
+      {
+        "text": "Rollstuhl",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "11c68369-6f3a-4a16-bad0-b7ab8ec7aece",
+    "data": [
+      {
+        "text": "Keinen Bedarf angeben",
+        "meta": "@bedarf",
+        "alias": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Ja",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

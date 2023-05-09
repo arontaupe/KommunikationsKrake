@@ -1,0 +1,351 @@
+[
+  {
+    "id": "eb072e5a-c7da-47bb-938d-bc6c54cea4c6",
+    "data": [
+      {
+        "text": "wie ",
+        "userDefined": false
+      },
+      {
+        "text": "jung",
+        "userDefined": false
+      },
+      {
+        "text": " bist du?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8a9be566-df5a-4523-a3b6-30b9f093dcc8",
+    "data": [
+      {
+        "text": "gibt es dich schon lange?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f1dd89f5-d640-414f-85da-708cb3454134",
+    "data": [
+      {
+        "text": "in welchem ",
+        "userDefined": false
+      },
+      {
+        "text": "Jahr",
+        "userDefined": false
+      },
+      {
+        "text": " bist du geboren",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cba9a4ab-0c6a-4e78-aff1-dac9f6192935",
+    "data": [
+      {
+        "text": "Aus welchem Festival bist du hervor gegangen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "36518b89-b0fd-4e99-9b27-da927c94071d",
+    "data": [
+      {
+        "text": "während welcher Zeit wurdest du gemacht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "83193b26-5b0e-4edd-8c36-87fbcde85983",
+    "data": [
+      {
+        "text": "wann wurdest du programmiert",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "58699d57-3f88-48e6-8c9e-c97a7d9178d2",
+    "data": [
+      {
+        "text": "wann wurdest du erstellt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ffc02f28-a921-48c6-a5ba-c5576cd0f0e2",
+    "data": [
+      {
+        "text": "zu welcher Zeit bist du entstanden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "44239c85-bd41-45f9-9e32-5add1cbeb698",
+    "data": [
+      {
+        "text": "seit wann gibt es dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "233f3496-cd4a-4824-92b3-905e991818ca",
+    "data": [
+      {
+        "text": "bist du schon Erwachsen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d8d1df9e-21a5-42d1-960d-feaf8941d64a",
+    "data": [
+      {
+        "text": "Warum bist du in der Probephase",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "19cfc4c6-066e-40b5-a80f-e2826fbfeb55",
+    "data": [
+      {
+        "text": "bist du noch ",
+        "userDefined": false
+      },
+      {
+        "text": "ein Baby",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7a71e880-0146-4000-9865-6827ed8067b3",
+    "data": [
+      {
+        "text": "Geburtsdatum",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d7ae8ce1-e3cb-4bd6-9ad8-f73ddfecc53a",
+    "data": [
+      {
+        "text": "sag mir das Datum an dem du geboren bist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d802a007-3e51-4462-8234-df1c46ed4369",
+    "data": [
+      {
+        "text": "wann feierst du deinen Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "59224bdf-622c-444c-a079-82f05b5736df",
+    "data": [
+      {
+        "text": "wann hat man dich zur Welt gebracht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "54c79282-6374-4609-a7ae-3afb412c04dd",
+    "data": [
+      {
+        "text": "wann bist du zur Welt gekommen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "18e438e1-5eaa-4a03-b755-231118ebb881",
+    "data": [
+      {
+        "text": "dein Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ccd627c4-267b-49eb-bd05-492b4aa46fbe",
+    "data": [
+      {
+        "text": "wann ist dein Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1bc8d6d4-47ac-4006-a637-d935db3226e6",
+    "data": [
+      {
+        "text": "wann hast du Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0c3698ac-9476-472b-8ecf-bc19d7080374",
+    "data": [
+      {
+        "text": "wann feierst du dein Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "12f0c67e-9c84-4b86-b87c-36e93cc0ae72",
+    "data": [
+      {
+        "text": "Datum von deinem Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6ba0d5aa-77b9-403d-8283-578038de229f",
+    "data": [
+      {
+        "text": "wann bist du geboren",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2dbf0f4c-a88b-465f-96bd-ca27f69f7526",
+    "data": [
+      {
+        "text": "wann dein Geburtstag",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1e37dadc-14eb-4730-9884-6416d3c5adea",
+    "data": [
+      {
+        "text": "wann hast du Geburtstagsparty",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

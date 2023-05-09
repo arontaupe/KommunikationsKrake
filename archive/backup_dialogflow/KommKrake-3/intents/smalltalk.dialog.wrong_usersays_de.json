@@ -1,0 +1,132 @@
+[
+  {
+    "id": "290758c4-481d-4572-a943-62e1aa4594e2",
+    "data": [
+      {
+        "text": "das war nicht meine Frage",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "269eb931-71c1-4a59-bb09-84631ab4bc55",
+    "data": [
+      {
+        "text": "falsch",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "922fb778-700d-4c51-9b66-baf2ee35e740",
+    "data": [
+      {
+        "text": "das stimmt nicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1b26d4ee-9bb5-4a01-903f-7c46e7d19074",
+    "data": [
+      {
+        "text": "das ist nicht korrekt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a59b11dc-a577-45b2-a047-373783ae0d34",
+    "data": [
+      {
+        "text": "das ist nicht richtig",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c1c29780-d295-4970-a7db-a21f06b86655",
+    "data": [
+      {
+        "text": "das ist falsch",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e9907ca5-92ca-4dc0-898b-953411084771",
+    "data": [
+      {
+        "text": "es ist falsch",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2762affb-8dd0-40c9-b4a6-5e73ab3d66f9",
+    "data": [
+      {
+        "text": "das ist unkorrekt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9be5fe6e-0a55-46bb-af63-0157416b3612",
+    "data": [
+      {
+        "text": "es ist unkorrekt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0b545e61-1be0-4648-acc1-f550cde7969c",
+    "data": [
+      {
+        "text": "das ist nicht was ich gefragt habe",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

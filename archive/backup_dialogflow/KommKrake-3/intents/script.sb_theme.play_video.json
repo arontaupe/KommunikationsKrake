@@ -1,0 +1,14 @@
+{
+  "id": "9d0b89c0-9900-4689-8efe-4d96462ef36c",
+  "name": "script.sb_theme.play_video",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

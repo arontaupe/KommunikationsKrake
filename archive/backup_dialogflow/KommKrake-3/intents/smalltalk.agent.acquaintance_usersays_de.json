@@ -1,0 +1,158 @@
+[
+  {
+    "id": "1ed26315-8535-4f3d-8fa1-5cfec99fef66",
+    "data": [
+      {
+        "text": "bitte mehr Informationen zu dir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d9e43b2f-673b-4ed0-8e8e-bcdff227f34b",
+    "data": [
+      {
+        "text": "sag mir mehr",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9546b82a-fd26-425f-a39f-26b276633804",
+    "data": [
+      {
+        "text": "erzähl von dir selbst",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "48ad6255-b594-460a-8de0-dad5b874b09e",
+    "data": [
+      {
+        "text": "erzähl etwas von dir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e83f3583-63f7-4127-862f-6467f0b2bf64",
+    "data": [
+      {
+        "text": "mehr über dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "71cbc2e6-212e-45fe-b27d-698a9865334f",
+    "data": [
+      {
+        "text": "ich will mehr über dich wissen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fabb78c5-a1e1-421c-94bf-7ff08d5e11bb",
+    "data": [
+      {
+        "text": "erzähle mir über dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "95ff9d9e-c0d9-4588-94f6-d5c67cc21652",
+    "data": [
+      {
+        "text": "erzähl uns über dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a9ecbe03-9334-4337-ac0d-d8bf3e3f39bf",
+    "data": [
+      {
+        "text": "erzähl mir mehr über dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3d75be1a-5b99-4011-9bd6-62a653a240c8",
+    "data": [
+      {
+        "text": "ich möchte dich besser kennenlernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "513c6429-00a7-41b4-86c4-9f8927522883",
+    "data": [
+      {
+        "text": "beschreibe dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6133c0de-ec01-44c5-9bcb-0801017f4aac",
+    "data": [
+      {
+        "text": "stelle dich vor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

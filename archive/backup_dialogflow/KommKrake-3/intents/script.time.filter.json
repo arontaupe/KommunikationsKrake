@@ -1,0 +1,52 @@
+{
+  "id": "3e2bf904-f7c1-48e5-9025-87691c47f370",
+  "name": "script.time.filter",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "04020081-2610-4db3-a739-a08e735380d7",
+          "name": "num_event_filter",
+          "required": false,
+          "dataType": "@num_event_filter",
+          "value": "$num_event_filter",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "de",
+              "value": "Okay, wie viele Veranstaltungen möchtest du vorgestellt bekommen?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "0238ff0c-b54b-48e9-ab38-d5facb7bc988",
+    "data": [
+      {
+        "text": "ich möchte den chat verlassen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3f1e528f-b0bb-4610-ab9f-6b4ae14251a9",
+    "data": [
+      {
+        "text": "exit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a0d26a52-eceb-46ab-9469-ffa71776280e",
+    "data": [
+      {
+        "text": "auf wiedersehen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "af64166e-e8cc-446b-ac4f-92f0fa32efcd",
+    "data": [
+      {
+        "text": "tschüss",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "945dc26c-e1b4-41a9-9622-bf2f37e41fe9",
+    "data": [
+      {
+        "text": "bye",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8ded70f9-9281-4d1b-ba1b-c693b24a87b9",
+    "data": [
+      {
+        "text": "ciao",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Tschüss",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

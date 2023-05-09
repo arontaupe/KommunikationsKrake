@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1193dc3c-60a6-46eb-b938-6815175b592f",
+    "data": [
+      {
+        "text": "Hast du ",
+        "userDefined": false
+      },
+      {
+        "text": "die CDU",
+        "userDefined": false
+      },
+      {
+        "text": " gewählt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f8a1b845-a0e9-4f22-baf1-32f73b8739b1",
+    "data": [
+      {
+        "text": "Wer",
+        "userDefined": false
+      },
+      {
+        "text": " bekommt deine ",
+        "userDefined": false
+      },
+      {
+        "text": "stimme",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "484f9787-fc1c-40d5-a728-ddaa375f8490",
+    "data": [
+      {
+        "text": "Welche partei wählst du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ed3e4efa-8264-46f4-b9fd-fd6535b8ce6b",
+    "data": [
+      {
+        "text": "Wen",
+        "userDefined": false
+      },
+      {
+        "text": " hast du gewählt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

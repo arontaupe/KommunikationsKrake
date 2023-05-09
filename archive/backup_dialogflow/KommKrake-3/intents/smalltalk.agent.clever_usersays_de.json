@@ -1,0 +1,453 @@
+[
+  {
+    "id": "3d5d38e2-55b8-43fb-8d7c-377d44d7b7de",
+    "data": [
+      {
+        "text": "Hälst du dich für schlau?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8db01fac-b372-4699-9f14-e529a8a82b32",
+    "data": [
+      {
+        "text": "du bist intelligenter als alle anderen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bd72b581-a704-4a02-90ae-6812c55f9721",
+    "data": [
+      {
+        "text": "du hast was im Kopf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ba7b0ccf-cf4c-4bc1-8e7a-29c24142142c",
+    "data": [
+      {
+        "text": "du bist gescheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c7628416-0fa6-4f6d-993b-604fbd8f7d64",
+    "data": [
+      {
+        "text": "ich mag dass du schlau bist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c834e306-2e5b-4e71-a679-46184f8fd718",
+    "data": [
+      {
+        "text": "du hast Köpfchen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2fab14f7-07f1-4c25-be9f-27d8f45e9bf5",
+    "data": [
+      {
+        "text": "du hast was im Köpfchen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d427d7bf-33f9-44ca-90a4-794447bb49c1",
+    "data": [
+      {
+        "text": "mir gefällt dass du klug bist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "51b556e1-8960-4503-85c9-4da014079ef7",
+    "data": [
+      {
+        "text": "ich mag dass du klug bist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b601448b-40d0-43ff-9533-85cb6ce324f0",
+    "data": [
+      {
+        "text": "du bist klüger als die anderen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0b6a690c-fb7b-4ea6-8f78-25a9c02273da",
+    "data": [
+      {
+        "text": "ich merke dass du sehr intelligent bist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "633bca1f-a53d-40b1-ab38-cbcef70ce84a",
+    "data": [
+      {
+        "text": "du hast",
+        "userDefined": true
+      },
+      {
+        "text": " Gehirn",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8bf4a6f2-7c52-4946-9ee4-6804eab2b2ae",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": true
+      },
+      {
+        "text": " klug",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8ffc3483-d5cb-4f7d-9824-4da13f37ab38",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": true
+      },
+      {
+        "text": " schlau",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "61ea7d6c-e4e6-4e8b-a78b-929c94cc8848",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": true
+      },
+      {
+        "text": " geschickt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1c9aa38a-2e29-4523-8e15-8a4b2f1274b8",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": true
+      },
+      {
+        "text": " wirklich klug",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "43d700a9-da9c-436e-8628-7edd709a7ece",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "so",
+        "userDefined": true
+      },
+      {
+        "text": " schlau",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "817b6ed1-ebbb-4ee1-93da-70cc6b6929d3",
+    "data": [
+      {
+        "text": "wie geschickt ",
+        "userDefined": false
+      },
+      {
+        "text": "bist du",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "94e9cacb-03a3-420b-900a-efa358496a9e",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "echt",
+        "userDefined": true
+      },
+      {
+        "text": " gescheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8fa4c39f-137f-4558-82ec-1ff8b498ae74",
+    "data": [
+      {
+        "text": "ich finde dich klug",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7dedd007-6ab1-4c94-b8f9-f460909a3743",
+    "data": [
+      {
+        "text": "ich denke du bist schlau",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ded912d3-9c82-401a-8ca5-2b7736251a30",
+    "data": [
+      {
+        "text": "du hast einen guten Kopf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c172b22b-9581-4de1-b55b-ca8c18f09a84",
+    "data": [
+      {
+        "text": "du bist unglaublich intelligent",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "500e437f-ab09-4230-8a34-e9aa381084cc",
+    "data": [
+      {
+        "text": "du bist intelligent",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6e439dc3-6e5e-4476-ac08-fe1e1618fb02",
+    "data": [
+      {
+        "text": "klug",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "805afe04-e3f1-4359-9c5e-11c53378479c",
+    "data": [
+      {
+        "text": "schlau",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b9c82efd-8f59-454a-991c-636016b4fad3",
+    "data": [
+      {
+        "text": "geschickt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a485fbc5-793c-445a-b1e3-7126e2e34027",
+    "data": [
+      {
+        "text": "gescheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "22e112cc-96c8-479a-94c5-4fbff97e7c61",
+    "data": [
+      {
+        "text": "so klug",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ebdeaad0-6078-407f-a546-afedc2eac5d2",
+    "data": [
+      {
+        "text": "sehr schlau",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1386935a-6f55-4d03-839e-525b59559225",
+    "data": [
+      {
+        "text": "wirklich geschickt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "value": "Ja",
+    "synonyms": [
+      "Ja",
+      "ja",
+      "richtig"
+    ]
+  },
+  {
+    "value": "Nein",
+    "synonyms": [
+      "Nein",
+      "nein"
+    ]
+  },
+  {
+    "value": "Ist mir egal",
+    "synonyms": [
+      "Ist mir egal",
+      "egal",
+      "Egal"
+    ]
+  }
+]

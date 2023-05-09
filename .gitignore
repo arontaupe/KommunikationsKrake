@@ -166,3 +166,9 @@ archive/mail_creds.json
 /archive/openAPI_datenbank_sommerblut.json
 /backend/openAPI_datenbank_sommerblut.yaml
 /backend/sb_db/docs/
+/archive/
+/archive/backup_dialogflow/
+/archive/database/
+/archive/dialogflow_integrated_backend/
+/archive/ibm/
+/archive/unused_intents/

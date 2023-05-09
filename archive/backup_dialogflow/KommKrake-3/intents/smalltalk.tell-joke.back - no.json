@@ -1,0 +1,36 @@
+{
+  "id": "3d7d2378-3187-4b7b-9052-4f66f3413f30",
+  "parentId": "823b4163-0b2a-4d9a-8f80-22aebc15b56b",
+  "rootParentId": "823b4163-0b2a-4d9a-8f80-22aebc15b56b",
+  "name": "smalltalk.tell-joke.back - no",
+  "auto": true,
+  "contexts": [
+    "smalltalktell-joke-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "smalltalktell-joke.smalltalktell-joke-no",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

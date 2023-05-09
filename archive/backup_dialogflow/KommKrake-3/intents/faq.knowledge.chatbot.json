@@ -1,0 +1,14 @@
+{
+  "id": "a09a30e7-baa3-4ca7-a630-f20aeb70ccb9",
+  "name": "faq.knowledge.chatbot",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "731ef603-de3a-4846-ae00-b76795c84488",
+    "data": [
+      {
+        "text": "Muss ",
+        "userDefined": false
+      },
+      {
+        "text": "meine Assistenz",
+        "userDefined": false
+      },
+      {
+        "text": " eintritt zahlen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "db3a4632-262c-4cad-8753-af3e39a94372",
+    "data": [
+      {
+        "text": "ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": " meinen ",
+        "userDefined": false
+      },
+      {
+        "text": "pfleger",
+        "userDefined": false
+      },
+      {
+        "text": " mitbringen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0133def2-6a3a-477b-b9a2-7f7c02711d65",
+    "data": [
+      {
+        "text": "kann meine begleitperson mit?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "332ea056-0430-4858-84c0-adba61293e11",
+    "data": [
+      {
+        "text": "kann ich ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " begleitperson mitbringen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "427c6f0a-6560-4eb6-b4e8-43cfff86f340",
+    "data": [
+      {
+        "text": "Ist meine begleitung ",
+        "userDefined": false
+      },
+      {
+        "text": "gratis",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7b1046a6-de41-445d-a7a7-ba3b0d2d4246",
+    "data": [
+      {
+        "text": "Hat mein assistent freien eintritt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ad574206-b12f-43d8-abf7-f94e3f1c1866",
+    "data": [
+      {
+        "text": "Darf ich ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Assistenz mitbringen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

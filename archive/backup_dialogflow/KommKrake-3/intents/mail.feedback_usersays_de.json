@@ -1,0 +1,164 @@
+[
+  {
+    "id": "c5d63803-e54e-4ef2-af30-55f0f7143c61",
+    "data": [
+      {
+        "text": "Feedback",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b53d499f-769f-4e95-ac92-27f3e5e86406",
+    "data": [
+      {
+        "text": "Feedback zum Bot geben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0bc10db9-3b1d-40be-8791-81de962323b8",
+    "data": [
+      {
+        "text": "Ich will",
+        "userDefined": false
+      },
+      {
+        "text": " dem Team von ",
+        "userDefined": false
+      },
+      {
+        "text": "Ällei",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "was",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "sagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e4f45768-b695-41db-ba7b-162d0dba3a96",
+    "data": [
+      {
+        "text": "Eine",
+        "userDefined": false
+      },
+      {
+        "text": " Mail an ",
+        "userDefined": false
+      },
+      {
+        "text": "Ällei",
+        "userDefined": false
+      },
+      {
+        "text": " senden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cd343a88-552d-4c2a-b1bd-6603eb84d142",
+    "data": [
+      {
+        "text": "Ich möchte",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": false
+      },
+      {
+        "text": " Verbesserungsvorschlag zum Bot senden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "11982473-1f17-4f78-bf90-7cafb02e7d84",
+    "data": [
+      {
+        "text": "Team von ",
+        "userDefined": false
+      },
+      {
+        "text": "Ällei",
+        "userDefined": false
+      },
+      {
+        "text": " kontaktieren",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Tolle",
+        "userDefined": false
+      },
+      {
+        "text": " Website!",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Team von Ällei kontaktieren",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  }
+]

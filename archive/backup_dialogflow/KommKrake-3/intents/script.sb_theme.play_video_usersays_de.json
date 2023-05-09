@@ -1,0 +1,61 @@
+[
+  {
+    "id": "9fa820fe-f27e-4593-b3a0-619452779779",
+    "data": [
+      {
+        "text": "mach mal ",
+        "userDefined": false
+      },
+      {
+        "text": "neu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a0e98154-5ee0-4c37-bc90-6b3c6c338e3f",
+    "data": [
+      {
+        "text": "Was bedeutet \"mach mal ",
+        "userDefined": false
+      },
+      {
+        "text": "neu",
+        "userDefined": false
+      },
+      {
+        "text": "\"",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3b2ac58e-ba30-442c-9070-622492a5e612",
+    "data": [
+      {
+        "text": "Video",
+        "userDefined": false
+      },
+      {
+        "text": ": Mehr zum Thema Mach mal ",
+        "userDefined": false
+      },
+      {
+        "text": "Neu",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

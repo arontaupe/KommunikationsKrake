@@ -1,0 +1,102 @@
+[
+  {
+    "id": "0913a90d-2b52-4fdf-9387-45d7e4282b75",
+    "data": [
+      {
+        "text": "Ich möchte",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "über",
+        "userDefined": false
+      },
+      {
+        "text": " neuigkeiten informiert werden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "051cf86b-35d3-4539-ac9a-fbd4c5a6d44b",
+    "data": [
+      {
+        "text": "Wie ",
+        "userDefined": false
+      },
+      {
+        "text": "kann",
+        "userDefined": false
+      },
+      {
+        "text": " ich mitbekommen wenn es ",
+        "userDefined": false
+      },
+      {
+        "text": "was",
+        "userDefined": false
+      },
+      {
+        "text": " neues gibt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d09d47cb-5fe0-490a-b7aa-6730c50e09a1",
+    "data": [
+      {
+        "text": "habt ihr ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Newsletter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "35a430df-bf68-41e3-ba65-f8191354cfc9",
+    "data": [
+      {
+        "text": "Gibt es ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Email Verteiler?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

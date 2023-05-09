@@ -1,0 +1,77 @@
+[
+  {
+    "id": "f566c7b9-bd40-48e3-8aca-100b14adb1c8",
+    "data": [
+      {
+        "text": "Nur ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " aus der Zukunft",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3aa8930e-887b-4a41-a5f1-b73e2cae754e",
+    "data": [
+      {
+        "text": "Nur Events",
+        "userDefined": false
+      },
+      {
+        "text": ", die noch kommen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7eae3e6d-0523-492b-8eb1-c4cd9557ffd8",
+    "data": [
+      {
+        "text": "Nur zukünftige ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir alle zukünftigen ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,89 @@
+[
+  {
+    "value": "kein Bedarf",
+    "synonyms": [
+      "Kein spezieller",
+      "Ohne",
+      "kein",
+      "Keinen Bedarf angeben",
+      "Ich brauche keine Barrierefreiheit"
+    ]
+  },
+  {
+    "value": "leichte Sprache",
+    "synonyms": [
+      "einfacher Sprache",
+      "Einfacher Sprache",
+      "Einfache Sprache",
+      "kurze Sätze",
+      "Zugänglich in einfacher Sprache",
+      "Ich suche Veranstaltungen in einfacher Sprache"
+    ]
+  },
+  {
+    "value": "Höreinschränkung",
+    "synonyms": [
+      "Höreinschränkungen",
+      "taub",
+      "kann nichts hören",
+      "DGS Unterstützung",
+      "deutsche Gebärdensprache",
+      "DGS Dolmetscher",
+      "Zugänglich mit Höreinschränkungen",
+      "Übertitel",
+      "Untertitel",
+      "Text mitlesen",
+      "Hörgeschädigt",
+      "Gebärdensprachdolmetscher",
+      "DGS",
+      "Ich habe eine Hörbehinderung"
+    ]
+  },
+  {
+    "value": "Mobilitätseinschränkung",
+    "synonyms": [
+      "Mobilitätseinschränkungen",
+      "kann schlecht laufen",
+      "Aufzug",
+      "ebenerdig",
+      "wenig Stufen",
+      "wenig laufen",
+      "kurze Wege",
+      "eingeschränkte Mobilität",
+      "nicht laufen",
+      "nicht gehen",
+      "Rollstuhl",
+      "Ich sitze im Rollstuhl",
+      "Ich habe eine Gehbehinderung"
+    ]
+  },
+  {
+    "value": "Visuelle Einschränkung",
+    "synonyms": [
+      "Sehschwäche",
+      "Brille",
+      "kurzsichtig",
+      "schlecht sehen",
+      "Zugänglich mit Seheinschränkung",
+      "blind",
+      "nichts sehen",
+      "keine Sicht",
+      "Ich muss alles fühlen",
+      "Seheinschränkung",
+      "Ich habe eine Sehbehinderung"
+    ]
+  },
+  {
+    "value": "begrenzte Reize",
+    "synonyms": [
+      "Zugänglich ohne intensive sensorische Reizungen",
+      "stroboskop",
+      "lichteffekte",
+      "laut",
+      "störgeräusche",
+      "viele Menschen",
+      "Reizeinschränkung",
+      "Ich suche eine Veranstaltung ohne schnelle, blinkende Lichter. Und ohne laute, plötzliche Geräusche."
+    ]
+  }
+]

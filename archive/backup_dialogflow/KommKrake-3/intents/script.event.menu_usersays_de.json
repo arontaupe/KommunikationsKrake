@@ -1,0 +1,245 @@
+[
+  {
+    "id": "c626ac9e-cf0b-479a-80f0-5f29cff592c6",
+    "data": [
+      {
+        "text": "Zurück zur Übersicht ",
+        "userDefined": false
+      },
+      {
+        "text": "der Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dce1199e-7164-4156-aae9-3d98d354a3f8",
+    "data": [
+      {
+        "text": "Zurück: Veranstaltungs-empfehlungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "607fad60-257e-46d3-a9ca-7ef28be2230e",
+    "data": [
+      {
+        "text": "Gib",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " weitere Empfehlung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b93ea3f6-431e-4f25-a94a-622065d170b5",
+    "data": [
+      {
+        "text": "Nein: alle Empfehlungen anzeigen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 10,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8cfefeca-f7ce-46d0-9c02-70bdce82c07c",
+    "data": [
+      {
+        "text": "Zurück: Veranstaltungsübersicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7708d75f-fc1a-4dfb-b05c-660f94a0206e",
+    "data": [
+      {
+        "text": "zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir das nächste event",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "777f8109-625b-49e2-8a36-3a382faeed41",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir die nächsten Events",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "72efbfcc-aff8-4f8e-bb7d-1227438e4fbe",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "die Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " noch einmal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1c383d45-7e7e-4433-ba74-ea56902a1cd0",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "die Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "08c4306d-1dae-4717-90c8-219000485b30",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir die ausgewählten ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bc0edfdc-4b89-4c1d-8cca-8e83b161184c",
+    "data": [
+      {
+        "text": "Weiter: Veranstaltungsselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1ba13bd3-a9a9-4da0-b01c-e3871fa336c1",
+    "data": [
+      {
+        "text": "Gib",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " weitere Empfehlung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 8,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "84b16db4-ce37-4413-ab0b-1fe353c1d4fc",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir alle ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

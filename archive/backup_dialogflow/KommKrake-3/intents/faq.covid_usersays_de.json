@@ -1,0 +1,190 @@
+[
+  {
+    "id": "6d87fe27-b471-40b7-b546-f4a2a522c931",
+    "data": [
+      {
+        "text": "umgang mit covid",
+        "userDefined": false
+      },
+      {
+        "text": "-19",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "944b4222-3a6d-47ff-82da-299d70642482",
+    "data": [
+      {
+        "text": "wie ",
+        "userDefined": false
+      },
+      {
+        "text": "geht",
+        "userDefined": false
+      },
+      {
+        "text": " ihr mit ",
+        "userDefined": false
+      },
+      {
+        "text": "corona",
+        "userDefined": false
+      },
+      {
+        "text": " um?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b005594c-0fa6-48ae-ae7f-ec3cec8e0b94",
+    "data": [
+      {
+        "text": "wie handhabt ihr ",
+        "userDefined": false
+      },
+      {
+        "text": "corona",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b5bb0726-ad42-4a3e-b8c1-229b45a17846",
+    "data": [
+      {
+        "text": "soll ich ",
+        "userDefined": false
+      },
+      {
+        "text": "mich",
+        "userDefined": false
+      },
+      {
+        "text": " testen lassen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "00bc4a39-cede-4759-8463-1eb3fa114693",
+    "data": [
+      {
+        "text": "Muss ich",
+        "userDefined": false
+      },
+      {
+        "text": " getestet ",
+        "userDefined": false
+      },
+      {
+        "text": "sein",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "df8bfa77-88da-409c-92ed-58fc4a81bb57",
+    "data": [
+      {
+        "text": "Muss ich eine",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Maske",
+        "userDefined": false
+      },
+      {
+        "text": " tragen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8da623b9-6b68-43b7-9cb9-2f4723b86ee1",
+    "data": [
+      {
+        "text": "Ich möchte",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "mich",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "nicht",
+        "userDefined": false
+      },
+      {
+        "text": " anstecken",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "af294f1f-02ab-44fe-9e78-6012f3bf2230",
+    "data": [
+      {
+        "text": "Ich habe Angst vor ",
+        "userDefined": false
+      },
+      {
+        "text": "Corona",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

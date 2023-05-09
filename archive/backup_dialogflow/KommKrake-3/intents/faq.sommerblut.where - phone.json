@@ -1,0 +1,36 @@
+{
+  "id": "a778fb44-a69d-403a-ba54-88ad00cb98b5",
+  "parentId": "ef83b7ed-380a-4481-a460-2d88d4ac8af6",
+  "rootParentId": "ef83b7ed-380a-4481-a460-2d88d4ac8af6",
+  "name": "faq.sommerblut.where - phone",
+  "auto": true,
+  "contexts": [
+    "faqsommerblutwhere-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "faqsommerblutwhere.faqsommerblutwhere-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

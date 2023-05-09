@@ -1,0 +1,67 @@
+[
+  {
+    "id": "082b9c29-044f-4d06-847c-8ea88ca25dc0",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " wissen",
+        "userDefined": false
+      },
+      {
+        "text": ", wer",
+        "userDefined": false
+      },
+      {
+        "text": " verantwortlich ist",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0bc16bda-f613-407b-ac0c-a118884cec22",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " bestimmte person sprechen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "750ead4e-0626-438c-948b-000c4b8aae3a",
+    "data": [
+      {
+        "text": "Direkter Kontakt zum Team",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

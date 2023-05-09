@@ -1,0 +1,96 @@
+[
+  {
+    "id": "0f217b3b-fff9-4637-8a63-543f41eeab30",
+    "data": [
+      {
+        "text": "gib",
+        "userDefined": false
+      },
+      {
+        "text": " mir die letzte Empfehlung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "512c896c-d9f3-4020-940f-8779bf25d9d6",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir die letzte Empfehlung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3ef0d838-f48b-4803-b6e4-51e29c4330de",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir die letzte Empfehlung nochmal",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 4,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "680d9462-ef5e-4c9b-ab8c-05238e80aecb",
+    "data": [
+      {
+        "text": "zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir die letzte Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5558bbf6-9134-449f-a2e3-0bf22470c990",
+    "data": [
+      {
+        "text": "zurück zur letzten Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "70549298-8a63-4b2f-8b01-e0e28e5e9426",
+    "data": [
+      {
+        "text": "zeig mir das letzte Event",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

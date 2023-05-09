@@ -1,0 +1,142 @@
+[
+  {
+    "id": "3d61cad8-3321-4c5b-af13-70621d962dfa",
+    "data": [
+      {
+        "text": "Wo werden meine Daten gespeichert",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "110c77f9-e9e8-47ad-b167-7b0b52399088",
+    "data": [
+      {
+        "text": "Wie werden meine Daten verarbeitet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9531e3cd-37c1-4a1e-8023-62813ea34e33",
+    "data": [
+      {
+        "text": "Datenschutz",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5dcc20ac-87b8-44c9-b2a2-cb3f2b24786e",
+    "data": [
+      {
+        "text": "Wie ",
+        "userDefined": false
+      },
+      {
+        "text": "sind",
+        "userDefined": false
+      },
+      {
+        "text": " meine Daten geschützt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "425d4b8e-7e36-46cd-910e-c0217b1cbab7",
+    "data": [
+      {
+        "text": "Angaben",
+        "userDefined": false
+      },
+      {
+        "text": " zum Datenschutz",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8d30feb0-7e3d-4db4-81dc-57fba919dd90",
+    "data": [
+      {
+        "text": "wie funktioniert ",
+        "userDefined": false
+      },
+      {
+        "text": "dein",
+        "userDefined": false
+      },
+      {
+        "text": " Datenschutz?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "976364d8-859f-47ac-825e-eaa2b1603dab",
+    "data": [
+      {
+        "text": "Wer",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "sieht meine",
+        "userDefined": false
+      },
+      {
+        "text": " Daten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8ce2ee5c-bb80-407e-ac8e-e40a1a3c253e",
+    "data": [
+      {
+        "text": "Was",
+        "userDefined": false
+      },
+      {
+        "text": " passiert mit meinen Daten?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

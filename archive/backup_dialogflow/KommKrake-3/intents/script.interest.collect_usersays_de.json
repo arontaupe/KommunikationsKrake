@@ -1,0 +1,110 @@
+[
+  {
+    "id": "684f1d36-c48e-4fff-afb2-4451a3f55497",
+    "data": [
+      {
+        "text": "Weiter zu den Fragen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5574f4b6-68d7-437f-8755-f303038a39c4",
+    "data": [
+      {
+        "text": "Weiter: Frage ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "62608e81-b2f7-4bbf-9198-67a59f2b3e3f",
+    "data": [
+      {
+        "text": "Weiter: Frage ",
+        "userDefined": false
+      },
+      {
+        "text": "4",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a2ee0771-cbeb-44f7-ab53-5515301def33",
+    "data": [
+      {
+        "text": "Weiter: Frage ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a75e5229-080f-414b-94a8-d8c596530112",
+    "data": [
+      {
+        "text": "Weiter: Frage ",
+        "userDefined": false
+      },
+      {
+        "text": "2",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f7446f69-c2ab-4088-ab73-418b158fa82d",
+    "data": [
+      {
+        "text": "Weiter: Frage ",
+        "userDefined": false
+      },
+      {
+        "text": "1",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  }
+]

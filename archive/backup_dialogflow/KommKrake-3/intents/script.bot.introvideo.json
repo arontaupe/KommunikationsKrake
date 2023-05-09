@@ -1,0 +1,39 @@
+{
+  "id": "5fcd78b4-1bf1-4beb-af75-b2c54fe72216",
+  "name": "script.bot.introvideo",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "d0f0428c-8ef5-4de9-944b-fa3d8bfa13fe",
+          "name": "ls_video",
+          "required": false,
+          "dataType": "@ls_video",
+          "value": "$ls_video",
+          "defaultValue": "NEIN",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": true,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

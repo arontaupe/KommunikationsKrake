@@ -1,0 +1,9 @@
+{
+  "id": "a8aea152-95bc-4ae5-a6f5-68412cadcbde",
+  "name": "num_next_days_filter",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}

@@ -1,0 +1,14 @@
+{
+  "id": "f4d4736f-bb06-4ac8-bd6f-eb27222a1491",
+  "name": "script.sb_intro",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

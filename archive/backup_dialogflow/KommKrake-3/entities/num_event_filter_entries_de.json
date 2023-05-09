@@ -1,0 +1,57 @@
+[
+  {
+    "value": "1",
+    "synonyms": [
+      "1",
+      "eine",
+      "ein",
+      "morgen"
+    ]
+  },
+  {
+    "value": "2",
+    "synonyms": [
+      "2",
+      "zwei",
+      "das Wochenende",
+      "übermorgen"
+    ]
+  },
+  {
+    "value": "3",
+    "synonyms": [
+      "3",
+      "drei"
+    ]
+  },
+  {
+    "value": "4",
+    "synonyms": [
+      "4",
+      "vier"
+    ]
+  },
+  {
+    "value": "5",
+    "synonyms": [
+      "5",
+      "fünf",
+      "arbeitswoche"
+    ]
+  },
+  {
+    "value": "6",
+    "synonyms": [
+      "6",
+      "sechs"
+    ]
+  },
+  {
+    "value": "7",
+    "synonyms": [
+      "7",
+      "sieben",
+      "ganze woche"
+    ]
+  }
+]

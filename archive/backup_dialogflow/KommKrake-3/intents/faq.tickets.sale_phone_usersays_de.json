@@ -1,0 +1,96 @@
+[
+  {
+    "id": "3dc1b9f6-aff6-4458-aae0-62b8bc55ed5b",
+    "data": [
+      {
+        "text": "telefonbestellung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f0e4bd39-8aae-40ef-9828-a94cf2ecb6b9",
+    "data": [
+      {
+        "text": "gibt es tickets am telefon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ae01ace6-2a58-48e1-86bd-a8eb4febd209",
+    "data": [
+      {
+        "text": "telefonisch tickets kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "13ca9c8e-a7f4-4509-93f2-f43a870ac321",
+    "data": [
+      {
+        "text": "karten",
+        "userDefined": false
+      },
+      {
+        "text": " am telefon bestellen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6e5f155c-d949-458e-82b8-4d9a1ea25bbd",
+    "data": [
+      {
+        "text": "karten",
+        "userDefined": false
+      },
+      {
+        "text": " am telefon ",
+        "userDefined": false
+      },
+      {
+        "text": "kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "50c9a2db-fea9-44f6-b5cf-eb03a3284b35",
+    "data": [
+      {
+        "text": "Tickets via Telefon ",
+        "userDefined": false
+      },
+      {
+        "text": "kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

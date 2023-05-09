@@ -1,0 +1,51 @@
+{
+  "id": "310462ff-0556-4ab3-8d29-f8507da03af6",
+  "parentId": "972af9cf-77bb-4878-9fc9-759d46cc007f",
+  "rootParentId": "972af9cf-77bb-4878-9fc9-759d46cc007f",
+  "name": "feedback.sb.bad - phone",
+  "auto": true,
+  "contexts": [
+    "feedbacksbbad-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "feedbacksbbad.feedbacksbbad-custom",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "1a070959-1dc0-4395-91ad-58792f5be278",
+          "name": "number",
+          "required": false,
+          "dataType": "@sys.number",
+          "value": "$number",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

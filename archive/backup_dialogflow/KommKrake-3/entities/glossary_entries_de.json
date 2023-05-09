@@ -1,0 +1,315 @@
+[
+  {
+    "value": "Ableismus",
+    "synonyms": [
+      "Ableismus",
+      "ableism"
+    ]
+  },
+  {
+    "value": "ÄLLEI",
+    "synonyms": [
+      "ÄLLEI / a11y",
+      "allei",
+      "ällei",
+      "a11y",
+      "ÄLLEI"
+    ]
+  },
+  {
+    "value": "DGS",
+    "synonyms": [
+      "DGS",
+      "deutsche gebärdensprache",
+      "Gebärdensprache"
+    ]
+  },
+  {
+    "value": "agender",
+    "synonyms": [
+      "Agender/ Asexual/ Aromantic",
+      "agender"
+    ]
+  },
+  {
+    "value": "CIS",
+    "synonyms": [
+      "Cis / cis-gender",
+      "cis-person",
+      "cis",
+      "CIS",
+      "cisgender",
+      "cis-mann",
+      "cis-frau",
+      "cis-gender"
+    ]
+  },
+  {
+    "value": "Digitale Teilhabe",
+    "synonyms": [
+      "Digitale Teilhabe",
+      "Teilhabe",
+      "kulturelle Teilhabe"
+    ]
+  },
+  {
+    "value": "Drag",
+    "synonyms": [
+      "Drag",
+      "drag-king",
+      "dragking",
+      "dragqueen",
+      "drag-queen"
+    ]
+  },
+  {
+    "value": "Empowerment",
+    "synonyms": [
+      "Empowerment",
+      "Bestärkung"
+    ]
+  },
+  {
+    "value": "FLINTA*",
+    "synonyms": [
+      "FINTA / FLINTA*",
+      "Flint",
+      "Flinta",
+      "Finta"
+    ]
+  },
+  {
+    "value": "Gender",
+    "synonyms": [
+      "Gender",
+      "Geschlecht"
+    ]
+  },
+  {
+    "value": "Inklusion",
+    "synonyms": [
+      "Inklusion"
+    ]
+  },
+  {
+    "value": "Inter*",
+    "synonyms": [
+      "Inter*"
+    ]
+  },
+  {
+    "value": "Konsens",
+    "synonyms": [
+      "Konsens / consent",
+      "Konsenz",
+      "Consent",
+      "Einverständnis"
+    ]
+  },
+  {
+    "value": "LGBTQIA*+",
+    "synonyms": [
+      "LGBTQ / LGBTQIA*+",
+      "lesbisch",
+      "gay",
+      "bisexuell",
+      "transsexuell",
+      "lgbtq",
+      "lgbtqia"
+    ]
+  },
+  {
+    "value": "mixed-abled",
+    "synonyms": [
+      "mixed-abled"
+    ]
+  },
+  {
+    "value": "Multipolar",
+    "synonyms": [
+      "Multipolar"
+    ]
+  },
+  {
+    "value": "Open Mic Event",
+    "synonyms": [
+      "Open Mic Event",
+      "Offenes Mikrofon"
+    ]
+  },
+  {
+    "value": "queer",
+    "synonyms": [
+      "queer",
+      "quer"
+    ]
+  },
+  {
+    "value": "Totentanz",
+    "synonyms": [
+      "Totentanz"
+    ]
+  },
+  {
+    "value": "Touch-Tour",
+    "synonyms": [
+      "Touch-Tour",
+      "Blindenführung"
+    ]
+  },
+  {
+    "value": "Visual Vernacular",
+    "synonyms": [
+      "Visual Vernacular",
+      "Visuelle Umgangssprache"
+    ]
+  },
+  {
+    "value": "Awareness",
+    "synonyms": [
+      "Awareness",
+      "awareness-arbeit",
+      "awareness"
+    ]
+  },
+  {
+    "value": "binäres Geschlechtermodell",
+    "synonyms": [
+      "binär",
+      "binäres Geschlechtermodell",
+      "binäre Matrix"
+    ]
+  },
+  {
+    "value": "BiPoC",
+    "synonyms": [
+      "BiPoC",
+      "PoC",
+      "People of Color",
+      "Black, Indigenous and People of Color",
+      "Indigenous"
+    ]
+  },
+  {
+    "value": "Genderfluid",
+    "synonyms": [
+      "Genderfluid"
+    ]
+  },
+  {
+    "value": "Geschlechtsidentität",
+    "synonyms": [
+      "Geschlechtsidentität"
+    ]
+  },
+  {
+    "value": "Intersektional",
+    "synonyms": [
+      "Intersektional",
+      "intersectional"
+    ]
+  },
+  {
+    "value": "Lecture-Performance",
+    "synonyms": [
+      "Lecture-Performance"
+    ]
+  },
+  {
+    "value": "Live-Art",
+    "synonyms": [
+      "Live-Art"
+    ]
+  },
+  {
+    "value": "Misogynie",
+    "synonyms": [
+      "Misogynie",
+      "misogyn",
+      "misogynist"
+    ]
+  },
+  {
+    "value": "Patriarchat",
+    "synonyms": [
+      "Patriarchat",
+      "patriarchy",
+      "patriarchal"
+    ]
+  },
+  {
+    "value": "Performance-Intervention",
+    "synonyms": [
+      "Performance-Intervention"
+    ]
+  },
+  {
+    "value": "safer space",
+    "synonyms": [
+      "safer space",
+      "safespace",
+      "bravespace",
+      "schutzraum",
+      "braver space"
+    ]
+  },
+  {
+    "value": "sex-positiver Raum",
+    "synonyms": [
+      "sex-positiver Raum",
+      "sex-positiver Bereich",
+      "sex-positive",
+      "sex-positivity",
+      "sexpositive"
+    ]
+  },
+  {
+    "value": "Transgender",
+    "synonyms": [
+      "Transgender",
+      "transsexuell",
+      "trans",
+      "trans*",
+      "transsexualität",
+      "trans-gender",
+      "trans-sexuell"
+    ]
+  },
+  {
+    "value": "Walk \u0026 Talk",
+    "synonyms": [
+      "Walk \u0026 Talk"
+    ]
+  },
+  {
+    "value": "asexuell",
+    "synonyms": [
+      "asexual"
+    ]
+  },
+  {
+    "value": "aromantisch",
+    "synonyms": [
+      "aromantisch",
+      "aromantic"
+    ]
+  },
+  {
+    "value": "Bodyism",
+    "synonyms": [
+      "Bodyism"
+    ]
+  },
+  {
+    "value": "Bodyshaming",
+    "synonyms": [
+      "Bodyshaming"
+    ]
+  },
+  {
+    "value": "Misogynie",
+    "synonyms": [
+      "Misogynie"
+    ]
+  }
+]

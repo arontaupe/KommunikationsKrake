@@ -1,0 +1,71 @@
+[
+  {
+    "id": "84089d93-99c1-414c-a758-0669de59aeaf",
+    "data": [
+      {
+        "text": "Wo und wann gibt es die veranstaltung?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "088e86ff-c3e2-421a-845f-a12a97121b59",
+    "data": [
+      {
+        "text": "wann gibt es die veranstaltung?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6a79023b-9e83-47e9-bed5-14f9860a61ce",
+    "data": [
+      {
+        "text": "wann wird die veranstaltung gespielt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "64864173-a093-4f97-8bff-99fe7d0fffa3",
+    "data": [
+      {
+        "text": "Spieltermine der Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bd0ef3ac-61ac-4907-8da3-25380e683a7a",
+    "data": [
+      {
+        "text": "Datum und ",
+        "userDefined": false
+      },
+      {
+        "text": "Ort",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  }
+]

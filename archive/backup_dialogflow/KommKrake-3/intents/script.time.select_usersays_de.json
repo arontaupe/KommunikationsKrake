@@ -1,0 +1,114 @@
+[
+  {
+    "id": "076e4e84-3f45-4a7f-97d5-d29524907c63",
+    "data": [
+      {
+        "text": "Finde mehr Veranstaltungstipps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "10d104c1-04f9-4400-82b6-735df2ddd82a",
+    "data": [
+      {
+        "text": "Such mir mehr Veranstaltungstipps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8b27ecb7-db21-4997-af31-a92a9b6e7849",
+    "data": [
+      {
+        "text": "Weiter zum Veranstaltungstipp",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "05997d3e-f5c2-4c87-a315-dc6427871895",
+    "data": [
+      {
+        "text": "Weiter zu den Veranstaltungstipps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8917bcea-ce9b-4ce5-bb60-5424bb956691",
+    "data": [
+      {
+        "text": "Weiter: Zeitselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9c6c7ec3-2c67-418f-94ec-15e297ac158d",
+    "data": [
+      {
+        "text": "Zeitselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f69511a4-7b72-4656-995a-ea9fbff50c16",
+    "data": [
+      {
+        "text": "Weiter zu ",
+        "userDefined": false
+      },
+      {
+        "text": "den",
+        "userDefined": false
+      },
+      {
+        "text": " Veranstaltungstipps",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 13,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0de800f1-af95-4613-90c9-4e9d2ecd0c95",
+    "data": [
+      {
+        "text": "zeitselector",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

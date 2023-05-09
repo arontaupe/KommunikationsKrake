@@ -1,0 +1,14 @@
+{
+  "id": "c653e04f-e838-48af-aaa7-4e3eebdd790c",
+  "name": "script.main_menu",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

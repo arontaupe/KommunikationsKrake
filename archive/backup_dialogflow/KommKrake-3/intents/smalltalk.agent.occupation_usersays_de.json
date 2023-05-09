@@ -1,0 +1,425 @@
+[
+  {
+    "id": "c2817deb-da1d-4bac-a22d-8b8898284d22",
+    "data": [
+      {
+        "text": "hast",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "guten",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Job",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c73b03cd-6fc7-4b6b-b29f-8271736d1b0a",
+    "data": [
+      {
+        "text": "was bist ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "von",
+        "userDefined": true
+      },
+      {
+        "text": " Beruf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "95b2c7a8-f99f-49ae-a0fe-2c8a7a1ce223",
+    "data": [
+      {
+        "text": "Beruf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "68c430ec-8117-4fec-80c6-8f84a34847a9",
+    "data": [
+      {
+        "text": "was machst du beruflich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ca8faaad-b3c7-4284-87a9-baeee30aa003",
+    "data": [
+      {
+        "text": "was ",
+        "userDefined": false
+      },
+      {
+        "text": "ist",
+        "userDefined": true
+      },
+      {
+        "text": " dein Beruf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99162881-0c0c-4478-b623-5679a112bfc2",
+    "data": [
+      {
+        "text": "als was arbeitest du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f881eeca-6cc8-4bbf-be4d-3a178c813007",
+    "data": [
+      {
+        "text": "was ",
+        "userDefined": false
+      },
+      {
+        "text": "ist",
+        "userDefined": true
+      },
+      {
+        "text": " dein Job",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "70697028-2cb8-4185-9f14-3a6033c0c0f5",
+    "data": [
+      {
+        "text": "wo ",
+        "userDefined": false
+      },
+      {
+        "text": "hast",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " gearbeitet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0390c4d0-4e29-4e55-a284-d0f91000a6f3",
+    "data": [
+      {
+        "text": "wo arbeitest ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "71207230-9cca-47b1-a17f-449b9cd00629",
+    "data": [
+      {
+        "text": "arbeitest du hier oder woanders",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a89c58cd-5a87-4b04-862e-8ba00537ce22",
+    "data": [
+      {
+        "text": "wo arbeitest ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8dd312c3-02d8-42ff-8b9b-fc7fb1261ff0",
+    "data": [
+      {
+        "text": "sag ",
+        "userDefined": false
+      },
+      {
+        "text": "mir",
+        "userDefined": true
+      },
+      {
+        "text": " bitte ",
+        "userDefined": false
+      },
+      {
+        "text": "als",
+        "userDefined": true
+      },
+      {
+        "text": " was ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " arbeiterst",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fd523a05-e1a1-4fd0-962c-752b3cbd1df3",
+    "data": [
+      {
+        "text": "als",
+        "userDefined": true
+      },
+      {
+        "text": " was arbeitest ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ea530b66-910b-4202-a3fe-8c3e53de5e08",
+    "data": [
+      {
+        "text": "was machst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "um",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Geld",
+        "userDefined": true
+      },
+      {
+        "text": " zu verdienen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "84aa74bd-027a-46f7-9e05-4443969a06f2",
+    "data": [
+      {
+        "text": "sag mir dein Job",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "51c73cb3-74ba-4459-89a5-925ba4bb13b8",
+    "data": [
+      {
+        "text": "dein Job",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9fdc5463-5274-4cda-80e6-d37acd521405",
+    "data": [
+      {
+        "text": "deine ",
+        "userDefined": false
+      },
+      {
+        "text": "Arbeit",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d91f13bb-52c5-4a99-bfd0-8e0f8abb90b0",
+    "data": [
+      {
+        "text": "wo ",
+        "userDefined": false
+      },
+      {
+        "text": "ist",
+        "userDefined": true
+      },
+      {
+        "text": " dein Arbeitsbüro",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "67fd98f8-720a-4d08-9904-2dbec2098065",
+    "data": [
+      {
+        "text": "wo ",
+        "userDefined": false
+      },
+      {
+        "text": "ist",
+        "userDefined": false
+      },
+      {
+        "text": " dein ",
+        "userDefined": false
+      },
+      {
+        "text": "Büro",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

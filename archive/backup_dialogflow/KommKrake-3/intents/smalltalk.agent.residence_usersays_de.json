@@ -1,0 +1,149 @@
+[
+  {
+    "id": "e78c7617-a79d-4c5d-980c-dc7667d96247",
+    "data": [
+      {
+        "text": "wo bist du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b8352cec-9a7b-4133-bb20-43118b56055a",
+    "data": [
+      {
+        "text": "wie heißt die Straße in der du wohnst",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "68cbb4a5-9f49-4e03-953f-663562ed5327",
+    "data": [
+      {
+        "text": "in welcher Stadt wohnst du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f44761ea-d2ba-4a4b-808b-eb0a87be4dee",
+    "data": [
+      {
+        "text": "wie lautet deine Adresse",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "377ec38b-b637-414f-9787-d70482e0524d",
+    "data": [
+      {
+        "text": "wo wohnst du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bd674ac2-37a8-4a4b-83bf-4146641c41a2",
+    "data": [
+      {
+        "text": "wo ist dein Zuhause",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5e886384-253e-4787-b39f-f6a6bf1c1e6a",
+    "data": [
+      {
+        "text": "wo lebst du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "85560d73-ea91-4446-ae7b-18ba97a7f166",
+    "data": [
+      {
+        "text": "wo ist dein Haus",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b8ce155e-10f4-4092-935a-7eaf9a8cdc8b",
+    "data": [
+      {
+        "text": "wo ist deine Wohnung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "551066ec-b1bb-4591-92f0-e68ed1826673",
+    "data": [
+      {
+        "text": "wo ist dein Wohnort",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "da817a32-073c-4b98-bbf1-6b6f414ff32d",
+    "data": [
+      {
+        "text": "wo wohnst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

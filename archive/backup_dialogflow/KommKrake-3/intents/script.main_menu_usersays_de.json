@@ -1,0 +1,147 @@
+[
+  {
+    "id": "b55099d8-6d57-4f0b-bd18-9ea6b2127dba",
+    "data": [
+      {
+        "text": "was sind meine Optionen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a47f9cdd-a274-4d31-9096-8c0cbe9e8d93",
+    "data": [
+      {
+        "text": "zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir das Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3b35c767-ebc1-4176-b045-1a2e7d617f49",
+    "data": [
+      {
+        "text": "Kenne ich schon: Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 5,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c91b57ff-2a82-4c06-b5ac-b97745ef3636",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "in",
+        "userDefined": false
+      },
+      {
+        "text": " das Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4d442453-93e5-4d41-800d-082e7a30ab56",
+    "data": [
+      {
+        "text": "Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "494923d4-4daf-4999-84cf-6a86831cc28c",
+    "data": [
+      {
+        "text": "weiter zum Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "09136d51-c811-4249-85a7-9ad84b72935d",
+    "data": [
+      {
+        "text": "Weiter zum Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 4,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "43cd8bcb-2c37-44ab-9b29-a8616504075d",
+    "data": [
+      {
+        "text": "Menü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c0ea04d7-ab0b-47a5-b428-612fc34c7261",
+    "data": [
+      {
+        "text": "Zurück zum Hauptmenü",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 4,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "was sind meine Optionen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 4,
+    "lang": "de",
+    "updated": 0
+  }
+]

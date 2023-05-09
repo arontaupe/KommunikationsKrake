@@ -1,0 +1,49 @@
+[
+  {
+    "id": "7de26614-ae74-4ebd-a4f0-6c60c683b843",
+    "data": [
+      {
+        "text": "erzähl mir noch mehr",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "14c30e27-06a2-4dc1-900d-d390f0970b40",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " weiter ",
+        "userDefined": false
+      },
+      {
+        "text": "reden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "276a85f0-aa6e-45b7-894f-38473996021c",
+    "data": [
+      {
+        "text": "Weiter chatten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

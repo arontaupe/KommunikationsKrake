@@ -1,0 +1,38 @@
+[
+  {
+    "id": "5f1d73e5-91c4-4214-ab2b-3b7c067cdb56",
+    "data": [
+      {
+        "text": "Was ist das nächste Motto",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c38e18b2-3ee6-461c-829d-5bd0f15084dd",
+    "data": [
+      {
+        "text": "Was ist euer Motto ",
+        "userDefined": false
+      },
+      {
+        "text": "nächstes Jahr",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

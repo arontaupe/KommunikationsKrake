@@ -1,0 +1,119 @@
+[
+  {
+    "id": "54295d2f-6d30-47fd-b8df-4a8fc217cc87",
+    "data": [
+      {
+        "text": "Liest jemand diese Nachrichten mit?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d1d48133-a667-48fb-979e-4983d98a9308",
+    "data": [
+      {
+        "text": "Sendest du Daten an die Nachrichtendienste?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "05275d0b-9a91-489d-95bf-f8cf88e42bf5",
+    "data": [
+      {
+        "text": "Liest ",
+        "userDefined": false
+      },
+      {
+        "text": "Scholz",
+        "userDefined": false
+      },
+      {
+        "text": " meine Nachrichten?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a4085335-53d3-4a2a-b41a-b68202aae6ce",
+    "data": [
+      {
+        "text": "Bist du ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Spion?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cd4a08a6-4554-49de-9fe9-35a5e2f35d26",
+    "data": [
+      {
+        "text": "Bist du vom Geheimdienst?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "17f197cd-df59-48d7-916f-91b248be1181",
+    "data": [
+      {
+        "text": "Arbeitest du mit dem BND zusammen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "53a54056-9da2-4743-9a6b-229ab910c49b",
+    "data": [
+      {
+        "text": "Arbeitest du mit ",
+        "userDefined": false
+      },
+      {
+        "text": "der NSA",
+        "userDefined": false
+      },
+      {
+        "text": " zusammen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

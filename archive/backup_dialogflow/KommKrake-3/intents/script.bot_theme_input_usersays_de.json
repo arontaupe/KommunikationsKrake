@@ -1,0 +1,96 @@
+[
+  {
+    "id": "fcfb9add-4380-4d89-85bc-8840cc70cc95",
+    "data": [
+      {
+        "text": "Video",
+        "userDefined": false
+      },
+      {
+        "text": ": Ällei und KI in ",
+        "userDefined": false
+      },
+      {
+        "text": "leichter Sprache",
+        "meta": "@ls_video",
+        "alias": "ls_video",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4b36fe96-7205-452f-b6c8-182e9d281166",
+    "data": [
+      {
+        "text": "Video",
+        "userDefined": false
+      },
+      {
+        "text": ": Ällei und KI",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "eb8d8ccc-3a02-4315-ae02-930725734379",
+    "data": [
+      {
+        "text": "Mehr über Ällei erfahren",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1c0ac457-1371-464c-8953-db4aa6f0d5c3",
+    "data": [
+      {
+        "text": "Video",
+        "userDefined": false
+      },
+      {
+        "text": ": ",
+        "userDefined": false
+      },
+      {
+        "text": "Elli",
+        "userDefined": false
+      },
+      {
+        "text": " und KI in Leichter Sprache",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Video",
+        "userDefined": false
+      },
+      {
+        "text": ": Ällei und KI in Leichter Sprache",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

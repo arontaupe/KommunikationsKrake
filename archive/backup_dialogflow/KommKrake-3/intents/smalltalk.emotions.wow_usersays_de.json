@@ -1,0 +1,114 @@
+[
+  {
+    "id": "a0c8a1b7-cffd-4a5f-91a7-12d1ef9dd19b",
+    "data": [
+      {
+        "text": "ich bin beeindruckt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e9e0ad7a-c098-41eb-9463-e3ef12687613",
+    "data": [
+      {
+        "text": "wow",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "069eaa06-f846-44d9-a18a-98cfcfed8fe6",
+    "data": [
+      {
+        "text": "wow",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "wow",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "994c4ce8-02ce-46eb-a7a8-0d5eb28ba329",
+    "data": [
+      {
+        "text": "hui",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "522f791f-636f-4602-b0fe-68ccc164b49d",
+    "data": [
+      {
+        "text": "wooow",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1887b178-3176-4f03-8d86-1bb00d98c1ba",
+    "data": [
+      {
+        "text": "boah",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "07b4312e-20a3-4473-9613-5ca27cb9d394",
+    "data": [
+      {
+        "text": "beeindruckt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "248ee113-8594-41e2-be80-2c3bb53e7bfd",
+    "data": [
+      {
+        "text": "begeistert",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

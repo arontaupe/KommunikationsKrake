@@ -1,0 +1,41 @@
+[
+  {
+    "id": "31b62e9c-9190-4758-9106-b9001c3adac3",
+    "data": [
+      {
+        "text": "Was steht im Programmtext?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "eea0c934-d64f-401c-bdde-43708390695e",
+    "data": [
+      {
+        "text": "Worum geht es bei der Veranstaltung?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c425d989-7e7f-48ef-bd7a-612a4fdcae48",
+    "data": [
+      {
+        "text": "Programmtext",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 3,
+    "lang": "de",
+    "updated": 0
+  }
+]

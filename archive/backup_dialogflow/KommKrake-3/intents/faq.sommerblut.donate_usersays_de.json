@@ -1,0 +1,88 @@
+[
+  {
+    "id": "d9ca1eb6-8c46-4f88-b342-33062052f91c",
+    "data": [
+      {
+        "text": "nimmst du spenden?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7685d37e-043c-4451-ac62-afb261bb8215",
+    "data": [
+      {
+        "text": "donate",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "152555dd-8174-4af7-a655-07c11b499cb0",
+    "data": [
+      {
+        "text": "kann ich spenden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8933b4f3-8124-45c3-975f-5c6468a45a9d",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " dir helfen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "43b3cb78-adfc-41fb-b76e-7c8c89d21000",
+    "data": [
+      {
+        "text": "kann man dir geld geben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "38e63eba-8436-431b-86f5-53a69f4d609c",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " spenden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

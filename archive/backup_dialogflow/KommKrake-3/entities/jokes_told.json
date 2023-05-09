@@ -1,0 +1,9 @@
+{
+  "id": "b07bb461-4f8b-43cc-a19f-9317fc01e519",
+  "name": "jokes_told",
+  "isOverridable": true,
+  "isEnum": true,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": true
+}

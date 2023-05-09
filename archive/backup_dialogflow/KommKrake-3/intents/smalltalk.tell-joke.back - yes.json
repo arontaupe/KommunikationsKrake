@@ -1,0 +1,60 @@
+{
+  "id": "4bb99162-4013-424e-a652-c0d2f03d026a",
+  "parentId": "823b4163-0b2a-4d9a-8f80-22aebc15b56b",
+  "rootParentId": "823b4163-0b2a-4d9a-8f80-22aebc15b56b",
+  "name": "smalltalk.tell-joke.back - yes",
+  "auto": true,
+  "contexts": [
+    "smalltalktell-joke-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "smalltalktell-joke.smalltalktell-joke-yes",
+      "affectedContexts": [
+        {
+          "name": "smalltalktell-jokeback-yes-followup",
+          "lifespan": 2
+        }
+      ],
+      "parameters": [
+        {
+          "id": "cc87e605-87bb-49a8-961f-c0a89cac6972",
+          "name": "joke",
+          "required": true,
+          "dataType": "@jokes_told",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "de",
+              "value": "Und? Wie geht dein Witz?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

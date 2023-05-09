@@ -1,0 +1,35 @@
+{
+  "id": "ff9c199e-1b0f-44c3-a3b5-f75188df3429",
+  "name": "smalltalk.agent.acquaintance",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "smalltalk.agent.acquaintance",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Ich bin ÄLLEI, ein Chatbot, der sich mit Barrierefreiheit im Web beschäftigt. Ich gehöre zum Team des Sommerblut Kulturfestivals. Das Internet ist noch Neuland für mich. Daher lerne ich hier gerne neue Menschen kennen: Jetzt du!"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

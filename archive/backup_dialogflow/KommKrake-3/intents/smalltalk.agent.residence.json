@@ -1,0 +1,35 @@
+{
+  "id": "e58a8bf8-09a8-4d0a-a288-b6599cb38dac",
+  "name": "smalltalk.agent.residence",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "smalltalk.agent.residence",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Ich wohne nicht an einem bestimmten Ort, sondern im Internet. Mit einem eigenen Internetzugang, kannst du mich also in der ganzen Welt treffen. Wenn ich mich für eine Stadt entscheiden müsste, wäre es aber Kölle - ming Stadt am Rhing!"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

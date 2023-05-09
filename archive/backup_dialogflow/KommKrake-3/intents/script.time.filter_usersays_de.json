@@ -1,0 +1,162 @@
+[
+  {
+    "id": "a4563622-83b9-4c1a-9746-a8e36877a989",
+    "data": [
+      {
+        "text": "Ja: Zeitraum auswählen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bf6074e3-9d7b-42f3-a4c0-6ad6a3f7df9e",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir ",
+        "userDefined": false
+      },
+      {
+        "text": "vier",
+        "meta": "@num_event_filter",
+        "alias": "num_event_filter",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "badb52d2-166a-475c-b160-09538bf0a766",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir nur ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@num_event_filter",
+        "alias": "num_event_filter",
+        "userDefined": true
+      },
+      {
+        "text": " Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b78fa5df-5553-4b49-a277-ca9487565cf6",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir nur ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@num_event_filter",
+        "alias": "num_event_filter",
+        "userDefined": true
+      },
+      {
+        "text": " Events",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b1284a6f-ca30-46ca-aa67-9ba5c16cbe49",
+    "data": [
+      {
+        "text": "Nur die nächsten ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@num_event_filter",
+        "alias": "num_event_filter",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " anzeigen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "705703c6-a5d3-415d-8852-3c81f862e25f",
+    "data": [
+      {
+        "text": "Nur die nächsten ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@num_event_filter",
+        "alias": "num_event_filter",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " anzeigen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "id": "22c696a7-d0ee-4577-bf72-d16b23009a13",
+  "parentId": "23e13464-808a-472c-babb-2d6dc6ac6a1d",
+  "rootParentId": "23e13464-808a-472c-babb-2d6dc6ac6a1d",
+  "name": "script.event.details - linkout",
+  "auto": true,
+  "contexts": [
+    "scripteventdetails-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "scripteventdetails.scripteventdetails-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

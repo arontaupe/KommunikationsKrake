@@ -1,0 +1,9 @@
+{
+  "id": "63ce4ae5-741c-4326-b149-74f0a1fd24b9",
+  "name": "glossary",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": true
+}

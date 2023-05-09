@@ -1,0 +1,152 @@
+[
+  {
+    "id": "bcfa35f1-d692-4adc-ba7d-36bc84891700",
+    "data": [
+      {
+        "text": "Nein, weiter zum Interessen angeben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "36399740-a1f3-4434-9b9e-4d37509e05cf",
+    "data": [
+      {
+        "text": "Weiter: Interessen angeben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b5a26604-81a4-4b97-ad16-ae0e7a677b21",
+    "data": [
+      {
+        "text": "Nein",
+        "userDefined": false
+      },
+      {
+        "text": ": weiter: Interessenselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b3d5c1fa-90dd-4cf2-bd79-0d9549da08e0",
+    "data": [
+      {
+        "text": "Weiter: Interessenselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 6,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b0a3472a-b4a0-48ae-bf2f-b77035b50ec6",
+    "data": [
+      {
+        "text": "Nein",
+        "userDefined": false
+      },
+      {
+        "text": ": weiter zum Interessenselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6d552293-3e1d-49c0-b10e-13163c6dbb9e",
+    "data": [
+      {
+        "text": "interessenselektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0eaa3862-eb46-4216-a785-592060f8d72d",
+    "data": [
+      {
+        "text": "Ich möchte",
+        "userDefined": false
+      },
+      {
+        "text": " meine Interessen ",
+        "userDefined": false
+      },
+      {
+        "text": "angeben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0c41f9ed-3703-4936-b997-a871022d526d",
+    "data": [
+      {
+        "text": "Ich brauche keine Barrierefreiheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b7b4db65-7d0a-448b-85d6-3d513af5e752",
+    "data": [
+      {
+        "text": "Interessen ",
+        "userDefined": false
+      },
+      {
+        "text": "angeben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "16b95441-45fd-41e6-bda3-d6330e33c9c4",
+    "data": [
+      {
+        "text": "Nein, weiter zur Veranstaltungsberatung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

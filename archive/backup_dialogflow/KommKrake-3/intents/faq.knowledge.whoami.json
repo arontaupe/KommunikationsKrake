@@ -1,0 +1,14 @@
+{
+  "id": "ffd5c7f1-4c0e-4f5d-afdb-2e4ee09fea80",
+  "name": "faq.knowledge.whoami",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

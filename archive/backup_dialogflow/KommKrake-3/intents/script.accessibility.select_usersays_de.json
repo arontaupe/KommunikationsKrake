@@ -1,0 +1,336 @@
+[
+  {
+    "id": "99c70203-1518-4cd1-8d9a-fa2fa0c18ace",
+    "data": [
+      {
+        "text": "welche veranstaltung kannst du mir empfehlen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "551b78f4-fc2f-4928-bb21-d2b11f3cd5f2",
+    "data": [
+      {
+        "text": "Nach welche Veranstaltung soll ich gehen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "31f67924-d5aa-40e7-9a76-9720b6e2846d",
+    "data": [
+      {
+        "text": "Welche Veranstaltung soll ich besuchen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7a84a0cf-8376-4a8c-a2b6-6a9ad99d1506",
+    "data": [
+      {
+        "text": "Barrierefreiheiten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "51d67b0f-05df-4247-ad1b-945628a03b42",
+    "data": [
+      {
+        "text": "Barrierefreiheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "80f886d8-2bd2-47aa-bac7-a5dc272717d3",
+    "data": [
+      {
+        "text": "Barrierefreiheit angeben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "09e275b8-4fd7-4bb0-b13d-1c040a83e301",
+    "data": [
+      {
+        "text": "Eine",
+        "userDefined": false
+      },
+      {
+        "text": " Zugänglichkeitsbeschränkung angeben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3f85988d-4260-4a86-bb2d-85265a849298",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " Veranstaltungsberatung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "fc97a7c7-eb49-42f2-b9fa-05781f3ab96f",
+    "data": [
+      {
+        "text": "Veranstaltungsberatung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 10,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "47227c9f-e57d-46e3-a004-8c1420e2c222",
+    "data": [
+      {
+        "text": "Zugänglichkeit",
+        "userDefined": true
+      },
+      {
+        "text": " auswählen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b2b56e82-3597-4668-a43b-73f84525b853",
+    "data": [
+      {
+        "text": "Nein: Veranstaltungsvorschläge",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e7542347-c6dc-4e63-86d0-9631f748ffa3",
+    "data": [
+      {
+        "text": "Weiter: Bedarfsfilter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9fb2d9bd-f35e-4cbd-96b1-1306e7992594",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": ", dass mein Bedarf berücksichtigt wird",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c6ee44e9-4970-4b99-a258-93dda8f0a8f1",
+    "data": [
+      {
+        "text": "bedarf",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "02897bbc-ab15-43e7-b2d1-0fcbec9a3cd7",
+    "data": [
+      {
+        "text": "bedarf selektor",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "38f8ba6f-5a49-42de-b6e4-dd7eea977363",
+    "data": [
+      {
+        "text": "Ich habe ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " Behinderung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "38495328-eb22-4db4-bd65-a9b011945d26",
+    "data": [
+      {
+        "text": "Ich suche ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " in einfacher Sprache",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "699265c5-485d-4be4-a541-339a227ee798",
+    "data": [
+      {
+        "text": "Frage zur Barrierefreiheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d09b76b5-b361-4820-9164-0c8282af9680",
+    "data": [
+      {
+        "text": "veranstaltungsberatung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3c21b11d-b3da-463d-8510-c310d4ba1d95",
+    "data": [
+      {
+        "text": "sind alle vorstellungen barrierefrei?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2d186078-9c42-4c74-8701-602bfabb4091",
+    "data": [
+      {
+        "text": "Audiodeskription",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f734059a-d838-4d42-9cf2-be656fe41b75",
+    "data": [
+      {
+        "text": "ich bin im rollstuhl",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

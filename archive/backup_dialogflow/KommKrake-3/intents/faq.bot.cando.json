@@ -1,0 +1,14 @@
+{
+  "id": "55087dc9-faa3-44d2-aedf-dddc3e497def",
+  "name": "faq.bot.cando",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

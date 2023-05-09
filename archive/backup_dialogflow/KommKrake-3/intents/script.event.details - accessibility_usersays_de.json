@@ -1,0 +1,67 @@
+[
+  {
+    "id": "5da7e7ae-f178-4309-80cd-fec5d2aed642",
+    "data": [
+      {
+        "text": "gibt es Übersetzung bei dem event?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cafad2d9-8715-43c8-acba-34a0ce385396",
+    "data": [
+      {
+        "text": "Kann ich da mit dem Rollstuhl hin?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "88c32f44-f1e3-436e-8bb3-d32b70546c06",
+    "data": [
+      {
+        "text": "Erzähl mir was zur Barrierefreiheit bei der Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "676e182e-1284-4997-a0ab-556c2a5316b4",
+    "data": [
+      {
+        "text": "Wie barrierefrei ist die Veranstaltung?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "949ec4d2-eaf2-4720-8e1b-a2200f08be4f",
+    "data": [
+      {
+        "text": "Barrierefreiheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  }
+]

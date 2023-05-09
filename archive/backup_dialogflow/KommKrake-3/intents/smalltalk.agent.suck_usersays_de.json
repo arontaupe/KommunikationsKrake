@@ -1,0 +1,153 @@
+[
+  {
+    "id": "e00ff72e-5be8-43ed-b8ae-e3783f3f6a6e",
+    "data": [
+      {
+        "text": "Du bist mir zu ",
+        "userDefined": false
+      },
+      {
+        "text": "dumm",
+        "userDefined": false
+      },
+      {
+        "text": "!",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "59998348-7c6a-4d73-9887-489f2794016a",
+    "data": [
+      {
+        "text": "Verstehst du mich überhaupt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "72c1534e-d82b-473b-b3a5-6da739409293",
+    "data": [
+      {
+        "text": "ich kann dich nicht nutzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b6278e51-0a74-4841-b79c-1d29c7d1e025",
+    "data": [
+      {
+        "text": "ich kann dich nicht benutzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e4480f0a-bd5a-445f-ac3e-c30f903ad340",
+    "data": [
+      {
+        "text": "du bist nutzlos und unbrauchbar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e735abed-6972-4367-890f-09087c2bc8ad",
+    "data": [
+      {
+        "text": "du bist völlig unbrauchbar",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dd563109-c445-481a-857f-29253c343866",
+    "data": [
+      {
+        "text": "du bist schrott",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d43008ab-12e2-4bde-80c9-958f71542181",
+    "data": [
+      {
+        "text": "man kann dich nicht richtig nutzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bdfaa60b-aad7-4e01-a822-392c1c46e14b",
+    "data": [
+      {
+        "text": "man kann dich nicht benutzen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "673910be-d599-405d-9fde-7f217f7e0b5a",
+    "data": [
+      {
+        "text": "du nervst mich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1444467c-79c8-44bb-a3bb-bff5ea45ba8b",
+    "data": [
+      {
+        "text": "du machst mich verrückt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

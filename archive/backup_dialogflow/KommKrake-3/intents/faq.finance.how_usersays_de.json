@@ -1,0 +1,58 @@
+[
+  {
+    "id": "95d72264-cabc-4948-8511-9fb9c90d16bc",
+    "data": [
+      {
+        "text": "Wie wird das Festival bezahlt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9d4fe354-48e5-41fb-be19-858b585f9318",
+    "data": [
+      {
+        "text": "Wer bezahlt das Sommerblut?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99a74b3b-76d2-42c4-9faf-4c6a611748a7",
+    "data": [
+      {
+        "text": "Woher",
+        "userDefined": false
+      },
+      {
+        "text": " kommt das Geld für das Sommerblut?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b054eae4-36dc-4994-a4be-331fdd0894e7",
+    "data": [
+      {
+        "text": "Wie finanziert ihr euch?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

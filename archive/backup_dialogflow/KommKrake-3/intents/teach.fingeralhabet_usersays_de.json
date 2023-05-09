@@ -1,0 +1,286 @@
+[
+  {
+    "id": "f815ae92-95fe-46b0-9da2-ae66f2af8b1d",
+    "data": [
+      {
+        "text": "ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": " das ",
+        "userDefined": false
+      },
+      {
+        "text": "F",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": false
+      },
+      {
+        "text": " im Fingeralphabet lernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "35206cdf-85dc-4067-8ea7-78b1cc983c1c",
+    "data": [
+      {
+        "text": "ich möchte das ",
+        "userDefined": false
+      },
+      {
+        "text": "c",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": true
+      },
+      {
+        "text": " lernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3d96c9ef-259a-4ad7-804d-20f25775c42d",
+    "data": [
+      {
+        "text": "Ich möchte ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": false
+      },
+      {
+        "text": " Buchstaben lernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "254fb42c-7b5f-4b9c-8cb4-cf5575d3aa62",
+    "data": [
+      {
+        "text": "Ich möchte noch ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": false
+      },
+      {
+        "text": " Buchstaben lernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d331b3f1-51e0-4fac-bd0f-361e6a2cf549",
+    "data": [
+      {
+        "text": "zeig mir das ",
+        "userDefined": false
+      },
+      {
+        "text": "b",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": true
+      },
+      {
+        "text": " im Fingeralphabet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ef1ec946-78e8-449c-a281-4698e50bce50",
+    "data": [
+      {
+        "text": "wie geht das ",
+        "userDefined": false
+      },
+      {
+        "text": "a",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": true
+      },
+      {
+        "text": " im fingeralphabet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1781d136-0c6d-41a4-927e-d5dfa3e147a3",
+    "data": [
+      {
+        "text": "fingeralphabet",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 3,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "77ff93e5-3328-491f-a02d-f432b8e31db1",
+    "data": [
+      {
+        "text": "bring mir das Fingeralphabet bei",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3bc2b572-f3fb-460a-830e-64543383707e",
+    "data": [
+      {
+        "text": "Kannst du mir das Fingeralphabet beibringen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4b2b5f60-fa87-4e44-b7f8-ded4ed252d12",
+    "data": [
+      {
+        "text": "a",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a719e71f-1608-4c26-ad59-faefa4f900d1",
+    "data": [
+      {
+        "text": "Noch ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Buchstabe",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "93244a52-3e13-4b48-83e8-8f6abaf6fd75",
+    "data": [
+      {
+        "text": "L",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "52d9d5b5-047e-4267-be40-5eb6f1156bc9",
+    "data": [
+      {
+        "text": "Ich möchte noch ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Buchstaben lernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1fe493ec-9d4a-4444-9666-028d3b6199ec",
+    "data": [
+      {
+        "text": "A",
+        "meta": "@fa_letter",
+        "alias": "FA-Zeichen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Das Fingeralphabet kennenlernen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

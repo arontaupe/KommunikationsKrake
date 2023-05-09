@@ -1,0 +1,9 @@
+{
+  "id": "4d6d9da9-d089-4fff-b235-cedeea7c0ca6",
+  "name": "num_event_filter",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": true,
+  "allowFuzzyExtraction": true
+}

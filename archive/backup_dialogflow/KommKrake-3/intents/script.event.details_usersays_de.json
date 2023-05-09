@@ -1,0 +1,66 @@
+[
+  {
+    "id": "27e2665c-da4a-4b1f-9d54-a157138d2fd2",
+    "data": [
+      {
+        "text": "Zurück: Veranstaltungsdetails",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "220736d0-4d5b-405b-b6ae-e96fe9470bc4",
+    "data": [
+      {
+        "text": "Erzähl mir mehr zur Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "51e57ddc-b3a6-4132-b273-ac53c2d9fd1c",
+    "data": [
+      {
+        "text": "Mehr infos zum Event",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "44f7d6b5-230a-4edb-a8a0-8e0ce751fdc5",
+    "data": [
+      {
+        "text": "Mehr zur Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Zurück zu den Einzelheiten zur Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

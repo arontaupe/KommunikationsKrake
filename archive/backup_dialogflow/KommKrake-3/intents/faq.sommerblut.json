@@ -1,0 +1,14 @@
+{
+  "id": "abac6fac-bc31-4e4d-9e59-c9fcb50fb448",
+  "name": "faq.sommerblut",
+  "auto": true,
+  "contexts": [],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

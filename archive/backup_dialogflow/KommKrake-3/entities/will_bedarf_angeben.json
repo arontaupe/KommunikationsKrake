@@ -1,0 +1,9 @@
+{
+  "id": "48928feb-d865-4f3e-947e-a73c34b1b91a",
+  "name": "will_bedarf_angeben",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": true
+}

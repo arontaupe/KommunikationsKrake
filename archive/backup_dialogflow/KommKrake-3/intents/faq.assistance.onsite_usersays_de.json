@@ -1,0 +1,71 @@
+[
+  {
+    "id": "a0c1f85f-b71d-49fb-96d1-c0896669cbb0",
+    "data": [
+      {
+        "text": "Kann mir jemand übersetzen während des ",
+        "userDefined": false
+      },
+      {
+        "text": "stücks",
+        "meta": "@sys.last-name",
+        "alias": "last-name",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7b76511a-81d2-4a02-8b4e-42d9d9179568",
+    "data": [
+      {
+        "text": "Wer",
+        "userDefined": false
+      },
+      {
+        "text": " kann mir bei der ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltung",
+        "userDefined": false
+      },
+      {
+        "text": " helfen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ac9b9366-de53-4ee0-b07b-d1917fdb6245",
+    "data": [
+      {
+        "text": "Gibt es vor ",
+        "userDefined": false
+      },
+      {
+        "text": "Ort einen",
+        "userDefined": false
+      },
+      {
+        "text": " Ansprechpartner?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

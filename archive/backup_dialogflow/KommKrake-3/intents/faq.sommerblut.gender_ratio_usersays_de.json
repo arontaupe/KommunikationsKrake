@@ -1,0 +1,87 @@
+[
+  {
+    "id": "e7378877-2549-4d23-b9cd-18f08756171d",
+    "data": [
+      {
+        "text": "Ist das Sommerblut gendergerecht?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a16d98ca-527d-4bec-89b8-82d80115056e",
+    "data": [
+      {
+        "text": "Was tut ihr bezüglich Geschlechtergerechtigkeit?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "830fd542-fd57-4d72-94a9-c5ad71d3a80d",
+    "data": [
+      {
+        "text": "Gibt es bei euch ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Frauenquote",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "64a18abd-6c53-497b-bf83-05bf2af1afad",
+    "data": [
+      {
+        "text": "Habt ihr ",
+        "userDefined": false
+      },
+      {
+        "text": "ne",
+        "meta": "@interest_2",
+        "alias": "interest_2",
+        "userDefined": false
+      },
+      {
+        "text": " Quote?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "66c58bb2-7104-4287-9f03-490c092e1642",
+    "data": [
+      {
+        "text": "Wie ist euer Genderschnitt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,189 @@
+[
+  {
+    "id": "2d9a15c4-5f0b-4433-a526-c7977e7dd35d",
+    "data": [
+      {
+        "text": "existierst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " wirklich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5f4896d1-7cb9-434e-87b7-b6616c0c177b",
+    "data": [
+      {
+        "text": "bist du echt",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "46e895c1-28c7-42e8-9c5c-50e0070f7e91",
+    "data": [
+      {
+        "text": "existierst du",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "93491ad0-50a7-4bc3-b00c-942432b30cbb",
+    "data": [
+      {
+        "text": "bist du real",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4780ce88-63fa-4210-a1cc-91df6eee1b9f",
+    "data": [
+      {
+        "text": "bist du aus Fleisch und Blut",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "be8652e8-150a-445a-af03-063e43b42875",
+    "data": [
+      {
+        "text": "gibt es dich wirklich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b8d101f7-5369-4de2-9140-7050bcd24044",
+    "data": [
+      {
+        "text": "bist du",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "echt",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2aec2c8f-3ba9-43c3-b54b-f005065f1d20",
+    "data": [
+      {
+        "text": "bist du ein",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Mensch",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "508ef54f-29de-4937-9f5f-bd4e301e0555",
+    "data": [
+      {
+        "text": "bist du",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "am",
+        "userDefined": true
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Leben",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "67be8325-10ff-4cd2-974e-cc00c8954a7e",
+    "data": [
+      {
+        "text": "bist du nicht nur eine Maschine",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "93ca333a-3ceb-49ea-882b-c0372b8b7000",
+    "data": [
+      {
+        "text": "du bist",
+        "userDefined": false
+      },
+      {
+        "text": " nicht falsch",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,654 @@
+[
+  {
+    "id": "321a76c1-c1f9-46f2-8ec1-3313d67e36b8",
+    "data": [
+      {
+        "text": "Welche ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " gibt es?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d0ff3313-2423-46a0-a834-d87d177df3ec",
+    "data": [
+      {
+        "text": "Finde mehr ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2f49b52b-1947-448a-a523-830b406699ae",
+    "data": [
+      {
+        "text": "Frage zu ",
+        "userDefined": false
+      },
+      {
+        "text": "einer",
+        "userDefined": false
+      },
+      {
+        "text": " bestimmten Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3cbd79d8-85f3-4e51-b3bc-13fec74d6d9e",
+    "data": [
+      {
+        "text": "Mehr ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " vorschlagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0e33823a-2bb9-456b-8413-b4dbbb24507b",
+    "data": [
+      {
+        "text": "Frage zu ",
+        "userDefined": false
+      },
+      {
+        "text": "einer",
+        "userDefined": false
+      },
+      {
+        "text": " Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7f1b48ee-a2bf-49e0-a7f9-985c404364c9",
+    "data": [
+      {
+        "text": "Frage zu ",
+        "userDefined": false
+      },
+      {
+        "text": "einer",
+        "userDefined": false
+      },
+      {
+        "text": " konkreten Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "510149c4-b16b-4011-a0f6-7d703a028c27",
+    "data": [
+      {
+        "text": "Kannst du mir was über ",
+        "userDefined": false
+      },
+      {
+        "text": "Totentanz Cafe",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": true
+      },
+      {
+        "text": " Erzählen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1a2fcd64-6be2-4e0b-b359-ab8cdfe276e2",
+    "data": [
+      {
+        "text": "Frage über ",
+        "userDefined": false
+      },
+      {
+        "text": "HAPPY ISLAND",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c7bb822c-cdf7-460b-8584-e2b25b68beb4",
+    "data": [
+      {
+        "text": "Ich habe ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " frage zu ",
+        "userDefined": false
+      },
+      {
+        "text": "UNSEEN",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "40cc047b-85e7-4f72-9bc2-0c2646ca6620",
+    "data": [
+      {
+        "text": "VAGABUNDEN",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "35ec7d69-2787-489c-b49a-93e8b6a53fb3",
+    "data": [
+      {
+        "text": "HAPPY ISLAND",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "715d75d7-c33d-48d3-9d55-e96a7ff7d637",
+    "data": [
+      {
+        "text": "AGENDA",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8ce5f3ed-ba89-402b-84e8-1480a9145b15",
+    "data": [
+      {
+        "text": "ENTLOVE YOU!",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "34560c4d-d147-43f2-b50b-72c83cf6ec48",
+    "data": [
+      {
+        "text": "Vögel",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "60af4623-fa3f-4ac9-a642-b955c2d26236",
+    "data": [
+      {
+        "text": "Alles Aber Anders",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "dad96ae3-7b80-4ec7-a615-ad27f125e15e",
+    "data": [
+      {
+        "text": "ROMANITY",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0bd6e3a9-cbae-4904-b1f3-926c317ad4bb",
+    "data": [
+      {
+        "text": "welche ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen laufen",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "heute Abend",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3c51ce76-18ed-4f91-847e-8e67425c3dde",
+    "data": [
+      {
+        "text": "Was läuft ",
+        "userDefined": false
+      },
+      {
+        "text": "morgen Abend",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " ?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a1453a73-a1d8-4b24-bb56-3721457e1c95",
+    "data": [
+      {
+        "text": "Frage zu ",
+        "userDefined": false
+      },
+      {
+        "text": "einer",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " konkreten Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cce76c27-b569-4364-b999-032e2927bc5f",
+    "data": [
+      {
+        "text": "Was ist ",
+        "userDefined": false
+      },
+      {
+        "text": "heute",
+        "meta": "@sys.date-time",
+        "alias": "date-time",
+        "userDefined": false
+      },
+      {
+        "text": " das Programm?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5bebc6ba-27dd-4168-870f-a6aa0bdfb4e5",
+    "data": [
+      {
+        "text": "Welche Kulturprojekte gibt es",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "862a34bb-49e3-47b4-9433-289c3ffc8578",
+    "data": [
+      {
+        "text": "Kulturprojekte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c930c171-48e6-4176-8ce1-411e305894b6",
+    "data": [
+      {
+        "text": "Kulturprojekt",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8c866824-c6d8-46a7-9e0c-d73c9d018c2e",
+    "data": [
+      {
+        "text": "Veranstaltungen",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7c5027cd-d6c2-4544-800c-936a9a337ce8",
+    "data": [
+      {
+        "text": "Biotopia. Eine Fortpflanzung",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "033f7788-db11-40a5-b6a5-e6dd3fdaa79a",
+    "data": [
+      {
+        "text": "Wo finde ich ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "db5583bc-fe0f-476d-bde6-61aa53f55ae2",
+    "data": [
+      {
+        "text": "Wann ist das nächste ",
+        "userDefined": false
+      },
+      {
+        "text": "Konzert",
+        "userDefined": false
+      },
+      {
+        "text": "?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a06a12ec-100d-44c7-8f2a-0658d808a9ad",
+    "data": [
+      {
+        "text": "Ist ",
+        "userDefined": false
+      },
+      {
+        "text": "Herbarium",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      },
+      {
+        "text": " barrierefrei?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5ca9e3be-a67f-4be8-99cd-8918408b6c7e",
+    "data": [
+      {
+        "text": "Wann findet ",
+        "userDefined": false
+      },
+      {
+        "text": "Queertopolis",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      },
+      {
+        "text": " statt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3d86416d-c002-4fd0-9118-4862cf6800dd",
+    "data": [
+      {
+        "text": "ällei",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5bc8be2f-decd-4c64-a9d1-197ae6881807",
+    "data": [
+      {
+        "text": "Ich habe ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " Frage zu ",
+        "userDefined": false
+      },
+      {
+        "text": "einer",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " bestimmten Veranstaltung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3bc9a2a0-c4da-4620-b245-638a0b96966c",
+    "data": [
+      {
+        "text": "Finde mehr ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "meta": "@sys.location",
+        "alias": "location",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e38745fb-46c6-4b10-8c7f-bc0683a77666",
+    "data": [
+      {
+        "text": "queertopolis",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a77c6a1f-428b-4eef-b62f-deb55e226a0c",
+    "data": [
+      {
+        "text": "Totentanz Café",
+        "meta": "@event_title",
+        "alias": "event_title",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

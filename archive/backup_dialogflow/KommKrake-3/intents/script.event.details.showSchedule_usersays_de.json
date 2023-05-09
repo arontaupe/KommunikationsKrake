@@ -1,0 +1,45 @@
+[
+  {
+    "id": "bedb2c4d-25ff-4807-8955-04e3d8d80047",
+    "data": [
+      {
+        "text": "Zu welchen Zeiten kann ich die Veranstaltung besuchen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a947ff59-6aa5-48ca-b38c-0cb85b8f1a35",
+    "data": [
+      {
+        "text": "Zeig",
+        "userDefined": false
+      },
+      {
+        "text": " mir die Spielzeiten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0772c138-137f-49d2-9006-d8291dd06931",
+    "data": [
+      {
+        "text": "Liste der Spielzeiten anzeigen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

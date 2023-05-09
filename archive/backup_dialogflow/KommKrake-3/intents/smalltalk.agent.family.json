@@ -1,0 +1,36 @@
+{
+  "id": "5e3c5e1d-fbd5-4724-86e1-f77ba65489d4",
+  "name": "smalltalk.agent.family",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "smalltalk.agent.family",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "zu meiner Sippe gehören alle, die bei dem Sommerblut Kulturfestival mitmachen. Viele meiner Eigenschaften habe ich mir heimlich bei den Teilnehmer:innen abgeguckt. Aber \"Pssst!\" verrate es ihnen nicht."
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": [],
+  "endInteraction": true
+}

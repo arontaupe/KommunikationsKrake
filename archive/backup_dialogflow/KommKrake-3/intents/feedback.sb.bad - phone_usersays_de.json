@@ -1,0 +1,59 @@
+[
+  {
+    "id": "2d0ffd68-6e68-451d-997d-46eb7862fe53",
+    "data": [
+      {
+        "text": "ich will",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " telefonnummer",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6f98a7db-3838-4e62-b45c-d9c8da78874a",
+    "data": [
+      {
+        "text": "Ich möchte",
+        "userDefined": false
+      },
+      {
+        "text": " anrufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "83b4d3dd-b369-4802-bea3-e6b180d1856b",
+    "data": [
+      {
+        "text": "Kritik telefonisch äußern",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

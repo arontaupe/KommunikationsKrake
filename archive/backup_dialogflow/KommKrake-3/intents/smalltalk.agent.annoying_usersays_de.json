@@ -1,0 +1,184 @@
+[
+  {
+    "id": "3f0b0f61-43d2-4530-8de0-9fe2df8b69cc",
+    "data": [
+      {
+        "text": "warum sprichst du so komisch",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "987d8788-5095-40fb-a272-1d705b5b927a",
+    "data": [
+      {
+        "text": "du gehst mir auf die Nerven",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "44028dc8-1f6f-42f3-8fc6-df44fba4c1d2",
+    "data": [
+      {
+        "text": "nerv nicht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1b9fde5e-a4fb-4754-8d60-462ae4840f5a",
+    "data": [
+      {
+        "text": "du nervst total",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f1b49864-16bb-48e5-ae1b-9ef26675b1f5",
+    "data": [
+      {
+        "text": "ich kann dich nicht leiden",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "563effbb-5808-497e-a965-d8380f35202c",
+    "data": [
+      {
+        "text": "geh mir nich auf die Nerven",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f42d3e50-25f6-495d-b22b-2e8fd1837227",
+    "data": [
+      {
+        "text": "du nervst",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ed55f70c-a37d-402b-bc49-985e0fc8a8c8",
+    "data": [
+      {
+        "text": "lass mich in Ruh",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6c486c49-d2aa-4ada-b7d1-99baefc4624b",
+    "data": [
+      {
+        "text": "du bist nervig",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "80fb323e-efb6-4385-8641-98eef7417fc8",
+    "data": [
+      {
+        "text": "du nervst mich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "644cf8ef-d7b4-4216-8336-8bb990915376",
+    "data": [
+      {
+        "text": "du gehst mir auf den Keks",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "def26714-8dcf-4e65-8865-bae21dce5ee4",
+    "data": [
+      {
+        "text": "du ärgerst mich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b13072fc-afc8-46a9-b815-409fa0854c24",
+    "data": [
+      {
+        "text": "du bist belästigend",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "55a6b7ab-93de-4424-879f-d62de2387940",
+    "data": [
+      {
+        "text": "du bist lästig",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

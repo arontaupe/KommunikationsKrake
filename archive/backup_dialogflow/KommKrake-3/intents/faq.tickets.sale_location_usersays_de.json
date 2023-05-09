@@ -1,0 +1,101 @@
+[
+  {
+    "id": "d29e1685-a65a-49c0-88cb-28cd8ae7d71b",
+    "data": [
+      {
+        "text": "wo werden tickets verkauft",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0632962f-569c-41cf-ad71-70f7e7896a3a",
+    "data": [
+      {
+        "text": "ich möchte ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " karte kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0455c081-5e9e-4d54-ad01-c6fa940ec01b",
+    "data": [
+      {
+        "text": "wo kann ich tickets kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bcb475de-15dc-4a47-ad4d-979bcad5910f",
+    "data": [
+      {
+        "text": "wo gibt es tickets",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a5eab1f7-439a-485a-abb3-1a5330139924",
+    "data": [
+      {
+        "text": "Tickets an der Theaterkasse",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "77fb35d2-e913-46c6-a55e-3b0e836b613c",
+    "data": [
+      {
+        "text": "Alternative Wege Tickets zu kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "77c465e6-1c25-43fb-bbd5-86b74203a093",
+    "data": [
+      {
+        "text": "anfahrt?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

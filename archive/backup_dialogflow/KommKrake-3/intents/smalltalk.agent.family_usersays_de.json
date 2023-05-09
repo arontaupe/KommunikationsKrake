@@ -1,0 +1,535 @@
+[
+  {
+    "id": "e0ea36c2-320e-4e0d-9400-2f53cfcd233b",
+    "data": [
+      {
+        "text": "Wer gehört alles zu deiner Familie",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "40c67e9c-01c0-4664-9556-4f80632d9695",
+    "data": [
+      {
+        "text": "Ikone",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "93f81fc7-f70b-415f-9eea-3e437423092d",
+    "data": [
+      {
+        "text": "zu wem blickst du hoch",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0845b7e8-bdf7-4a3a-a576-54a2060d7b8f",
+    "data": [
+      {
+        "text": "Kommune",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cc6daf90-139f-4c21-9c97-68e82c35d1a7",
+    "data": [
+      {
+        "text": "Gemeinsamkeit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1de702d0-3086-4edc-be65-39003064541a",
+    "data": [
+      {
+        "text": "Gemeinde",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "afaa12f4-94c2-4af8-ac54-5d060a91d85a",
+    "data": [
+      {
+        "text": "Sippe",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7b501953-2b68-4c8e-a9c8-adb5c0e8adac",
+    "data": [
+      {
+        "text": "wer ist dein soziales Umfeld",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "648cc78d-b6d2-43b1-bb0b-52d8b723c9f3",
+    "data": [
+      {
+        "text": "welche Personen magst du besonders gern",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "632c75a5-6cfe-4522-b34e-2be8594652b7",
+    "data": [
+      {
+        "text": "Vorbilder",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c074f36d-8ba0-4761-b67d-71de353c6f1a",
+    "data": [
+      {
+        "text": "Gemeinschaft",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9d048499-f022-45a5-8991-7dd7f2578c25",
+    "data": [
+      {
+        "text": "community",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a22b1833-8900-425f-b92c-1ca8dff8e49b",
+    "data": [
+      {
+        "text": "family",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e9c70432-184f-4d91-80b0-c2ad8d0e467e",
+    "data": [
+      {
+        "text": "erzähl was interessantes über deine Familie",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "db942d47-0d6a-4955-843c-6ccff1750497",
+    "data": [
+      {
+        "text": "hast du eine Familie",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b32ccd88-5d72-467e-a1ec-ab5c2c3da11e",
+    "data": [
+      {
+        "text": "deine Tante und dein Onkel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bf0e1d4c-ae80-467c-8bb4-172041a7a82e",
+    "data": [
+      {
+        "text": "deine Mutter und dein Vater",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "32196831-f385-400d-bbab-771d0873a39d",
+    "data": [
+      {
+        "text": "deine Mama und dein Papa",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "781954b9-f8f0-4acc-b291-f49326da14e3",
+    "data": [
+      {
+        "text": "deine Mami",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c1872a87-b410-496b-9f0a-10371c28d9dc",
+    "data": [
+      {
+        "text": "hast du Mama",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b1b5bead-3fc8-4d28-afac-4abb2425d473",
+    "data": [
+      {
+        "text": "hast du Geschwister",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b96e6164-6bb0-42b6-ad86-9b0dbcc60753",
+    "data": [
+      {
+        "text": "Wurzeln",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3637cd65-96ae-4c99-aff5-86306753c2c5",
+    "data": [
+      {
+        "text": "stammbaum",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7201e418-389a-4e8c-9f9b-099987b5d872",
+    "data": [
+      {
+        "text": "erzähl mir etwas über deine Geschwister",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e22bc0d9-9695-4cdf-8baa-5c0cfe2ae7aa",
+    "data": [
+      {
+        "text": "erzähl mir über deine Verwandten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f2064ac6-0d2e-44f1-8b86-e4d39d4b1010",
+    "data": [
+      {
+        "text": "erzähl mir über deine Familie",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "63afb671-b851-4107-a605-0f7be7a53ec4",
+    "data": [
+      {
+        "text": "erzähl mir über deine Eltern",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7aefcb8a-369a-4564-96a4-c373f9be4933",
+    "data": [
+      {
+        "text": "deine Famillie",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9e102ba3-0c62-4eb0-a256-53f271dbd51f",
+    "data": [
+      {
+        "text": "deine Mutter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "afebd6d5-66a1-4dd2-8b37-560d615727c6",
+    "data": [
+      {
+        "text": "deine Mama",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "86f0cead-16f1-4481-b5c0-fca047efb9ba",
+    "data": [
+      {
+        "text": "dein Vater",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0e3c70d5-d773-4721-808a-b4c07121edfb",
+    "data": [
+      {
+        "text": "dein Vati",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "327d989a-feb9-427a-a94c-c3c5c86c8c65",
+    "data": [
+      {
+        "text": "deine Mutti",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "95f2ad7a-84b7-42a8-a76f-b3ffed92ecd5",
+    "data": [
+      {
+        "text": "deine Eltern",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ceb7d3e3-4d2a-49cf-b4f7-22574ffe5d8e",
+    "data": [
+      {
+        "text": "deine Geschwister",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2f34a66b-9bc2-4fec-a767-7566a72b01cf",
+    "data": [
+      {
+        "text": "dein Onkel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5929a978-bce8-4f23-ab70-fbdc7052326a",
+    "data": [
+      {
+        "text": "deine Tante",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3d7f2d34-0e72-4013-8f3e-92b1d7b4e503",
+    "data": [
+      {
+        "text": "deine Cousine",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "51ae5405-de32-4696-8e0f-1f07240b555b",
+    "data": [
+      {
+        "text": "dein Cousin",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "41d73d1d-e745-42a2-a67a-49e49fff6f55",
+    "data": [
+      {
+        "text": "hast du Mutter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "4bd74e14-8427-47a3-acb4-00088eaef8be",
+    "data": [
+      {
+        "text": "hast du Vater",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

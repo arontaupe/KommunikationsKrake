@@ -1,0 +1,54 @@
+[
+  {
+    "value": "1",
+    "synonyms": [
+      "1",
+      "eins",
+      "heute und morgen",
+      "heute"
+    ]
+  },
+  {
+    "value": "2",
+    "synonyms": [
+      "2",
+      "zwei"
+    ]
+  },
+  {
+    "value": "3",
+    "synonyms": [
+      "3",
+      "drei",
+      "am wochenende"
+    ]
+  },
+  {
+    "value": "4",
+    "synonyms": [
+      "4",
+      "vier"
+    ]
+  },
+  {
+    "value": "5",
+    "synonyms": [
+      "5",
+      "fünf"
+    ]
+  },
+  {
+    "value": "6",
+    "synonyms": [
+      "6",
+      "sechs"
+    ]
+  },
+  {
+    "value": "7",
+    "synonyms": [
+      "7",
+      "ganze woche"
+    ]
+  }
+]

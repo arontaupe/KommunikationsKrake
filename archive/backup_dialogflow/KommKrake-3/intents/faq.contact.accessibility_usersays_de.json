@@ -1,0 +1,104 @@
+[
+  {
+    "id": "d08d8337-9a11-4fe4-baaa-d42da6553515",
+    "data": [
+      {
+        "text": "Ich brauche Unterstützung bei der Veranstaltung.",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "38f0da7c-a00f-4401-ac76-ebdf26611e4f",
+    "data": [
+      {
+        "text": "Mit wem kann ich Kontakt aufnehmen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6decc30e-0946-4961-974c-625cb4602acf",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "brauche Unterstützung bei der Veranstaltung. Mit",
+        "userDefined": false
+      },
+      {
+        "text": " wem kann ich Kontakt aufnehmen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cdfe3937-3b95-4fd5-b97a-e220fe891d37",
+    "data": [
+      {
+        "text": "Ich ",
+        "userDefined": false
+      },
+      {
+        "text": "will",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "userDefined": false
+      },
+      {
+        "text": " Kontakt für persönliche Unterstützung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "10ae9afe-3f59-4082-b2c2-5b6e2d76b3ef",
+    "data": [
+      {
+        "text": "Wer kann mir helfen für Barrierefreiheit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "471f4c5f-267e-4ab3-a645-bc1d8243c9be",
+    "data": [
+      {
+        "text": "Kontaktmöglichkeit für Zugänglichkeitsunterstützung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

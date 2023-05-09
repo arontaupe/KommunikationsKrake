@@ -1,0 +1,112 @@
+[
+  {
+    "id": "d2d87adf-a86d-4ca6-8882-bc42ba778d5b",
+    "data": [
+      {
+        "text": "Coronasituation",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1bbe3b69-47cb-43d9-8dad-39815c4243af",
+    "data": [
+      {
+        "text": "Gibt es Abstandsregeln bei der Veranstaltung?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5da5292b-d41a-4155-abc9-4941c0dcad07",
+    "data": [
+      {
+        "text": "Muss ich ",
+        "userDefined": false
+      },
+      {
+        "text": "eine",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Maske",
+        "userDefined": false
+      },
+      {
+        "text": " tragen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "47ae898e-a0a4-4137-9508-1c007118515e",
+    "data": [
+      {
+        "text": "Covid Regeln",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1f37b5e4-8e62-4750-ab61-3b7f68a61d72",
+    "data": [
+      {
+        "text": "Was wird ",
+        "userDefined": false
+      },
+      {
+        "text": "dort",
+        "userDefined": false
+      },
+      {
+        "text": " gegen ",
+        "userDefined": false
+      },
+      {
+        "text": "Corona",
+        "userDefined": false
+      },
+      {
+        "text": " getan?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "3df7af99-fd35-40bb-87f5-d09ed80a29ec",
+    "data": [
+      {
+        "text": "Coronamaßnahmen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  }
+]

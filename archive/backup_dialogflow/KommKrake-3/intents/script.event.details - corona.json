@@ -1,0 +1,39 @@
+{
+  "id": "450fc870-de69-4825-b447-29f0769cc8ba",
+  "parentId": "23e13464-808a-472c-babb-2d6dc6ac6a1d",
+  "rootParentId": "23e13464-808a-472c-babb-2d6dc6ac6a1d",
+  "name": "script.event.details - corona",
+  "auto": true,
+  "contexts": [
+    "scripteventdetails-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "scripteventdetails.scripteventdetails-custom-4",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "speech": [
+            "Du hast nach den Coronamaßnahmen der Veranstaltung gefragt. TODO"
+          ],
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

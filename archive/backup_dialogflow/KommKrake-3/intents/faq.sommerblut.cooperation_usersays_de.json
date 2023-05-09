@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ae9e6332-235c-4791-aa55-d705034e4b82",
+    "data": [
+      {
+        "text": "mit wem arbeitet ihr zusammen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c6a4a863-81de-4db3-8aa2-02c195817422",
+    "data": [
+      {
+        "text": "habt ihr partnerprojekte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8cbefd6e-3335-4955-a5a6-d1af0064390f",
+    "data": [
+      {
+        "text": "gibt es Kooperationen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7310752c-1627-4d41-a554-a07d9297d9e6",
+    "data": [
+      {
+        "text": "Arbeitet ihr mit ",
+        "userDefined": false
+      },
+      {
+        "text": "anderen",
+        "userDefined": false
+      },
+      {
+        "text": " Theatern zusammen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

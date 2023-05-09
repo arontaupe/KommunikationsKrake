@@ -1,0 +1,36 @@
+{
+  "id": "f3e8cc13-f3c5-4a9c-bc2a-81d4292937b4",
+  "parentId": "3c3059eb-ddeb-4794-85da-17a80d24eda9",
+  "rootParentId": "3c3059eb-ddeb-4794-85da-17a80d24eda9",
+  "name": "faq.sommerblut.gender_ratio - which_events",
+  "auto": true,
+  "contexts": [
+    "faqsommerblutgender_ratio-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "faqsommerblutgender_ratio.faqsommerblutgender_ratio-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

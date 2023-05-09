@@ -1,0 +1,52 @@
+{
+  "id": "7c5e13d5-a5f1-4e6e-8ebf-2e9d970ae71d",
+  "name": "script.time.filter.nextdays",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "1e9d1cb9-afcb-4c40-8823-43bb7ac1a93b",
+          "name": "num_next_days_filter",
+          "required": true,
+          "dataType": "@num_next_days_filter",
+          "value": "$num_next_days_filter",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "de",
+              "value": "Für wie viele Tage soll ich nach Veranstaltungen schauen?"
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "0",
+          "title": "",
+          "textToSpeech": "",
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

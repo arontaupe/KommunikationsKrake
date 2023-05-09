@@ -1,0 +1,131 @@
+[
+  {
+    "id": "174ee6b9-3b6c-4f02-98cd-bdeb7c1e4886",
+    "data": [
+      {
+        "text": "ich warte auf deine Antwort",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ba9e0f79-5792-4d7e-8ff4-0fac6743b591",
+    "data": [
+      {
+        "text": "gib mir bitte eine Antwort",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "bfff5a50-9b4d-4642-89e7-b5fba6110efd",
+    "data": [
+      {
+        "text": "zuerst musst du antworten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8f67f015-f97d-43d8-9c37-63cae4ed6706",
+    "data": [
+      {
+        "text": "ich brauche deine Antwort",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "11a66c8b-fdbb-4040-ac76-a7145db6603c",
+    "data": [
+      {
+        "text": "bitte beantworte meine Frage",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "90b7faa3-e917-45aa-b617-b9409bc139fd",
+    "data": [
+      {
+        "text": "antworte bitte",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "6e8c6888-2290-4c47-977e-d562e311b3c7",
+    "data": [
+      {
+        "text": "kannst du meine Frage beantworten",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9380a1d2-e8b5-4d23-b34c-cc2aab9ed4b6",
+    "data": [
+      {
+        "text": "beantworte zuerst meine Frage",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b34ded53-212c-4b4c-bbb2-6e6524a364d3",
+    "data": [
+      {
+        "text": "beantworte meine Frage",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "eh, du hast mich nicht verstanden!",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

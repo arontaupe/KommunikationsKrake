@@ -1,0 +1,114 @@
+[
+  {
+    "id": "fa5701f8-6eb2-4970-b813-16083fa938c9",
+    "data": [
+      {
+        "text": "Alle ",
+        "userDefined": false
+      },
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " in den kommenden ",
+        "userDefined": false
+      },
+      {
+        "text": "zwei",
+        "meta": "@num_next_days_filter",
+        "alias": "num_next_days_filter",
+        "userDefined": false
+      },
+      {
+        "text": " tagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 1,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5f9e7603-2bd1-476a-af09-6a2cde45535d",
+    "data": [
+      {
+        "text": "Ich habe ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@num_next_days_filter",
+        "alias": "num_next_days_filter",
+        "userDefined": true
+      },
+      {
+        "text": " Tage zeit",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a14125bf-6612-4e7b-a431-eb5b76565c64",
+    "data": [
+      {
+        "text": "in den nächsten ",
+        "userDefined": false
+      },
+      {
+        "text": "3",
+        "meta": "@num_next_days_filter",
+        "alias": "num_next_days_filter",
+        "userDefined": false
+      },
+      {
+        "text": " Tagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b9b4efda-65c3-4833-9e88-382f5853fe9c",
+    "data": [
+      {
+        "text": "Veranstaltungen",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "in",
+        "userDefined": false
+      },
+      {
+        "text": " den nächsten ",
+        "userDefined": false
+      },
+      {
+        "text": "5",
+        "meta": "@num_next_days_filter",
+        "alias": "num_next_days_filter",
+        "userDefined": true
+      },
+      {
+        "text": " Tagen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

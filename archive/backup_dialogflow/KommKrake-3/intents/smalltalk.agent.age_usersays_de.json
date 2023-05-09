@@ -1,0 +1,172 @@
+[
+  {
+    "id": "d560e315-ed0d-4e12-bc35-a3c961f444bd",
+    "data": [
+      {
+        "text": "wann hat man dich gebaut",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b8203526-990e-4c16-b8e9-ecdbd22cd853",
+    "data": [
+      {
+        "text": "wann wurdest du geboren",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "94427f51-3add-43b1-8aed-8cb1c5d86dcf",
+    "data": [
+      {
+        "text": "wie viele ",
+        "userDefined": false
+      },
+      {
+        "text": "Jahre",
+        "userDefined": false
+      },
+      {
+        "text": " gibt es dich schon",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "32f2b98b-e422-48d2-80e1-75c9d2f70672",
+    "data": [
+      {
+        "text": "wann wurdest ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " gemacht",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c8e641dc-0897-4a9d-a1f3-5e6e24066b35",
+    "data": [
+      {
+        "text": "dein Alter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7e16ff6b-f541-40eb-ab9a-4a6d5ba04967",
+    "data": [
+      {
+        "text": "Alter von dir",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5a04b1f0-7ac0-4154-a78a-03eb0279c8b5",
+    "data": [
+      {
+        "text": "was ist dein Alter",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "d49bdf90-cca1-4cd2-9f45-bbb086cc2719",
+    "data": [
+      {
+        "text": "wie alt ",
+        "userDefined": false
+      },
+      {
+        "text": "bist du",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "5ff864fd-2c1f-4064-982c-13bbefefde13",
+    "data": [
+      {
+        "text": "wie alt fühlst ",
+        "userDefined": false
+      },
+      {
+        "text": "du",
+        "userDefined": true
+      },
+      {
+        "text": " dich",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cc7cb61e-77e2-4676-b2d8-5b2eb071c452",
+    "data": [
+      {
+        "text": "wie viele jahre bist du schon da",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "wie alt bist du?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

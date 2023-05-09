@@ -1,0 +1,77 @@
+{
+  "id": "71ecd740-bf30-4ebb-bfa9-ce023929c390",
+  "parentId": "0d820190-4c99-42d5-949c-33236575f06f",
+  "rootParentId": "0d820190-4c99-42d5-949c-33236575f06f",
+  "name": "accessibility.select - collect",
+  "auto": true,
+  "contexts": [
+    "bedarfselect-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "bedarfselect.bedarfselect-collect",
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "9109f699-3843-4b6c-8d55-629ba298b125",
+          "name": "bedarf",
+          "required": true,
+          "dataType": "@bedarf",
+          "value": "$bedarf",
+          "defaultValue": "",
+          "isList": false,
+          "prompts": [
+            {
+              "lang": "de",
+              "value": "Du kannst jetzt eine Zugänglichkeit eingeben, die bei meinen Empfehlungen beachtet werden soll."
+            }
+          ],
+          "promptMessages": [],
+          "noMatchPromptMessages": [],
+          "noInputPromptMessages": [],
+          "outputDialogContexts": []
+        }
+      ],
+      "messages": [
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "title": "",
+          "textToSpeech": "",
+          "suggestions": [
+            {
+              "title": "gehörlos"
+            },
+            {
+              "title": "blind"
+            },
+            {
+              "title": "schwerhörig"
+            },
+            {
+              "title": "Rollstuhl"
+            },
+            {
+              "title": "leichte Sprache"
+            }
+          ],
+          "lang": "de",
+          "condition": ""
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "google": true
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": true,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "1fb4ae21-5323-4f75-84db-5d992e080839",
+    "data": [
+      {
+        "text": "Wo geht ",
+        "userDefined": false
+      },
+      {
+        "text": "es",
+        "userDefined": false
+      },
+      {
+        "text": " zum Ticketshop",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "cf4cc9ef-1e56-4da7-bb58-6032e9498001",
+    "data": [
+      {
+        "text": "Eintrittskarten im ",
+        "userDefined": false
+      },
+      {
+        "text": "Internet",
+        "userDefined": false
+      },
+      {
+        "text": " kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "7aa74276-0301-4020-b67e-34f391cee83c",
+    "data": [
+      {
+        "text": "Wo kann ich Tickets bestellen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "49f8ad0e-ac36-4a58-931b-94b51ae4b7e8",
+    "data": [
+      {
+        "text": "ich möchte ",
+        "userDefined": false
+      },
+      {
+        "text": "karten",
+        "userDefined": false
+      },
+      {
+        "text": " bestellen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "81c6b982-1eec-4075-b0dd-c3d917980839",
+    "data": [
+      {
+        "text": "Tickets online ",
+        "userDefined": false
+      },
+      {
+        "text": "kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Tickets online kaufen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

@@ -1,0 +1,204 @@
+[
+  {
+    "id": "f8eb179d-5293-4452-bb44-40aaa7b7b2cf",
+    "data": [
+      {
+        "text": "ich brauche hilfe",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0787de56-834b-4b86-b133-9efb8334e5d7",
+    "data": [
+      {
+        "text": "Hilfestellung",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c887ea42-889d-4daf-94fe-52a39ee1a8db",
+    "data": [
+      {
+        "text": "Hilfe!",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "c825e59b-c8f0-40fa-a4ff-1067709827f1",
+    "data": [
+      {
+        "text": "was kann ich tun",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "f719572f-8a12-4aad-a78e-a8f05225a958",
+    "data": [
+      {
+        "text": "wie funktioniert ällei",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "b9fe45a9-49aa-435e-90e9-a83365197459",
+    "data": [
+      {
+        "text": "wie funktioniert der chatbot",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "ac8de49e-19d5-4966-ba89-8da00275b606",
+    "data": [
+      {
+        "text": "was kann der bot",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8d49ff83-c529-432a-aec2-5f852c3b3e3e",
+    "data": [
+      {
+        "text": "einführungsvideo in ",
+        "userDefined": false
+      },
+      {
+        "text": "leichter sprache",
+        "meta": "@ls_video",
+        "alias": "ls_video",
+        "userDefined": true
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "36e7f4d0-e3f7-45a3-a965-07bb0580540a",
+    "data": [
+      {
+        "text": "schick",
+        "userDefined": false
+      },
+      {
+        "text": " mir das einführungsvideo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "8cd161cc-19db-43a7-991e-f2c527653990",
+    "data": [
+      {
+        "text": "ich möchte",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "userDefined": false
+      },
+      {
+        "text": " intro haben",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "a2c485c4-544d-4380-aa38-69a76ef76959",
+    "data": [
+      {
+        "text": "einführungsvideo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "1b3a31a4-5b33-4629-ba28-70064214775f",
+    "data": [
+      {
+        "text": "Einführungsvideo",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "Einführungsvideo in leichter Sprache",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 2,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "data": [
+      {
+        "text": "WIE FUNKTIONIERST DU",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

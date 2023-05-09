@@ -1,0 +1,9 @@
+{
+  "id": "6a75eeb7-9f33-4e60-8f1b-ddd26fe9afee",
+  "name": "ls_video",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": true
+}

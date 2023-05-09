@@ -1,0 +1,172 @@
+[
+  {
+    "id": "6005616f-5b26-4dda-a1a7-6404551adb17",
+    "data": [
+      {
+        "text": "Kann man mit dir auch spaß haben?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99acbc3e-47a6-4f5e-b3fa-1d5dbf31e377",
+    "data": [
+      {
+        "text": "kann man mit dir auch spass haben?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "e80560aa-b801-4e34-96d5-2f5bac6036d0",
+    "data": [
+      {
+        "text": "Bring mich zum ",
+        "userDefined": false
+      },
+      {
+        "text": "lachen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "9ddf3be2-7347-4340-a099-e2e89c480d83",
+    "data": [
+      {
+        "text": "Kannst du ",
+        "userDefined": false
+      },
+      {
+        "text": "witze",
+        "userDefined": false
+      },
+      {
+        "text": " erzählen",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "db17c61d-a305-4d75-a7ab-d10fd618deaf",
+    "data": [
+      {
+        "text": "noch ",
+        "userDefined": false
+      },
+      {
+        "text": "ein",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Witz",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "99cd239e-ffb5-4ef4-8647-a7d3dbe2b583",
+    "data": [
+      {
+        "text": "sag ",
+        "userDefined": false
+      },
+      {
+        "text": "was",
+        "userDefined": false
+      },
+      {
+        "text": " lustiges",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "0311e025-8bfd-4b47-9710-7934eba72dea",
+    "data": [
+      {
+        "text": "erzähl ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "Witz",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  },
+  {
+    "id": "2e0d7a8b-db57-4c74-8f03-592bb2e04bed",
+    "data": [
+      {
+        "text": "kannst du mir auch ",
+        "userDefined": false
+      },
+      {
+        "text": "einen",
+        "meta": "@sys.number",
+        "alias": "number",
+        "userDefined": false
+      },
+      {
+        "text": " ",
+        "userDefined": false
+      },
+      {
+        "text": "witz",
+        "userDefined": false
+      },
+      {
+        "text": " erzählen?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "lang": "de",
+    "updated": 0
+  }
+]

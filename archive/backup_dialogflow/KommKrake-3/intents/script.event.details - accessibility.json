@@ -1,0 +1,28 @@
+{
+  "id": "b2a89efb-bee9-48ff-9371-919ff45080ce",
+  "parentId": "23e13464-808a-472c-babb-2d6dc6ac6a1d",
+  "rootParentId": "23e13464-808a-472c-babb-2d6dc6ac6a1d",
+  "name": "script.event.details - accessibility",
+  "auto": true,
+  "contexts": [
+    "scripteventdetails-followup"
+  ],
+  "responses": [
+    {
+      "resetContexts": false,
+      "action": "scripteventdetails.scripteventdetails-custom",
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [],
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "fallbackIntent": false,
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}

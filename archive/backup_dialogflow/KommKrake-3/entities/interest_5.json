@@ -1,0 +1,9 @@
+{
+  "id": "81b68046-4465-4d83-8e5f-a6dda4f82ec4",
+  "name": "interest_5",
+  "isOverridable": true,
+  "isEnum": false,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": true
+}
