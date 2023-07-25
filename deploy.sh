@@ -8,6 +8,7 @@ CLEAR='\033[0m'  # Clear color and formatting
 
 
 build-docker() {
+    cd /Users/aron/KommunikationsKrake/
     docker-compose build 
     docker push arontaupe/allei   
     #docker-compose up
