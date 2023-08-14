@@ -4,12 +4,12 @@ certifi==2023.7.22
 urllib3==2.0.4
 pandas==2.0.3
 six==1.16.0
-Werkzeug==2.3.6
+Werkzeug==2.3.7
 cachetools==5.3.1
 Flask-HTTPAuth==4.8.0
 python_dateutil==2.8.2
 setuptools==68.0.0
 gunicorn==21.2.0
-numpy==1.25.1
+numpy==1.25.2
 yagmail==0.15.293
 icalendar==5.0.7
